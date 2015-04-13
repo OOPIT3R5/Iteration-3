@@ -38,7 +38,7 @@ public class MainMenuController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_W){
+			if(key == RunGame.getKey("SOUTH")){
 				mm.MoveUp();
 			}
 			
@@ -61,35 +61,8 @@ public class MainMenuController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_S){
+			if(key == RunGame.getKey("NORTH")){
 				mm.MoveDown();
-			}
-			
-		}
-
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-	}
-	
-	public class Update implements KeyListener {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_ENTER){
-				setChanged();
-				notifyObservers();
-				deleteObserver(RunGame.r);
-				
 			}
 			
 		}
@@ -112,6 +85,9 @@ public class MainMenuController extends Controller {
 		String state = mm.getState();
 		if(state.equals("new")){ //Is there a way around this?
 			return new CharacterCreationController();
+		}
+		else if(state.equals("options")){
+			return new ConfigController();
 		}
 		return null;
 		

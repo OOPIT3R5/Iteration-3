@@ -9,7 +9,7 @@ import View.CharacterCreationView;
 
 public class CharacterCreation extends Observable {
 	int selected = 0;
-	String[] options = {"back","sneak","smasher","summoner"};
+	String[] options = {"Smasher","Summoner","Sneak","Back"};
 	CharacterCreationView cv = new CharacterCreationView(options);
 	
 	public CharacterCreation(){
@@ -26,7 +26,9 @@ public class CharacterCreation extends Observable {
 		notifyObservers(options[selected]);
 	}
 	public void MoveDown(){
-		selected = (selected-1)%4;
+		if((--selected) < 0){
+			selected = 3;
+		}
 		setChanged();
 		notifyObservers(options[Math.abs(selected)]);
 	}

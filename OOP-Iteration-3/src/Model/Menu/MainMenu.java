@@ -8,7 +8,7 @@ import View.MainMenuView;
 
 public class MainMenu extends Observable {
 	int selected = 0;
-	String[] options = {"new","load","quit"};
+	String[] options = {"new","load","options","quit"};
 	MainMenuView mv = new MainMenuView(options);
 	
 	public MainMenu(){
@@ -20,12 +20,14 @@ public class MainMenu extends Observable {
 	}
 	
 	public void MoveUp(){
-		selected = Math.abs((selected+1)%3);
+		selected = Math.abs((selected+1)%options.length);
 		setChanged();
 		notifyObservers(options[selected]);
 	}
 	public void MoveDown(){
-		selected = (selected-1)%3;
+		if((--selected) < 0){
+			selected = 3;
+		}
 		setChanged();
 		notifyObservers(options[Math.abs(selected)]);
 	}

@@ -47,7 +47,7 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_W){
+			if(key == RunGame.getKey("NORTH") || key == RunGame.getKey("EAST")){
 				cm.MoveUp();
 			}
 			
@@ -70,34 +70,8 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_S){
+			if(key == RunGame.getKey("WEST") || key == RunGame.getKey("SOUTH")){
 				cm.MoveDown();
-			}
-			
-		}
-
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-	}
-	
-	public class Update implements KeyListener {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_ENTER){
-				setChanged();
-				notifyObservers();
-				deleteObserver(RunGame.r);
 			}
 			
 		}
