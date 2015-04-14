@@ -10,5 +10,5 @@ public abstract class WeaponItem extends EquippableItem{
         return attackspeed;
     }
 
-    //public abstract int getNumOfHands();
+    public abstract boolean isTwoHanded();
 }
