@@ -1,4 +1,4 @@
-package Model.Entity;
+package Model.Entity.Ability;
 
 public class Attack extends SkillAbility{
 

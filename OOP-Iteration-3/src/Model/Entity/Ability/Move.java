@@ -1,4 +1,5 @@
-package Model.Entity;
+package Model.Entity.Ability;
+
 
 public class Move extends Ability{
 
