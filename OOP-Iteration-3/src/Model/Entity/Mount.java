@@ -1,8 +1,6 @@
 package Model.Entity;
 
-public class Mount {
+public interface Mount {
 
-	public Mount(){
-		
-	}
+	
 }

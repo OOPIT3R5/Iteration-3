@@ -1,8 +1,5 @@
 package Model.Entity;
 
-public class Pet {
+public interface Pet {
 
-	public Pet(){
-		
-	}
 }

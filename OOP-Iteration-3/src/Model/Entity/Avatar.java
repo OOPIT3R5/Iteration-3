@@ -1,6 +1,6 @@
 package Model.Entity;
 
-public class Avatar {
+public class Avatar extends Entity{
 
 	public Avatar(){
 		

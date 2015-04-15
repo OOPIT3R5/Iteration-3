@@ -1,6 +1,6 @@
 package Model.Entity;
 
-public class Monster {
+public class Monster extends Adversarial{
 
 	public Monster() {
 		// TODO Auto-generated constructor stub
