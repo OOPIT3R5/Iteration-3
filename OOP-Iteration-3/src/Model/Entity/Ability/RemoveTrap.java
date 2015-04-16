@@ -1,9 +1,19 @@
 package Model.Entity.Ability;
 
+import java.util.ArrayList;
+
+import Model.Entity.Entity;
+
 public class RemoveTrap extends SneakAbility {
 
-	public RemoveTrap() {
-		// TODO Auto-generated constructor stub
+	public RemoveTrap(ArrayList<Entity> targetList) {		// doesn't need a target entity....
+		super(targetList);
+	}
+
+	@Override
+	void execute() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

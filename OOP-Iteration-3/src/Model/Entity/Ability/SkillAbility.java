@@ -1,9 +1,13 @@
 package Model.Entity.Ability;
 
-public class SkillAbility extends Ability{
+import java.util.ArrayList;
 
-	public SkillAbility() {
-		// TODO Auto-generated constructor stub
+import Model.Entity.Entity;
+
+public abstract class SkillAbility extends Ability{
+
+	public SkillAbility(ArrayList<Entity> targetList) {
+		super(targetList);
 	}
 
 }

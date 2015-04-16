@@ -1,9 +1,25 @@
 package Model.Entity.Ability;
 
-public abstract class Ability {
+import java.util.ArrayList;
 
-	public Ability() {
-		// TODO Auto-generated constructor stub
+import Model.Entity.Entity;
+
+public abstract class Ability {
+	
+	private ArrayList<Entity> targetList;
+
+	public Ability(ArrayList<Entity> targetList) {
+		this.setTargetList(targetList);
+	}
+	
+	abstract void execute();
+
+	private ArrayList<Entity> getTargetList() {
+		return targetList;
+	}
+
+	private void setTargetList(ArrayList<Entity> targetList) {
+		this.targetList = targetList;
 	}
 
 }
