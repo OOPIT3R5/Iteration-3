@@ -44,8 +44,7 @@ public class Test extends JPanel {
 	
 	public static void main(String[] args) {
 		HexGrid gg = new HexGrid(10, 10);
-		gg.fill(new HexTile(new HexCoordinate(1, 1), new Grass()));
-		gg.add(new HexTile(2, 2, 2));
+		gg.fill(new HexTile(1));
 		System.out.println(gg.toString());
 		
 		JFrame frame = new JFrame("Drawn HexTiled Grids");

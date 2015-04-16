@@ -6,25 +6,25 @@ package Model.Map;
  * @author Jack
  *
  */
-public class Vector2D implements Comparable<Vector2D> {
+public class Vector2D /*implements Comparable<Vector2D>*/ {
 	
 	/*public static VectorPoint2D add(VectorPoint2D a, VectorPoint2D b) {
 		return new VectorPoint2D(a.vector[0] + b.vector[0], a.vector[0] + b.vector[0]);
-	}*/
+	}
 
 	public static double angleBetween(Vector2D a, Vector2D b) {
 		return dot(a, b) / (a.magnitude() * b.magnitude());
 	}
 	
-	/*public static double distance(VectorPoint2D a, VectorPoint2D b) {
+	public static double distance(VectorPoint2D a, VectorPoint2D b) {
 		return VectorPoint2D.subtract(a, b).magnitude();
-	}*/
+	}
 	
 	public static int dot(Vector2D a, Vector2D b) {
 		return a.vector[0] * b.vector[0] + a.vector[1] * b.vector[1];
 	}
 	
-	/*public static VectorPoint2D scale(VectorPoint2D a, int scalar) {
+	public static VectorPoint2D scale(VectorPoint2D a, int scalar) {
 		return new VectorPoint2D(a.vector[0] * scalar, a.vector[1] * scalar);
 	}
 	
@@ -39,7 +39,7 @@ public class Vector2D implements Comparable<Vector2D> {
 		vector[1] = y;
 	}
 	
-	public double angle() {
+	/*public double angle() {
 		return angleBetween(this, new Vector2D(1,0));
 	}
 	
@@ -63,7 +63,7 @@ public class Vector2D implements Comparable<Vector2D> {
 	
 	public Vector2D subtract(Vector2D other) {
 		return new Vector2D(vector[0] - other.vector[0], vector[1] - other.vector[1]);
-	}
+	}*/
 	
 	public int getX() {
 		return vector[0];

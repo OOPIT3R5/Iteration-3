@@ -1,47 +1,37 @@
 package Model.Map.Grid;
 
 import Model.Map.Vector2D;
+import Model.Map.Terrain.Grass;
 import Model.Map.Terrain.Terrain;
-
 
 public class Tile {
 
+	private final Terrain terrain_;
 	private Vector2D vector_;
-	private Terrain terrain_;
 	/*private Entity entity_;
 	private MapObject map_object_;*/
 	
-	public Tile(Vector2D vector) {
-		vector_ = vector;
+	public Tile() {
+		terrain_ = new Grass();
 	}
 	
-	public Tile(Vector2D vector, Terrain terrain) {
-		vector_ = vector;
-		terrain_ = terrain;
-	}
-
-	public Tile(int x, int y) {
-		vector_ = new Vector2D(x, y);
-	}
-	
-	public Tile(int x, int y, Terrain terrain) {
-		vector_ = new Vector2D(x, y);
+	public Tile(Terrain terrain) {
 		terrain_ = terrain;
 	}
 	
-	public void setTerrain(Terrain terrain) {
-		terrain_ = terrain;
+	public Tile clone() {
+		return new Tile( getTerrain() );
 	}
 	
 	public Terrain getTerrain() {
 		return terrain_;
 	}
 	
-	public void setLocation(int x, int y) {
-		vector_ = new Vector2D(x, y);
+	public void setLocation( int x, int y ) {
+		setLocation( new Vector2D( x, y ));
 	}
 	
-	public void setLocation(Vector2D vector) {
+	public void setLocation( Vector2D vector ) {
 		vector_ = vector;
 	}
 	

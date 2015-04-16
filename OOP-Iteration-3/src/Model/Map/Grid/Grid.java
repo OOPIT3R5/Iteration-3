@@ -50,8 +50,7 @@ public abstract class Grid {
 	public void fill(Tile tile) {
 		for (int col = 0; col < width_; col++)
 			for (int row = 0; row < height_; row++)
-				insert(col, row, tile);
-		size_ = width_ * height_;
+				insert(col, row, tile.clone());
 	}
 	
 	/** Returns object at xy index. */
@@ -71,6 +70,7 @@ public abstract class Grid {
 	public void insert(int x, int y, Tile tile) {
 		if (see(x, y) == null)
 			size_ += 1;
+		tile.setLocation(x, y);
 		grid_[x][y] = tile;
 	}
 	

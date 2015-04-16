@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Jack
  *
  */
-public class HexCoordinate extends Vector2D implements Cloneable {
+public class HexCoordinate extends Vector2D {
 	
 	// TODO - Other mathematical operations as static methods.
 	
@@ -84,12 +84,6 @@ public class HexCoordinate extends Vector2D implements Cloneable {
 		return rectangle;
 	}
 	
-	/** Rectilinear distance between two Hex coordinates. */
-	public static int rectilinearDistance(HexCoordinate a, HexCoordinate b) {
-		return Math.max(Math.max(Math.abs(a.getX() - b.getX()), Math.abs(a.getY() - b.getY())), Math.abs(a.getZ() - b.getZ()));
-	}
-	
-	
 	public static ArrayList<HexCoordinate> ring(HexCoordinate center, int radius) {
 		ArrayList<HexCoordinate> ring = new ArrayList<HexCoordinate>();
 		HexCoordinate hex = new HexCoordinate(center.getU(), center.getV() + radius);
@@ -99,6 +93,11 @@ public class HexCoordinate extends Vector2D implements Cloneable {
 				hex = hex.getNeighbor(direction);
 			}
 		return ring;
+	}
+	
+	/** Rectilinear distance between two Hex coordinates. */
+	public static int rectilinearDistance(HexCoordinate a, HexCoordinate b) {
+		return Math.max(Math.max(Math.abs(a.getX() - b.getX()), Math.abs(a.getY() - b.getY())), Math.abs(a.getZ() - b.getZ()));
 	}
 	
 	/** Stores uv axial coordinates. */

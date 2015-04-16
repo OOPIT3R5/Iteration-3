@@ -20,8 +20,8 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	
 	public void add(int u, int v, HexTile hex_tile) {
 		if (isValid(u, v)) {
-			hex_tile.setLocation(u, v);
 			super.insert(u, v + u / 2, hex_tile);
+			hex_tile.setLocation(u, v);
 		}
 	}
 	
@@ -90,8 +90,7 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	public void fill(HexTile hex_tile) {
 		for (int col = 0; col < super.getWidth(); col++)
 			for (int row = 0; row < super.getHeight(); row++)
-				insert(col, row, hex_tile);
-		//SET SIZE!!!
+				insert(col, row, hex_tile.clone());
 	}
 	
 	public HexTile get(HexCoordinate hex) {
@@ -132,8 +131,8 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	}
 	
 	public void insert(int x, int y, HexTile hex_tile) {
-		hex_tile.setLocation(x, y - x / 2);
 		super.insert(x, y, hex_tile);
+		hex_tile.setLocation(x, y - x / 2);
 	}
 	
 	protected boolean isValid(HexCoordinate hex) {
