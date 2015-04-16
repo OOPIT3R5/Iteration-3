@@ -2,7 +2,7 @@ package Model.Entity;
 
 public class Entity {
 	
-	Entity(){
+	public Entity(){
 		// empty constructor
 	}	
 
