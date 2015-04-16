@@ -49,9 +49,10 @@ public class HexagonalTile extends Tile {
 	
 	@Override
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		getTerrain().notifyOfEntity(target, direction);
 		if (super.hasEntity())
 			target.disableMove(Direction.hexToInt(direction) + 3);
+		else
+			getTerrain().notifyOfEntity(target, direction);
 	}
 	
 	

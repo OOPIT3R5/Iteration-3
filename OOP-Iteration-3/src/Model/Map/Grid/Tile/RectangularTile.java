@@ -48,7 +48,9 @@ public class RectangularTile extends Tile {
 	@Override
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
 		if (super.hasEntity())
-			target.disableMove(Direction.octToInt(direction) + 4);
+			target.disableMove(Direction.hexToInt(direction) + 4);
+		else
+			getTerrain().notifyOfEntity(target, direction);
 	}
 	
 }
