@@ -1,7 +1,9 @@
 package Model.Map.Grid.Tile;
 
 import Model.Entity.Entity;
+import Model.Entity.MovementInterface;
 import Model.Items.MapObject;
+import Model.Map.Direction;
 import Model.Map.Location;
 import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
@@ -67,5 +69,11 @@ public abstract class Tile {
 	public String toString() {
 		return "";
 	}
+	
+	public boolean hasEntity() {
+		return (entity_ != null);
+	}
+
+	public abstract void notifyOfEntity(MovementInterface target, Direction direction);
 	
 }

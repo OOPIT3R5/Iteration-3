@@ -1,4 +1,6 @@
 package Model.Map.Grid.Tile;
+import Model.Entity.MovementInterface;
+import Model.Map.Direction;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Terrain.Grass;
@@ -44,5 +46,13 @@ public class HexagonalTile extends Tile {
 		return getLocation().getU() + ","+
 				getLocation().getV();
 	}
+	
+	@Override
+	public void notifyOfEntity(MovementInterface target, Direction direction) {
+		getTerrain().notifyOfEntity(target, direction);
+		if (super.hasEntity())
+			target.disableMove(Direction.hexToInt(direction) + 3);
+	}
+	
 	
 }
