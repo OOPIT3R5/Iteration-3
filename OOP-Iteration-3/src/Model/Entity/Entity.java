@@ -9,6 +9,7 @@ import Model.Items.Equipment;
 import Model.Items.Inventory;
 import Model.Items.TakeableItem;
 import Model.Map.Direction;
+import Model.Map.Location;
 
 public class Entity implements MovementInterface {
 	
