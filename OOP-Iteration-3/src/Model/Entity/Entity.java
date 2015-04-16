@@ -14,7 +14,7 @@ public class Entity implements MovementInterface {
 	
 	private Equipment equipmentManager;
 	private Inventory inventory;
-	
+	private Location currentPosition;
 	private ArrayList<Ability> movement_;
 	
 	public Entity(){
@@ -47,5 +47,13 @@ public class Entity implements MovementInterface {
 		entity_list.add(this);
 		movement_.add(direction, new Move(entity_list, Direction.intToHex(direction), 1));
 	}
+	public void setLocation(Location newPosition){
+		this.currentPosition = newPosition;
+	}
+	public Location getLocation(){
+		return this.currentPosition;
+	}
+
+
 
 }
