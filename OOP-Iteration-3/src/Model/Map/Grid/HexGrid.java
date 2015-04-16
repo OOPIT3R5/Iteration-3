@@ -4,18 +4,20 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import Model.Map.HexCoordinate;
-import Model.Map.Vector2D;
+import Model.Map.HexagonalCoordinateInterface;
+import Model.Map.HexagonalLocation;
+import Model.Map.RectangularLocation;
+import Model.Map.Grid.Tile.HexTile;
 import Model.Map.View.FlatHexagon;
 
-public class HexGrid extends Grid implements DrawableHexGrid {
+public class HexGrid extends Grid implements DrawableHexGridInterface {
 	
 	public HexGrid(int width, int height) {
 		super(width, height);
 	}
 	
-	public void add(HexCoordinate hex, HexTile hex_tile) {
-		add(hex.getU(), hex.getV(), hex_tile);
+	public void add(HexagonalCoordinateInterface hex_coord, HexTile hex_tile) {
+		add(hex_coord.getU(), hex_coord.getV(), hex_tile);
 	}
 	
 	public void add(int u, int v, HexTile hex_tile) {
@@ -23,11 +25,6 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 			super.insert(u, v + u / 2, hex_tile);
 			hex_tile.setLocation(u, v);
 		}
-	}
-	
-	public void add(HexTile hex_tile) {
-		HexCoordinate hex = hex_tile.getLocation();
-		super.insert(hex.getU(), hex.getV(), hex_tile);
 	}
 
 	/*public void drawArc(Graphics g, Point origin, HexCoordinate center, Direction d,
@@ -46,10 +43,10 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	}
 	
 	@Override
-	public void drawHex(Graphics g, Point origin, HexCoordinate center, int grid_radius, int hexagon_size) {
-		ArrayList<HexTile> hex_tiles = getHexTiles(HexCoordinate.circle(center, grid_radius));
+	public void drawHex(Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size) {
+		ArrayList<HexTile> hex_tiles = getHexTiles(HexagonalLocation.circle(center, grid_radius));
 		for (HexTile hex_tile : hex_tiles) {
-			HexCoordinate h = hex_tile.getLocation();
+			HexagonalLocation h = hex_tile.getLocation();
 			// Just outlines for now
 			new FlatHexagon(new Point(
 					(int)(origin.getX() + 3 / 2.0 * hexagon_size * h.getU()), 
@@ -59,11 +56,11 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	}
 	
 	@Override
-	public void drawRectangle(Graphics g, Point origin, HexCoordinate center,
+	public void drawRectangle(Graphics g, Point origin, HexagonalLocation center,
 			int grid_width_radius, int grid_height_radius, int hexagon_size) {
-		ArrayList<HexTile> hex_tiles = getHexTiles(HexCoordinate.rectangle(center, grid_width_radius, grid_height_radius));
+		ArrayList<HexTile> hex_tiles = getHexTiles(HexagonalLocation.rectangle(center, grid_width_radius, grid_height_radius));
 		for (HexTile hex_tile : hex_tiles) {
-			HexCoordinate h = hex_tile.getLocation();
+			HexagonalLocation h = hex_tile.getLocation();
 			// Just outlines for now
 			new FlatHexagon(new Point(
 					(int)(origin.getX() + 3 / 2.0 * hexagon_size * h.getU()), 
@@ -73,11 +70,11 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	}
 	
 	@Override
-	public void drawRectangleWithCoords(Graphics g, Point origin, HexCoordinate center,
+	public void drawRectangleWithCoords(Graphics g, Point origin, HexagonalLocation center,
 			int grid_width_radius, int grid_height_radius, int hexagon_size) {
-		ArrayList<HexTile> hex_tiles = getHexTiles(HexCoordinate.rectangle(center, grid_width_radius, grid_height_radius));
+		ArrayList<HexTile> hex_tiles = getHexTiles(HexagonalLocation.rectangle(center, grid_width_radius, grid_height_radius));
 		for (HexTile hex_tile : hex_tiles) {
-			HexCoordinate h = hex_tile.getLocation();
+			HexagonalLocation h = hex_tile.getLocation();
 			// Just outlines for now
 			int x = (int)(origin.getX() + 3 / 2.0 * hexagon_size * (h.getU() - center.getU()));
 			int y = (int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((h.getV() - center.getV()) + (h.getU() - center.getU()) / 2.0));
@@ -88,12 +85,12 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	}
 	
 	public void fill(HexTile hex_tile) {
-		for (int col = 0; col < super.getWidth(); col++)
-			for (int row = 0; row < super.getHeight(); row++)
+		for (int row = 0; row < super.getHeight(); row++)
+			for (int col = 0; col < super.getWidth(); col++)
 				insert(col, row, hex_tile.clone());
 	}
 	
-	public HexTile get(HexCoordinate hex) {
+	public HexTile get(HexagonalLocation hex) {
 		return get(hex.getU(), hex.getV());
 	}
 	
@@ -104,9 +101,9 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 		return null;
 	}
 	
-	public ArrayList<HexTile> getHexTiles(ArrayList<HexCoordinate> hex_coords) {		
+	public ArrayList<HexTile> getHexTiles(ArrayList<HexagonalLocation> hex_coords) {		
 		ArrayList<HexTile> hex_tiles = new ArrayList<HexTile>();
-		for (HexCoordinate hex_coord : hex_coords) {
+		for (HexagonalLocation hex_coord : hex_coords) {
 			HexTile hex_tile = get(hex_coord);
 			if (hex_tile != null)
 				hex_tiles.add(hex_tile);
@@ -114,28 +111,28 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 		return hex_tiles;
 	}
 	
-	protected Vector2D indexOf(HexTile hex_tile) {
+	protected RectangularLocation indexOf(HexTile hex_tile) {
 		if (!isEmpty()) {
 			if (hex_tile == null) {
 				for (int row = 0; row < getHeight(); row++)
 					for (int col = 0; col < getWidth(); col++)
 						if (see(col, row) == null)
-							return new Vector2D(col, row);
+							return new RectangularLocation(col, row);
 			} else
 				for (int row = 0; row < getHeight(); row++)
 					for (int col = 0; col < getWidth(); col++)
 						if (hex_tile.equals(see(col, row)))
-							return new Vector2D(col, row);
+							return new RectangularLocation(col, row);
 		}
 		return null;
 	}
 	
 	public void insert(int x, int y, HexTile hex_tile) {
 		super.insert(x, y, hex_tile);
-		hex_tile.setLocation(x, y - x / 2);
+		hex_tile.setLocation(x, y - ( x / 2 ));
 	}
 	
-	protected boolean isValid(HexCoordinate hex) {
+	protected boolean isValid(HexagonalCoordinateInterface hex) {
 		return isValid(hex.getU(), hex.getV());
 	}
 	
@@ -143,23 +140,23 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 		return u >= 0 && u < getWidth() && v + u / 2 >= 0 && v + u / 2 < getHeight();
 	}
 	
-	protected HexCoordinate locationOf(HexTile hex_tile) {
+	protected HexagonalLocation locationOf(HexTile hex_tile) {
 		if (!isEmpty()) {
 			if (hex_tile == null) {
 				for (int col = 0; col < getWidth(); col++)
 					for (int row = 0; row < getHeight(); row++)
 						if (see(col, row) == null)
-							return new HexCoordinate(col, row - col / 2);
+							return new HexagonalLocation(col, row - col / 2);
 			} else
 				for (int col = 0; col < getWidth(); col++)
 					for (int row = 0; row < getHeight(); row++)
 						if (hex_tile.equals(see(col, row)))
-							return new HexCoordinate(col, row - col / 2);
+							return new HexagonalLocation(col, row - col / 2);
 		}
 		return null;
 	}
 	
-	public void remove(HexCoordinate hex) {
+	public void remove(HexagonalCoordinateInterface hex) {
 		remove(hex.getU(), hex.getV());
 	}
 	
@@ -171,23 +168,23 @@ public class HexGrid extends Grid implements DrawableHexGrid {
 	
 	@Override
 	public HexTile see(int x, int y) {
-		return (HexTile)(super.see(x, y));
+		return (HexTile)super.see(x, y);
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder();
 		string.append("[ ");
-		for (int i = 0; i < getWidth(); i++) {
+		for (int row = 0; row < getHeight(); row++) {
 			string.append("[ ");
-			for (int j = 0; j < getHeight(); j++) {
-				if (see(i, j) != null)
-					string.append(see(i, j).toString());
-				if (j < getHeight() - 1)
+			for (int col = 0; col < getWidth(); col++) {
+				if (see(col, row) != null)
+					string.append(see(col, row).toString());
+				if (col < getWidth() - 1)
 					string.append(", ");
 			}
 			string.append(" ]");
-			if (i < getHeight() - 1) {
+			if (row < getHeight() - 1) {
 				string.append(", ");
 				string.append("\n  ");
 			}

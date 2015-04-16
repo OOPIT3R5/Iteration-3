@@ -1,6 +1,6 @@
 package Model.Map.Grid;
 
-import Model.Map.Vector2D;
+import Model.Map.Grid.Tile.Tile;
 
 
 /**
@@ -26,11 +26,6 @@ public abstract class Grid {
 	public void add(int x, int y, Tile tile) {
 		tile.setLocation(x, y);
 		insert(x, y, tile);
-	}
-	
-	public void add(Tile tile) {
-		Vector2D vector = tile.getLocation();
-		insert(vector.getX(), vector.getY(), tile);
 	}
 
 	/** Clears entire grid. */
@@ -71,7 +66,7 @@ public abstract class Grid {
 		if (see(x, y) == null)
 			size_ += 1;
 		tile.setLocation(x, y);
-		grid_[x][y] = tile;
+		grid_[y][x] = tile;
 	}
 	
 	/** Returns <code>true</code> if grid is empty. */
@@ -85,7 +80,7 @@ public abstract class Grid {
 	}
 	
 	public Tile see(int x, int y) {
-		return grid_[x][y];
+		return grid_[y][x];
 	}
 	
 }

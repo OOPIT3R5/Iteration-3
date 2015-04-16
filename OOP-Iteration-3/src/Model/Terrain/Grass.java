@@ -1,4 +1,4 @@
-package Model.Map.Terrain;
+package Model.Terrain;
 
 import Model.Map.Direction;
 

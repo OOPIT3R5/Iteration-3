@@ -1,13 +1,13 @@
-package Model.Map.Grid;
+package Model.Map.Grid.Tile;
 
-import Model.Map.Vector2D;
-import Model.Map.Terrain.Grass;
-import Model.Map.Terrain.Terrain;
+import Model.Map.Location;
+import Model.Terrain.Grass;
+import Model.Terrain.Terrain;
 
-public class Tile {
+public abstract class Tile {
 
 	private final Terrain terrain_;
-	private Vector2D vector_;
+	private Location location_;
 	/*private Entity entity_;
 	private MapObject map_object_;*/
 	
@@ -19,24 +19,20 @@ public class Tile {
 		terrain_ = terrain;
 	}
 	
-	public Tile clone() {
-		return new Tile( getTerrain() );
-	}
+	public abstract Tile clone();
 	
 	public Terrain getTerrain() {
 		return terrain_;
 	}
 	
-	public void setLocation( int x, int y ) {
-		setLocation( new Vector2D( x, y ));
+	public abstract void setLocation(int x, int y);
+	
+	public void setLocation(Location location) {
+		location_ = location;
 	}
 	
-	public void setLocation( Vector2D vector ) {
-		vector_ = vector;
-	}
-	
-	public Vector2D getLocation() {
-		return vector_;
+	public Location getLocation() {
+		return location_;
 	}
 
 	/*public void setEntity(Entity entity) {
@@ -56,12 +52,12 @@ public class Tile {
 	}*/
 	
 	public boolean equals(Tile other) {
-		return vector_.equals(other.getLocation())
+		return location_.equals(other.getLocation())
 				&& getTerrain() == other.getTerrain();
 	}
 	
 	public String toString() {
-		return getLocation().getX() + "," + getLocation().getY();
+		return "";//getLocation().getX() + "," + getLocation().getY();
 	}
 	
 }
