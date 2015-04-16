@@ -48,6 +48,32 @@ public class ConfigController extends Controller {
 		f.removeKeyListener(enter);
 		f.removeKeyListener(key);
 	}
+	public class Update implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if(key == KeyEvent.VK_ESCAPE){
+				setChanged();
+				notifyObservers();
+				deleteObservers();
+				
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	
 	public class BindAction implements KeyListener {
 

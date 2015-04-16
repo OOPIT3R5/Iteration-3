@@ -64,6 +64,18 @@ public class RunGame implements Observer {
 		keyBindings.put("NORTHWEST",103);
 		keyBindings.put("WEST",65);
 		keyBindings.put("ENTER",10);
+		keyBindings.put("BACK",27);
+		keyBindings.put("INVENTORY",73);
+		keyBindings.put("ACTION1",31);
+		keyBindings.put("ACTION2",32);
+		keyBindings.put("ACTION3",33);
+		keyBindings.put("ACTION4",34);
+		keyBindings.put("ACTION5",35);
+		keyBindings.put("ACTION6",36);
+		keyBindings.put("ACTION7",37);
+		keyBindings.put("ACTION8",38);
+		keyBindings.put("ACTION9",39);
+		keyBindings.put("ACTION0",30);
 	}
 	public static int getKey(String s){
 		return keyBindings.get(s);
