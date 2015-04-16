@@ -1,5 +1,7 @@
 package Model.Map.Grid.Tile;
 
+import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.Location;
 import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
@@ -8,8 +10,8 @@ public abstract class Tile {
 
 	private final Terrain terrain_;
 	private Location location_;
-	/*private Entity entity_;
-	private MapObject map_object_;*/
+	private Entity entity_;
+	private MapObject map_object_;
 	
 	public Tile() {
 		terrain_ = new Grass();
@@ -27,7 +29,9 @@ public abstract class Tile {
 	
 	public abstract void setLocation(int x, int y);
 	
-	public void setLocation(Location location) {
+	public abstract void setLocation(Location location);
+
+	public void putLocation(Location location) {
 		location_ = location;
 	}
 	
@@ -35,21 +39,25 @@ public abstract class Tile {
 		return location_;
 	}
 
-	/*public void setEntity(Entity entity) {
+	public void setEntity(Entity entity) {
 		entity_ = entity;
 	}
 	
-	public Vector2D getEntity() {
+	public Entity getEntity() {
 		return entity_;
+	}
+	
+	public void removeEntity() {
+		entity_ = null;
 	}
 
 	public void setMapObject(MapObject map_object) {
 		map_object_ = map_object;
 	}
 	
-	public Vector2D getMapObject() {
+	public MapObject getMapObject() {
 		return map_object_;
-	}*/
+	}
 	
 	public boolean equals(Tile other) {
 		return location_.equals(other.getLocation())
@@ -57,7 +65,7 @@ public abstract class Tile {
 	}
 	
 	public String toString() {
-		return "";//getLocation().getX() + "," + getLocation().getY();
+		return "";
 	}
 	
 }

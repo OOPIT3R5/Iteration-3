@@ -1,5 +1,6 @@
 package Model.Map.Grid.Tile;
 
+import Model.Map.Location;
 import Model.Map.RectangularLocation;
 import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
@@ -20,7 +21,17 @@ public class RectangularTile extends Tile {
 	
 	@Override
 	public void setLocation(int x, int y) {
-		setLocation(new RectangularLocation(x,y));
+		setLocation(new RectangularLocation(x, y));
+	}
+
+	@Override
+	public void setLocation(Location location) {
+		super.putLocation((RectangularLocation)location);
+	}
+
+	@Override
+	public RectangularLocation getLocation() {
+		return (RectangularLocation)super.getLocation();
 	}
 
 	/*public void setEntity(Entity entity) {

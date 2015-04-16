@@ -152,8 +152,4 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return coordinate[1];
 	}
 	
-	public String toString() {
-		return getU() + " , " + getV();
-	}
-	
 }

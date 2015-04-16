@@ -1,36 +1,41 @@
 package Model.Map.Grid.Tile;
 import Model.Map.HexagonalLocation;
+import Model.Map.Location;
 import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
 
 
-public class HexTile extends Tile {
+public class HexagonalTile extends Tile {
 	
-	public HexTile() {
+	public HexagonalTile() {
 		super(new Grass());
 	}
 	
-	public HexTile(Terrain terrain) {
+	public HexagonalTile(Terrain terrain) {
 		super(terrain);
 	}
-	
-	public HexTile clone() {
-		return new HexTile(super.getTerrain());
+
+	@Override
+	public HexagonalTile clone() {
+		return new HexagonalTile(super.getTerrain());
 	}
 	
+	@Override
 	public void setLocation(int u, int v) {
 		setLocation(new HexagonalLocation(u, v));
 	}
-	
-	public void setLocation(HexagonalLocation hex_coordinate) {
-		super.setLocation(hex_coordinate);
+
+	@Override
+	public void setLocation(Location hex_location) {
+		super.putLocation((HexagonalLocation)hex_location);
 	}
-	
+
+	@Override
 	public HexagonalLocation getLocation() {
 		return (HexagonalLocation)super.getLocation();
 	}
 	
-	public boolean equals(HexTile other) {
+	public boolean equals(HexagonalTile other) {
 		return getLocation().equals(other.getLocation())
 				&& getTerrain() == other.getTerrain();
 	}

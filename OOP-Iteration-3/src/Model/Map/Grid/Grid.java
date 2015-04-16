@@ -1,5 +1,6 @@
 package Model.Map.Grid;
 
+import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 
 
@@ -23,10 +24,7 @@ public abstract class Grid {
 	}
 	
 	/** Adds object to grid at provided xy index. */
-	public void add(int x, int y, Tile tile) {
-		tile.setLocation(x, y);
-		insert(x, y, tile);
-	}
+	public abstract void add(int x, int y, Tile tile);
 
 	/** Clears entire grid. */
 	public void clear() {
@@ -42,16 +40,13 @@ public abstract class Grid {
 		grid_[x][y] = null;
 	}
 	
-	public void fill(Tile tile) {
-		for (int col = 0; col < width_; col++)
-			for (int row = 0; row < height_; row++)
-				insert(col, row, tile.clone());
-	}
+	public abstract void fill(Tile tile);
 	
 	/** Returns object at xy index. */
-	public Tile get(int x, int y) {
-		return see(x, y);
-	}
+	public abstract Tile get(Location location);
+	
+	/** Returns object at xy index. */
+	public abstract Tile get(int x, int y);
 	
 	protected int getWidth() {
 		return width_;
@@ -62,10 +57,11 @@ public abstract class Grid {
 	}
 	
 	/** Adds object to grid[x][y]. */
-	public void insert(int x, int y, Tile tile) {
+	public abstract void insert(int x, int y, Tile tile);
+	
+	protected void put(int x, int y, Tile tile) {
 		if (see(x, y) == null)
 			size_ += 1;
-		tile.setLocation(x, y);
 		grid_[y][x] = tile;
 	}
 	
@@ -79,8 +75,29 @@ public abstract class Grid {
 		delete(x, y);
 	}
 	
-	public Tile see(int x, int y) {
+	protected Tile see(int x, int y) {
 		return grid_[y][x];
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder string = new StringBuilder();
+		string.append("[ ");
+		for (int i = 0; i < width_; i++) {
+			string.append("[ ");
+			for (int j = 0; j < height_; j++) {
+				string.append(grid_[i][j].toString());
+				if (j < height_ - 1)
+					string.append(", ");
+			}
+			string.append(" ]");
+			if (i < height_ - 1) {
+				string.append(", ");
+				string.append("\n  ");
+			}
+		}
+		string.append(" ]");
+		return string.toString();
 	}
 	
 }

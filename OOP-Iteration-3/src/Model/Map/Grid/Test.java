@@ -8,23 +8,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Model.Map.HexagonalLocation;
-import Model.Map.Grid.Tile.HexTile;
+import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
 
 
 @SuppressWarnings("serial")
 public class Test extends JPanel {
 
-	public HexGrid gg_;
+	public Grid gg_;
 	
-	public Test(HexGrid gg) {
+	public Test(Grid gg) {
 		super();
 		gg_ = gg;
 	}
 	
 	@Override
 	public void paint(Graphics g) {
-		gg_.drawRectangleWithCoords(g, new Point(450, 400), new HexagonalLocation(8, 3), 12, 12, 20);
+		((HexagonalGrid)gg_).drawRectangleWithCoords(g, new Point(450, 400), new HexagonalLocation(8, 3), 12, 12, 20);
 		
 		/*g.setColor(Color.WHITE);
 		gg_.drawRectangle(g, new Point(450, 400), new HexCoordinate(0, 0), 6, 5, 50);
@@ -44,8 +44,8 @@ public class Test extends JPanel {
 	}
 	
 	public static void main(String[] args) {
-		HexGrid gg = new HexGrid(10, 10);
-		gg.fill(new HexTile());
+		Grid gg = new HexagonalGrid(10, 10);
+		gg.fill(new HexagonalTile());
 		System.out.println(gg.toString());
 		
 		JFrame frame = new JFrame("Drawn HexTiled Grids");

@@ -13,4 +13,8 @@ public abstract class Location {
 	
 	public abstract Location getNeighbor(int d);
 	
+	public String toString() {
+		return coordinate[0] + ", " + coordinate[1];
+	}
+	
 }
