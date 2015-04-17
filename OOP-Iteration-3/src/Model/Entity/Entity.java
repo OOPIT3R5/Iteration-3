@@ -13,12 +13,19 @@ import Model.Map.Location;
 
 public class Entity implements MovementInterface {
 	
+	private String name;
+	private Occupation occupation;
+	//private StatisticsContainer stats;
+	private Direction directionFacing;
+	//private Decal decal;
+	
 	private Equipment equipmentManager;
 	private Inventory inventory;
     private StatisticContainer stats;
 	private Location currentPosition;
 	private ArrayList<Ability> movement_;
 	
+	/*Use */
 	public Entity(){
 		//initialize movement
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
@@ -33,9 +40,36 @@ public class Entity implements MovementInterface {
         stats = new StatisticContainer();
 	}
 	
+	public Entity (String name){
+		this();
+		this.name = name;
+		this.occupation = new Smasher();
+	}
+	
+	public Entity (String name, int occupationChoice){
+		this(name);
+		occupation = occupationCreation(occupationChoice);
+	}
+	
+	private Occupation occupationCreation(int oC){
+		Occupation o;
+		if(oC == 0){
+			return new Smasher();
+		}
+		else if (oC == 1){
+			return new Summoner();
+		}
+		else if (oC == 1){
+			return new Sneak();
+		}
+		return new Smasher();
+	}
+	
+	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}
+
 
     public void awardExperience(int award){
         stats.awardExperience(award);
@@ -44,24 +78,25 @@ public class Entity implements MovementInterface {
         return stats;
     }
 	@Override
+
 	public void disableMove(int direction) {
 		movement_.add(direction, new DoNothing(null));
 	}
 
-	@Override
 	public void disableWalk(int direction) {
 		movement_.add(direction, new DoNothing(null));
 	}
 
-	@Override
 	public void enableMove(int direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
 		movement_.add(direction, new Move(entity_list, Direction.intToHex(direction), 1));
 	}
+	
 	public void setLocation(Location newPosition){
 		this.currentPosition = newPosition;
 	}
+
 	public Location getLocation(){
 		return this.currentPosition;
 	}
