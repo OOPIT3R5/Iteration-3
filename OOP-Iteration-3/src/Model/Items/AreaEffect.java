@@ -1,5 +1,7 @@
 package Model.Items;
 
+import Model.Entity.Entity;
+
 public class AreaEffect implements MapObject {
 
     @Override
@@ -7,9 +9,8 @@ public class AreaEffect implements MapObject {
         return true;
     }
 
-    /*
-    public void onTouch(Entity entity){
+    @Override
+    public void onTouch(Entity entity) {
 
     }
-    */
 }

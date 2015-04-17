@@ -12,9 +12,14 @@ public class Inventory {
         inventory.add(ti);
     }
 
-    public boolean removeFromInventory(TakeableItem ti){
-        return inventory.remove(ti);
+    public TakeableItem takeFromInventory(TakeableItem ti){
+        inventory.remove(ti);
+        return ti;
     }
 
-    //public TakeableItem
+    public TakeableItem takeFromInventory(int index){
+        TakeableItem ti = inventory.get(index);
+        inventory.remove(index);
+        return ti;
+    }
 }
