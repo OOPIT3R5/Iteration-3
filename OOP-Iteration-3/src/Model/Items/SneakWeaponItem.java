@@ -3,8 +3,8 @@ package Model.Items;
 import Model.Entity.Ability.Ability;
 
 public class SneakWeaponItem extends WeaponItem{
-    SneakWeaponItem(Ability ability, String name) {
-        super(AttackSpeed.FAST, ability, name);
+    SneakWeaponItem(AttackSpeed attackspeed, int statchange, Ability ability, String name) {
+        super(AttackSpeed.FAST, statchange, ability, name);
     }
 
     @Override

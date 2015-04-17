@@ -9,6 +9,9 @@ public class StatisticContainer {
     private Statistic movement;
     private Statistic level;
 
+    private Statistic offense;      //USED FOR WEAPONS
+    private Statistic defense;      //USED FOR OTHER EQUIPMENT
+
     public StatisticContainer(){
         strength = new Statistic();
         agility = new Statistic();
@@ -17,6 +20,9 @@ public class StatisticContainer {
         experience = new Statistic();
         movement = new Statistic(1,50);
         level = new Statistic(1,100,0);
+
+        offense = new Statistic();
+        defense = new Statistic();
     }
 
     public int getLevel(){
@@ -43,6 +49,18 @@ public class StatisticContainer {
         return movement.getCurrentValue();
     }
 
+    public int getOffensiveRating(){
+        return offense.getCurrentValue() + level.getCurrentValue();
+    }
+
+    public int getDefensiveRating(){
+        return agility.getCurrentValue() + level.getCurrentValue();
+    }
+
+    public int getArmorRating(){
+        return defense.getCurrentValue() + level.getCurrentValue();
+    }
+
     private void checkLevelUp(){
         if(level.getCurrentValue() < (experience.getCurrentValue() / 1000)){
             level.addPermanentValue(1);             //Update level.
@@ -61,5 +79,13 @@ public class StatisticContainer {
         intellect.levelUpStat();
         hardiness.levelUpStat();
         movement.levelUpStat();
+    }
+
+    public void addOffense(int amt){
+        offense.addTemporaryValue(amt);
+    }
+
+    public void addDefense(int amt){
+        defense.addTemporaryValue(amt);
     }
 }

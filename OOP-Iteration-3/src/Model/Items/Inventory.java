@@ -1,5 +1,7 @@
 package Model.Items;
 
+import Model.Entity.Entity;
+
 import java.util.ArrayList;
 
 public class Inventory {

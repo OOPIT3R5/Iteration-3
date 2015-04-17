@@ -4,11 +4,10 @@ import Model.Entity.Ability.Ability;
 
 public abstract class WeaponItem extends EquippableItem{
 
-    private String name;
     private AttackSpeed attackspeed;
 
-    WeaponItem(AttackSpeed attackspeed, Ability ability, String name){
-        super(ability, name);
+    WeaponItem(AttackSpeed attackspeed, int offense, Ability ability, String name){
+        super(offense, ability, name);
         this.attackspeed = attackspeed;
     }
 

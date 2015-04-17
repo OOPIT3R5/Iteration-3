@@ -3,8 +3,8 @@ package Model.Items;
 import Model.Entity.Ability.Ability;
 
 public class BrawlingWeaponItem extends SmasherWeaponItem {
-    BrawlingWeaponItem(AttackSpeed attackspeed, Ability ability, String name) {
-        super(attackspeed, ability, name);
+    BrawlingWeaponItem(int statchange, Ability ability, String name) {
+        super(AttackSpeed.FAST, statchange, ability, name);
     }
 
     @Override

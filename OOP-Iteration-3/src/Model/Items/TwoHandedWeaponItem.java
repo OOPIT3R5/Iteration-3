@@ -6,8 +6,8 @@ public class TwoHandedWeaponItem extends SmasherWeaponItem {
 
     private String name;
 
-    TwoHandedWeaponItem(AttackSpeed attackspeed, Ability ability, String name) {
-        super(attackspeed, ability, name);
+    TwoHandedWeaponItem(int statchange, Ability ability, String name) {
+        super(AttackSpeed.SLOW, statchange, ability, name);
     }
 
     @Override

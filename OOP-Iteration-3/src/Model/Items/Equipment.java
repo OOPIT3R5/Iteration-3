@@ -61,26 +61,31 @@ public class Equipment {
 
     public void unequipWeapon(){
         entity.addToInventory(weapon);
-            nullifyWeapon();
+        entity.getStatistics().addOffense(-1*weapon.getStatChangingValue());
+        nullifyWeapon();
     }
 
     public void unequipOffHandItem(){
         entity.addToInventory(offhand);
-            nullifyOffHand();
+        entity.getStatistics().addDefense(-1*offhand.getStatChangingValue());
+        nullifyOffHand();
     }
 
     public void unequipArmor(){
         entity.addToInventory(armor);
+        entity.getStatistics().addDefense(-1*armor.getStatChangingValue());
         nullifyArmor();
     }
 
     public void unequipAccessory(){
         entity.addToInventory(accessory);
+        entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
         nullifyAccessory();
     }
 
     public void unequipShoes(){
         entity.addToInventory(shoes);
+        entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
         nullifyShoes();
     }
 
@@ -121,22 +126,27 @@ public class Equipment {
 
     private void setWeapon(WeaponItem weapon){
         this.weapon = weapon;
+        entity.getStatistics().addOffense(weapon.getStatChangingValue());
     }
 
     private void setOffhand(OffHandItem offhand){
         this.offhand = offhand;
+        entity.getStatistics().addDefense(offhand.getStatChangingValue());
     }
 
     private void setArmor(ArmorItem armor){
         this.armor = armor;
+        entity.getStatistics().addDefense(armor.getStatChangingValue());
     }
 
     private void setAccessory(AccessoryItem accessory){
         this.accessory = accessory;
+        entity.getStatistics().addDefense(accessory.getStatChangingValue());
     }
 
     private void setShoes(ShoesItem shoes){
         this.shoes = shoes;
+        entity.getStatistics().addDefense(shoes.getStatChangingValue());
     }
 
     private void nullifyWeapon(){

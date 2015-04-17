@@ -15,6 +15,7 @@ public class Entity implements MovementInterface {
 	
 	private Equipment equipmentManager;
 	private Inventory inventory;
+    private StatisticContainer stats;
 	private Location currentPosition;
 	private ArrayList<Ability> movement_;
 	
@@ -26,12 +27,19 @@ public class Entity implements MovementInterface {
 		for (int i = 0; i < 6; i++) {
 			movement_.add(new Move(entity_list, Direction.intToHex(i), 1));
 		}
+
+        equipmentManager = new Equipment(this);
+        inventory = new Inventory();
+        stats = new StatisticContainer();
 	}
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}
 
+    public StatisticContainer getStatistics(){
+        return stats;
+    }
 	@Override
 	public void disableMove(int direction) {
 		movement_.add(direction, new DoNothing(null));
