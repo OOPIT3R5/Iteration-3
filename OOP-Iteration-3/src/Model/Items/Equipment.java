@@ -60,30 +60,40 @@ public class Equipment {
     }
 
     public void unequipWeapon(){
+        if(isWeaponNull())
+            return;
         entity.addToInventory(weapon);
         entity.getStatistics().addOffense(-1*weapon.getStatChangingValue());
         nullifyWeapon();
     }
 
     public void unequipOffHandItem(){
+        if(isOffHandNull())
+            return;
         entity.addToInventory(offhand);
         entity.getStatistics().addDefense(-1*offhand.getStatChangingValue());
         nullifyOffHand();
     }
 
     public void unequipArmor(){
+        if(isArmorNull())
+            return;
         entity.addToInventory(armor);
         entity.getStatistics().addDefense(-1*armor.getStatChangingValue());
         nullifyArmor();
     }
 
     public void unequipAccessory(){
+        if(isAccessoryNull())
+            return;
         entity.addToInventory(accessory);
         entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
         nullifyAccessory();
     }
 
     public void unequipShoes(){
+        if(isShoesNull())
+            return;
         entity.addToInventory(shoes);
         entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
         nullifyShoes();

@@ -37,6 +37,9 @@ public class Entity implements MovementInterface {
 		inventory.addToInventory(ti);
 	}
 
+    public void awardExperience(int award){
+        stats.awardExperience(award);
+    }
     public StatisticContainer getStatistics(){
         return stats;
     }
