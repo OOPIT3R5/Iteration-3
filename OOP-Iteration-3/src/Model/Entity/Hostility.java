@@ -65,25 +65,27 @@ public class Hostility {
 	
 	public void hostileAct(){
 		double prob = randomlyGenerate.probability();	
-		if (prob < .25){
-			//25% chance they move in random direction
-			//Ability a = new Move(entityListPlaceholder, randomlyGenerate.direction(), npc.getMovementSpeed());;
-		}
-		else if (prob < .65){
-			//40% chance they move toward avatar //for testing raise this super high!!!
-													//CHANGE THIS TO DIRECTION RELATIVE TO WHERE AVATAR IS
-														//IN RELATION TO NPC
-		//	Ability a = new Move(entityListPlaceholder, Direction.NORTH, npc.getMovementSpeed());
-		}
-		else if (prob < .95){
-			//30% chance they face self toward avatar and attack (direct an attack toward avatar)
-			//Ability a = new Attack(entityListPlaceholder);
-					//change this to avatar or something. Attack should be directed toward avatar
+		Ability a;
+		Direction TowardAvatarDirectionPlaceholder = null;
+		
+		if (npc.avatarIsWithinRange()){
+			a = new Attack(null, null);//attack in avatar direction
 		}
 		else{
-			//5% chance they do nothing for a turn
-			Ability a = new DoNothing();
+			if (prob < .60){
+				//60% chance of moving toward avatar
+				a = new Move(npc, TowardAvatarDirectionPlaceholder, npc.getMovementSpeed());
+			}
+			else if (prob < .90){
+				//30% chance of moving in random direction
+				a = new Move(npc, randomlyGenerate.direction(), npc.getMovementSpeed());
+			}
+			else {
+				//10% chance of doing nothing
+				a = new DoNothing();
+			}
 		}
+		a.execute();
 			
 	}
 
@@ -104,5 +106,7 @@ public class Hostility {
 	public void setHostility(boolean ishostile){
 		isHostile = ishostile;
 	}
+	
+	
 
 }
