@@ -65,4 +65,10 @@ public class CharacterCreationView extends ModelView implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ModelView updateView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

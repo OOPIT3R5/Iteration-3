@@ -1,9 +1,10 @@
 package View;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.util.Observable;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
@@ -20,6 +21,11 @@ public class InventoryView extends ModelView {
 	public final int INV_Y = 0;
 	public final int INV_WIDTH = 2*SCREEN_WIDTH/3;
 	public final int INV_HEIGHT = 2*SCREEN_HEIGHT/3;
+	
+	public final int INV_GRIDX = INV_WIDTH/8;
+	public final int INV_GRIDY = INV_HEIGHT/6;
+	public final int INV_GRIDWIDTH = 4*INV_GRIDX;
+	public final int INV_GRIDHEIGHT = 4*INV_GRIDY;
 	
 	public final int EQUIP_X = INV_WIDTH;
 	public final int EQUIP_Y = 0;
@@ -54,8 +60,6 @@ public class InventoryView extends ModelView {
 		stats.add(new JLabel("Insert Stats Here"));
 		add(stats);
 		*/
-		
-		
 	}
 
 	@Override
@@ -65,6 +69,33 @@ public class InventoryView extends ModelView {
 	}
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawString("Insert inventory here", 500, 50);
+		g.drawRect(INV_X, INV_Y, INV_WIDTH, INV_HEIGHT);
+		g.drawRect(INV_GRIDX, INV_GRIDY, INV_GRIDWIDTH, INV_GRIDHEIGHT);
+		
+		g.drawRect(EQUIP_X, EQUIP_Y, EQUIP_WIDTH, EQUIP_HEIGHT);
+		g.drawRect(STATS_X, STATS_Y, STATS_WIDTH, STATS_HEIGHT);
+		
+		for(int i = 0; i < 4; ++i){
+			for(int j = 0; j < 6; ++j){
+				g.drawRect(INV_GRIDX+j*INV_GRIDWIDTH/6, INV_GRIDY+i*INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
+			}
+		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ModelView updateView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+		/*
         // TODO Auto-generated method stub
         try {
             //g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,0,24,24), 0, 0, null);
@@ -75,6 +106,5 @@ public class InventoryView extends ModelView {
         } catch (IOException e) {
             System.out.println("You do not have the item sprites.");
             System.out.println(System.getProperty("user.dir"));
-        }
-    }
+        }*/
 }

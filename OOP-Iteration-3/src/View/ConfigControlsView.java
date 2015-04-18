@@ -73,4 +73,9 @@ public class ConfigControlsView extends ModelView implements Observer{
 	public String keyToChar(int i){
 		return KeyEvent.getKeyText(i);
 	}
+	@Override
+	public ModelView updateView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
