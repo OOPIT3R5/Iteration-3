@@ -2,11 +2,12 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.EquippableItemVisitor;
+import View.MapObjectView;
 
 public class SummonerWeaponItem extends WeaponItem {
 
-    SummonerWeaponItem(int statchange, Ability ability, String name) {
-        super(AttackSpeed.SLOW, statchange, ability, name);
+    SummonerWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
+        super(AttackSpeed.SLOW, statchange, ability, name, mov);
     }
 
     public void accept(EquippableItemVisitor eiv){

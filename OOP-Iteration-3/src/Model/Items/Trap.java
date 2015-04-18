@@ -1,10 +1,12 @@
 package Model.Items;
 
+import View.MapObjectView;
+
 public class Trap extends TakeDamageAreaEffect{
     private boolean detected;
 
-    public Trap(int damage) {
-        super(damage);
+    public Trap(int damage, MapObjectView mov) {
+        super(damage, mov);
         detected = false;
     }
 

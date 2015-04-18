@@ -2,11 +2,12 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Entity;
+import View.MapObjectView;
 
 public class OneShotItem extends Item {
 
-    public OneShotItem(Ability ability, String name) {
-        super(ability, name);
+    public OneShotItem(Ability ability, String name, MapObjectView mov) {
+        super(ability, name, mov);
     }
 
     @Override

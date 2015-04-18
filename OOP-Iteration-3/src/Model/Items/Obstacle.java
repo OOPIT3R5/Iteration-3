@@ -2,11 +2,12 @@ package Model.Items;
 
 import Model.Entity.Ability.*;
 import Model.Entity.Entity;
+import View.MapObjectView;
 
 public class Obstacle extends Item{
 
-    public Obstacle(String name) {
-        super(new DoNothing(), name);
+    public Obstacle(String name, MapObjectView mov) {
+        super(new DoNothing(), name, mov);
     }
 
     @Override

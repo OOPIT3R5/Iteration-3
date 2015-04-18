@@ -1,12 +1,14 @@
 package Model.Items;
 
 import Model.Entity.Entity;
+import View.MapObjectView;
 
 public class TakeDamageAreaEffect extends AreaEffect{
 
     private int damage;
 
-    public TakeDamageAreaEffect(int damage){
+    public TakeDamageAreaEffect(int damage, MapObjectView mov){
+        super(mov);
         this.damage = damage;
     }
 

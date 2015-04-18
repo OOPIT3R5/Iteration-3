@@ -50,9 +50,11 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		return new Attack(null, this);
+		//return new Attack(null, this);
 		//find closest entity (not avatar), face, and attack
-	}
+        //TODO: FIX THIS BUILD BREAK PLZ SOMEONE
+        return new DoNothing();
+    }
 
 	@Override
 	public Ability stealInVicinity() {
