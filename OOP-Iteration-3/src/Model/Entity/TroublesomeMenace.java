@@ -2,7 +2,7 @@ package Model.Entity;
 
 import Model.Entity.Ability.*;
 import Model.Map.Direction;
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class TroublesomeMenace extends NonAdversarial implements Pet{
 	
@@ -21,9 +21,8 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned),
 		attack in vicinity, or go after treasure*/
-		RandomGenerator randomlyGenerate = new RandomGenerator();
-		double rand = randomlyGenerate.probability();
-		Direction randDir = randomlyGenerate.direction();
+		double rand = RandomlyGenerate.probability();
+		Direction randDir = RandomlyGenerate.direction();
 		
 		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar
@@ -45,11 +44,9 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		//return new Attack(null, this);
-		//find closest entity (not avatar), face, and attack
+		return new Attack(null, null);
 
-        //TODO: FIX THIS BUILD BREAK PLZ SOMEONE
-        return new DoNothing();
+		//find closest entity (not avatar), face, and attack
 	}
 
 	@Override

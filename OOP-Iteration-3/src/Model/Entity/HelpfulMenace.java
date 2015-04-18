@@ -7,7 +7,7 @@ import Model.Entity.Ability.Move;
 
 import Model.Map.Direction;
 
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class HelpfulMenace extends NonAdversarial implements Pet{
 
@@ -26,9 +26,8 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned), go where avatar directs it (if mounted)
 		attack in vicinity, or go after treasure*/
-		RandomGenerator randomlyGenerate = new RandomGenerator();
-		double rand = randomlyGenerate.probability();
-		Direction randDir = randomlyGenerate.direction();
+		double rand = RandomlyGenerate.probability();
+		
 		
 		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar
@@ -50,17 +49,20 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		//return new Attack(null, this);
+		return new Attack(null, null);
+
 		//find closest entity (not avatar), face, and attack
-        //TODO: FIX THIS BUILD BREAK PLZ SOMEONE
-        return new DoNothing();
+
     }
 
 	@Override
 	public Ability stealInVicinity() {
-		return new Move(this, getDirectionFacing(), getMovementSpeed());
+		Direction randDir = RandomlyGenerate.direction();
+		return new Move(this, randDir, getMovementSpeed());
 		//can pickup item on tile
-		//will race ahead of avatar(upto 2 tiles) in direction avatar is facing		
+		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
+		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile
+		//if there are no tiles, just move in a random direction.
 	}
 
 }
