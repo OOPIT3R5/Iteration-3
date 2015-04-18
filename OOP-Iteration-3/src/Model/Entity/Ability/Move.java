@@ -1,5 +1,7 @@
 package Model.Entity.Ability;
 
+import java.util.ArrayList;
+
 import Model.Entity.Entity;
 import Model.Map.Direction;
 

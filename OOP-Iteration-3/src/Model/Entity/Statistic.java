@@ -57,4 +57,10 @@ public class Statistic {
     public void levelUpStat(){
         addPermanentValue(levelupboost);
     }
+
+    public void reset() {
+        currentvalue = minimum;
+    }
+
+
 }

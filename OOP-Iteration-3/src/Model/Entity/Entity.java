@@ -10,15 +10,9 @@ import Model.Map.Direction;
 import Model.Map.Location;
 
 public class Entity implements MovementInterface {
-	
-	
-/*	private final int SMASHER = 0;
-	private final int SUMMONER = 1;
-	private final int SNEAK = 2;
-	*/
+
 	private String name;
 	private Occupation occupation;
-	//private StatisticsContainer stats;
 	private Direction directionFacing;
 	//private Decal decal;
 	
@@ -75,44 +69,60 @@ public class Entity implements MovementInterface {
         ei.accept(occupation);
     }
 
-    //The below methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
+    //The below equip methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
     void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
     }
+    
     void equipItem(OffHandItem ohi){
         equipmentManager.equip(ohi);
     }
+    
     void equipItem(ArmorItem ai){
         equipmentManager.equip(ai);
     }
+    
     void equipItem(AccessoryItem acci){
         equipmentManager.equip(acci);
     }
+    
     void equipItem(ShoesItem si){
         equipmentManager.equip(si);
     }
+    //end of package protected methods to be called ONLY by the occupations
 
     public void awardExperience(int award){
         stats.awardExperience(award);
     }
-    
+
+    public void awardGold(int gold){
+        inventory.addGold(gold);
+    }
+
+    //If you want to heal damage,
+    public void takeDamage(int damage){
+        stats.takeDamage(damage);
+    }
+
     public StatisticContainer getStatistics(){
         return stats;
     }
 
     @Override
-	public void disableMove(int direction) {
-		movement_.add(direction, new DoNothing());
+	public void disableMove(Direction direction) {
+		movement_.add(Direction.hexToInt(direction), new DoNothing());
 	}
-
-	public void disableWalk(int direction) {
-		movement_.add(direction, new DoNothing());
+    
+    @Override
+	public void disableWalk(Direction direction) {
+		movement_.add(Direction.hexToInt(direction), new DoNothing());
 	}
-
-	public void enableMove(int direction) {
+    
+    @Override
+	public void enableMove(Direction direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_.add(direction, new Move(this, Direction.intToHex(direction), 1));
+		movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
 	}
 	
 	public void setLocation(Location newPosition){
@@ -123,4 +133,11 @@ public class Entity implements MovementInterface {
 		return this.currentPosition;
 	}
 
+	protected void setOccupation(Occupation o) {
+		occupation = o;	
+	}
+	
+    public void autoLevelUp() {
+        awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
+    }
 }

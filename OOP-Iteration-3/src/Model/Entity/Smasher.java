@@ -14,7 +14,9 @@ public class Smasher extends Occupation{
         brawlingweapon  = new Skill(1, 25);
 	}
 
-    @Override
+
+
+	@Override
     public void visit(SmasherWeaponItem smawi) {
        getEntity().equipItem(smawi);
     }

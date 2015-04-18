@@ -1,9 +1,13 @@
 package Model.Entity;
 
 import java.util.ArrayList;
-import java.util.Random;
 
+import Utility.*;
+import Model.Entity.Ability.Ability;
+import Model.Entity.Ability.Attack;
+import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
+import Model.Map.Direction;
 
 public class Hostility {
 	
@@ -11,17 +15,30 @@ public class Hostility {
 	 * I DON'T KNOW WHY THE DIRECTION IS AN ENITY LIST EITHER
 	 * I WAS TOLD THE PARAMETER FOR MOVE SHOULD BE/WAS DRECTION
 	 * THIS CONFUSES ME. caps lock was on and I don't want to bother re-writing so deal*/
-	ArrayList<Entity> directionPlaceholder;
+	ArrayList<Entity> entityListPlaceholder;
+	Direction directionPlaceholder;
 	
-	
+	RandomGenerator randomlyGenerate = new RandomGenerator();	
 	boolean isHostile;
 	NPC npc;
 	
 	public Hostility() {
 		isHostile = false;
 	}
+	
+	public Hostility(boolean hostility) {
+		this();
+		setHostility(hostility);
+	}
+	
 	public Hostility(NPC npc) {
+		this();
 		this.npc = npc;
+	}
+	
+	public Hostility(NPC npc, boolean hostility) {
+		this(npc);
+		setHostility(hostility);
 	}
 	
 	/*CHANGE IN DESIGN!!! instead of hostility being an abstract
@@ -33,36 +50,59 @@ public class Hostility {
 	 * All I know is that I was able to justify why this design wasn't breaking them
 	 * if I can find anything it's breaking I'll re-think the design then.
 	 * 
-	 *  Main reason for design change was that previous design was in conflict with how abilities work*/
+	 *  Main reason for design change was that previous design was in conflict with 
+	 *  how abilities work/were designed.*/
 	public void act() {
-		double prob = genRandProbability();
-		
 		if(isHostile){
-			hostileAct(prob);
+			hostileAct();
 		}
-		nonHostileAct(prob);		
-		
+		nonHostileAct();		
 	}
 	
 	/*Hostile entities are likely to attack the avatar.
 	 * They will also have a higher probability of
 	 *  moving toward the avatar (if it is possible)*/
 	
-	public void hostileAct(double prob){
-		Move m = new Move(npc, null, npc.getMovementSpeed());
+	public void hostileAct(){
+		double prob = randomlyGenerate.probabiltiy();	
+		if (prob < .25){
+			//25% chance they move in random direction
+			//Ability a = new Move(entityListPlaceholder, randomlyGenerate.direction(), npc.getMovementSpeed());;
+		}
+		else if (prob < .65){
+			//40% chance they move toward avatar //for testing raise this super high!!!
+													//CHANGE THIS TO DIRECTION RELATIVE TO WHERE AVATAR IS
+														//IN RELATION TO NPC
+		//	Ability a = new Move(entityListPlaceholder, Direction.NORTH, npc.getMovementSpeed());
+		}
+		else if (prob < .95){
+			//30% chance they face self toward avatar and attack (direct an attack toward avatar)
+			//Ability a = new Attack(entityListPlaceholder);
+					//change this to avatar or something. Attack should be directed toward avatar
+		}
+		else{
+			//5% chance they do nothing for a turn
+			Ability a = new DoNothing();
+		}
+			
 	}
+
 	
 	/*non-hostile npcs will not attack the avatar.
 	 * They more or less just move around the map*/
-	public void nonHostileAct(double prob){
-		Move m = new Move(npc, null, npc.getMovementSpeed());
+	public void nonHostileAct(){
+		//50% change of moving
+		if(randomlyGenerate.probabiltiy()>.5){
+			//randomly generate a direction to move in, and move in that direction.
+			Direction d = randomlyGenerate.direction();
+		}
+		Ability a = new DoNothing();
+		//if you don't move, then you [currently do nothing]
 	}
+
 	
-	private double genRandProbability(){
-		
-		Random random = new Random();
-		return random.nextDouble();
-		
+	public void setHostility(boolean ishostile){
+		isHostile = ishostile;
 	}
 
 }

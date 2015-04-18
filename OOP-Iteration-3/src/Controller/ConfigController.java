@@ -2,19 +2,17 @@ package Controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-
 import Model.Menu.ConfigControls;
 import View.ModelView;
 
 public class ConfigController extends Controller {
-	
+	boolean binding = false;
 	KeyListener bind = new BindAction();
 	KeyListener rst = new ResetAction();
 	KeyListener enter = new Update();
-	KeyListener key = new KeyAction();
+	KeyListener up = new UpAction();
+	KeyListener down = new DownAction();
 	
 	ConfigControls cc = new ConfigControls();
 	
@@ -35,19 +33,21 @@ public class ConfigController extends Controller {
 
 	@Override
 	public void register(JFrame f) {
+		f.addKeyListener(up);
+		f.addKeyListener(down);
 		f.addKeyListener(bind);
 		f.addKeyListener(rst);
 		f.addKeyListener(enter);
-		f.addKeyListener(key);
 
 	}
 
 	@Override
 	public void deRegister(JFrame f) {
+		f.removeKeyListener(up);
+		f.removeKeyListener(down);
 		f.removeKeyListener(bind);
 		f.removeKeyListener(rst);
 		f.removeKeyListener(enter);
-		f.removeKeyListener(key);
 	}
 	public class Update implements KeyListener {
 
@@ -77,23 +77,21 @@ public class ConfigController extends Controller {
 	}
 	
 	public class BindAction implements KeyListener {
-
 		@Override
 		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			if(key == KeyEvent.VK_ENTER){
-				//RunGame.setKey(cc.readKey(), cc.readValue());
-				setChanged();
-				notifyObservers();
-				deleteObservers();
-			}
+	        if (e.getKeyChar() == RunGame.getKey("ENTER")) {
+	        	binding  = true;
+	        }
+	        else if(binding){
+	        	binding = false;
+	        	RunGame.setKey(cc.getState(), e.getKeyCode());
+	        	RunGame.paint();
+	        }
 			
 		}
 
 		@Override
-		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void keyReleased(KeyEvent e) {
 		}
 
 		@Override
@@ -110,9 +108,7 @@ public class ConfigController extends Controller {
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_R){
 				RunGame.keyReset();
-				setChanged();
-				notifyObservers();
-				deleteObservers();
+				RunGame.paint();
 			}
 			
 		}
@@ -130,12 +126,37 @@ public class ConfigController extends Controller {
 		}
 	}
 	
-	public class KeyAction implements KeyListener {
+	public class UpAction implements KeyListener {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			//cc.selectKey(KeyEvent.getKeyText(key));
+			if(key == RunGame.getKey("SOUTH") && !binding){
+				cc.MoveUp();
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	public class DownAction implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if(key == RunGame.getKey("NORTH") && !binding){
+				cc.MoveDown();
+			}
 			
 		}
 

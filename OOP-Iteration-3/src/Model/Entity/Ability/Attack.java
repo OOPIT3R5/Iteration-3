@@ -7,12 +7,17 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Attack extends SkillAbility{
 
-	public Attack(ArrayList<Tile> targetList, Entity entity) {
-        super(targetList, entity);
+	public Attack(){
     }
 
 	@Override
     public void execute() {
         
+	}
+
+	@Override
+	public int getSkillLevel() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

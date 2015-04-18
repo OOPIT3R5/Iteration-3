@@ -17,4 +17,10 @@ public class Polymorph extends SummonerAbility {
 		
 	}
 
+	@Override
+	public int getSkillLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

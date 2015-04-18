@@ -12,7 +12,7 @@ public class Water extends Terrain {
 	}
 	
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.disableWalk(Direction.hexToInt(direction) + 3);
+		target.disableWalk(Direction.intToHex(Direction.hexToInt(direction) + 3));
 	}
 
 	@Override

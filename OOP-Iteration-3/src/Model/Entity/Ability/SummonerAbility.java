@@ -8,6 +8,6 @@ import Model.Map.Grid.Tile.Tile;
 public abstract class SummonerAbility extends SkillAbility{
 
 	public SummonerAbility(ArrayList<Tile> targetList, Entity entity) {
-        super(targetList, entity);
+        
     }
 }

@@ -17,17 +17,15 @@ public class RunGame implements Observer {
 	
 	private JFrame frame = new JFrame();
 	Controller c = null;
-	private View view;
+	private static View view;
 	private static Map<String, Integer> keyBindings = new HashMap<String, Integer>();
 	public static RunGame r = new RunGame();
 	
 	public static void main(String argv[]){
-		
 		r.init();
-		
 	}
 	
-	public void init(){
+	public void init(){ 
 		view = new View();
 		c = new MainMenuController();
 		
@@ -39,12 +37,15 @@ public class RunGame implements Observer {
 		frame.setFocusable(true);
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.pack();
         frame.setVisible(true);
         frame.repaint();
 	}
 	public void quit(){
 		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+	}
+	
+	public static void paint(){
+		view.repaint();
 	}
 	
 	@Override
@@ -73,16 +74,16 @@ public class RunGame implements Observer {
 		keyBindings.put("ENTER",10);
 		keyBindings.put("BACK",27);
 		keyBindings.put("INVENTORY",73);
-		keyBindings.put("ACTION1",31);
-		keyBindings.put("ACTION2",32);
-		keyBindings.put("ACTION3",33);
-		keyBindings.put("ACTION4",34);
-		keyBindings.put("ACTION5",35);
-		keyBindings.put("ACTION6",36);
-		keyBindings.put("ACTION7",37);
-		keyBindings.put("ACTION8",38);
-		keyBindings.put("ACTION9",39);
-		keyBindings.put("ACTION0",30);
+		keyBindings.put("ACTION1",49);
+		keyBindings.put("ACTION2",50);
+		keyBindings.put("ACTION3",51);
+		keyBindings.put("ACTION4",52);
+		keyBindings.put("ACTION5",53);
+		keyBindings.put("ACTION6",54);
+		keyBindings.put("ACTION7",55);
+		keyBindings.put("ACTION8",56);
+		keyBindings.put("ACTION9",57);
+		keyBindings.put("ACTION0",48);
 	}
 	public static int getKey(String s){
 		return keyBindings.get(s);

@@ -23,7 +23,10 @@ public class View extends JPanel{
 		this.repaint();
 
 	}
-	
+	public void visit(CharacterCreationView mv) {
+		this.modelView = mv;
+		this.repaint();
+	}
 	public void visit(GameView mv) {
 		this.modelView = mv;
 		this.repaint();

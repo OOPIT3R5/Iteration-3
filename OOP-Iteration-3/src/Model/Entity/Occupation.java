@@ -9,14 +9,18 @@ public abstract class Occupation implements EquippableItemVisitor {
 
 	public Occupation(Entity entity) {
         this.entity = entity;
+        this.entity.setOccupation(this);
         bindwounds = new Skill(1, 10);
         bargain = new Skill(1, 10);
         observation = new Skill(1, 10);
     }
 
-    protected Entity getEntity(){
+  
+	protected Entity getEntity(){
         return entity;
     }
+	
+
 
 	//Told that summoner tome isn't a thing anymore??? Potentially? by Ryan
 	/*OFF HAND ITEMS THAT ARE CALLED "SUMMONERTOME" or "SMASHERSHIELD" BUT DON'T

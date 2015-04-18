@@ -1,9 +1,8 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Observable;
@@ -11,35 +10,37 @@ import java.util.Observer;
 import java.util.Map.Entry;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
+
+import Controller.RunGame;
 
 
 @SuppressWarnings("serial")
 public class MainMenuView extends ModelView implements Observer {
 	
-	private HashMap<String,JLabel> options = new HashMap<String,JLabel>();
+	private HashMap<String,Color> options = new HashMap<String,Color>();
 	
-	public final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+	int boxWidth = View.WIDTH/2;
+	int boxHeight = View.HEIGHT;
+	int boxX = View.WIDTH/2 - boxWidth/2;
+	int boxY = 0;
 	
-	public final int SUB1_X = 2*SCREEN_WIDTH/7;
-	public final int SUB1_Y = SCREEN_HEIGHT/12;
-	public final int SUB1_WIDTH = 2*SCREEN_WIDTH/5;
-	public final int SUB1_HEIGHT = 8*SCREEN_HEIGHT/10;
+	int buttonWidth = 100;
+	int buttonHeight = 50;
 
 	public MainMenuView(String[] options){
-		
+		for(String s : options){
+			this.options.put(s,Color.BLACK);
+		}
+		this.options.put(options[0], Color.RED);
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		for(Entry<String, JLabel> entry: options.entrySet()){
-   			JLabel a = entry.getValue();
-   			a.setForeground(Color.WHITE);
+		for(Entry<String, Color> entry: options.entrySet()){
+			options.put(entry.getKey(), Color.BLACK);
    		 }
-		options.get(arg1).setForeground(Color.RED);		
+		options.put(arg1.toString(), Color.RED);
+		RunGame.paint();
 	}
 
 	@Override
@@ -52,15 +53,23 @@ public class MainMenuView extends ModelView implements Observer {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		int buttonPadding = 20;
-		int buttonWidth = 100;
-		int buttonHeight = 50;
-		g.setColor(new Color(255, 0, 0));
-		
-		g.drawRect((View.WIDTH/2) - (buttonWidth/2), (View.HEIGHT/2) + buttonHeight ,buttonWidth , buttonHeight);
-		g.drawRect((View.WIDTH/2) - (buttonWidth/2), (View.HEIGHT/2) + buttonHeight ,buttonWidth , buttonHeight);
-
+		// TODO Auto-generated method stub		
+		int start = 0;
+		g.drawRect(boxX, boxY, boxWidth, boxHeight);
+		float old = g.getFont().getSize();
+		g.setFont(g.getFont().deriveFont(100.0f));
+		String title = "Main Menu";
+		FontMetrics fm = g.getFontMetrics();
+	    int w = fm.stringWidth("Main Menu");
+		g.drawString("Main Menu", boxX + boxWidth/2 - (w / 2), boxY + 100);
+		g.setFont(g.getFont().deriveFont(old));
+		MenuButton m = new MenuButton(buttonWidth, buttonHeight);
+		for(Entry<String, Color> entry: options.entrySet()){
+			m.render(g, View.WIDTH/2 - buttonWidth/2, View.HEIGHT/3 + start, entry.getValue(),entry.getKey());
+			start = start + buttonHeight*2;
+   		 }
+		g.setColor(Color.BLACK);
 	}
+	
 	
 }
