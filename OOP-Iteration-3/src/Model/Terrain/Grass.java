@@ -10,7 +10,7 @@ public class Grass extends Terrain {
 	}
 	
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.enableMove(Direction.hexToInt(direction) + 3);
+		target.enableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
 	}
 	
 }

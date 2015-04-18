@@ -33,24 +33,30 @@ public class Entity implements MovementInterface {
 	}
 
 	@Override
-	public void disableMove(int direction) {
-		movement_.add(direction, new DoNothing(null));
+	public void disableMove(Direction direction) {
+		movement_.add(Direction.hexToInt(direction), new DoNothing(null));
 	}
 
 	@Override
-	public void disableWalk(int direction) {
-		movement_.add(direction, new DoNothing(null));
+	public void disableWalk(Direction direction) {
+		movement_.add(Direction.hexToInt(direction), new DoNothing(null));
 	}
 
 	@Override
-	public void enableMove(int direction) {
+	public void enableMove(Direction direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_.add(direction, new Move(entity_list, Direction.intToHex(direction), 1));
+		movement_.add(Direction.hexToInt(direction), new Move(entity_list, direction, 1));
 	}
+	
+	public void moveByOne(Direction direction) {
+		currentPosition = currentPosition.getNeighbor(direction);
+	}
+	
 	public void setLocation(Location newPosition){
 		this.currentPosition = newPosition;
 	}
+	
 	public Location getLocation(){
 		return this.currentPosition;
 	}
