@@ -20,7 +20,7 @@ public class Obstacle extends Item{
     }
 
     @Override
-    public void execute(Entity entity) {
+    public void execute() {
         throw new RuntimeException("Should not have an Obstacle be ran.");
     }
 }

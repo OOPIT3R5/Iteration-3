@@ -12,7 +12,7 @@ public abstract class Ability {
 		this.setTargetList(targetList);
 	}
 	
-	abstract void execute();
+	public abstract void execute();
 
 	protected ArrayList<Entity> getTargetList() {
 		return targetList;

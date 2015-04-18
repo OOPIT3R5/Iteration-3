@@ -18,9 +18,4 @@ public class InteractiveItem extends Item{
     public void onTouch(Entity entity) {
 
     }
-
-    @Override
-    public void execute(Entity entity) {
-
-    }
 }

@@ -11,7 +11,7 @@ public class Fireball extends SummonerAbility {
 	}
 
 	@Override
-	void execute() {
+    public void execute() {
 		// TODO Auto-generated method stub
 		
 	}

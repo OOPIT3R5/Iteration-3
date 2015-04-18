@@ -11,8 +11,8 @@ public class DoNothing extends Ability{
 	}
 
 	@Override
-	void execute() {
-		
+    public void execute() {
+		return; //Do nothing.
 	}
 
 }

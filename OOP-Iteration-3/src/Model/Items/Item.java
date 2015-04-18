@@ -25,5 +25,7 @@ public abstract class Item implements MapObject{
         return name;
     }
 
-    public abstract void execute(Entity entity);
+    public void execute(){
+        ability.execute();
+    }
 }

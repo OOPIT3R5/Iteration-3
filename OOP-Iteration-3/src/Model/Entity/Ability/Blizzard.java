@@ -11,7 +11,7 @@ public class Blizzard extends SummonerAbility{
 	}
 
 	@Override
-	void execute() {
+    public void execute() {
 		// TODO Auto-generated method stub
 		
 	}

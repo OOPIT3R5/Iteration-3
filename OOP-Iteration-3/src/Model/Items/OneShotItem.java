@@ -14,13 +14,10 @@ public class OneShotItem extends Item {
         return true;
     }
 
+
+    //TODO: Figure out the situation of triggering a OneShotItem.
     @Override
     public void onTouch(Entity entity) {
-        execute(entity);
-    }
-
-    @Override
-    public void execute(Entity entity) {
-
+        getAbility().execute();
     }
 }

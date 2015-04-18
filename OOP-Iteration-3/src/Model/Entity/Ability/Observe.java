@@ -11,7 +11,7 @@ public class Observe extends SkillAbility{
 	}
 
 	@Override
-	void execute() {
+    public void execute() {
 		// TODO Auto-generated method stub
 		
 	}
