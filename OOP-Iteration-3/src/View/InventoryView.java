@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 
 import javax.swing.JLabel;
@@ -8,7 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
-public class InventoryView extends JPanel {
+public class InventoryView extends ModelView {
+	
 	public final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
 	public final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	
@@ -28,7 +30,7 @@ public class InventoryView extends JPanel {
 	public final int STATS_HEIGHT = SCREEN_HEIGHT/3;
 	
 	public InventoryView() {
-		
+		/*
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		setLayout(null);	
 		JPanel inventory = new JPanel();
@@ -48,5 +50,20 @@ public class InventoryView extends JPanel {
 		stats.setBounds(STATS_X,STATS_Y,STATS_WIDTH,STATS_HEIGHT);
 		stats.add(new JLabel("Insert Stats Here"));
 		add(stats);
+		*/
+		
+		
+	}
+
+	@Override
+	public void accept(View view) {
+		// TODO Auto-generated method stub
+		view.visit(this);
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -6,17 +6,19 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Model.Menu.MainMenu;
+import View.ModelView;
 
 
 
 public class MainMenuController extends Controller {
-	MainMenu mm = new MainMenu();
+	MainMenu mm;
 	
 	KeyListener up = new UpAction();
 	KeyListener down = new DownAction();
 	KeyListener enter = new Update();
 	
 	public MainMenuController(){
+		mm = new MainMenu();
 		addObserver(RunGame.r);
 	}
 	public void register(JFrame f){
@@ -29,7 +31,7 @@ public class MainMenuController extends Controller {
 		f.removeKeyListener(down);
 		f.removeKeyListener(enter);
 	}
-	public JComponent getView(){
+	public ModelView getView(){
 		return mm.getView();
 	}
 	

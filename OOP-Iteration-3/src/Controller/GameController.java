@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import Model.Entity.Entity;
 import View.GameView;
+import View.ModelView;
 
 
 public class GameController extends Controller {
@@ -17,14 +18,14 @@ public class GameController extends Controller {
 	KeyListener back = new BacktoMainMenu();
 	KeyListener inv = new InventoryListener();
 	
-	JComponent tempView = new GameView(); //This will be removed
+	ModelView tempView = new GameView(); //This will be removed
 	
 	public GameController() {
 		addObserver(RunGame.r);
 	}
 
 	@Override
-	public JComponent getView() {
+	public ModelView getView() {
 		// TODO Auto-generated method stub
 		return tempView; //TBD!!!!!!!!!!!!!!!!!!!!!!
 	}

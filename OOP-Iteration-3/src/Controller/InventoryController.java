@@ -7,20 +7,21 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import View.InventoryView;
+import View.ModelView;
 
 public class InventoryController extends Controller {
 	KeyListener back = new BacktoGame();
 	
 	
-	JComponent tempView = new InventoryView(); //Remove this 
+	ModelView inventoryView = new InventoryView(); //Remove this 
 	
 	public InventoryController(){
 		addObserver(RunGame.r);
 	}
 	@Override
-	public JComponent getView() {
+	public ModelView getView() {
 		// TODO Auto-generated method stub
-		return tempView;
+		return inventoryView;
 	}
 
 	@Override

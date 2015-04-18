@@ -7,6 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Model.Menu.CharacterCreation;
+import View.ModelView;
 
 public class CharacterCreationController extends Controller  {
 	CharacterCreation cm = new CharacterCreation();
@@ -32,7 +33,7 @@ public class CharacterCreationController extends Controller  {
 	}
 
 	@Override
-	public JComponent getView() {
+	public ModelView getView() {
 		// TODO Auto-generated method stub
 		return cm.getView();
 	}

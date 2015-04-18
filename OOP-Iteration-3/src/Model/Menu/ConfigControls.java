@@ -3,6 +3,7 @@ package Model.Menu;
 import javax.swing.JComponent;
 
 import View.ConfigControlsView;
+import View.ModelView;
 /* 
  * I am aware of the perhaps unnecessary coupling here. 
  * If you don't know what I am talking about - THERE IS NOTHING TO SEE HERE.
@@ -18,10 +19,10 @@ public class ConfigControls {
 	public ConfigControls(){
 	}
 	
-	public JComponent getView(){
+	public ConfigControlsView getView(){
 		return cv;
 	}
-	
+	/*
 	public int readValue(){
 		return cv.readValue();
 	}
@@ -31,4 +32,5 @@ public class ConfigControls {
 	public String readKey(){
 		return cv.readKey().toString();
 	}
+	*/
 }

@@ -8,6 +8,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import View.View;
 import Controller.Controller;
 import Controller.MainMenuController;
 
@@ -16,22 +17,29 @@ public class RunGame implements Observer {
 	
 	private JFrame frame = new JFrame();
 	Controller c = null;
+	private View view;
 	private static Map<String, Integer> keyBindings = new HashMap<String, Integer>();
 	public static RunGame r = new RunGame();
 	
 	public static void main(String argv[]){
+		
 		r.init();
+		
 	}
 	
 	public void init(){
-		keyReset();
+		view = new View();
 		c = new MainMenuController();
-		frame.add(c.getView());
+		
+		
+		keyReset();
+		frame.add(view);
+		view.render(c.getView());
 		c.register(frame);
 		frame.setFocusable(true);
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        //frame.pack();
         frame.setVisible(true);
         frame.repaint();
 	}
@@ -41,14 +49,13 @@ public class RunGame implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		frame.remove(c.getView());
 		c.deRegister(frame);
 		if((c = c.update()) == null){ //Use a QuitController instead
 			quit();
 			return;
 		}
+		view.render(c.getView());
 		c.register(frame);
-		frame.add(c.getView());
 		frame.revalidate();
         frame.repaint();
 	}
