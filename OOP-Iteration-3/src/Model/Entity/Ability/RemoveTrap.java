@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class RemoveTrap extends SneakAbility {
 
-	public RemoveTrap(ArrayList<Tile> targetList) {		// doesn't need a target entity....
-		super(targetList);
-	}
+	public RemoveTrap(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

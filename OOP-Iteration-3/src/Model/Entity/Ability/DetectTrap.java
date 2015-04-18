@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class DetectTrap extends SneakAbility{
 
-	public DetectTrap(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public DetectTrap(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Blizzard extends SummonerAbility{
 
-	public Blizzard(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Blizzard(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

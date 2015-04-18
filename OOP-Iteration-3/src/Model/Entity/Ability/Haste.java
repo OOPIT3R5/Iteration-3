@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Haste extends SummonerAbility {
 
-	public Haste(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Haste(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

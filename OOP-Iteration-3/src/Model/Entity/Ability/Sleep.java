@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Sleep extends SummonerAbility {
 
-	public Sleep(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Sleep(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

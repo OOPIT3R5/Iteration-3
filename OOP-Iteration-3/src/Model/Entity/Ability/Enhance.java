@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Enhance extends SummonerAbility {
 
-	public Enhance(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Enhance(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

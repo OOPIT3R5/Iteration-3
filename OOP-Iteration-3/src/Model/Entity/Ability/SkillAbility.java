@@ -7,12 +7,17 @@ import Model.Map.Grid.Tile.Tile;
 
 public abstract class SkillAbility extends Ability {
 
-    protected ArrayList<Tile> targetList;
+    private ArrayList<Tile> targetList;
+    private Entity entity;
 
-    public SkillAbility(ArrayList<Tile> targetList) {
+    public SkillAbility(ArrayList<Tile> targetList, Entity source) {
         this.setTargetList(targetList);
+        entity = source;
     }
 
+    public Entity getEntity() {
+        return entity;
+    }
 
     protected ArrayList<Tile> getTargetList() {
         return targetList;

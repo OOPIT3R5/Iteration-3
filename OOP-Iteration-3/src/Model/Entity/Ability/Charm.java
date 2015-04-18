@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Charm extends SummonerAbility {
 
-	public Charm(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Charm(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

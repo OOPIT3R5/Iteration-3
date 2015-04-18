@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Observe extends SkillAbility{
 
-	public Observe(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Observe(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

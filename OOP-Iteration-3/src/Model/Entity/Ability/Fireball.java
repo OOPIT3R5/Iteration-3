@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Fireball extends SummonerAbility {
 
-	public Fireball(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Fireball(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

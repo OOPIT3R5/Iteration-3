@@ -7,8 +7,8 @@ import Model.Map.Grid.Tile.Tile;
 
 public abstract class SneakAbility extends SkillAbility{
 
-	public SneakAbility(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public SneakAbility(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 }

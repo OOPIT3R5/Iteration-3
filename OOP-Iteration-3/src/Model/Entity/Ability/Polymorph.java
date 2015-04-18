@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Polymorph extends SummonerAbility {
 
-	public Polymorph(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Polymorph(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

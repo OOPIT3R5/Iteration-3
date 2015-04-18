@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Creep extends SneakAbility {
 
-	public Creep(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Creep(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {

@@ -7,8 +7,8 @@ import Model.Map.Grid.Tile.Tile;
 
 public class BindWounds extends SkillAbility{
 
-	public BindWounds(ArrayList<Tile> targetList) {
-		super(targetList);
+	public BindWounds(ArrayList<Tile> targetList, Entity entity) {
+		super(targetList, entity);
 	}
 
 	@Override

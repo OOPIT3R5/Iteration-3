@@ -7,9 +7,9 @@ import Model.Map.Grid.Tile.Tile;
 
 public class Shock extends SummonerAbility {
 
-	public Shock(ArrayList<Tile> targetList) {
-		super(targetList);
-	}
+	public Shock(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
     public void execute() {
