@@ -2,7 +2,7 @@ package Model.Entity;
 
 import Model.Entity.Ability.*;
 import Model.Map.Direction;
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class TroublesomeMenace extends NonAdversarial implements Pet{
 	
@@ -21,8 +21,8 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned),
 		attack in vicinity, or go after treasure*/
-		double rand = RandomGenerator.probability();
-		Direction randDir = RandomGenerator.direction();
+		double rand = RandomlyGenerate.probability();
+		Direction randDir = RandomlyGenerate.direction();
 		
 		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar

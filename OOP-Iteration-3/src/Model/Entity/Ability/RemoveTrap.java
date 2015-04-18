@@ -3,7 +3,7 @@ package Model.Entity.Ability;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class RemoveTrap extends SingleTargetAbility {
 
@@ -19,7 +19,7 @@ public class RemoveTrap extends SingleTargetAbility {
 
 	@Override
     public void execute() {		
-		double probabilityOfSuccess = RandomGenerator.probability();
+		double probabilityOfSuccess = RandomlyGenerate.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success = removal

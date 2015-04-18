@@ -1,6 +1,6 @@
 package Model.Entity;
 
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class NPC extends Entity {
 
@@ -22,7 +22,7 @@ public class NPC extends Entity {
 	}
 	
 	public void provoke(){
-		double rand = RandomGenerator.probability();
+		double rand = RandomlyGenerate.probability();
 		if (rand>.10){
 			hostility.setHostility(true);
 		}
