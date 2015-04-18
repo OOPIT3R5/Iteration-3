@@ -40,7 +40,7 @@ public class MainMenuView extends ModelView implements Observer {
 			options.put(entry.getKey(), Color.BLACK);
    		 }
 		options.put(arg1.toString(), Color.RED);
-		//RunGame.paint();
+		RunGame.paint();
 	}
 
 	@Override
