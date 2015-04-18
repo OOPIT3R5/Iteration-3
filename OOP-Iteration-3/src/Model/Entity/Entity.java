@@ -13,6 +13,11 @@ import Model.Map.Location;
 
 public class Entity implements MovementInterface {
 	
+	
+	private final int SMASHER = 0;
+	private final int SUMMONER = 1;
+	private final int SNEAK = 2;
+	
 	private String name;
 	private Occupation occupation;
 	//private StatisticsContainer stats;
@@ -53,32 +58,31 @@ public class Entity implements MovementInterface {
 	
 	private Occupation occupationCreation(int oC){
 		Occupation o;
-		if(oC == 0){
+		if(oC == SMASHER){
 			return new Smasher();
 		}
-		else if (oC == 1){
+		else if (oC == SUMMONER){
 			return new Summoner();
 		}
-		else if (oC == 1){
+		else if (oC == SNEAK){
 			return new Sneak();
 		}
 		return new Smasher();
 	}
 	
-	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}
 
-
     public void awardExperience(int award){
         stats.awardExperience(award);
     }
+    
     public StatisticContainer getStatistics(){
         return stats;
     }
-	@Override
 
+    @Override
 	public void disableMove(int direction) {
 		movement_.add(direction, new DoNothing(null));
 	}
@@ -100,7 +104,5 @@ public class Entity implements MovementInterface {
 	public Location getLocation(){
 		return this.currentPosition;
 	}
-
-
 
 }
