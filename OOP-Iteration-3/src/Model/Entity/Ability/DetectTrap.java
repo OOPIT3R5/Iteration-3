@@ -3,24 +3,37 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
+import Utility.RandomGenerator;
 
 public class DetectTrap{
+	
+	private ArrayList<Tile> targetTiles;
+	private Skill skill;
 
-	public DetectTrap(ArrayList<Tile> targetList, Entity entity) {
-        
+	public DetectTrap(ArrayList<Tile> targetTiles, Skill skill) {
+        this.targetTiles = targetTiles;
+        this.skill = skill;
     }
 
-	
-    public void execute() {
-		// TODO Auto-generated method stub
+	public void execute() {
+		double chanceOfSuccess = getSkillLevel()/100;
 		
+		for(Tile tile : targetTiles){
+			double probabilityOfSuccess = (new RandomGenerator()).probability();
+			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
+				detectTargetTrap(tile);
+			}
+		}
 	}
 
+	public void detectTargetTrap(Tile tile){
+		tile.detectTrap();
+	}
 	
 	public int getSkillLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return skill.getCurrentLevel();
 	}
 
 }

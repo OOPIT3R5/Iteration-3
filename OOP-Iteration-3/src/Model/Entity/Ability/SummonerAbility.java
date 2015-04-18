@@ -1,13 +1,13 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
-import Model.Map.Grid.Tile.Tile;
 
-public abstract class SummonerAbility extends SkillAbility{
-
-	public SummonerAbility(ArrayList<Tile> targetList, Entity entity) {
-        
-    }
+public abstract class SummonerAbility extends MultipleTargetAbility{
+	protected abstract int getRequiredMana();
+	protected abstract void scaleMagnitude();
+	protected abstract void cast();		// cast spell if there is enough mana
+	
+	protected void useMana(Entity sourceEntity){
+		//sourceEntity.useMana(getRequiredMana());
+	}
 }
