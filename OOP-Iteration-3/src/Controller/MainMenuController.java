@@ -122,6 +122,9 @@ public class MainMenuController extends Controller {
 
 	@Override
 	public Controller update() {
+		
+		Controller c = this;
+	
 		String state = mm.getState();
 		if(state.equals("new")){ //Is there a way around this?
 			return CharacterCreationController.getInstance();
@@ -132,7 +135,7 @@ public class MainMenuController extends Controller {
 		else if(state.equals("load")){
 			return GameController.getInstance();
 		}
-		return null;
+		return c;
 		
 	}
 }

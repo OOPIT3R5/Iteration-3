@@ -5,11 +5,12 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.Observable;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import Model.Entity.Entity;
 
 @SuppressWarnings("serial")
 public class InventoryView extends ModelView {
@@ -37,7 +38,7 @@ public class InventoryView extends ModelView {
 	public final int STATS_WIDTH = SCREEN_WIDTH;
 	public final int STATS_HEIGHT = SCREEN_HEIGHT/3;
 	
-	public InventoryView() {
+	public InventoryView(Entity e) {
 
 		/*
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);

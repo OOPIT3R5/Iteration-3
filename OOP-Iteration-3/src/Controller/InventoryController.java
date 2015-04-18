@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import Main.KeySet;
 import Main.RunGame;
+import Model.Entity.Entity;
 import View.InventoryView;
 import View.ModelView;
 
@@ -16,17 +17,18 @@ public class InventoryController extends Controller {
 	
 	private static InventoryController instance;
 	
-	ModelView inventoryView = new InventoryView(); //Remove this 
+	private static InventoryView inventoryView;
 	
-	private InventoryController(){
+	private InventoryController(Entity e){
 		
 		
 	}
 	
-	public static InventoryController getInstance(){
+	public static InventoryController getInstance(Entity e){
 		if(instance == null){
 			
-			instance = new InventoryController();
+			instance = new InventoryController(e);
+			inventoryView = new InventoryView(e);
 			
 		}
 		return instance;
