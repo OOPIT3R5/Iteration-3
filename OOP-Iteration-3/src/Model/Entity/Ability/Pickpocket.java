@@ -3,7 +3,7 @@ package Model.Entity.Ability;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class Pickpocket extends SingleTargetAbility {
 	
@@ -21,7 +21,7 @@ public class Pickpocket extends SingleTargetAbility {
     public void execute() {
 		Entity targetEntity = getTargetEntity();
 		
-		double probabilityOfSuccess = (new RandomGenerator()).probability();
+		double probabilityOfSuccess = RandomlyGenerate.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success

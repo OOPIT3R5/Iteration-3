@@ -6,19 +6,19 @@ import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.Move;
 import Model.Map.Direction;
 
-public class RandomGenerator {
-	Random random;
+public class RandomlyGenerate {
+	static Random random;
 	
-	public RandomGenerator (){
+	private RandomlyGenerate (){
 		random = new Random();
 	}
 	
-	public double probability(){
+	public static double probability(){
 		return random.nextDouble();
 	}
 
 
-	public Direction direction() {
+	public static Direction direction() {
 		double r = probability();
 		
 		if(r<.175){
