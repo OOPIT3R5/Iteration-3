@@ -25,8 +25,20 @@ public class Hostility {
 	public Hostility() {
 		isHostile = false;
 	}
+	
+	public Hostility(boolean hostility) {
+		this();
+		setHostility(hostility);
+	}
+	
 	public Hostility(NPC npc) {
+		this();
 		this.npc = npc;
+	}
+	
+	public Hostility(NPC npc, boolean hostility) {
+		this(npc);
+		setHostility(hostility);
 	}
 	
 	/*CHANGE IN DESIGN!!! instead of hostility being an abstract
@@ -88,5 +100,9 @@ public class Hostility {
 		//if you don't move, then you [currently do nothing]
 	}
 
+	
+	public void setHostility(boolean ishostile){
+		isHostile = ishostile;
+	}
 
 }
