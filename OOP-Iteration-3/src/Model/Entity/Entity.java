@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
-import Model.Items.Equipment;
-import Model.Items.Inventory;
-import Model.Items.TakeableItem;
+import Model.Items.*;
 import Model.Map.Direction;
 import Model.Map.Location;
 
@@ -48,7 +46,7 @@ public class Entity implements MovementInterface {
 	public Entity (String name){
 		this();
 		this.name = name;
-		this.occupation = new Smasher();
+		this.occupation = new Smasher(this);
 	}
 	
 	public Entity (String name, int occupationChoice){
@@ -59,20 +57,43 @@ public class Entity implements MovementInterface {
 	private Occupation occupationCreation(int oC){
 		Occupation o;
 		if(oC == SMASHER){
-			return new Smasher();
+			return new Smasher(this);
 		}
 		else if (oC == SUMMONER){
-			return new Summoner();
+			return new Summoner(this);
 		}
 		else if (oC == SNEAK){
-			return new Sneak();
+			return new Sneak(this);
 		}
-		return new Smasher();
+		return new Smasher(this);
 	}
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}
+
+
+    //Use this method to equip any EquippableItem (from Inventory, etc.)
+    public void equipEquippableItem(EquippableItem ei){
+        ei.accept(occupation);
+    }
+
+    //The below methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
+    void equipItem(WeaponItem wi){
+        equipmentManager.equip(wi);
+    }
+    void equipItem(OffHandItem ohi){
+        equipmentManager.equip(ohi);
+    }
+    void equipItem(ArmorItem ai){
+        equipmentManager.equip(ai);
+    }
+    void equipItem(AccessoryItem acci){
+        equipmentManager.equip(acci);
+    }
+    void equipItem(ShoesItem si){
+        equipmentManager.equip(si);
+    }
 
     public void awardExperience(int award){
         stats.awardExperience(award);

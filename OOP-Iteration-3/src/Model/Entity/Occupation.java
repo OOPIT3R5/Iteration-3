@@ -1,14 +1,16 @@
 package Model.Entity;
 
-public abstract class Occupation {
+public abstract class Occupation implements EquippableItemVisitor {
 
-	public Occupation() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public abstract void accept(OccupationVisitor v);
-	
-	
+    private Entity entity;
+
+	public Occupation(Entity entity) {
+        this.entity = entity;
+    }
+
+    protected Entity getEntity(){
+        return entity;
+    }
 	//Told that summoner tome isn't a thing anymore??? Potentially? by Ryan
 	/*OFF HAND ITEMS THAT ARE CALLED "SUMMONERTOME" or "SMASHERSHIELD" BUT DON'T
 	INHERIT FROM "SUMMONER WEAPON ITEM" OR "SMASHER WEAPON ITEM". I know they're not
@@ -20,7 +22,7 @@ public abstract class Occupation {
 		SummonerTome implements SummonerSpecificItem
 		SmasherShield implements SmasherSpecificItem
 		
-		SummonerSpecificItem, SmasherSpecificItem, and SneakSpecificItem all are
+		SummonerSpescificItem, SmasherSpecificItem, and SneakSpecificItem all are
 		subclasses of OccupationSpecificItem
 	*/
 	

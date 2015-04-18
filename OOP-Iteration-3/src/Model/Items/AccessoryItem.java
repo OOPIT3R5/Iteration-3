@@ -1,15 +1,14 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import Model.Entity.Entity;
+import Model.Entity.EquippableItemVisitor;
 
 public class AccessoryItem extends EquippableItem {
     public AccessoryItem(int statchange, Ability ability, String name) {
         super(statchange, ability, name);
     }
 
-    @Override
-    public void execute(Entity entity) {
-
+    public void accept(EquippableItemVisitor eiv){
+        eiv.visit(this);
     }
 }
