@@ -4,21 +4,23 @@ import java.util.ArrayList;
 
 import Model.Entity.Entity;
 import Model.Map.Direction;
+import Model.Map.Grid.Tile.Tile;
 
 public class Move extends Ability {
 	
 	private int movementSpeed;
 	private Direction direction;
+    private Entity e;
 
-	public Move(ArrayList<Entity> targetList, Direction direction, int movementSpeed) {
-		super(targetList);
+	public Move(Entity e, Direction direction, int movementSpeed) {
 		this.direction = direction;
 		this.movementSpeed = movementSpeed;
-	}
+	    this.e = e;
+    }
 
 	@Override
 	public void execute() {
-		Entity currentEntity = targetList.get(0);
+		Entity currentEntity = e;
 		// get oldTile
 		System.out.println(currentEntity.getLocation().toString());
 		currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));

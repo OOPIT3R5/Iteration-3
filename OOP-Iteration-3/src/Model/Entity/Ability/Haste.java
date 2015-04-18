@@ -3,10 +3,11 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Map.Grid.Tile.Tile;
 
 public class Haste extends SummonerAbility {
 
-	public Haste(ArrayList<Entity> targetList) {
+	public Haste(ArrayList<Tile> targetList) {
 		super(targetList);
 	}
 

@@ -12,8 +12,7 @@ public class Attack extends SkillAbility{
 
 	@Override
     public void execute() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

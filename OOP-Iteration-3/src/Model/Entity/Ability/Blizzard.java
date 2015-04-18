@@ -3,10 +3,11 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Map.Grid.Tile.Tile;
 
 public class Blizzard extends SummonerAbility{
 
-	public Blizzard(ArrayList<Entity> targetList) {
+	public Blizzard(ArrayList<Tile> targetList) {
 		super(targetList);
 	}
 
