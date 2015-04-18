@@ -2,6 +2,7 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Observable;
@@ -14,11 +15,12 @@ import javax.swing.SwingConstants;
 
 
 @SuppressWarnings("serial")
-public class CharacterCreationView extends JPanel implements Observer {
+public class CharacterCreationView extends ModelView implements Observer {
 	
 	private HashMap<String,JLabel> options = new HashMap<String,JLabel>();
 
 	public CharacterCreationView(String[] options){
+		/*
 		setBackground(new Color(0, 0, 0));
 		setLayout(new BorderLayout());	
 		JPanel panel = new JPanel();
@@ -29,15 +31,18 @@ public class CharacterCreationView extends JPanel implements Observer {
 		add(title,BorderLayout.NORTH);
 		add(panel,BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(2,2));
-		
+		*/
 		for(String s : options){
 			JLabel a = new JLabel(s,SwingConstants.CENTER);
-   			panel.add(a);
+   			//panel.add(a);
    			a.setForeground(Color.WHITE);
    			a.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			this.options.put(s, a);
 		}
+		
 		this.options.get(options[0]).setForeground(Color.RED);
+		
+		
 	}
 
 	@Override
@@ -47,5 +52,17 @@ public class CharacterCreationView extends JPanel implements Observer {
    			a.setForeground(Color.WHITE);
    		 }
 		options.get(arg).setForeground(Color.RED);	
+	}
+
+	@Override
+	public void accept(View view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

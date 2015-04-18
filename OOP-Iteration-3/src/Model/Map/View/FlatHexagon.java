@@ -1,6 +1,8 @@
 package Model.Map.View;
 
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -14,6 +16,8 @@ public class FlatHexagon extends Polygon {
 	private final Point center_;
 	private final int size_;
 	private final boolean filled_;
+	
+	private Color color = Color.BLACK;
 	
 	public FlatHexagon(Point p, int size, boolean filled) {
 		npoints = SIDES;
@@ -40,11 +44,20 @@ public class FlatHexagon extends Polygon {
 		}
 	}
 	
+	public FlatHexagon(Point p, int size, boolean filled, Color color) {
+		this(p, size, filled);
+		this.setColor(color);
+	}
+	
+	private void setColor(Color color){
+		this.color = color;
+	}
+	
 	public void draw(Graphics g) {
-		if (!filled_)
-			g.drawPolygon(xpoints, ypoints, npoints);
-		else
-			g.fillPolygon(xpoints, ypoints, npoints);
+		g.setColor(Color.BLACK);
+		g.drawPolygon(xpoints, ypoints, npoints);
+		g.setColor(color);
+		g.fillPolygon(xpoints, ypoints, npoints);
 	}
 	
 }

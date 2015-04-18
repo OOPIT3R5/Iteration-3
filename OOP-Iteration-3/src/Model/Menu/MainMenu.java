@@ -5,6 +5,7 @@ import java.util.Observable;
 import javax.swing.JComponent;
 
 import View.MainMenuView;
+import View.ModelView;
 
 public class MainMenu extends Observable {
 	int selected = 0;
@@ -15,7 +16,7 @@ public class MainMenu extends Observable {
 		addObserver(mv);
 	}
 	
-	public JComponent getView(){
+	public ModelView getView(){
 		return mv;
 	}
 	

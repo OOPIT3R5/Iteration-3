@@ -1,5 +1,7 @@
 package Model.Items;
 
+import Model.Entity.Entity;
+
 public class Equipment {
     //TODO: Get the Equipment all working!
 
@@ -8,9 +10,9 @@ public class Equipment {
     private ArmorItem armor;
     private AccessoryItem accessory;
     private ShoesItem shoes;
-    //private Entity e; // This is a reference to the entity who "owns" us.
+    private Entity entity; // This is a reference to the entity who "owns" us.
 
-    /*
+
     public Equipment(Entity e){
         weapon = null;
         offhand = null;
@@ -19,10 +21,9 @@ public class Equipment {
         shoes = null;
         entity = e;
     }
-     */
 
     public void equip(WeaponItem weaponitem){
-        if(isWeaponNull())
+        if(!isWeaponNull())
             unequipWeapon();        //If we already have a weapon equipped, unequip it first.
 
         if(weaponitem.isTwoHanded())
@@ -31,7 +32,7 @@ public class Equipment {
         setWeapon(weaponitem);        //Set the new weaponitem.
     }
     public void equip(OffHandItem offhanditem){
-        if(isOffHandNull())
+        if(!isOffHandNull())
             unequipOffHandItem();   //If we already have an off-hand item, unequip it first.
 
         if(weapon.isTwoHanded())
@@ -40,42 +41,62 @@ public class Equipment {
         setOffhand(offhanditem);      //Set the new offhand item.
     }
     public void equip(ArmorItem armoritem){
-        if(isArmorNull())
+        if(!isArmorNull())
             unequipArmor();         //If we already have an armor equipped, unequip it first.
 
         setArmor(armoritem);        //Set the new armor item.
     }
     public void equip(AccessoryItem accessoryitem){
-        if(isAccessoryNull())
+        if(!isAccessoryNull())
             unequipAccessory();     //If we have an accessory equipped, unequip it first.
 
         setAccessory(accessoryitem);//Set the new accessory item.
     }
     public void equip(ShoesItem shoesitem){
-        if(isShoesNull())
+        if(!isShoesNull())
             unequipShoes();         //If we have shoes already equipped, unequip it first.
 
         setShoes(shoesitem);        //Set the new shoes item.
     }
 
     public void unequipWeapon(){
-        //entity.addtoinventory
+        if(isWeaponNull())
+            return;
+        entity.addToInventory(weapon);
+        entity.getStatistics().addOffense(-1*weapon.getStatChangingValue());
+        nullifyWeapon();
     }
 
     public void unequipOffHandItem(){
-
+        if(isOffHandNull())
+            return;
+        entity.addToInventory(offhand);
+        entity.getStatistics().addDefense(-1*offhand.getStatChangingValue());
+        nullifyOffHand();
     }
 
     public void unequipArmor(){
-
+        if(isArmorNull())
+            return;
+        entity.addToInventory(armor);
+        entity.getStatistics().addDefense(-1*armor.getStatChangingValue());
+        nullifyArmor();
     }
 
     public void unequipAccessory(){
-
+        if(isAccessoryNull())
+            return;
+        entity.addToInventory(accessory);
+        entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
+        nullifyAccessory();
     }
 
     public void unequipShoes(){
-
+        if(isShoesNull())
+            return;
+        entity.addToInventory(shoes);
+        entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
+        nullifyShoes();
     }
 
     //Checks to see if we have any weapon equipped.
@@ -115,21 +136,46 @@ public class Equipment {
 
     private void setWeapon(WeaponItem weapon){
         this.weapon = weapon;
+        entity.getStatistics().addOffense(weapon.getStatChangingValue());
     }
 
     private void setOffhand(OffHandItem offhand){
         this.offhand = offhand;
+        entity.getStatistics().addDefense(offhand.getStatChangingValue());
     }
 
     private void setArmor(ArmorItem armor){
         this.armor = armor;
+        entity.getStatistics().addDefense(armor.getStatChangingValue());
     }
 
     private void setAccessory(AccessoryItem accessory){
         this.accessory = accessory;
+        entity.getStatistics().addDefense(accessory.getStatChangingValue());
     }
 
     private void setShoes(ShoesItem shoes){
         this.shoes = shoes;
+        entity.getStatistics().addDefense(shoes.getStatChangingValue());
+    }
+
+    private void nullifyWeapon(){
+        weapon = null;
+    }
+
+    private void nullifyOffHand(){
+        offhand = null;
+    }
+
+    private void nullifyArmor(){
+        armor = null;
+    }
+
+    private void nullifyAccessory(){
+        accessory = null;
+    }
+
+    private void nullifyShoes(){
+        shoes = null;
     }
 }
