@@ -52,12 +52,14 @@ public class FlatHexagon extends Polygon {
 	private void setColor(Color color){
 		this.color = color;
 	}
-	
+
 	public void draw(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.drawPolygon(xpoints, ypoints, npoints);
 		g.setColor(color);
 		g.fillPolygon(xpoints, ypoints, npoints);
 	}
+	
+	
 	
 }

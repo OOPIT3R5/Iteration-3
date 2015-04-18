@@ -30,9 +30,7 @@ public class GameController extends Controller {
 	ModelView tempView = new GameView(); //This will be removed
 	
 	private GameController() {
-		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
-		map.add(1, 1, new HexagonalTile(new Water()));
-		map.add(5, 5, new HexagonalTile(new Mountain()));
+
 	}
 
 	public static GameController getInstance(){
