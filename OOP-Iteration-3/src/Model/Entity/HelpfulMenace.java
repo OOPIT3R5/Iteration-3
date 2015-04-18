@@ -27,7 +27,7 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		/*will never be hostile; will always either follow avatar (if owned), go where avatar directs it (if mounted)
 		attack in vicinity, or go after treasure*/
 		RandomGenerator randomlyGenerate = new RandomGenerator();
-		double rand = randomlyGenerate.probabiltiy();
+		double rand = randomlyGenerate.probability();
 		Direction randDir = randomlyGenerate.direction();
 		
 		if(rand <.65 && isOwned){

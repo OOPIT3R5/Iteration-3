@@ -64,7 +64,7 @@ public class Hostility {
 	 *  moving toward the avatar (if it is possible)*/
 	
 	public void hostileAct(){
-		double prob = randomlyGenerate.probabiltiy();	
+		double prob = randomlyGenerate.probability();	
 		if (prob < .25){
 			//25% chance they move in random direction
 			//Ability a = new Move(entityListPlaceholder, randomlyGenerate.direction(), npc.getMovementSpeed());;
@@ -92,7 +92,7 @@ public class Hostility {
 	 * They more or less just move around the map*/
 	public void nonHostileAct(){
 		//50% change of moving
-		if(randomlyGenerate.probabiltiy()>.5){
+		if(randomlyGenerate.probability()>.5){
 			//randomly generate a direction to move in, and move in that direction.
 			Direction d = randomlyGenerate.direction();
 		}
