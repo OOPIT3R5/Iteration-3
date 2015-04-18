@@ -37,7 +37,7 @@ public class Entity implements MovementInterface {
 		entity_list.add(this);
 		movement_ = new ArrayList<Ability>();
 		for (int i = 0; i < 6; i++) {
-			movement_.add(new Move(entity_list, Direction.intToHex(i), 1));
+			movement_.add(new Move(this, Direction.intToHex(i), 1));
 		}
 
         equipmentManager = new Equipment(this);
@@ -76,19 +76,23 @@ public class Entity implements MovementInterface {
     }
 
     //The below methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
-    void equipItem(WeaponItem wi){
+    public void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
     }
-    void equipItem(OffHandItem ohi){
+    
+    public void equipItem(OffHandItem ohi){
         equipmentManager.equip(ohi);
     }
-    void equipItem(ArmorItem ai){
+    
+    public void equipItem(ArmorItem ai){
         equipmentManager.equip(ai);
     }
-    void equipItem(AccessoryItem acci){
+    
+    public void equipItem(AccessoryItem acci){
         equipmentManager.equip(acci);
     }
-    void equipItem(ShoesItem si){
+    
+    public void equipItem(ShoesItem si){
         equipmentManager.equip(si);
     }
 
@@ -101,18 +105,20 @@ public class Entity implements MovementInterface {
     }
 
     @Override
-	public void disableMove(int direction) {
-		movement_.add(direction, new DoNothing(null));
+	public void disableMove(Direction direction) {
+		movement_.add(Direction.hexToInt(direction), new DoNothing());
 	}
-
-	public void disableWalk(int direction) {
-		movement_.add(direction, new DoNothing(null));
+    
+    @Override
+	public void disableWalk(Direction direction) {
+		movement_.add(Direction.hexToInt(direction), new DoNothing());
 	}
-
-	public void enableMove(int direction) {
+    
+    @Override
+	public void enableMove(Direction direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_.add(direction, new Move(entity_list, Direction.intToHex(direction), 1));
+		movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
 	}
 	
 	public void setLocation(Location newPosition){
@@ -122,5 +128,4 @@ public class Entity implements MovementInterface {
 	public Location getLocation(){
 		return this.currentPosition;
 	}
-
 }

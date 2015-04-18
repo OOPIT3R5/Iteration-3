@@ -5,6 +5,7 @@ import java.util.Observable;
 import javax.swing.JComponent;
 
 import View.CharacterCreationView;
+import View.ModelView;
 
 
 public class CharacterCreation extends Observable {
@@ -16,7 +17,7 @@ public class CharacterCreation extends Observable {
 		addObserver(cv);
 	}
 	
-	public JComponent getView(){
+	public ModelView getView(){
 		return cv;
 	}
 	

@@ -4,8 +4,17 @@ import Model.Items.*;
 
 public class Sneak extends Occupation{
 
+    private Skill pickpocket;
+    private Skill detecttraps;
+    private Skill creep;
+    private Skill rangedweapon;
+
 	public Sneak(Entity e){
         super(e);
+        pickpocket  = new Skill(1,10);
+        detecttraps = new Skill(1,10);
+        creep       = new Skill(1,10);
+        rangedweapon= new Skill(1,25);
     }
 
     //TODO: Replace all 'System.out.println()' methods with something with Logger.
@@ -48,5 +57,36 @@ public class Sneak extends Occupation{
     @Override
     public void visit(ShoesItem si) {
         getEntity().equipItem(si);
+    }
+
+    public int getPickpocketSkillLevel(){
+        return pickpocket.getCurrentLevel();
+    }
+
+    public int getDetectTrapsSkillLevel(){
+        return detecttraps.getCurrentLevel();
+    }
+
+    public int getCreepSkillLevel(){
+        return creep.getCurrentLevel();
+    }
+
+    public int getRangedWeaponSkillLevel(){
+        return rangedweapon.getCurrentLevel();
+    }
+
+    public void levelPickpocketSkill(){
+        pickpocket.levelSkillUp();
+    }
+
+    public void levelDetectTrapsSkill(){
+        detecttraps.levelSkillUp();
+    }
+
+    public void levelCreepSkill(){
+        creep.levelSkillUp();
+    }
+    public void levelRangedWeaponSkill(){
+        rangedweapon.levelSkillUp();
     }
 }

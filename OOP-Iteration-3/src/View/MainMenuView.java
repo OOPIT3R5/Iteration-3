@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import javax.swing.border.LineBorder;
 
 
 @SuppressWarnings("serial")
-public class MainMenuView extends JPanel implements Observer {
+public class MainMenuView extends ModelView implements Observer {
 	
 	private HashMap<String,JLabel> options = new HashMap<String,JLabel>();
 	
@@ -30,28 +31,6 @@ public class MainMenuView extends JPanel implements Observer {
 
 	public MainMenuView(String[] options){
 		
-		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		setBackground(new Color(0, 0, 0));
-		setLayout(null);	
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.BLACK);
-		panel.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
-		panel.setBounds(SUB1_X, SUB1_Y, SUB1_WIDTH, SUB1_HEIGHT);
-		add(panel);
-		panel.setLayout(new GridLayout(5,1));
-		
-		JLabel lblNew = new JLabel("<html><u>Main Menu</u></html>",SwingConstants.CENTER);
-		lblNew.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		lblNew.setForeground(Color.WHITE);
-		panel.add(lblNew);
-		for(String s : options){
-			JLabel l = new JLabel(s,SwingConstants.CENTER);
-			this.options.put(s, l);
-			l.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			l.setForeground(Color.WHITE);
-			panel.add(l);
-		}	
-		this.options.get(options[0]).setForeground(Color.RED);
 	}
 
 	@Override
@@ -61,6 +40,27 @@ public class MainMenuView extends JPanel implements Observer {
    			a.setForeground(Color.WHITE);
    		 }
 		options.get(arg1).setForeground(Color.RED);		
+	}
+
+	@Override
+	public void accept(View view) {
+		// TODO Auto-generated method stub
+		view.visit(this);
+	}
+
+	
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		int buttonPadding = 20;
+		int buttonWidth = 100;
+		int buttonHeight = 50;
+		g.setColor(new Color(255, 0, 0));
+		
+		g.drawRect((View.WIDTH/2) - (buttonWidth/2), (View.HEIGHT/2) + buttonHeight ,buttonWidth , buttonHeight);
+		g.drawRect((View.WIDTH/2) - (buttonWidth/2), (View.HEIGHT/2) + buttonHeight ,buttonWidth , buttonHeight);
+
 	}
 	
 }

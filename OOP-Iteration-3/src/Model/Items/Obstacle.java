@@ -6,7 +6,7 @@ import Model.Entity.Entity;
 public class Obstacle extends Item{
 
     public Obstacle(String name) {
-        super(new DoNothing(null), name);
+        super(new DoNothing(), name);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Obstacle extends Item{
     }
 
     @Override
-    public void execute(Entity entity) {
+    public void execute() {
         throw new RuntimeException("Should not have an Obstacle be ran.");
     }
 }

@@ -42,13 +42,13 @@ public class RectangularTile extends Tile {
 	}
 	
 	public String toString() {
-		return "";//getLocation().getX() + "," + getLocation().getY();
+		return getLocation().getX() + "," + getLocation().getY();
 	}
 	
 	@Override
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
 		if (super.hasEntity())
-			target.disableMove(Direction.hexToInt(direction) + 4);
+			target.disableMove(Direction.intToHex(Direction.hexToInt(direction) + 4));
 		else
 			getTerrain().notifyOfEntity(target, direction);
 	}

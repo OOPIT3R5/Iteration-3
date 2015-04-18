@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Utility.*;
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.Attack;
+import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
 import Model.Map.Direction;
 
@@ -54,23 +55,26 @@ public class Hostility {
 		double prob = randomlyGenerate.probabiltiy();	
 		if (prob < .25){
 			//25% chance they move in random direction
-			Ability a = new Move(entityListPlaceholder, randomlyGenerate.direction(), npc.getMovementSpeed());;
+			//Ability a = new Move(entityListPlaceholder, randomlyGenerate.direction(), npc.getMovementSpeed());;
 		}
 		else if (prob < .65){
 			//40% chance they move toward avatar //for testing raise this super high!!!
 													//CHANGE THIS TO DIRECTION RELATIVE TO WHERE AVATAR IS
 														//IN RELATION TO NPC
-			Ability a = new Move(entityListPlaceholder, Direction.NORTH, npc.getMovementSpeed());
+		//	Ability a = new Move(entityListPlaceholder, Direction.NORTH, npc.getMovementSpeed());
 		}
 		else if (prob < .95){
 			//30% chance they face self toward avatar and attack (direct an attack toward avatar)
-			Ability a = new Attack(entityListPlaceholder);
+			//Ability a = new Attack(entityListPlaceholder);
 					//change this to avatar or something. Attack should be directed toward avatar
 		}
 		else{
 			//5% chance they do nothing for a turn
+			Ability a = new DoNothing();
 		}
+			
 	}
+
 	
 	/*non-hostile npcs will not attack the avatar.
 	 * They more or less just move around the map*/
@@ -78,8 +82,9 @@ public class Hostility {
 		//50% change of moving
 		if(randomlyGenerate.probabiltiy()>.5){
 			//randomly generate a direction to move in, and move in that direction.
-			Move m = new Move(entityListPlaceholder, randomlyGenerate.direction(), npc.getMovementSpeed());
+			Direction d = randomlyGenerate.direction();
 		}
+		Ability a = new DoNothing();
 		//if you don't move, then you [currently do nothing]
 	}
 

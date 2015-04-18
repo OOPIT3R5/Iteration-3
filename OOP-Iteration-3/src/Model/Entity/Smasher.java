@@ -3,9 +3,15 @@ package Model.Entity;
 import Model.Items.*;
 
 public class Smasher extends Occupation{
+    private Skill onehandedweapon;
+    private Skill twohandedweapon;
+    private Skill brawlingweapon;
 
 	public Smasher(Entity e) {
         super(e);
+        onehandedweapon = new Skill(1, 25);
+        twohandedweapon = new Skill(1, 25);
+        brawlingweapon  = new Skill(1, 25);
 	}
 
     @Override
@@ -46,5 +52,29 @@ public class Smasher extends Occupation{
     @Override
     public void visit(ShoesItem si) {
         getEntity().equipItem(si);
+    }
+
+    public int getOneHandedWeaponSkillLevel(){
+        return onehandedweapon.getCurrentLevel();
+    }
+
+    public int getTwoHandedWeaponSkillLevel(){
+        return twohandedweapon.getCurrentLevel();
+    }
+
+    public int getBrawlingWeaponSkillLevel(){
+        return brawlingweapon.getCurrentLevel();
+    }
+
+    public void levelOneHandedWeaponSkill(){
+        onehandedweapon.levelSkillUp();
+    }
+
+    public void levelTwoHandedWeaponSkill(){
+        twohandedweapon.levelSkillUp();
+    }
+
+    public void levelBrawlingWeaponSkill(){
+        brawlingweapon.levelSkillUp();
     }
 }

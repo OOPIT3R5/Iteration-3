@@ -3,15 +3,16 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Map.Grid.Tile.Tile;
 
 public class Polymorph extends SummonerAbility {
 
-	public Polymorph(ArrayList<Entity> targetList) {
-		super(targetList);
-	}
+	public Polymorph(ArrayList<Tile> targetList, Entity entity) {
+        super(targetList, entity);
+    }
 
 	@Override
-	void execute() {
+    public void execute() {
 		// TODO Auto-generated method stub
 		
 	}

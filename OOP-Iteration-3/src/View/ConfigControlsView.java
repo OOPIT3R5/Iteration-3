@@ -2,6 +2,7 @@ package View;
 
 
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Map.Entry;
 
@@ -12,10 +13,15 @@ import javax.swing.JTextField;
 import Controller.RunGame;
 
 @SuppressWarnings("serial")
-public class ConfigControlsView extends JPanel{
+public class ConfigControlsView extends ModelView{
+	/*
 	JComboBox<String> keyList = new JComboBox<String>();
 	JTextField input = new JTextField(6);
+	*/
 	public ConfigControlsView(){
+		
+		
+		/*
 		setLayout(new FlowLayout());
 		for(Entry<String, Integer> entry: RunGame.getKeys().entrySet()){
    			keyList.addItem(entry.getKey());
@@ -24,8 +30,9 @@ public class ConfigControlsView extends JPanel{
 		keyList.setFocusable(false);
 		add(keyList);
 		add(input);
-	}
-	
+		*/
+}
+	/*
 	public void setInput(String s){
 		input.setText(s);
 	}
@@ -41,5 +48,17 @@ public class ConfigControlsView extends JPanel{
 	
 	public Object readKey(){
 		return keyList.getSelectedItem();
+	}
+*/
+	@Override
+	public void accept(View view) {
+		// TODO Auto-generated method stub
+		view.visit(this);
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

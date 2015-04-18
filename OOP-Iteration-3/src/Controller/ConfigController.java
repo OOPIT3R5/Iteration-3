@@ -7,6 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Model.Menu.ConfigControls;
+import View.ModelView;
 
 public class ConfigController extends Controller {
 	
@@ -22,7 +23,7 @@ public class ConfigController extends Controller {
 	}
 
 	@Override
-	public JComponent getView() {
+	public ModelView getView() {
 		// TODO Auto-generated method stub
 		return cc.getView();
 	}
@@ -81,7 +82,7 @@ public class ConfigController extends Controller {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_ENTER){
-				RunGame.setKey(cc.readKey(), cc.readValue());
+				//RunGame.setKey(cc.readKey(), cc.readValue());
 				setChanged();
 				notifyObservers();
 				deleteObservers();
@@ -134,7 +135,7 @@ public class ConfigController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			cc.selectKey(KeyEvent.getKeyText(key));
+			//cc.selectKey(KeyEvent.getKeyText(key));
 			
 		}
 

@@ -16,11 +16,6 @@ public abstract class TakeableItem extends Item{
 
     @Override
     public void onTouch(Entity entity){
-        //entity.addtoinventory(this);
-    }
-
-    @Override
-    public void execute(Entity entity){
-        //entity.execute(this.getAbility());
+        entity.addToInventory(this); //Add to inventory.
     }
 }

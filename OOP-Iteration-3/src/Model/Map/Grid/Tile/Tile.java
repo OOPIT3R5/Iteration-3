@@ -1,5 +1,7 @@
 package Model.Map.Grid.Tile;
 
+import java.awt.Color;
+
 import Model.Entity.Entity;
 import Model.Entity.MovementInterface;
 import Model.Items.MapObject;
@@ -27,6 +29,10 @@ public abstract class Tile {
 	
 	public Terrain getTerrain() {
 		return terrain_;
+	}
+	
+	public Color getColor(){
+		return terrain_.getColor();
 	}
 	
 	public abstract void setLocation(int x, int y);
