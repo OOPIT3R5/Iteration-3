@@ -6,12 +6,13 @@ import Utility.RandomGenerator;
 
 public class TroublesomeMenace extends NonAdversarial implements Pet{
 	
-	boolean owned;
+	boolean isOwned;
 	PetOwnership po;
 	
 	public TroublesomeMenace(PetOwnership po) {
 		super();
 		po.setPet(this);
+		isOwned = true;
 		this.po = po;
 	}
 	
@@ -24,7 +25,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		double rand = randomlyGenerate.probabiltiy();
 		Direction randDir = randomlyGenerate.direction();
 		
-		if(rand <.65){
+		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar
 			a = po.followAvatar();
 		}

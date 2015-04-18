@@ -89,6 +89,7 @@ public class Entity implements MovementInterface {
     void equipItem(ShoesItem si){
         equipmentManager.equip(si);
     }
+    //end of package protected methods to be called ONLY by the occupations
 
     public void awardExperience(int award){
         stats.awardExperience(award);
@@ -126,4 +127,10 @@ public class Entity implements MovementInterface {
 	public Location getLocation(){
 		return this.currentPosition;
 	}
+
+	protected void setOccupation(Occupation o) {
+		occupation = o;	
+	}
+	
+
 }

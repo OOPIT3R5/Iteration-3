@@ -17,7 +17,9 @@ public class Summoner extends Occupation{
         staff       = new Skill(1,  5);
     }
 
-    @Override
+
+
+	@Override
     public void visit(SmasherWeaponItem smawi) {
         System.out.println("You are not able to equip the "+smawi.getName()+" due to being too weak!");
     }
