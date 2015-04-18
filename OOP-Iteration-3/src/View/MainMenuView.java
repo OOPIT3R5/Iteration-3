@@ -70,6 +70,12 @@ public class MainMenuView extends ModelView implements Observer {
    		 }
 		g.setColor(Color.BLACK);
 	}
+
+	@Override
+	public ModelView updateView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
