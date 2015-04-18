@@ -12,10 +12,10 @@ import Model.Map.Location;
 public class Entity implements MovementInterface {
 	
 	
-	private final int SMASHER = 0;
+/*	private final int SMASHER = 0;
 	private final int SUMMONER = 1;
 	private final int SNEAK = 2;
-	
+	*/
 	private String name;
 	private Occupation occupation;
 	//private StatisticsContainer stats;
@@ -27,6 +27,8 @@ public class Entity implements MovementInterface {
     private StatisticContainer stats;
 	private Location currentPosition;
 	private ArrayList<Ability> movement_;
+	
+	private int movementSpeed;
 	
 	/*Use */
 	public Entity(){
@@ -41,6 +43,7 @@ public class Entity implements MovementInterface {
         equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer();
+        movementSpeed = 1;
 	}
 	
 	public Entity (String name){
@@ -54,7 +57,13 @@ public class Entity implements MovementInterface {
 		occupation = o;
 	}
 	
-
+	public int getMovementSpeed(){
+		return movementSpeed;
+	}
+	
+	public Direction getDirectionFacing(){
+		return directionFacing;
+	}
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
