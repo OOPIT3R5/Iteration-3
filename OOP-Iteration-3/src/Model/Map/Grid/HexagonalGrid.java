@@ -1,5 +1,6 @@
 package Model.Map.Grid;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -79,8 +80,9 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 			int x = (int)(origin.getX() + 3 / 2.0 * hexagon_size * (h.getU() - center.getU()));
 			int y = (int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((h.getV() - center.getV()) + (h.getU() - center.getU()) / 2.0));
 			Point p = new Point(x, y);
+			new FlatHexagon(p, hexagon_size, true, hex_tile.getColor()).draw(g);
+			g.setColor(Color.BLACK);
 			g.drawString(h.getU() + ", " + h.getV(), x-15, y+5);
-			new FlatHexagon(p, hexagon_size, false).draw(g);
 		}
 	}
 

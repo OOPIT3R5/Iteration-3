@@ -6,7 +6,7 @@ import Model.Entity.Entity;
 
 public abstract class Ability {
 	
-	private ArrayList<Entity> targetList;
+	protected ArrayList<Entity> targetList;
 
 	public Ability(ArrayList<Entity> targetList) {
 		this.setTargetList(targetList);
@@ -14,11 +14,11 @@ public abstract class Ability {
 	
 	abstract void execute();
 
-	private ArrayList<Entity> getTargetList() {
+	protected ArrayList<Entity> getTargetList() {
 		return targetList;
 	}
 
-	private void setTargetList(ArrayList<Entity> targetList) {
+	protected void setTargetList(ArrayList<Entity> targetList) {
 		this.targetList = targetList;
 	}
 

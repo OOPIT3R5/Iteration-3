@@ -10,12 +10,16 @@ import javax.swing.JPanel;
 import Model.Map.HexagonalLocation;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
+import Model.Terrain.Mountain;
+import Model.Terrain.Water;
 
 
 @SuppressWarnings("serial")
 public class Test extends JPanel {
 
 	public Grid gg_;
+	private static int x;
+	private static int y;
 	
 	public Test(Grid gg) {
 		super();
@@ -24,7 +28,7 @@ public class Test extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
-		((HexagonalGrid)gg_).drawRectangleWithCoords(g, new Point(450, 400), new HexagonalLocation(8, 3), 12, 12, 20);
+		((HexagonalGrid)gg_).drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(x, y), 100, 100, 75);	// 75 = good size
 		
 		/*g.setColor(Color.WHITE);
 		gg_.drawRectangle(g, new Point(450, 400), new HexCoordinate(0, 0), 6, 5, 50);
@@ -43,16 +47,26 @@ public class Test extends JPanel {
 		System.out.println(gg_.toString());*/
 	}
 	
-	public static void main(String[] args) {
-		Grid gg = new HexagonalGrid(10, 10);
-		gg.fill(new HexagonalTile());
-		System.out.println(gg.toString());
+	public static void main(String[] args) throws InterruptedException {
+		
+		Grid gg = new HexagonalGrid(100, 100);
+		gg.fill(new HexagonalTile(new Grass()));
+		//System.out.println(gg.toString());
+
+		gg.add(1, 1, new HexagonalTile(new Water()));
+		gg.add(5, 5, new HexagonalTile(new Mountain()));
 		
 		JFrame frame = new JFrame("Drawn HexTiled Grids");
 		frame.add(new Test(gg));
-		frame.setSize(890, 820);
+		frame.setSize(768, 768);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		for(int i = 0; i < 10; i++){
+			x = i;
+			frame.repaint();
+			Thread.sleep(1000);
+		}
 		
 	}
 	
