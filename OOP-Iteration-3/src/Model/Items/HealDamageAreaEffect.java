@@ -12,6 +12,6 @@ public class HealDamageAreaEffect extends AreaEffect {
 
     @Override
     public void onTouch(Entity entity) {
-        entity.takeDamage(-1*heal);
+        entity.changeHealth(heal);
     }
 }

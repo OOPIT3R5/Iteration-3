@@ -118,8 +118,8 @@ public class StatisticContainer {
         defense.addTemporaryValue(amt);
     }
 
-    public void takeDamage(int damage){
-        life.addPermanentValue(-1*damage);
+    public void changeHealth(int change){
+        life.addPermanentValue(change);
         checkIfDead();
     }
 

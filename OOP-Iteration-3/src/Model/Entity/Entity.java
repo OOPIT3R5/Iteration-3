@@ -99,9 +99,12 @@ public class Entity implements MovementInterface {
         inventory.addGold(gold);
     }
 
-    //If you want to heal damage,
-    public void takeDamage(int damage){
-        stats.takeDamage(damage);
+    public void stealGold(int gold){
+        inventory.stealGold(gold);
+    }
+
+    public void changeHealth(int change){
+        stats.changeHealth(change);
     }
 
     public StatisticContainer getStatistics(){

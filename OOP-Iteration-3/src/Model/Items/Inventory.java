@@ -33,4 +33,13 @@ public class Inventory {
     public void addGold(int goldamount){
         this.goldamount += goldamount;
     }
+
+    public int stealGold(int gold) {
+        if((goldamount - gold) < 0){
+            int tempgoldamount = goldamount;
+            goldamount = 0;
+            return tempgoldamount;
+        }
+        else return (goldamount -= gold);
+    }
 }

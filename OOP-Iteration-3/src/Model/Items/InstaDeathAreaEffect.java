@@ -5,6 +5,6 @@ import Model.Entity.Entity;
 public class InstaDeathAreaEffect extends AreaEffect {
     @Override
     public void onTouch(Entity entity) {
-        entity.takeDamage(99999999); //Blast that loser.
+        entity.changeHealth(-99999999); //Blast that loser.
     }
 }
