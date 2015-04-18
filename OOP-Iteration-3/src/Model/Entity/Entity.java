@@ -99,8 +99,8 @@ public class Entity implements MovementInterface {
         inventory.addGold(gold);
     }
 
-    public void stealGold(int gold){
-        inventory.stealGold(gold);
+    public int stealGold(int gold){
+        return inventory.stealGold(gold);
     }
 
     public void changeHealth(int change){

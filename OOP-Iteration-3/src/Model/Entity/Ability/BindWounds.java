@@ -18,23 +18,20 @@ public class BindWounds extends SingleTargetAbility{
     public void execute() {
 		Entity targetEntity = getTargetEntity();
 		int amountToHeal = getSkillLevel() * 2;
-		// targetEntity.heal(amountToHeal);		// need heal method in Entity
+		targetEntity.changeHealth(amountToHeal);
 	}
 
-	public Entity getTargetEntity() {
-		// TODO Auto-generated method stub
+	private Entity getTargetEntity() {
 		return targetTile.getEntity();
 	}
 
 	@Override
-	public int getSkillLevel() {
-		// TODO Auto-generated method stub
+	protected int getSkillLevel() {
 		return skill.getCurrentLevel();
 	}
 
 	@Override
-	public Tile getTargetTile() {
-		// TODO Auto-generated method stub
+	protected Tile getTargetTile() {
 		return targetTile;
 	}
 

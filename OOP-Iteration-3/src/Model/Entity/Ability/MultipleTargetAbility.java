@@ -1,9 +1,9 @@
 package Model.Entity.Ability;
 
-public class MultipleTargetAbility {
+import java.util.ArrayList;
 
-	public MultipleTargetAbility() {
-		// TODO Auto-generated constructor stub
-	}
+import Model.Map.Grid.Tile.Tile;
 
+public abstract class MultipleTargetAbility extends SkillAbility{
+	protected abstract ArrayList<Tile> getTargetTiles();
 }

@@ -29,7 +29,7 @@ public class Test extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
-		((HexagonalGrid)gg_).drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(x, y), 100, 100, 75);	// 75 = good size
+		((HexagonalGrid)gg_).drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(x, y), 100, 100, 20);	// 75 = good size
 		
 		/*g.setColor(Color.WHITE);
 		gg_.drawRectangle(g, new Point(450, 400), new HexCoordinate(0, 0), 6, 5, 50);
@@ -50,7 +50,7 @@ public class Test extends JPanel {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		GameMap gg = new GameMap(100, 100);
+		GameMap gg = new GameMap(10, 10);
 		gg.fill(new HexagonalTile(new Grass()));
 		//System.out.println(gg.toString());
 
@@ -64,8 +64,8 @@ public class Test extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		for(int i = 0; i < 10; i++){
-			x = i;
-			y = i;
+			//x = i;
+			//y = i;
 			frame.repaint();
 			Thread.sleep(1000);
 		}

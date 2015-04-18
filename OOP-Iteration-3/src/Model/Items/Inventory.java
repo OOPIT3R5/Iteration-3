@@ -40,6 +40,9 @@ public class Inventory {
             goldamount = 0;
             return tempgoldamount;
         }
-        else return (goldamount -= gold);
+        else{
+        	goldamount -= gold;
+        	return (gold);
+        }
     }
 }
