@@ -4,8 +4,17 @@ import Model.Items.*;
 
 public class Summoner extends Occupation{
 
+    private Skill enchantment;
+    private Skill boon;
+    private Skill bane;
+    private Skill staff;
+
 	public Summoner(Entity e){
         super(e);
+        enchantment = new Skill(1, 10);
+        boon        = new Skill(1, 20);
+        bane        = new Skill(1, 20);
+        staff       = new Skill(1,  5);
     }
 
     @Override
@@ -46,5 +55,36 @@ public class Summoner extends Occupation{
     @Override
     public void visit(ShoesItem si) {
         getEntity().equipItem(si);
+    }
+
+    public int getEnchantmentSkillLevel(){
+        return enchantment.getCurrentLevel();
+    }
+
+    public int getBaneSkillLevel(){
+        return bane.getCurrentLevel();
+    }
+
+    public int getBoonSkillLevel(){
+        return boon.getCurrentLevel();
+    }
+
+    public int getStaffSkillLevel(){
+        return staff.getCurrentLevel();
+    }
+
+    public void levelEnchantmentSkill(){
+        enchantment.levelSkillUp();
+    }
+
+    public void levelBaneSkill(){
+        bane.levelSkillUp();
+    }
+
+    public void levelBoonSkill(){
+        boon.levelSkillUp();
+    }
+    public void levelStaffSkill(){
+        staff.levelSkillUp();
     }
 }
