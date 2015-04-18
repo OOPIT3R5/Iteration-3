@@ -60,4 +60,10 @@ public abstract class Occupation implements EquippableItemVisitor {
     public void levelObservationSkill(){
         observation.levelSkillUp();
     }
+
+
+	public void printName() {
+		System.out.println(this.toString());
+		
+	}
 }

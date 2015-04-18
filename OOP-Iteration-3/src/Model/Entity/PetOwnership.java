@@ -8,6 +8,10 @@ public class PetOwnership {
 		
 	}
 
+	public PetOwnership(Entity avatar, Pet pet) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setPet(Pet pet) {
 		// TODO Auto-generated method stub
 		

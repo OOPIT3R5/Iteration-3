@@ -56,7 +56,9 @@ public class Hostility {
 		if(isHostile){
 			hostileAct();
 		}
-		nonHostileAct();		
+		else{
+			nonHostileAct();		
+		}
 	}
 	
 	/*Hostile entities are likely to attack the avatar.
@@ -70,19 +72,23 @@ public class Hostility {
 		
 		if (npc.avatarIsWithinRange()){
 			a = new Attack(null, null);//attack in avatar direction
+			System.out.println("I'm attacking the avatar who is/was next to me");
 		}
 		else{
 			if (prob < .60){
 				//60% chance of moving toward avatar
 				a = new Move(npc, TowardAvatarDirectionPlaceholder, npc.getMovementSpeed());
+				System.out.println("I'm moving toward avatar");
 			}
 			else if (prob < .90){
 				//30% chance of moving in random direction
 				a = new Move(npc, RandomlyGenerate.direction(), npc.getMovementSpeed());
+				System.out.println("I'm moving in rand dir");
 			}
 			else {
 				//10% chance of doing nothing
 				a = new DoNothing();
+				System.out.println("I'm doing nothing");
 			}
 		}
 		a.execute();
@@ -96,15 +102,21 @@ public class Hostility {
 		//50% change of moving
 		if(RandomlyGenerate.probability()>.5){
 			//randomly generate a direction to move in, and move in that direction.
+			System.out.println("I'm moving in rand dir and not hostile");
 			Direction d = RandomlyGenerate.direction();
 		}
 		Ability a = new DoNothing();
+			System.out.println("I'm doing nothing and not hostile");
 		//if you don't move, then you [currently do nothing]
 	}
 
 	
-	public void setHostility(boolean ishostile){
+	private void setHostility(boolean ishostile){
 		isHostile = ishostile;
+	}
+
+	public void becomeHostile() {
+		setHostility(true);
 	}
 	
 	

@@ -3,13 +3,40 @@ package Tests;
 import java.util.*;
 
 import Model.Entity.*;
+import Utility.RandomlyGenerate;
 
 
 public class entityandAvatarTests {
+
 	public static void main(String[] args){
-		avatarCreation();		
+		RandomlyGenerate r = new RandomlyGenerate();
+		//avatarCreation();
+		//monsterMovement();
+		helpfulMenace();
 	}
 
+	
+	private static void helpfulMenace() {
+		Entity avatar = new Avatar("bob");
+		new Smasher(avatar);
+		avatar.getOccupationTestMethod();
+		Pet pet = new HelpfulMenace();
+		PetOwnership po = new PetOwnership(avatar, pet);
+		
+		for(int i=0; i<10; i++){
+			((NPC) pet).makeActionChoice();
+		}
+	}
+
+
+	private static void monsterMovement(){
+		Entity npc = new Monster();
+		
+
+		for(int i=0; i<10; i++){
+			npc.makeActionChoice();
+		}
+	}
 	private static void avatarCreation() {
 		Scanner s = new Scanner (System.in);
 		System.out.println("Enter Avatar Name: ");

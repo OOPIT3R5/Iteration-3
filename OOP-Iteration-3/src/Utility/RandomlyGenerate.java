@@ -6,10 +6,10 @@ import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.Move;
 import Model.Map.Direction;
 
-public class RandomlyGenerate {
-	static Random random;
+public final class RandomlyGenerate {
+	private static Random random;
 	
-	private RandomlyGenerate (){
+	public RandomlyGenerate (){
 		random = new Random();
 	}
 	
