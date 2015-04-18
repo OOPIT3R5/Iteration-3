@@ -8,7 +8,7 @@ import Model.Map.Grid.Tile.Tile;
 public class Shock extends SummonerAbility {
 
 	public Shock(ArrayList<Tile> targetList, Entity entity) {
-        super(targetList, entity);
+        
     }
 
 	@Override
@@ -21,6 +21,30 @@ public class Shock extends SummonerAbility {
 	public int getSkillLevel() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	protected ArrayList<Tile> getTargetTiles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected int getRequiredMana() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected void scaleMagnitude() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void cast() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

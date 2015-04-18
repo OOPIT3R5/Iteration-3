@@ -8,12 +8,15 @@ import Model.Map.Grid.Tile.Tile;
 public class Fireball extends SummonerAbility {
 
 	public Fireball(ArrayList<Tile> targetList, Entity entity) {
-        super(targetList, entity);
+        
     }
 
 	@Override
     public void execute() {
-		// TODO Auto-generated method stub
+		// sourceAvatar.checkMana(this);
+	}
+	
+	public void complete(){
 		
 	}
 
@@ -21,6 +24,30 @@ public class Fireball extends SummonerAbility {
 	public int getSkillLevel() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	protected int getRequiredMana() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected void scaleMagnitude() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected ArrayList<Tile> getTargetTiles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void cast() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

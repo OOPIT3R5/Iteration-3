@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
-import Utility.RandomGenerator;
+import Utility.RandomlyGenerate;
 
 public class DetectTrap{
 	
@@ -21,7 +21,7 @@ public class DetectTrap{
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		for(Tile tile : targetTiles){
-			double probabilityOfSuccess = (new RandomGenerator()).probability();
+			double probabilityOfSuccess = RandomlyGenerate.probability();
 			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
 				detectTargetTrap(tile);
 			}
