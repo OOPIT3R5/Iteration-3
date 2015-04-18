@@ -125,6 +125,7 @@ public class MainMenuController extends Controller {
 		String state = mm.getState();
 		if(state.equals("new")){ //Is there a way around this?
 			return CharacterCreationController.getInstance();
+			
 		}
 		else if(state.equals("options")){
 			return ConfigController.getInstance();

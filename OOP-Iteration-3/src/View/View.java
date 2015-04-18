@@ -44,10 +44,18 @@ public class View extends JPanel{
 
 	}
 	
+	public void visit(GameMapView mv) {
+		this.modelView = mv;
+		this.repaint();
+
+	}
+	
 	public void render(ModelView mv) {
 		mv.accept(this);
 
 	}
+	
+
 	
 	
 	

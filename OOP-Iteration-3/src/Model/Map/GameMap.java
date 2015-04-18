@@ -1,18 +1,35 @@
 package Model.Map;
 
-import Model.Map.Grid.HexagonalGrid;
-import View.GameView;
+import java.util.ArrayList;
 
-public class GameMap extends HexagonalGrid{
+import Model.Map.Grid.HexagonalGrid;
+import View.GameMapView;
+import View.ModelView;
+
+
+public class GameMap extends HexagonalGrid {
 	
-	private GameView view = new GameView();
+	
+	GameMapView mapView;
+	
+	public ArrayList<HexagonalLocation> getLine(Location loc)
+	{
+		return null;
+		//TODO modify location interface
+		
+		
+	
+	}
 
 	public GameMap(int width, int height) {
 		super(width, height);
+		 mapView = new GameMapView();
 	}
 
-	public GameView getView() {
-		return view;
+	public ModelView getView() {
+		// TODO Auto-generated method stub
+		return mapView;
 	}
+
 	
 }

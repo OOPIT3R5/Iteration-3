@@ -57,6 +57,16 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return line;
 	}
 	
+	public static ArrayList<HexagonalLocation> line(HexagonalLocation start, int length, Direction d) {
+		ArrayList<HexagonalLocation> line = new ArrayList<HexagonalLocation>();
+		HexagonalLocation next = start;
+		for (int i = 0; i < length; i++) {
+			next = next.getNeighbor(d);
+			line.add(next.clone());
+		}
+		return line;
+	}
+	
 	public static ArrayList<HexagonalLocation> rectangle(HexagonalLocation center, int width_radius, int height_radius) {
 		ArrayList<HexagonalLocation> rectangle = new ArrayList<HexagonalLocation>();
 		HexagonalLocation top = center.clone();

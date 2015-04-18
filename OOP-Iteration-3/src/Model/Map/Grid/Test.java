@@ -67,7 +67,7 @@ public class Test extends JPanel {
 			//x = i;
 			//y = i;
 			frame.repaint();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 		}
 		
 	}
