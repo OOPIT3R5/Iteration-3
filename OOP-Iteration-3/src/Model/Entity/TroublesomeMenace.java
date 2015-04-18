@@ -21,9 +21,8 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned),
 		attack in vicinity, or go after treasure*/
-		RandomGenerator randomlyGenerate = new RandomGenerator();
-		double rand = randomlyGenerate.probability();
-		Direction randDir = randomlyGenerate.direction();
+		double rand = RandomGenerator.probability();
+		Direction randDir = RandomGenerator.direction();
 		
 		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar

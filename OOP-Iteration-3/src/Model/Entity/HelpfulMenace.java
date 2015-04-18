@@ -26,9 +26,8 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned), go where avatar directs it (if mounted)
 		attack in vicinity, or go after treasure*/
-		RandomGenerator randomlyGenerate = new RandomGenerator();
-		double rand = randomlyGenerate.probability();
-		Direction randDir = randomlyGenerate.direction();
+		double rand = RandomGenerator.probability();
+		
 		
 		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar
@@ -58,9 +57,12 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 
 	@Override
 	public Ability stealInVicinity() {
-		return new Move(this, getDirectionFacing(), getMovementSpeed());
+		Direction randDir = RandomGenerator.direction();
+		return new Move(this, randDir, getMovementSpeed());
 		//can pickup item on tile
-		//will race ahead of avatar(upto 2 tiles) in direction avatar is facing		
+		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
+		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile
+		//if there are no tiles, just move in a random direction.
 	}
 
 }

@@ -21,7 +21,7 @@ public class Pickpocket extends SingleTargetAbility {
     public void execute() {
 		Entity targetEntity = getTargetEntity();
 		
-		double probabilityOfSuccess = (new RandomGenerator()).probability();
+		double probabilityOfSuccess = RandomGenerator.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success

@@ -19,7 +19,7 @@ public class RemoveTrap extends SingleTargetAbility {
 
 	@Override
     public void execute() {		
-		double probabilityOfSuccess = (new RandomGenerator()).probability();
+		double probabilityOfSuccess = RandomGenerator.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success = removal

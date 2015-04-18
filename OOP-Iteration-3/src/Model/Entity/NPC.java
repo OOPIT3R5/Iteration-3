@@ -5,7 +5,6 @@ import Utility.RandomGenerator;
 public class NPC extends Entity {
 
 	private Hostility hostility;
-	private RandomGenerator randomlyGenerate = new RandomGenerator();
 	public NPC(){
 		super();
 		hostility = new Hostility(this);
@@ -23,7 +22,7 @@ public class NPC extends Entity {
 	}
 	
 	public void provoke(){
-		double rand = randomlyGenerate.probability();
+		double rand = RandomGenerator.probability();
 		if (rand>.10){
 			hostility.setHostility(true);
 		}
