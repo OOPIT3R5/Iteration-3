@@ -9,6 +9,10 @@ public class StatisticContainer {
     private Statistic movement;
     private Statistic level;
 
+    private Statistic livesleft;    //USED FOR DEATH
+    private Statistic life;         //USED FOR HEALTH
+    private Statistic mana;         //USED FOR SPELLS
+
     private Statistic offense;      //USED FOR WEAPONS
     private Statistic defense;      //USED FOR OTHER EQUIPMENT
 
@@ -20,6 +24,14 @@ public class StatisticContainer {
         experience = new Statistic();
         movement = new Statistic(1,50);
         level = new Statistic(1,100,0);
+
+        livesleft = new Statistic(0, 9, 0);
+        livesleft.addPermanentValue(3);         //Start with 3 lives
+        life = new Statistic(0, 999999, 50);
+        mana = new Statistic(0, 999999, 25);
+
+        life.addPermanentValue(50);
+        mana.addPermanentValue(50);
 
         offense = new Statistic();
         defense = new Statistic();
@@ -49,6 +61,22 @@ public class StatisticContainer {
         return movement.getCurrentValue();
     }
 
+    public int getExperience() {
+        return experience.getCurrentValue();
+    }
+
+    public int getNumLivesLeft(){
+        return livesleft.getCurrentValue();
+    }
+
+    public int getLife(){
+        return life.getCurrentValue();
+    }
+
+    public int getMana(){
+        return mana.getCurrentValue();
+    }
+
     public int getOffensiveRating(){
         return offense.getCurrentValue() + level.getCurrentValue();
     }
@@ -65,6 +93,7 @@ public class StatisticContainer {
         if(level.getCurrentValue() < (experience.getCurrentValue() / 1000)){
             level.addPermanentValue(1);             //Update level.
             levelupAllStatistics();                 //Level up all primary statistics.
+            experience.reset();
         }
     }
 
@@ -87,5 +116,27 @@ public class StatisticContainer {
 
     public void addDefense(int amt){
         defense.addTemporaryValue(amt);
+    }
+
+    public void changeHealth(int change){
+        life.addPermanentValue(change);
+        checkIfDead();
+    }
+
+    public void useMana(int manausage){
+        mana.addPermanentValue(-1*manausage);
+    }
+
+    private void checkIfDead() {
+        if(life.getCurrentValue() <= 0){
+            life.reset();   //Make it go to zero.
+            livesleft.addPermanentValue(-1);
+            checkIfGameOver();
+        }
+    }
+
+    private void checkIfGameOver() {
+        if(livesleft.getCurrentValue() == 0)
+            System.out.println("You're dead.");
     }
 }

@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.Observable;
 
+
+import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -36,6 +38,7 @@ public class InventoryView extends ModelView {
 	public final int STATS_HEIGHT = SCREEN_HEIGHT/3;
 	
 	public InventoryView() {
+
 		/*
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		setLayout(null);	
@@ -64,7 +67,6 @@ public class InventoryView extends ModelView {
 		// TODO Auto-generated method stub
 		view.visit(this);
 	}
-
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
@@ -93,4 +95,16 @@ public class InventoryView extends ModelView {
 		// TODO Auto-generated method stub
 		return null;
 	}
+		/*
+        // TODO Auto-generated method stub
+        try {
+            //g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,0,24,24), 0, 0, null);
+           // g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,25,24,24).getScaledInstance(50,50,Image.SCALE_DEFAULT), 0, 0, null);
+       //     g.drawString(Integer.toString()
+            g.drawImage(MapObjectView.getSpriteFromFE(1,1),0,0,null);
+            g.drawImage(MapObjectView.getSpriteFromPokemon(0,0),25,25,null);
+        } catch (IOException e) {
+            System.out.println("You do not have the item sprites.");
+            System.out.println(System.getProperty("user.dir"));
+        }*/
 }

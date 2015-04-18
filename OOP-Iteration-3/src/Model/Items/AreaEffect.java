@@ -1,8 +1,13 @@
 package Model.Items;
 
-import Model.Entity.Entity;
+import View.MapObjectView;
 
-public class AreaEffect implements MapObject {
+public abstract class AreaEffect implements MapObject {
+    private MapObjectView mov;
+
+    public AreaEffect(MapObjectView mov){
+        this.mov = mov;
+    }
 
     @Override
     public boolean isPassable() {
@@ -10,7 +15,7 @@ public class AreaEffect implements MapObject {
     }
 
     @Override
-    public void onTouch(Entity entity) {
-
+    public MapObjectView getMapObjectView(){
+        return mov;
     }
 }

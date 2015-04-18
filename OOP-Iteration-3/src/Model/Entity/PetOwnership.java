@@ -8,7 +8,7 @@ public class PetOwnership {
 		
 	}
 
-	public void setPet(TroublesomeMenace troublesomeMenace) {
+	public void setPet(Pet pet) {
 		// TODO Auto-generated method stub
 		
 	}

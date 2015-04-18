@@ -2,10 +2,11 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.EquippableItemVisitor;
+import View.MapObjectView;
 
 public class SneakWeaponItem extends WeaponItem{
-    SneakWeaponItem(AttackSpeed attackspeed, int statchange, Ability ability, String name) {
-        super(AttackSpeed.FAST, statchange, ability, name);
+    SneakWeaponItem(AttackSpeed attackspeed, int statchange, Ability ability, String name, MapObjectView mov) {
+        super(AttackSpeed.FAST, statchange, ability, name, mov);
     }
 
     @Override

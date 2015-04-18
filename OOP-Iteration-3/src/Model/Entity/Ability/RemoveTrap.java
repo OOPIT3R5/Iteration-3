@@ -1,20 +1,51 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
+import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
+import Utility.RandomGenerator;
 
-public class RemoveTrap extends SneakAbility {
+public class RemoveTrap extends SingleTargetAbility {
 
-	public RemoveTrap(ArrayList<Tile> targetList, Entity entity) {
-        super(targetList, entity);
+	private Tile targetTile;
+	private Skill skill;
+	private Entity sourceEntity;
+	
+	public RemoveTrap(Tile targetTile, Skill skill, Entity sourceEntity){
+		this.targetTile = targetTile;
+		this.skill = skill;
+		this.sourceEntity = sourceEntity;
     }
 
 	@Override
-    public void execute() {
-		// TODO Auto-generated method stub
+    public void execute() {		
+		double probabilityOfSuccess = (new RandomGenerator()).probability();
+		double chanceOfSuccess = getSkillLevel()/100;
 		
+		if (chanceOfSuccess > probabilityOfSuccess){		// success = removal
+			removeTargetTrap();
+		} else {						// failure = activation
+			activateTargetTrap();
+		}
+	}
+	
+	private void activateTargetTrap(){
+		targetTile.activateTrap(sourceEntity);
+	}
+	
+	private void removeTargetTrap(){
+		targetTile.removeTrap();
+	}
+	
+
+	@Override
+	protected Tile getTargetTile() {
+		return targetTile;
+	}
+
+	@Override
+	protected int getSkillLevel() {
+		return skill.getCurrentLevel();
 	}
 
 }

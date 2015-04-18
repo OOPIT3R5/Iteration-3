@@ -17,4 +17,10 @@ public class Sleep extends SummonerAbility {
 		
 	}
 
+	@Override
+	public int getSkillLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

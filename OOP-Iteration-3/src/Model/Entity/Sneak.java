@@ -19,7 +19,8 @@ public class Sneak extends Occupation{
 
     //TODO: Replace all 'System.out.println()' methods with something with Logger.
 
-    @Override
+   
+	@Override
     public void visit(SmasherWeaponItem smawi) {
         System.out.println("You are not able to equip the "+smawi.getName()+" due to being too weak!");
     }

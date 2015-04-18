@@ -6,12 +6,13 @@ import Utility.RandomGenerator;
 
 public class TroublesomeMenace extends NonAdversarial implements Pet{
 	
-	boolean owned;
+	boolean isOwned;
 	PetOwnership po;
 	
 	public TroublesomeMenace(PetOwnership po) {
 		super();
 		po.setPet(this);
+		isOwned = true;
 		this.po = po;
 	}
 	
@@ -21,10 +22,10 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		/*will never be hostile; will always either follow avatar (if owned),
 		attack in vicinity, or go after treasure*/
 		RandomGenerator randomlyGenerate = new RandomGenerator();
-		double rand = randomlyGenerate.probabiltiy();
+		double rand = randomlyGenerate.probability();
 		Direction randDir = randomlyGenerate.direction();
 		
-		if(rand <.65){
+		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar
 			a = po.followAvatar();
 		}
@@ -44,8 +45,11 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		return new Attack(null, this);
+		//return new Attack(null, this);
 		//find closest entity (not avatar), face, and attack
+
+        //TODO: FIX THIS BUILD BREAK PLZ SOMEONE
+        return new DoNothing();
 	}
 
 	@Override

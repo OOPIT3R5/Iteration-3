@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import Model.Entity.Entity;
 import Model.Map.Grid.Tile.Tile;
 
-public class DetectTrap extends SneakAbility{
+public class DetectTrap{
 
 	public DetectTrap(ArrayList<Tile> targetList, Entity entity) {
-        super(targetList, entity);
+        
     }
 
-	@Override
+	
     public void execute() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	
+	public int getSkillLevel() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

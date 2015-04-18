@@ -1,20 +1,38 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
+import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
 
-public class BindWounds extends SkillAbility{
+public class BindWounds extends SingleTargetAbility{
+	
+	private Tile targetTile;
+	private Skill skill;
 
-	public BindWounds(ArrayList<Tile> targetList, Entity entity) {
-		super(targetList, entity);
+	public BindWounds(Tile targetTile, Skill skill) {
+		this.targetTile = targetTile;
+		this.skill = skill;
 	}
 
 	@Override
     public void execute() {
-		// TODO Auto-generated method stub
-		
+		Entity targetEntity = getTargetEntity();
+		int amountToHeal = getSkillLevel() * 2;
+		targetEntity.changeHealth(amountToHeal);
+	}
+
+	private Entity getTargetEntity() {
+		return targetTile.getEntity();
+	}
+
+	@Override
+	protected int getSkillLevel() {
+		return skill.getCurrentLevel();
+	}
+
+	@Override
+	protected Tile getTargetTile() {
+		return targetTile;
 	}
 
 }

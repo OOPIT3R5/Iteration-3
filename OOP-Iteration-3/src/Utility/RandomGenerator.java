@@ -13,13 +13,13 @@ public class RandomGenerator {
 		random = new Random();
 	}
 	
-	public double probabiltiy(){
+	public double probability(){
 		return random.nextDouble();
 	}
 
 
 	public Direction direction() {
-		double r = probabiltiy();
+		double r = probability();
 		
 		if(r<.175){
 			return Direction.NORTH;
