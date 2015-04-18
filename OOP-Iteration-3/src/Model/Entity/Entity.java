@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
+import Model.Entity.Ability.SummonerAbility;
 import Model.Items.*;
 import Model.Map.Direction;
 import Model.Map.Location;
@@ -105,6 +106,10 @@ public class Entity implements MovementInterface {
 
     public void changeHealth(int change){
         stats.changeHealth(change);
+    }
+
+    public void checkMana(SummonerAbility sa){
+      //  sa.
     }
 
     public StatisticContainer getStatistics(){
