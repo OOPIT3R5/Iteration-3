@@ -7,6 +7,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
@@ -49,7 +50,7 @@ public class Test extends JPanel {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		Grid gg = new HexagonalGrid(100, 100);
+		GameMap gg = new GameMap(100, 100);
 		gg.fill(new HexagonalTile(new Grass()));
 		//System.out.println(gg.toString());
 
@@ -64,6 +65,7 @@ public class Test extends JPanel {
 		
 		for(int i = 0; i < 10; i++){
 			x = i;
+			y = i;
 			frame.repaint();
 			Thread.sleep(1000);
 		}

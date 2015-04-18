@@ -7,6 +7,11 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Model.Entity.Entity;
+import Model.Map.GameMap;
+import Model.Map.Grid.Tile.HexagonalTile;
+import Model.Terrain.Grass;
+import Model.Terrain.Mountain;
+import Model.Terrain.Water;
 import View.GameView;
 import View.ModelView;
 
@@ -15,6 +20,8 @@ public class GameController extends Controller {
 	String next = "";
 	Entity e = new Entity(); //TBD!!!!!!!!!!!!!!!!!!!!
 	
+	GameMap map = new GameMap(100,100);
+	
 	KeyListener back = new BacktoMainMenu();
 	KeyListener inv = new InventoryListener();
 	
@@ -22,12 +29,15 @@ public class GameController extends Controller {
 	
 	public GameController() {
 		addObserver(RunGame.r);
+		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
+		map.add(1, 1, new HexagonalTile(new Water()));
+		map.add(5, 5, new HexagonalTile(new Mountain()));
 	}
 
 	@Override
 	public ModelView getView() {
 		// TODO Auto-generated method stub
-		return tempView; //TBD!!!!!!!!!!!!!!!!!!!!!!
+		return map.getView(); 	//TBD!!!!!!!!!!!!!!!!!!!!!!
 	}
 
 	@Override
