@@ -1,5 +1,7 @@
 package Model.Items;
 
+import View.MapObjectView;
+
 import java.util.ArrayList;
 
 public class Inventory {
@@ -44,5 +46,13 @@ public class Inventory {
         	goldamount -= gold;
         	return (gold);
         }
+    }
+
+    public ArrayList<MapObjectView> getViews() {
+        ArrayList<MapObjectView> returned = new ArrayList<MapObjectView>();
+        for(TakeableItem ti : inventory){
+            returned.add(ti.getMapObjectView());
+        }
+        return returned;
     }
 }

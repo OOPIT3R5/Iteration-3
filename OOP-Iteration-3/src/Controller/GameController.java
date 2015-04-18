@@ -53,7 +53,7 @@ public class GameController extends Controller {
 		if(next.equals("main")){
 			return  MainMenuController.getInstance();
 		}
-		return InventoryController.getInstance();
+		return InventoryController.getInstance(e);
 	}
 
 	@Override

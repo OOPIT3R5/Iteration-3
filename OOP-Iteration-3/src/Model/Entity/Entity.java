@@ -9,6 +9,7 @@ import Model.Entity.Ability.SummonerAbility;
 import Model.Items.*;
 import Model.Map.Direction;
 import Model.Map.Location;
+import View.MapObjectView;
 
 public class Entity implements MovementInterface {
 
@@ -147,5 +148,9 @@ public class Entity implements MovementInterface {
 	
     public void autoLevelUp() {
         awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
+    }
+
+    public ArrayList<MapObjectView> getInventory() {
+        return inventory.getViews();
     }
 }
