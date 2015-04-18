@@ -22,7 +22,7 @@ public class Move extends Ability {
 		Entity currentEntity = entity;
 		// get oldTile
 		//System.out.println(currentEntity.getLocation().toString());	// testing
-		currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
+		//currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
 		//System.out.println(currentEntity.getLocation().toString());	// testing
 		// get newTile
 		// remove Entity from oldTile
