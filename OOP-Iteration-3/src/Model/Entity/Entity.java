@@ -10,15 +10,9 @@ import Model.Map.Direction;
 import Model.Map.Location;
 
 public class Entity implements MovementInterface {
-	
-	
-/*	private final int SMASHER = 0;
-	private final int SUMMONER = 1;
-	private final int SNEAK = 2;
-	*/
+
 	private String name;
 	private Occupation occupation;
-	//private StatisticsContainer stats;
 	private Direction directionFacing;
 	//private Decal decal;
 	
@@ -75,29 +69,33 @@ public class Entity implements MovementInterface {
         ei.accept(occupation);
     }
 
-    //The below methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
-    public void equipItem(WeaponItem wi){
+    //The below equip methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
+    void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
     }
     
-    public void equipItem(OffHandItem ohi){
+    void equipItem(OffHandItem ohi){
         equipmentManager.equip(ohi);
     }
     
-    public void equipItem(ArmorItem ai){
+    void equipItem(ArmorItem ai){
         equipmentManager.equip(ai);
     }
     
-    public void equipItem(AccessoryItem acci){
+    void equipItem(AccessoryItem acci){
         equipmentManager.equip(acci);
     }
     
-    public void equipItem(ShoesItem si){
+    void equipItem(ShoesItem si){
         equipmentManager.equip(si);
     }
 
     public void awardExperience(int award){
         stats.awardExperience(award);
+    }
+
+    public void awardGold(int gold){
+        inventory.addGold(gold);
     }
     
     public StatisticContainer getStatistics(){
