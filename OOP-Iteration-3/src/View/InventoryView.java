@@ -69,6 +69,7 @@ public class InventoryView extends ModelView {
         try {
             //g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,0,24,24), 0, 0, null);
             g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,25,24,24).getScaledInstance(50,50,Image.SCALE_DEFAULT), 0, 0, null);
+       //     g.drawString(Integer.toString()
         } catch (IOException e) {
             System.out.println("You do not have the item sprites.");
             System.out.println(System.getProperty("user.dir"));

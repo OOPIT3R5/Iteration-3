@@ -98,7 +98,12 @@ public class Entity implements MovementInterface {
     public void awardGold(int gold){
         inventory.addGold(gold);
     }
-    
+
+    //If you want to heal damage,
+    public void takeDamage(int damage){
+        stats.takeDamage(damage);
+    }
+
     public StatisticContainer getStatistics(){
         return stats;
     }
@@ -132,5 +137,7 @@ public class Entity implements MovementInterface {
 		occupation = o;	
 	}
 	
-
+    public void autoLevelUp() {
+        awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
+    }
 }
