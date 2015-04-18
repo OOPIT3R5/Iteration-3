@@ -13,14 +13,21 @@ import View.ModelView;
 
 public class CharacterCreationController extends Controller  {
 	CharacterCreation cm = new CharacterCreation();
-	
+	private static CharacterCreationController instance = null;
 	KeyListener up = new UpAction();
 	KeyListener down = new DownAction();
 	KeyListener enter = new Update();
 	
-	public CharacterCreationController() {
+	private CharacterCreationController() {
 	}
-	
+	public static CharacterCreationController getInstance(){
+		
+		if(instance == null){
+			
+			instance = new CharacterCreationController();
+		}
+		return instance;
+	}
 	public void register(JFrame f){
 		f.addKeyListener(enter);
 		f.addKeyListener(down);
@@ -41,7 +48,7 @@ public class CharacterCreationController extends Controller  {
 
 	@Override
 	public Controller update() {
-		return new MainMenuController();
+		return MainMenuController.getInstance();
 	}
 	
 	public class UpAction implements KeyListener {

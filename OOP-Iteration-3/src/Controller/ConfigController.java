@@ -11,6 +11,8 @@ import Model.Menu.ConfigControls;
 import View.ModelView;
 
 public class ConfigController extends Controller {
+	
+	private static ConfigController instance;
 	boolean binding = false;
 	KeyListener bind = new BindAction();
 	KeyListener rst = new ResetAction();
@@ -20,9 +22,16 @@ public class ConfigController extends Controller {
 	
 	ConfigControls cc = new ConfigControls();
 	
-	public ConfigController() {
+	private ConfigController() {
 	}
 
+	public static ConfigController getInstance(){
+		
+		if(instance == null){
+			instance = new ConfigController();
+		}
+		return instance;
+	}
 	@Override
 	public ModelView getView() {
 		// TODO Auto-generated method stub
@@ -31,7 +40,7 @@ public class ConfigController extends Controller {
 
 	@Override
 	public Controller update() {
-		return new MainMenuController();
+		return MainMenuController.getInstance();
 	}
 
 	@Override

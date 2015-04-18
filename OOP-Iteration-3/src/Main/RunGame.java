@@ -26,7 +26,7 @@ public class RunGame implements Observer {
 
     public RunGame(){
         view = new View();
-        c = new MainMenuController();
+        c =  MainMenuController.getInstance();
 
 
         KeySet keys = new KeySet();

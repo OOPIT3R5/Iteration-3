@@ -14,13 +14,23 @@ import View.ModelView;
 
 public class MainMenuController extends Controller {
 	MainMenu mm;
-	
+	private static MainMenuController instance = null;;
 	KeyListener up = new UpAction();
 	KeyListener down = new DownAction();
 	KeyListener enter = new Update();
 	
-	public MainMenuController(){
+	private MainMenuController(){
 		mm = new MainMenu();
+	}
+	public static MainMenuController getInstance(){
+		
+		if(instance == null){
+			
+			instance = new MainMenuController();
+		}
+		
+			return instance;
+		
 	}
 	
 	public void register(JFrame f){
@@ -114,13 +124,13 @@ public class MainMenuController extends Controller {
 	public Controller update() {
 		String state = mm.getState();
 		if(state.equals("new")){ //Is there a way around this?
-			return new CharacterCreationController();
+			return CharacterCreationController.getInstance();
 		}
 		else if(state.equals("options")){
-			return new ConfigController();
+			return ConfigController.getInstance();
 		}
 		else if(state.equals("load")){
-			return new GameController();
+			return GameController.getInstance();
 		}
 		return null;
 		

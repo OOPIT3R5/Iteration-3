@@ -14,10 +14,22 @@ import View.ModelView;
 public class InventoryController extends Controller {
 	KeyListener back = new BacktoGame();
 	
+	private static InventoryController instance;
 	
 	ModelView inventoryView = new InventoryView(); //Remove this 
 	
-	public InventoryController(){
+	private InventoryController(){
+		
+		
+	}
+	
+	public static InventoryController getInstance(){
+		if(instance == null){
+			
+			instance = new InventoryController();
+			
+		}
+		return instance;
 	}
 	@Override
 	public ModelView getView() {
@@ -28,7 +40,7 @@ public class InventoryController extends Controller {
 	@Override
 	public Controller update() {
 		// TODO Auto-generated method stub
-		return new GameController();
+		return GameController.getInstance();
 	}
 
 	@Override

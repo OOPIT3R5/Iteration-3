@@ -21,7 +21,7 @@ import View.ModelView;
 public class GameController extends Controller {
 	String next = "";
 	Entity e = new Entity(); //TBD!!!!!!!!!!!!!!!!!!!!
-	
+	private static GameController instance = null;
 	GameMap map = new GameMap(100,100);
 	
 	KeyListener back = new BacktoMainMenu();
@@ -29,24 +29,31 @@ public class GameController extends Controller {
 	
 	ModelView tempView = new GameView(); //This will be removed
 	
-	public GameController() {
+	private GameController() {
 		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
 		map.add(1, 1, new HexagonalTile(new Water()));
 		map.add(5, 5, new HexagonalTile(new Mountain()));
 	}
 
+	public static GameController getInstance(){
+		
+		if(instance == null){
+			
+			instance = new GameController();
+		}
+		return instance;
+	}
 	@Override
 	public ModelView getView() {
-		// TODO Auto-generated method stub
 		return map.getView(); 	//TBD!!!!!!!!!!!!!!!!!!!!!!
 	}
 
 	@Override
 	public Controller update() {
 		if(next.equals("main")){
-			return new MainMenuController();
+			return  MainMenuController.getInstance();
 		}
-		return new InventoryController();
+		return InventoryController.getInstance();
 	}
 
 	@Override
