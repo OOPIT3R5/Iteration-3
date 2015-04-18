@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import Main.KeySet;
+import Main.RunGame;
 import Model.Menu.MainMenu;
 import View.ModelView;
 
@@ -19,7 +21,6 @@ public class MainMenuController extends Controller {
 	
 	public MainMenuController(){
 		mm = new MainMenu();
-		addObserver(RunGame.r);
 	}
 	
 	public void register(JFrame f){
@@ -41,7 +42,7 @@ public class MainMenuController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("SOUTH")){
+			if(key == KeySet.getKey("SOUTH")){
 				mm.MoveUp();
 			}
 			
@@ -64,7 +65,7 @@ public class MainMenuController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("NORTH")){
+			if(key == KeySet.getKey("NORTH")){
 				mm.MoveDown();
 			}
 			
@@ -87,7 +88,7 @@ public class MainMenuController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("ENTER")){
+			if(key == KeySet.getKey("ENTER")){
 				setChanged();
 				notifyObservers();
 				deleteObservers();

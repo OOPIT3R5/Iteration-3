@@ -15,8 +15,8 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.RunGame;
-
+import Main.KeySet;
+import Main.RunGame;
 @SuppressWarnings("serial")
 public class ConfigControlsView extends ModelView implements Observer{
 	
@@ -53,7 +53,7 @@ public class ConfigControlsView extends ModelView implements Observer{
 		g.setFont(g.getFont().deriveFont(old));
 		MenuButton m = new MenuButton(buttonWidth, buttonHeight);
 		for(Entry<String, Color> entry: options.entrySet()){
-			m.render(g, View.WIDTH/3 - buttonWidth/2 + startX, View.HEIGHT/3 + startY, entry.getValue(),entry.getKey()+" : " + keyToChar(RunGame.getKey(entry.getKey())));
+			m.render(g, View.WIDTH/3 - buttonWidth/2 + startX, View.HEIGHT/3 + startY, entry.getValue(),entry.getKey()+" : " + keyToChar(KeySet.getKey(entry.getKey())));
 			startY = startY + buttonHeight;
 			if(startY >= View.HEIGHT/3){
 				startY = 0;

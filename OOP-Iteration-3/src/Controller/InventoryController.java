@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import Main.KeySet;
+import Main.RunGame;
 import View.InventoryView;
 import View.ModelView;
 
@@ -16,7 +18,6 @@ public class InventoryController extends Controller {
 	ModelView inventoryView = new InventoryView(); //Remove this 
 	
 	public InventoryController(){
-		addObserver(RunGame.r);
 	}
 	@Override
 	public ModelView getView() {
@@ -47,7 +48,7 @@ public class InventoryController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("BACK")){
+			if(key == KeySet.getKey("BACK")){
 				setChanged();
 				notifyObservers();
 				deleteObservers();

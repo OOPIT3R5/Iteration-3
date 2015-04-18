@@ -3,17 +3,17 @@ package Model.Menu;
 import java.util.Map.Entry;
 import java.util.Observable;
 
-import Controller.RunGame;
 import View.ConfigControlsView;
-
+import Main.KeySet;
+import Main.RunGame;
 public class ConfigControls extends Observable {
 	int selected = 0;
-	String[] options = new String[RunGame.getKeys().size()];
+	String[] options = new String[KeySet.getKeys().size()];
 	ConfigControlsView cv;
 	
 	public ConfigControls(){
 		int i = 0;
-		for(Entry<String, Integer> entry: RunGame.getKeys().entrySet()){
+		for(Entry<String, Integer> entry: KeySet.getKeys().entrySet()){
    			options[i++] = entry.getKey();
    		 }
 		cv = new ConfigControlsView(options);

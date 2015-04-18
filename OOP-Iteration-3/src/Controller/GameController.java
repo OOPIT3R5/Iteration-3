@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import Main.KeySet;
+import Main.RunGame;
 import Model.Entity.Entity;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -28,7 +30,6 @@ public class GameController extends Controller {
 	ModelView tempView = new GameView(); //This will be removed
 	
 	public GameController() {
-		addObserver(RunGame.r);
 		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
 		map.add(1, 1, new HexagonalTile(new Water()));
 		map.add(5, 5, new HexagonalTile(new Mountain()));
@@ -65,7 +66,7 @@ public class GameController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("BACK")){
+			if(key == KeySet.getKey("BACK")){
 				next = "main";
 				setChanged();
 				notifyObservers();
@@ -93,7 +94,7 @@ public class GameController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("INVENTORY")){
+			if(key == KeySet.getKey("INVENTORY")){
 				next = "inventory";
 				setChanged();
 				notifyObservers();

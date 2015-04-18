@@ -2,7 +2,11 @@ package Controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
+
+import Main.KeySet;
+import Main.RunGame;
 import Model.Menu.ConfigControls;
 import View.ModelView;
 
@@ -17,7 +21,6 @@ public class ConfigController extends Controller {
 	ConfigControls cc = new ConfigControls();
 	
 	public ConfigController() {
-		addObserver(RunGame.r);
 	}
 
 	@Override
@@ -79,12 +82,12 @@ public class ConfigController extends Controller {
 	public class BindAction implements KeyListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
-	        if (e.getKeyChar() == RunGame.getKey("ENTER")) {
+	        if (e.getKeyChar() == KeySet.getKey("ENTER")) {
 	        	binding  = true;
 	        }
 	        else if(binding){
 	        	binding = false;
-	        	RunGame.setKey(cc.getState(), e.getKeyCode());
+	        	KeySet.setKey(cc.getState(), e.getKeyCode());
 	        	RunGame.paint();
 	        }
 			
@@ -107,7 +110,7 @@ public class ConfigController extends Controller {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_R){
-				RunGame.keyReset();
+				KeySet.keyReset();
 				RunGame.paint();
 			}
 			
@@ -131,7 +134,7 @@ public class ConfigController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("SOUTH") && !binding){
+			if(key == KeySet.getKey("SOUTH") && !binding){
 				cc.MoveUp();
 			}
 			
@@ -154,7 +157,7 @@ public class ConfigController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("NORTH") && !binding){
+			if(key == KeySet.getKey("NORTH") && !binding){
 				cc.MoveDown();
 			}
 			

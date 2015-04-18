@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import Main.KeySet;
+import Main.RunGame;
 import Model.Menu.CharacterCreation;
 import View.ModelView;
 
@@ -17,7 +19,6 @@ public class CharacterCreationController extends Controller  {
 	KeyListener enter = new Update();
 	
 	public CharacterCreationController() {
-		addObserver(RunGame.r);
 	}
 	
 	public void register(JFrame f){
@@ -48,7 +49,7 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("NORTH") || key == RunGame.getKey("EAST")){
+			if(key == KeySet.getKey("NORTH") || key == KeySet.getKey("EAST")){
 				cm.MoveUp();
 			}
 			
@@ -71,7 +72,7 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("WEST") || key == RunGame.getKey("SOUTH")){
+			if(key == KeySet.getKey("WEST") || key == KeySet.getKey("SOUTH")){
 				cm.MoveDown();
 			}
 			
@@ -95,7 +96,7 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == RunGame.getKey("ENTER")){
+			if(key == KeySet.getKey("ENTER")){
 				setChanged();
 				notifyObservers();
 				deleteObservers();

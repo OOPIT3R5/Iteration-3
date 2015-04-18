@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 
 import javax.swing.JLabel;
 
-import Controller.RunGame;
+import Main.RunGame;
 
 
 @SuppressWarnings("serial")
