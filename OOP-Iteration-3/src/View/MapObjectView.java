@@ -16,11 +16,11 @@ public class MapObjectView {
         return bi;
     }
 
-    public static BufferedImage getSpriteFromPokemon(int row, int col) throws IOException {
-        return ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(25*row,25*col,24,24);
+    public static BufferedImage getSpriteFromPokemon(int col, int row) throws IOException {
+        return ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(24*col,24*row,24,24);
     }
 
-    public static BufferedImage getSpriteFromFE(int row, int col) throws IOException {
-        return ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/weapon_sprites.png")).getSubimage(25*row,25*col,24,24);
+    public static BufferedImage getSpriteFromFE(int col, int row) throws IOException {
+        return ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/weapon_sprites.png")).getSubimage(24*col,24*row,24,24);
     }
 }
