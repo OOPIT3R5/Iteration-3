@@ -21,6 +21,7 @@ public class MainMenuController extends Controller {
 		mm = new MainMenu();
 		addObserver(RunGame.r);
 	}
+	
 	public void register(JFrame f){
 		f.addKeyListener(up);
 		f.addKeyListener(down);

@@ -1,36 +1,43 @@
 package Model.Menu;
 
-import javax.swing.JComponent;
+import java.util.Map.Entry;
+import java.util.Observable;
 
+import Controller.RunGame;
 import View.ConfigControlsView;
-import View.ModelView;
-/* 
- * I am aware of the perhaps unnecessary coupling here. 
- * If you don't know what I am talking about - THERE IS NOTHING TO SEE HERE.
- * Observers don't work because I need to read the drop-down inside of the view.
- * All suggestions are welcome.
- * Bidirectional observers?
- * Remind me to fix it later.
- * */
-public class ConfigControls {
-	
-	ConfigControlsView cv = new ConfigControlsView();
+
+public class ConfigControls extends Observable {
+	int selected = 0;
+	String[] options = new String[RunGame.getKeys().size()];
+	ConfigControlsView cv;
 	
 	public ConfigControls(){
+		int i = 0;
+		for(Entry<String, Integer> entry: RunGame.getKeys().entrySet()){
+   			options[i++] = entry.getKey();
+   		 }
+		cv = new ConfigControlsView(options);
+		addObserver(cv);
 	}
 	
 	public ConfigControlsView getView(){
 		return cv;
 	}
-	/*
-	public int readValue(){
-		return cv.readValue();
+	
+	public void MoveUp(){
+		selected = Math.abs((selected+1)%options.length);
+		setChanged();
+		notifyObservers(options[selected]);
 	}
-	public void selectKey(String s){ 
-		cv.setInput(s);
+	public void MoveDown(){
+		if((--selected) < 0){
+			selected = options.length-1;
+		}
+		setChanged();
+		notifyObservers(options[Math.abs(selected)]);
 	}
-	public String readKey(){
-		return cv.readKey().toString();
+	
+	public String getState(){
+		return options[Math.abs(selected)];
 	}
-	*/
 }
