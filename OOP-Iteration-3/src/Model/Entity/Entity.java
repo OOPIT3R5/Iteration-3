@@ -49,24 +49,12 @@ public class Entity implements MovementInterface {
 		this.occupation = new Smasher(this);
 	}
 	
-	public Entity (String name, int occupationChoice){
+	public Entity (String name, Occupation o){
 		this(name);
-		occupation = occupationCreation(occupationChoice);
+		occupation = o;
 	}
 	
-	private Occupation occupationCreation(int oC){
-		Occupation o;
-		if(oC == SMASHER){
-			return new Smasher(this);
-		}
-		else if (oC == SUMMONER){
-			return new Summoner(this);
-		}
-		else if (oC == SNEAK){
-			return new Sneak(this);
-		}
-		return new Smasher(this);
-	}
+
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
