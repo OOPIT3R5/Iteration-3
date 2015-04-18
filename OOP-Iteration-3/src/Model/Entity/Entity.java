@@ -37,7 +37,7 @@ public class Entity implements MovementInterface {
 		entity_list.add(this);
 		movement_ = new ArrayList<Ability>();
 		for (int i = 0; i < 6; i++) {
-			movement_.add(new Move(entity_list, Direction.intToHex(i), 1));
+			movement_.add(new Move(this, Direction.intToHex(i), 1));
 		}
 
         equipmentManager = new Equipment(this);
@@ -102,17 +102,17 @@ public class Entity implements MovementInterface {
 
     @Override
 	public void disableMove(int direction) {
-		movement_.add(direction, new DoNothing(null));
+		movement_.add(direction, new DoNothing());
 	}
 
 	public void disableWalk(int direction) {
-		movement_.add(direction, new DoNothing(null));
+		movement_.add(direction, new DoNothing());
 	}
 
 	public void enableMove(int direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_.add(direction, new Move(entity_list, Direction.intToHex(direction), 1));
+		movement_.add(direction, new Move(this, Direction.intToHex(direction), 1));
 	}
 	
 	public void setLocation(Location newPosition){

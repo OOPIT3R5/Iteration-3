@@ -3,10 +3,11 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Map.Grid.Tile.Tile;
 
 public class Attack extends SkillAbility{
 
-	public Attack(ArrayList<Entity> targetList) {
+	public Attack(ArrayList<Tile> targetList) {
 		super(targetList);
 	}
 

@@ -6,7 +6,7 @@ import Model.Entity.Entity;
 public class Obstacle extends Item{
 
     public Obstacle(String name) {
-        super(new DoNothing(null), name);
+        super(new DoNothing(), name);
     }
 
     @Override

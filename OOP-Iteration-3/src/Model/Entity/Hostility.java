@@ -49,13 +49,13 @@ public class Hostility {
 	 *  moving toward the avatar (if it is possible)*/
 	
 	public void hostileAct(double prob){
-		Move m = new Move(directionPlaceholder, null, npc.getMovementSpeed());
+		Move m = new Move(npc, null, npc.getMovementSpeed());
 	}
 	
 	/*non-hostile npcs will not attack the avatar.
 	 * They more or less just move around the map*/
 	public void nonHostileAct(double prob){
-		Move m = new Move(directionPlaceholder, null, npc.getMovementSpeed());
+		Move m = new Move(npc, null, npc.getMovementSpeed());
 	}
 	
 	private double genRandProbability(){
