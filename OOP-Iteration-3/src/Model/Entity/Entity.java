@@ -204,17 +204,14 @@ public class Entity implements MovementInterface {
 
 	public void makeActionChoice() {
 		// hook
-		
 	}
 
 	public void getOccupationTestMethod() {
 		occupation.printName();
-		
 	}
 
 	public void sleep() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public void observe(){
@@ -222,27 +219,22 @@ public class Entity implements MovementInterface {
 	}
 
 	public void receiveDamage(int damage) {
-		// TODO Auto-generated method stub
-		
+		stats.changeHealth(-damage);		
 	}
 
 	public void charm() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void polymorph() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void useMana(SummonerAbility summonerAbility) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Occupation getOccupation() {
-		// TODO Auto-generated method stub
 		return occupation;
 	}
 
