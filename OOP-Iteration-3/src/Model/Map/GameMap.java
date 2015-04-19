@@ -71,6 +71,12 @@ public class GameMap{
 		
 	}
 	
+	public void spawn(Avatar av, Location location)
+	{
+		HexagonalTile hexTile = gameMapGrid.get(location);
+		hexTile.setEntity(av);
+	}
+	
 	public Tile getTile(Location location){
 		return gameMapGrid.get(location);
 	}

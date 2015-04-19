@@ -5,7 +5,7 @@ import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public class SneakWeaponItem extends WeaponItem{
-    SneakWeaponItem(AttackSpeed attackspeed, int statchange, Ability ability, String name, MapObjectView mov) {
+    public SneakWeaponItem(AttackSpeed attackspeed, int statchange, Ability ability, String name, MapObjectView mov) {
         super(AttackSpeed.FAST, statchange, ability, name, mov);
     }
 

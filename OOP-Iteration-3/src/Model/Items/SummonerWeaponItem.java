@@ -6,7 +6,7 @@ import View.MapObjectView;
 
 public class SummonerWeaponItem extends WeaponItem {
 
-    SummonerWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
+    public SummonerWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
         super(AttackSpeed.SLOW, statchange, ability, name, mov);
     }
 

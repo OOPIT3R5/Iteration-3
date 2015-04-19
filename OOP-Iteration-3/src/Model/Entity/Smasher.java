@@ -1,7 +1,6 @@
 package Model.Entity;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import Model.Entity.Ability.Ability;
 import Model.Items.*;
@@ -18,9 +17,9 @@ public class Smasher extends Occupation{
 
 	public Smasher(Entity e) {
         super(e);
-        onehandedweapon = new Skill(1, 25);
-        twohandedweapon = new Skill(1, 25);
-        brawlingweapon  = new Skill(1, 25);
+        onehandedweapon = new Skill(1, 25, "One-Handed Weapons");
+        twohandedweapon = new Skill(1, 25, "Two-Handed Weapons");
+        brawlingweapon  = new Skill(1, 25, "Brawling Weapons");
 	}
 
 
@@ -43,6 +42,7 @@ public class Smasher extends Occupation{
     @Override
     public void visit(SummonerTomeOffHandItem stohi) {
         System.out.println("You can't equip this! A book does not make a good shield!");
+        getEntity().addToInventory(stohi);
     }
 
     @Override
@@ -65,44 +65,17 @@ public class Smasher extends Occupation{
         getEntity().equipItem(si);
     }
 
-    public int getOneHandedWeaponSkillLevel(){
-        return onehandedweapon.getCurrentLevel();
-    }
-
-    public int getTwoHandedWeaponSkillLevel(){
-        return twohandedweapon.getCurrentLevel();
-    }
-
-    public int getBrawlingWeaponSkillLevel(){
-        return brawlingweapon.getCurrentLevel();
-    }
-
-    public void levelOneHandedWeaponSkill(){
-        onehandedweapon.levelSkillUp();
-    }
-
-    public void levelTwoHandedWeaponSkill(){
-        twohandedweapon.levelSkillUp();
-    }
-
-    public void levelBrawlingWeaponSkill(){
-        brawlingweapon.levelSkillUp();
+    @Override
+    public Collection<? extends Skill> getSubSkills() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(onehandedweapon);
+        skills.add(twohandedweapon);
+        skills.add(brawlingweapon);
+        return skills;
     }
 
 
-
-	@Override
-	protected Map<? extends String, ? extends Skill> getSkillsSub() {
-		HashMap<String, Skill> skills = new HashMap<String, Skill>();
-		skills.put("One-handed Weapon", onehandedweapon);
-		skills.put("Two-handed Weapon", twohandedweapon);
-		skills.put("Brawling Weapon", brawlingweapon);
-		return skills;
-	}
-
-
-
-	@Override
+    @Override
 	protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
 		
 		return null;
