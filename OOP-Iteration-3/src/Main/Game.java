@@ -12,6 +12,8 @@ import Model.Items.ShoesItem;
 import Model.Items.SmasherShieldOffHandItem;
 import Model.Items.TwoHandedWeaponItem;
 import Model.Map.GameMap;
+import Model.Map.Grid.Tile.HexagonalTile;
+import Model.Terrain.Grass;
 import View.GameView;
 import View.MapObjectView;
 
@@ -38,6 +40,7 @@ public class Game {
 		
 		this.gameMap = gameMap;
 		this.avatar = avatar;
+		this.gameMap.fill(new HexagonalTile(new Grass()));
 	
 		
 	}
@@ -63,6 +66,14 @@ public class Game {
 	public GameView getView(){
 		
 		return gameView;
+	}
+	
+	public GameMap getGameMap() {
+		return gameMap;
+	}
+
+	public void setGameMap(GameMap gameMap) {
+		this.gameMap = gameMap;
 	}
 
 
