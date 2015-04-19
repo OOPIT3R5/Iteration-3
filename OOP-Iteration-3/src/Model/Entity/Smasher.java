@@ -1,5 +1,8 @@
 package Model.Entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Model.Items.*;
 
 public class Smasher extends Occupation{
@@ -79,4 +82,15 @@ public class Smasher extends Occupation{
     public void levelBrawlingWeaponSkill(){
         brawlingweapon.levelSkillUp();
     }
+
+
+
+	@Override
+	protected Map<? extends String, ? extends Skill> getSkillsSub() {
+		HashMap<String, Skill> skills = new HashMap<String, Skill>();
+		skills.put("One-handed Weapon", onehandedweapon);
+		skills.put("Two-handed Weapon", twohandedweapon);
+		skills.put("Brawling Weapon", brawlingweapon);
+		return skills;
+	}
 }

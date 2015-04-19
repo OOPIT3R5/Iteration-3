@@ -31,8 +31,12 @@ public class NPC extends Entity {
 		return false;
 	}
 	
-	protected void becomeHostile() {
+	public void becomeHostile() {
 		hostility.becomeHostile();
+	}
+	
+	public void becomeNonHostile() {
+		hostility.becomeNonHostile();
 	}
 	
 	public void provoke(){

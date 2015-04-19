@@ -118,6 +118,11 @@ public class Hostility {
 	public void becomeHostile() {
 		setHostility(true);
 	}
+
+	public void becomeNonHostile() {
+		setHostility(false);
+		
+	}
 	
 	
 

@@ -1,8 +1,16 @@
 package Model.Entity;
 
+
 import Model.Items.UsableItem;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public abstract class Occupation implements TakeableItemVisitor {
+
+
+
+
 
     private Entity entity;
     private Skill bindwounds;
@@ -11,6 +19,8 @@ public abstract class Occupation implements TakeableItemVisitor {
 
 	public Occupation(Entity entity) {
         this.entity = entity;
+        
+        //BREAKING TDA fix!!!!
         this.entity.setOccupation(this);
         bindwounds = new Skill(1, 10);
         bargain = new Skill(1, 10);
@@ -22,7 +32,16 @@ public abstract class Occupation implements TakeableItemVisitor {
         return entity;
     }
 	
-
+	public HashMap<String,Skill> getSkills(){
+		
+		HashMap<String, Skill> skills = new HashMap<String, Skill>();
+		skills.put("Bind Wounds", bindwounds);
+		skills.put("Bargain", bargain);
+		skills.put("Observation", observation);
+		skills.putAll(getSkillsSub());
+		return skills;
+		
+	}
 
 	//Told that summoner tome isn't a thing anymore??? Potentially? by Ryan
 	/*OFF HAND ITEMS THAT ARE CALLED "SUMMONERTOME" or "SMASHERSHIELD" BUT DON'T
@@ -39,7 +58,10 @@ public abstract class Occupation implements TakeableItemVisitor {
 		subclasses of OccupationSpecificItem
 	*/
 
-    public int getBindWoundsSkillLevel(){
+    protected abstract Map<? extends String, ? extends Skill> getSkillsSub();
+
+
+	public int getBindWoundsSkillLevel(){
         return bindwounds.getCurrentLevel();
     }
 

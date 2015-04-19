@@ -1,5 +1,8 @@
 package Model.Entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Model.Items.*;
 
 public class Sneak extends Occupation{
@@ -90,4 +93,14 @@ public class Sneak extends Occupation{
     public void levelRangedWeaponSkill(){
         rangedweapon.levelSkillUp();
     }
+    
+    protected Map<? extends String, ? extends Skill> getSkillsSub() {
+		HashMap<String, Skill> skills = new HashMap<String, Skill>();
+
+		skills.put("Pickpocket",pickpocket);
+		skills.put("Detect Traps", detecttraps);
+		skills.put("Creep", creep);
+		skills.put("Ranged Weapon", rangedweapon);
+		return skills;
+	}
 }

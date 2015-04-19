@@ -37,18 +37,22 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		if(rand <.65 && isOwned){
 			//65% chance of following (behind) avatar
 			a = po.followAvatar();
+			System.out.println("following behind avatar");
 		}
-		else if(rand<.75){
-			//10% chance of attacking in a random direction
-			a = attackInVicinity();//change this so that it returns an ability
+		else if(rand<.85){
+			//20% chance of going for adjacent/neighboring treasure
+			a = stealInVicinity();
+			System.out.println("stealing nearby treasure or moving to random spot if no treasure nearby");
 		}
 		else if(rand <.95){
-			//20% chance of running around in random direction in attempt to pick up item
-			a = stealInVicinity();
+			//10% chance of attacking in a random direction
+			a = attackInVicinity();//change this so that it returns an ability
+			System.out.println("attacking in vicinity");
 		}
 		else{
 			//5% chance of doing nothing
 			a = new DoNothing();
+			System.out.println("doing nothing");
 		}
 		a.execute();
 	}
@@ -70,7 +74,7 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		//if there are no tiles, just move in a random direction.
 	}
 	
-	protected void becomePet(PetOwnership po){
+	public void becomePet(PetOwnership po){
 		po.setPet(this);
 		this.po = po;
 		
