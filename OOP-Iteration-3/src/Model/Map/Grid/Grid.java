@@ -1,7 +1,11 @@
 package Model.Map.Grid;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
+import Model.Terrain.Terrain;
 
 
 /**
@@ -23,6 +27,10 @@ public abstract class Grid {
 		size_ = 0;
 	}
 	
+	//public abstract void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
+		//	int height, int radius);
+	
+	
 	/** Adds object to grid at provided xy index. */
 	public abstract void add(int x, int y, Tile tile);
 
@@ -40,7 +48,7 @@ public abstract class Grid {
 		grid_[x][y] = null;
 	}
 	
-	public abstract void fill(Tile tile);
+	//public abstract void fill(Tile tile);
 	
 	/** Returns object at xy index. */
 	public abstract Tile get(Location location);
@@ -100,4 +108,13 @@ public abstract class Grid {
 		return string.toString();
 	}
 	
+	public void fill(Tile defaultTile)
+	{
+		for (int row = 0; row < getHeight(); row++)
+			for (int col = 0; col < getWidth(); col++) {
+				Tile insert = defaultTile.clone();
+				insert(col, row, insert.clone());
+				insert.setLocation(col, row - (col / 2));
+			}
+	}
 }

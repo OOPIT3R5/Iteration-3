@@ -22,6 +22,12 @@ public class StatisticContainer {
         intellect = new Statistic();
         hardiness = new Statistic();
         experience = new Statistic();
+
+        strength.addPermanentValue(5);
+        agility.addPermanentValue(5);
+        intellect.addPermanentValue(5);
+        hardiness.addPermanentValue(5);
+
         movement = new Statistic(1,50);
         level = new Statistic(1,100,0);
 

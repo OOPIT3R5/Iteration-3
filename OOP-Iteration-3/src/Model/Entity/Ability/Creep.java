@@ -41,7 +41,8 @@ public class Creep extends SkillAbility{
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){
-			result.add(map.get(location));
+			result.add(map.getTile(location));
+
 		}
 		
 		return result;

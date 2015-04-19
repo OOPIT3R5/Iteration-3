@@ -55,19 +55,20 @@ public class Test extends JPanel {
 		gg.fill(new HexagonalTile(new Grass()));
 		//System.out.println(gg.toString());
 
+	
+		gg = new GameMap(100, 100);
+		gg.fill(new HexagonalTile(new Grass()));
+		//System.out.println(gg.toString());
+
 		gg.add(1, 1, new HexagonalTile(new Water()));
 		gg.add(5, 5, new HexagonalTile(new Mountain()));
 		
-		JFrame frame = new JFrame("Drawn HexTiled Grids");
-		frame.add(new Test(gg));
-		frame.setSize(768, 768);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//gg.drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
 		
 		for(int i = 0; i < 10; i++){
 			//x = i;
 			//y = i;
-			frame.repaint();
+			//frame.repaint();
 			//Thread.sleep(1000);
 		}
 		

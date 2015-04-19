@@ -31,7 +31,7 @@ public class RemoveTrap extends SkillAbility {
 	}
 	
 	public Tile getTargetTile(){
-		return map.get(getSourceEntity().getLocationFacing());
+		return map.getTile(getSourceEntity().getLocationFacing());
 	}
 	
 	private void activateTargetTrap(){
