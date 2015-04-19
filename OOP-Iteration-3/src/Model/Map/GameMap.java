@@ -44,7 +44,7 @@ public class GameMap{
 	
 	public void add(int x, int y, Tile t)
 	{
-		
+		gameMapGrid.add(x, y, t);
 	}
 	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
