@@ -73,8 +73,7 @@ public class Entity implements MovementInterface {
 		occupation = o;
 	}
 	
-	public Entity (GameMap map){
-		this();
+	public void setMap(GameMap map){
 		this.map = map;
 		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
 		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
@@ -283,6 +282,11 @@ public class Entity implements MovementInterface {
 	protected void setLocation(HexagonalLocation loc)
 	{
 		this.currentPosition = loc;
+	}
+	
+	public void moveNorth(){
+		moveMap.get(Direction.NORTH).execute();
+		alertNeighboringTiles();
 	}
 	
 }
