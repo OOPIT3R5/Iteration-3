@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Model.Entity.Entity;
 import Model.Map.Grid.Tile.Tile;
 
-public class Float extends SummonerAbility {
+public class Float extends SummonerAbility {		// TODO Float class
 
 	public Float(ArrayList<Tile> targetList, Entity entity) {
         
@@ -13,42 +13,35 @@ public class Float extends SummonerAbility {
 
 	@Override
     public void execute() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public int getSkillLevel() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int getRequiredMana() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void cast() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	protected ArrayList<Tile> getTargetTiles() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected Entity getSourceEntity() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected int scaleMagnitude() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

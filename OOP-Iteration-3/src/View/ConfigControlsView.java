@@ -36,7 +36,6 @@ public class ConfigControlsView extends ModelView implements Observer{
 	}
 	@Override
 	public void accept(View view) {
-		// TODO Auto-generated method stub
 		view.visit(this);
 	}
 

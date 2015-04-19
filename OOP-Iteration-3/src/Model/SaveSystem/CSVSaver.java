@@ -23,13 +23,11 @@ public class CSVSaver implements Saver{
 
 	@Override
 	public String save(Entity entity) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String save(AreaEffect areaEffect) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

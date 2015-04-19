@@ -40,30 +40,11 @@ public class InventoryView extends ModelView {
     private Entity avatar;
     
     String info = "asd";
+    
+    private HashMap<String,Color> options = new HashMap<String,Color>();
 
 	public InventoryView(Entity entity) {
         avatar = entity;
-		/*
-		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		setLayout(null);
-		JPanel inventory = new JPanel();
-		inventory.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		inventory.setBounds(INV_X,INV_Y,INV_WIDTH,INV_HEIGHT);
-		inventory.add(new JLabel("Insert Inventory Here"));
-		add(inventory);
-
-		JPanel equipment = new JPanel();
-		equipment.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		equipment.setBounds(EQUIP_X,EQUIP_Y,EQUIP_WIDTH,EQUIP_HEIGHT);
-		equipment.add(new JLabel("Insert Equipment Here"));
-		add(equipment);
-
-		JPanel stats = new JPanel();
-		stats.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		stats.setBounds(STATS_X,STATS_Y,STATS_WIDTH,STATS_HEIGHT);
-		stats.add(new JLabel("Insert Stats Here"));
-		add(stats);
-		*/
 	}
 	
 	public void setInfo(String s){
@@ -72,7 +53,6 @@ public class InventoryView extends ModelView {
 
     @Override
 	public void accept(View view) {
-		// TODO Auto-generated method stub
 		view.visit(this);
 	}
 	@Override
@@ -85,11 +65,6 @@ public class InventoryView extends ModelView {
         }
         renderStats(g);
         renderSkills(g);
-        try {
-            renderEquipment(g);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void renderInventory(Graphics g){
@@ -211,7 +186,6 @@ public class InventoryView extends ModelView {
 		
 		HashMap<String,Skill> skills = avatar.getOccupation().getSkills();
     	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
-    	int i = 0;
     	for(Entry<String, Skill> entry: skills.entrySet()){
     		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getKey() + " : " + entry.getValue().getCurrentLevel() );
     		startY += buttonHeight;
@@ -223,12 +197,10 @@ public class InventoryView extends ModelView {
     }
 
 	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+	public void update(Observable o, Object arg) {	// TODO
 
 	}
 		/*
-        // TODO Auto-generated method stub
         try {
             //g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,0,24,24), 0, 0, null);
            // g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,25,24,24).getScaledInstance(50,50,Image.SCALE_DEFAULT), 0, 0, null);

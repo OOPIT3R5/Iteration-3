@@ -17,7 +17,6 @@ public class Water extends Terrain {
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
 		return Color.BLUE;
 	}
 	

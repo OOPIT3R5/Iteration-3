@@ -2,7 +2,8 @@ package Model.Entity;
 
 public class NonAdversarial extends NPC{
 
-	public NonAdversarial() {
+
+	public NonAdversarial() {	// TODO NonAdversarial class
 		super();
 		becomeNonHostile();
 	}

@@ -20,6 +20,7 @@ public abstract class Tile {
 	private Trap trap_;
 	
 	public Tile() {
+		
 		terrain_ = new Grass();
 	}
 	
@@ -104,7 +105,11 @@ public abstract class Tile {
 	}
 
 	public abstract void notifyOfEntity(MovementInterface target, Direction direction);
-	public abstract void prospectiveMovement(MovementInterface target, Direction direction);
+<<<<<<< HEAD
+
 	
+=======
+	public abstract void prospectiveMovement(MovementInterface target, Direction direction);
+>>>>>>> 669ca9fad855741780a4848f938ad598b341d69e
 	
 }

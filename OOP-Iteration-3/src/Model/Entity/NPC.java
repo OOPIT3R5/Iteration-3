@@ -52,15 +52,13 @@ public class NPC extends Entity {
 	}
 	
 	public void sleep() {
-		// TODO Auto-generated method stub
 	}
 	
 	public void charm() {
 		becomeNonHostile();
 	}
 
-	public void polymorph() {
-		// TODO Auto-generated method stub
+	public void polymorph() {		// TODO enchantment spell methods
 	}
 	
 
