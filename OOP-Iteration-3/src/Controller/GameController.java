@@ -294,7 +294,7 @@ public class GameController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			if(k.getKeyCode() == KeySet.getKey(key)){
-				//avatar.ability(String s);
+				avatar.ability(s);
 				System.out.println(s);
 			}
 			
