@@ -21,6 +21,7 @@ public class GameMap{
 	Grid gameMapGrid;
 	private static int HEIGHT;
 	private static int WIDTH;
+	
 	public ArrayList<HexagonalLocation> getLine(Location loc)
 	{
 		return null;
@@ -58,7 +59,7 @@ public class GameMap{
 		return mapView;
 	}
 
-	public void respawn(Avatar av)
+	public void spawn(Avatar av)
 	{
 		
 	}

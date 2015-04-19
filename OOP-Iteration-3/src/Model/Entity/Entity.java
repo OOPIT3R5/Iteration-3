@@ -1,5 +1,6 @@
 package Model.Entity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Model.Entity.Ability.Ability;
@@ -112,8 +113,23 @@ public class Entity implements MovementInterface {
     }
     //end of package protected methods to be called ONLY by the occupations
 
-    
     	//can't award more than numOfPointsCanAllocateToLevelUpSkill
+    public void unequipWeapon(){
+        equipmentManager.unequipWeapon();
+    }
+    public void unequipOffHand(){
+        equipmentManager.unequipOffHandItem();
+    }
+    public void unequipArmor(){
+        equipmentManager.unequipArmor();
+    }
+    public void unequipAccessory(){
+        equipmentManager.unequipAccessory();
+    }
+    public void unequipShoes(){
+        equipmentManager.unequipShoes();
+    }
+
     public void awardExperience(int award){
         stats.awardExperience(award);
     }
@@ -138,6 +154,9 @@ public class Entity implements MovementInterface {
         return stats;
     }
 
+    public MapObjectView[] getEquipmentViews() throws IOException {
+        return equipmentManager.getViews();
+    }
     @Override
 	public void disableMove(Direction direction) {
 		movement_.add(Direction.hexToInt(direction), new DoNothing());
