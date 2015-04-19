@@ -27,8 +27,10 @@ public class Entity implements MovementInterface {
 	private ArrayList<Ability> movement_;
 	
 	private int movementSpeed;
-	//rename
-	protected int numOfPointsCanAllocateToLevelUpSkill;
+
+	//rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
+	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
+
 	protected GameMap map;
 	
 	/*Use */
