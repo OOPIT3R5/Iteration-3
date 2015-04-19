@@ -3,16 +3,19 @@ package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import Main.Game;
 import Main.KeySet;
 import Model.Entity.Ability.DoNothing;
+import Model.Entity.Ability.Move;
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
 import Model.Entity.Smasher;
 import Model.Items.*;
+import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
@@ -24,19 +27,27 @@ import View.ModelView;
 
 public class GameController extends Controller {
 	String next = "";
-	Avatar avatar;
+	private static Avatar avatar;
 
-	Game game;
+	private static Game game;
 	private static GameController instance = null;
-	GameMap map = new GameMap(100,100);
+<<<<<<< HEAD
 
 	KeyListener back = new BacktoMainMenu();
 	KeyListener inv = new InventoryListener();
 	KeyListener render = new Render();
+=======
+	GameMap map = new GameMap(100,100);
+	
+	ArrayList<KeyListener> listeners = new ArrayList<KeyListener>();
+>>>>>>> d1a8256c0586341b7f2e63d6ea001fb6169bbbe0
 	
 	 //This will be removed
 	
 	private GameController() {
+<<<<<<< HEAD
+		
+=======
 		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
 		map.add(1, 1, new HexagonalTile(new Water()));
 		map.add(5, 5, new HexagonalTile(new Mountain()));
@@ -44,27 +55,28 @@ public class GameController extends Controller {
         avatar = new Avatar("Joshua");
         new Smasher(avatar);
         try{
-<<<<<<< HEAD
             avatar.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
             avatar.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));
             avatar.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9, 7))));
-            avatar.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
-            //System.out.println(e.inven
-            
-=======
-            e.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
-            e.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));
-            e.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9, 7))));
-            e.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass Book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
-            e.addToInventory(new OneHandedWeaponItem(25, new DoNothing(), "Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(13,3))));
-            e.addToInventory(new ArmorItem(55, new DoNothing(), "Big Boss Armor", new MapObjectView(MapObjectView.getSpriteFromFE(31,0))));
->>>>>>> 0ab47b85ec7f92166fd0891605a59bf8006616de
+            avatar.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass Book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
+            avatar.addToInventory(new OneHandedWeaponItem(25, new DoNothing(), "Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(13,3))));
+            avatar.addToInventory(new ArmorItem(55, new DoNothing(), "Big Boss Armor", new MapObjectView(MapObjectView.getSpriteFromFE(31,0))));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        listeners.add(new BacktoMainMenu());
+        listeners.add(new InventoryListener());
+        listeners.add(new Render());
         game = new Game(map, avatar);
+>>>>>>> d1a8256c0586341b7f2e63d6ea001fb6169bbbe0
 	}
-
+	public static void setGame(Game g){
+		
+		game = g;
+		avatar = g.getAvatar();
+		
+	}
+	
 	public static GameController getInstance(){
 		
 		if(instance == null){
@@ -80,16 +92,16 @@ public class GameController extends Controller {
 
 	@Override
 	public void register(JFrame f) {
-		f.addKeyListener(back);
-		f.addKeyListener(inv);
-		f.addKeyListener(render);
+		for(int i = 0; i < listeners.size(); i++){
+			f.addKeyListener(listeners.get(i));
+		}
 	}
 
 	@Override
 	public void deRegister(JFrame f) {
-		f.removeKeyListener(back);
-		f.removeKeyListener(inv);
-		f.removeKeyListener(render);
+		for(int i = 0; i < listeners.size(); i++){
+			f.removeKeyListener(listeners.get(i));
+		}
 	}
 	
 	public class BacktoMainMenu implements KeyListener {
@@ -124,6 +136,31 @@ public class GameController extends Controller {
 			if(key == KeySet.getKey("INVENTORY")){
 				setNext(InventoryController.getInstance(avatar));
 				
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	public class MoveUpListener implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("NORTH")){
+				Move m = new Move(avatar,map,Direction.NORTH,avatar.getMovementSpeed());
+				m.execute();
 			}
 			
 		}
