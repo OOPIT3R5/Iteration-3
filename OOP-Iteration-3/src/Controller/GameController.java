@@ -60,6 +60,11 @@ public class GameController extends Controller {
 		listeners.add(new InventoryListener());
 		listeners.add(new Render());
 		listeners.add(new MoveNorth());
+		listeners.add(new MoveSouth());
+		listeners.add(new MoveNortheast());
+		listeners.add(new MoveNorthwest());
+		listeners.add(new MoveSoutheast());
+		listeners.add(new MoveSouthwest());
 		for(KeyListener k : listeners){
 			f.addKeyListener(k);
 		}
@@ -142,5 +147,131 @@ public class GameController extends Controller {
 			
 		}
 	}
+	
+	public class MoveSouth implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("SOUTH")){
+				//avatar.moveSouth();
+				System.out.println(avatar.getLocation());
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	public class MoveNortheast implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("NORTHEAST")){
+				//avatar.moveNortheast();
+				System.out.println(avatar.getLocation());
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	public class MoveNorthwest implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("NORTHWEST")){
+				//avatar.moveNorthwest();
+				System.out.println(avatar.getLocation());
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	public class MoveSoutheast implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("SOUTHEAST")){
+				//avatar.moveSoutheast();
+				System.out.println(avatar.getLocation());
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	public class MoveSouthwest implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("SOUTHWEST")){
+				//avatar.moveSouthwest();
+				System.out.println(avatar.getLocation());
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	
 
 }
