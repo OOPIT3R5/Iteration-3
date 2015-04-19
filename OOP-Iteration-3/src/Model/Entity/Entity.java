@@ -148,12 +148,19 @@ public class Entity implements MovementInterface {
         return inventory.stealGold(gold);
     }
 
+    public int getGold(int gold){
+        return inventory.getGoldamount();
+    }
+
     public void changeHealth(int change){
         stats.changeHealth(change);
     }
 
     public void checkMana(SummonerAbility sa){
-        //
+        if(sa.getRequiredMana() <= getStatistics().getMana()){
+            getStatistics().useMana(sa.getRequiredMana());
+            sa.cast();
+        }
     }
 
     public StatisticContainer getStatistics(){
@@ -206,9 +213,15 @@ public class Entity implements MovementInterface {
         return inventory.getViews();
     }
 
+    public void useSkillPoint(){
+        numOfPointsCanAllocateToLevelUpSkill--;
+    }
+
+
+
 	public void makeActionChoice() {
 		// hook
-		
+
 	}
 
 	public void getOccupationTestMethod() {
@@ -225,11 +238,6 @@ public class Entity implements MovementInterface {
 		
 	}
 
-	public void receiveDamage(int damage) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void charm() {
 		// TODO Auto-generated method stub
 		
@@ -240,13 +248,7 @@ public class Entity implements MovementInterface {
 		
 	}
 
-	public void useMana(SummonerAbility summonerAbility) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public Occupation getOccupation() {
-		// TODO Auto-generated method stub
 		return occupation;
 	}
 

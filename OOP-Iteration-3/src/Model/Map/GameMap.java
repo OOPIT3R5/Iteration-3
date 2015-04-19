@@ -34,7 +34,6 @@ public class GameMap{
 	public GameMap(int width, int height) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
-		 mapView = new GameView();
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
 	}
 
@@ -59,9 +58,9 @@ public class GameMap{
 		return mapView;
 	}
 
-	public void spawn(Avatar av)
+	public void spawn(Entity entity)
 	{
-		
+		gameMapGrid.spawnEntity(entity.getLocation(), entity);
 	}
 	
 	public Tile getTile(Location location){
