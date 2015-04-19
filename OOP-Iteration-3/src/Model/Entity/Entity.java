@@ -29,6 +29,7 @@ import View.InventoryView;
 
 public class Entity implements MovementInterface {
 
+	private static final Exception InvalidAbilityException = null;
 	private String name;
 	private Occupation occupation;
 	private Direction directionFacing;
@@ -329,8 +330,13 @@ public class Entity implements MovementInterface {
         }
     }
 	
-	public void ability(int s){
-		occupation.getAbilities().get(s).execute();
+	public void ability(String s){
+		Ability a = (occupation.getAbilities().get(s));
+		try {
+			a.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Invalid Ability");
+		}
 	}
-	
 }

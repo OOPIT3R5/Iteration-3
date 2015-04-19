@@ -33,12 +33,12 @@ public class Sneak extends Occupation{
     }
 
     @Override
-    protected ArrayList<Ability> getAbilitiesSub(){
-    	ArrayList<Ability> abilities = new ArrayList<Ability>();
+    protected HashMap<String, Ability> getAbilitiesSub(){
+    	HashMap<String, Ability> abilities = new HashMap<String, Ability>();
 
-        abilities.add(pickAbil);
-        abilities.add(detectAbil);
-        abilities.add(creepAbil);
+        abilities.put("Pickpocket",pickAbil);
+        abilities.put("Detect Traps",detectAbil);
+        abilities.put("Creep",creepAbil);
 //        abilities.add(rangedweapon);
 
         return abilities;
