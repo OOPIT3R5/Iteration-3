@@ -30,8 +30,8 @@ public class RemoveTrap extends SkillAbility {
 		}
 	}
 	
-	public Tile getTargetTile(){		// TODO: breaks LoD
-		return map.get(getSourceEntity().getLocation().getNeighbor(getSourceEntity().getDirectionFacing()));
+	public Tile getTargetTile(){
+		return map.get(getSourceEntity().getLocationFacing());
 	}
 	
 	private void activateTargetTrap(){

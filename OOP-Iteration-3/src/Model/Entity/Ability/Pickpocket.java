@@ -1,6 +1,7 @@
 package Model.Entity.Ability;
 
 import Model.Entity.Entity;
+import Model.Entity.NPC;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
@@ -26,15 +27,15 @@ public class Pickpocket extends SkillAbility {
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			int gold = (int) (probabilityOfSuccess * 100);		// random amount of gold?
+			int gold = (int) (probabilityOfSuccess * 100);
 			int amountStolen = targetEntity.stealGold(gold);
 			sourceEntity.awardGold(amountStolen);
 		} else {		// failure
-			// ((NPC)targetEntity).provoke();		// needs to be implemented
+			((NPC)targetEntity).provoke();		// needs to be implemented
 		}
 	}
 	
-	private Entity getTargetEntity() {		// TODO: breaking LoD?
+	private Entity getTargetEntity() {
 		return map.getEntity(getSourceEntity().getLocationFacing());
 	}
 

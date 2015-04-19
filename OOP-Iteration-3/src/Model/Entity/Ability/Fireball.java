@@ -22,7 +22,7 @@ public class Fireball extends SummonerAbility {
 	}
 
 	@Override
-	protected void cast() {
+	public void cast() {
 		
 	}
 
@@ -32,7 +32,7 @@ public class Fireball extends SummonerAbility {
 	}
 
 	@Override
-	protected int getRequiredMana() {
+	public int getRequiredMana() {
 		return 5;
 	}
 
@@ -41,7 +41,6 @@ public class Fireball extends SummonerAbility {
 		return 150 * getSkillLevel()/100;
 	}
 
-	@Override
 	protected ArrayList<Tile> getTargetTiles() {
 		return null;
 	}

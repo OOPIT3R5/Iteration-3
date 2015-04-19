@@ -1,36 +1,46 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
 import Model.Entity.Skill;
-import Model.Map.Grid.Tile.Tile;
+import Model.Map.GameMap;
+import Utility.RandomlyGenerate;
 
 public class Attack extends SkillAbility{
 	
-	private ArrayList<Tile> targetTiles;
+	private Entity sourceEntity;
+	private GameMap map;
 	private Skill skill;
 	
-	public Attack(ArrayList<Tile> targetTiles, Skill skill){
-		this.targetTiles = targetTiles;
+	public Attack(Entity sourceEntity, GameMap map, Skill skill) {
+		this.sourceEntity = sourceEntity;
+		this.map = map;
 		this.skill = skill;
     }
 
 	@Override
-	protected int getSkillLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void execute() {
+		Entity targetEntity = getTargetEntity();
+		
+		double probabilityOfSuccess = RandomlyGenerate.probability();
+		double chanceOfSuccess = getSkillLevel()/100;
+		int damage = (int) (probabilityOfSuccess * getSkillLevel());
+		
+		if (chanceOfSuccess > probabilityOfSuccess){		// success
+			targetEntity.receiveDamage(damage);
+		}
+	}
+
+	private Entity getTargetEntity() {
+		return map.getEntity(getSourceEntity().getLocationFacing());
 	}
 
 	@Override
-	public void execute() {
-		// TODO Auto-generated method stub
-		
+	protected int getSkillLevel() {
+		return skill.getCurrentLevel();
 	}
 
 	@Override
 	protected Entity getSourceEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return sourceEntity;
 	}
 }

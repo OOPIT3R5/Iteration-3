@@ -6,12 +6,11 @@ import Model.Entity.Entity;
 import Model.Map.Grid.Tile.Tile;
 
 public abstract class SummonerAbility extends SkillAbility{
-	protected abstract int getRequiredMana();
+	public abstract int getRequiredMana();
 	protected abstract int scaleMagnitude();
-	protected abstract void cast();		// cast spell if there is enough mana
-	protected abstract ArrayList<Tile> getTargetTiles();
+	public abstract void cast();		// cast spell if there is enough mana
 	
 	protected void useMana(Entity sourceEntity){
-		//sourceEntity.useMana(getRequiredMana());
+		sourceEntity.useMana(this);
 	}
 }

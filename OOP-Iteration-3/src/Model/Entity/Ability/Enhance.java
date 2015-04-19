@@ -24,18 +24,17 @@ public class Enhance extends SummonerAbility {
 	}
 
 	@Override
-	protected int getRequiredMana() {
+	public int getRequiredMana() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	protected void cast() {
+	public void cast() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	protected ArrayList<Tile> getTargetTiles() {
 		// TODO Auto-generated method stub
 		return null;

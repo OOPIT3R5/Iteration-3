@@ -1,56 +1,64 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
-import Model.Map.Grid.Tile.Tile;
+import Model.Entity.NPC;
+import Model.Entity.Skill;
+import Model.Map.GameMap;
+import Utility.RandomlyGenerate;
 
 public class Polymorph extends SummonerAbility {
 
-	public Polymorph(ArrayList<Tile> targetList, Entity entity) {
-        
+	private Entity sourceEntity;
+	private GameMap map;
+	private Skill skill;
+	
+	public Polymorph(Entity sourceEntity, GameMap map, Skill skill) {
+		this.sourceEntity = sourceEntity;
+		this.map = map;
+		this.skill = skill;
     }
-
+	
 	@Override
-    public void execute() {
-		// TODO Auto-generated method stub
+	public void execute() {
+		useMana(sourceEntity);
+	}
+	
+	@Override
+	public void cast() {
+		Entity targetEntity = getTargetEntity();
+		
+		double probabilityOfSuccess = RandomlyGenerate.probability();
+		double chanceOfSuccess = getSkillLevel()/100;
+		
+		if (chanceOfSuccess > probabilityOfSuccess){		// success
+			getTargetEntity().polymorph();		
+		} else {		// failure
+			((NPC)targetEntity).provoke();
+		}
 		
 	}
 
 	@Override
-	public int getSkillLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected int getRequiredMana() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getRequiredMana() {
+		return 20;
 	}
 
 	@Override
 	protected int scaleMagnitude() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	protected void cast() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	protected ArrayList<Tile> getTargetTiles() {
-		// TODO Auto-generated method stub
-		return null;
+	protected int getSkillLevel() {
+		return skill.getCurrentLevel();
 	}
 
 	@Override
 	protected Entity getSourceEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return sourceEntity;
 	}
-
+	
+	private Entity getTargetEntity() {
+		return map.getEntity(getSourceEntity().getLocationFacing());
+	}
 }

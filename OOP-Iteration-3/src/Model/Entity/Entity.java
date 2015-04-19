@@ -177,4 +177,33 @@ public class Entity implements MovementInterface {
 		
 	}
 
+	public void sleep() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void observe(){
+		
+	}
+
+	public void receiveDamage(int damage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void charm() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void polymorph() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void useMana(SummonerAbility summonerAbility) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

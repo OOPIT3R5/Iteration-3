@@ -1,58 +1,64 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
-import Model.Map.Grid.Tile.Tile;
+import Model.Entity.NPC;
+import Model.Entity.Skill;
+import Model.Map.GameMap;
+import Utility.RandomlyGenerate;
 
 public class Sleep extends SummonerAbility {
 
-	public Sleep(ArrayList<Tile> targetList, Entity entity) {
-        
+	private Entity sourceEntity;
+	private GameMap map;
+	private Skill skill;
+	
+	public Sleep(Entity sourceEntity, GameMap map, Skill skill) {
+		this.sourceEntity = sourceEntity;
+		this.map = map;
+		this.skill = skill;
     }
+	
+	@Override
+	public void execute() {
+		useMana(sourceEntity);
+	}
+	
+	@Override
+	public void cast() {
+		Entity targetEntity = getTargetEntity();
+		
+		double probabilityOfSuccess = RandomlyGenerate.probability();
+		double chanceOfSuccess = getSkillLevel()/100;
+		
+		if (chanceOfSuccess > probabilityOfSuccess){		// success
+			getTargetEntity().sleep();		
+		} else {		// failure
+			((NPC)targetEntity).provoke();
+		}
+		
+	}
 
 	@Override
-	protected int getRequiredMana() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getRequiredMana() {
+		return 20;
 	}
 
 	@Override
 	protected int scaleMagnitude() {
-		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	protected void cast() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	protected int getSkillLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void execute() {
-		// TODO Auto-generated method stub
-		
+		return skill.getCurrentLevel();
 	}
 
 	@Override
 	protected Entity getSourceEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return sourceEntity;
 	}
-
-	@Override
-	protected ArrayList<Tile> getTargetTiles() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
-
+	private Entity getTargetEntity() {
+		return map.getEntity(getSourceEntity().getLocationFacing());
+	}
 }
