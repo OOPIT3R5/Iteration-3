@@ -51,7 +51,7 @@ public class GameController extends Controller {
 		avatar = g.getAvatar();
 		avatar.setLocation(new HexagonalLocation(2,3));
 		//g.getGameMap().spawn(avatar,new HexagonalLocation(2,3));
-		avatar.setMap(g.getGameMap());
+		//avatar.setMap(g.getGameMap());
 		
 	}
 	
@@ -142,7 +142,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTH")){
-				avatar.moveNorth();
+				//avatar.moveNorth();
 				System.out.println(avatar.getLocation());
 			}
 			
