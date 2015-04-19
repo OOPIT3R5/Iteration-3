@@ -6,7 +6,6 @@ import Model.SaveSystem.Savable;
 import Model.SaveSystem.Saver;
 import View.MapObjectView;
 
-import java.awt.image.BufferedImage;
 
 public abstract class Item implements MapObject, Savable{
 
@@ -28,6 +27,8 @@ public abstract class Item implements MapObject, Savable{
     public String getName(){
         return name;
     }
+
+   // public abstract String getHelp();
 
     public void execute(){
         ability.execute();

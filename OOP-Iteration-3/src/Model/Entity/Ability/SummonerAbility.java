@@ -11,6 +11,6 @@ public abstract class SummonerAbility extends SkillAbility{
 	public abstract void cast();		// cast spell if there is enough mana
 	
 	protected void useMana(Entity sourceEntity){
-		sourceEntity.useMana(this);
+		sourceEntity.checkMana(this);
 	}
 }

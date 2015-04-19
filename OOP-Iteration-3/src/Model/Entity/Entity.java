@@ -153,7 +153,10 @@ public class Entity implements MovementInterface {
     }
 
     public void checkMana(SummonerAbility sa){
-        //
+        if(sa.getRequiredMana() <= getStatistics().getMana()){
+            getStatistics().useMana(sa.getRequiredMana());
+            sa.cast();
+        }
     }
 
     public StatisticContainer getStatistics(){
@@ -225,11 +228,6 @@ public class Entity implements MovementInterface {
 		
 	}
 
-	public void receiveDamage(int damage) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void charm() {
 		// TODO Auto-generated method stub
 		
@@ -240,13 +238,7 @@ public class Entity implements MovementInterface {
 		
 	}
 
-	public void useMana(SummonerAbility summonerAbility) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public Occupation getOccupation() {
-		// TODO Auto-generated method stub
 		return occupation;
 	}
 

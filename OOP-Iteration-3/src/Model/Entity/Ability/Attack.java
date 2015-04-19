@@ -26,7 +26,7 @@ public class Attack extends SkillAbility{
 		int damage = (int) (probabilityOfSuccess * getSkillLevel());
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			targetEntity.receiveDamage(damage);
+			targetEntity.changeHealth(-1*damage);
 		}
 	}
 

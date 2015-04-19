@@ -105,9 +105,17 @@ public class InventoryController extends Controller {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            setChanged();
-            notifyObservers();
-            placeClicked(e.getPoint());
+            if(e.getButton() == MouseEvent.BUTTON1)//IfLeftClick
+            {
+                setChanged();
+                notifyObservers();
+                placeClicked(e.getPoint());
+            }
+            else {
+                setChanged();
+                notifyObservers();
+                
+            }
         }
 
         private void placeClicked(Point pointclicked) {
@@ -132,7 +140,7 @@ public class InventoryController extends Controller {
         private void checkEquipment(int X, int Y) {
             //If we're not in the right square...
             if (!((((X >= EquipmentTopXLo) && (X <= EquipmentTopXHi)) && ((Y >= EquipmentTopYLo) && (Y <= EquipmentTopYHi))) || (((X >= EquipmentMidXLo) && (X <= EquipmentMidXHi)) && ((Y >= EquipmentMidYLo) && (Y <= EquipmentMidYHi)))))
-                return;
+                checkSkills(X,Y);
             //else...
             X -= EquipmentStartingX;
             X /= Xspacing;
@@ -157,6 +165,10 @@ public class InventoryController extends Controller {
                     default:
                         break;
                 }
+        }
+
+        private void checkSkills(int X, int Y) {
+
         }
 
         @Override
