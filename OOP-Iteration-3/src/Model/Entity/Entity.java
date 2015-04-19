@@ -101,6 +101,10 @@ public class Entity implements MovementInterface {
             ti.accept(occupation);
         }
     }
+    
+    public TakeableItem getItem(int inventoryIndex){
+        return inventory.getFromInventory(inventoryIndex);
+    }
 
     //The below equip methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
     void equipItem(WeaponItem wi){
