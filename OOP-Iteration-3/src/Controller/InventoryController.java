@@ -14,6 +14,7 @@ import View.ModelView;
 
 public class InventoryController extends Controller {
 	KeyListener back = new BacktoGame();
+	KeyListener render = new Render();
 	
 	private static InventoryController instance;
 	
@@ -40,20 +41,14 @@ public class InventoryController extends Controller {
 	}
 
 	@Override
-	public Controller update() {
-		// TODO Auto-generated method stub
-		return GameController.getInstance();
-	}
-
-	@Override
 	public void register(JFrame f) {
 		f.addKeyListener(back);
-
+		f.addKeyListener(render);
 	}
 
 	@Override
 	public void deRegister(JFrame f) {
-		// TODO Auto-generated method stub
+		f.removeKeyListener(render);
 		f.removeKeyListener(back);
 	}
 	
@@ -63,9 +58,7 @@ public class InventoryController extends Controller {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("BACK")){
-				setChanged();
-				notifyObservers();
-				deleteObservers();
+				setNext(GameController.getInstance());
 				
 			}
 			

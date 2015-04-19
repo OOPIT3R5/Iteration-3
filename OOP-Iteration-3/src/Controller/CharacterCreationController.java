@@ -17,6 +17,7 @@ public class CharacterCreationController extends Controller  {
 	KeyListener up = new UpAction();
 	KeyListener down = new DownAction();
 	KeyListener enter = new Update();
+	KeyListener render = new Render();
 	
 	private CharacterCreationController() {
 	}
@@ -32,23 +33,20 @@ public class CharacterCreationController extends Controller  {
 		f.addKeyListener(enter);
 		f.addKeyListener(down);
 		f.addKeyListener(up);
+		f.addKeyListener(render);
 	}
 	
 	public void deRegister(JFrame f){
 		f.removeKeyListener(enter);
 		f.removeKeyListener(down);
 		f.removeKeyListener(up);
+		f.removeKeyListener(render);
 	}
 
 	@Override
 	public ModelView getView() {
 		// TODO Auto-generated method stub
 		return cm.getView();
-	}
-
-	@Override
-	public Controller update() {
-		return MainMenuController.getInstance();
 	}
 	
 	public class UpAction implements KeyListener {
@@ -104,9 +102,7 @@ public class CharacterCreationController extends Controller  {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("ENTER")){
-				setChanged();
-				notifyObservers();
-				deleteObservers();
+				setNext(MainMenuController.getInstance());
 				
 			}
 			

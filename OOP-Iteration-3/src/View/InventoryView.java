@@ -109,12 +109,6 @@ public class InventoryView extends ModelView {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public ModelView updateView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 		/*
         // TODO Auto-generated method stub
         try {

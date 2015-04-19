@@ -23,10 +23,5 @@ public class GameMapView extends ModelView{
 		
 	}
 
-	@Override
-	public ModelView updateView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

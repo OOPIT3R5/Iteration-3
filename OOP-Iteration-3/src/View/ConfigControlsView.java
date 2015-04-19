@@ -67,15 +67,9 @@ public class ConfigControlsView extends ModelView implements Observer{
 		for(Entry<String, Color> entry: options.entrySet()){
 			options.put(entry.getKey(), Color.BLACK);
    		 }
-		options.put(arg1.toString(), Color.RED);
-		RunGame.paint();		
+		options.put(arg1.toString(), Color.RED);		
 	}
 	public String keyToChar(int i){
 		return KeyEvent.getKeyText(i);
-	}
-	@Override
-	public ModelView updateView() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

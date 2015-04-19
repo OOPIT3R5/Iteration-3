@@ -26,6 +26,7 @@ public class GameController extends Controller {
 	
 	KeyListener back = new BacktoMainMenu();
 	KeyListener inv = new InventoryListener();
+	KeyListener render = new Render();
 	
 	ModelView tempView = new GameView(); //This will be removed
 	
@@ -49,23 +50,17 @@ public class GameController extends Controller {
 	}
 
 	@Override
-	public Controller update() {
-		if(next.equals("main")){
-			return  MainMenuController.getInstance();
-		}
-		return InventoryController.getInstance(e);
-	}
-
-	@Override
 	public void register(JFrame f) {
 		f.addKeyListener(back);
 		f.addKeyListener(inv);
+		f.addKeyListener(render);
 	}
 
 	@Override
 	public void deRegister(JFrame f) {
 		f.removeKeyListener(back);
 		f.removeKeyListener(inv);
+		f.removeKeyListener(render);
 	}
 	
 	public class BacktoMainMenu implements KeyListener {
@@ -74,11 +69,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("BACK")){
-				next = "main";
-				setChanged();
-				notifyObservers();
-				deleteObservers();
-				
+				setNext(MainMenuController.getInstance());		
 			}
 			
 		}
@@ -99,13 +90,10 @@ public class GameController extends Controller {
 	public class InventoryListener implements KeyListener {
 
 		@Override
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
 			if(key == KeySet.getKey("INVENTORY")){
-				next = "inventory";
-				setChanged();
-				notifyObservers();
-				deleteObservers();
+				setNext(InventoryController.getInstance(e));
 				
 			}
 			

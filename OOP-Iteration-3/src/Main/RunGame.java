@@ -18,7 +18,7 @@ public class RunGame implements Observer {
 
     private JFrame frame = new JFrame();
     Controller c = null;
-    private static View view;
+    private View view;
 
     public static void main(String argv[]){
        RunGame r = new RunGame();
@@ -27,8 +27,6 @@ public class RunGame implements Observer {
     public RunGame(){
         view = new View();
         c =  MainMenuController.getInstance();
-
-
         KeySet keys = new KeySet();
         frame.add(view);
         view.render(c.getView());
@@ -44,10 +42,6 @@ public class RunGame implements Observer {
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
-    public static void paint(){
-        view.repaint();
-    }
-
     @Override
     public void update(Observable o, Object arg) {
         c.deRegister(frame);
@@ -56,6 +50,7 @@ public class RunGame implements Observer {
             quit();
             return;
         }
+        c.setNext(c);
         view.render(c.getView());
         c.register(frame);
         c.addObserver(this);

@@ -18,6 +18,7 @@ public class MainMenuController extends Controller {
 	KeyListener up = new UpAction();
 	KeyListener down = new DownAction();
 	KeyListener enter = new Update();
+	KeyListener render = new Render();
 	
 	private MainMenuController(){
 		mm = new MainMenu();
@@ -37,11 +38,13 @@ public class MainMenuController extends Controller {
 		f.addKeyListener(up);
 		f.addKeyListener(down);
 		f.addKeyListener(enter);
+		f.addKeyListener(render);
 	}
 	public void deRegister(JFrame f){
 		f.removeKeyListener(up);
 		f.removeKeyListener(down);
 		f.removeKeyListener(enter);
+		f.removeKeyListener(render);
 	}
 	public ModelView getView(){
 		return mm.getView();
@@ -99,9 +102,19 @@ public class MainMenuController extends Controller {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("ENTER")){
-				setChanged();
-				notifyObservers();
-				deleteObservers();
+				String state = mm.getState();
+				if(state.equals("new")){ //Is there a way around this?
+					setNext(CharacterCreationController.getInstance());
+				}
+				else if(state.equals("options")){
+					setNext(ConfigController.getInstance());
+				}
+				else if(state.equals("load")){
+					setNext(GameController.getInstance());
+				}
+				else{
+					setNext(null);
+				}
 				
 			}
 			
@@ -118,25 +131,5 @@ public class MainMenuController extends Controller {
 			// TODO Auto-generated method stub
 			
 		}
-	}
-
-	@Override
-	public Controller update() {
-		
-		Controller c = this;
-	
-		String state = mm.getState();
-		if(state.equals("new")){ //Is there a way around this?
-			return CharacterCreationController.getInstance();
-			
-		}
-		else if(state.equals("options")){
-			return ConfigController.getInstance();
-		}
-		else if(state.equals("load")){
-			return GameController.getInstance();
-		}
-		return c;
-		
 	}
 }

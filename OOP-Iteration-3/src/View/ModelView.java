@@ -9,8 +9,6 @@ public abstract class ModelView implements Observer {
 	public abstract void accept(View view);
 
 	public abstract void render(Graphics g);
-	
-	public abstract ModelView updateView();
 
 }
 

@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+import Controller.Controller.Render;
 import Main.KeySet;
 import Main.RunGame;
 import Model.Menu.ConfigControls;
@@ -19,11 +20,9 @@ public class ConfigController extends Controller {
 	KeyListener enter = new Update();
 	KeyListener up = new UpAction();
 	KeyListener down = new DownAction();
+	KeyListener render = new Render();
 	
 	ConfigControls cc = new ConfigControls();
-	
-	private ConfigController() {
-	}
 
 	public static ConfigController getInstance(){
 		
@@ -39,17 +38,13 @@ public class ConfigController extends Controller {
 	}
 
 	@Override
-	public Controller update() {
-		return MainMenuController.getInstance();
-	}
-
-	@Override
 	public void register(JFrame f) {
 		f.addKeyListener(up);
 		f.addKeyListener(down);
 		f.addKeyListener(bind);
 		f.addKeyListener(rst);
 		f.addKeyListener(enter);
+		f.addKeyListener(render);
 
 	}
 
@@ -60,6 +55,7 @@ public class ConfigController extends Controller {
 		f.removeKeyListener(bind);
 		f.removeKeyListener(rst);
 		f.removeKeyListener(enter);
+		f.removeKeyListener(render);
 	}
 	public class Update implements KeyListener {
 
@@ -67,10 +63,7 @@ public class ConfigController extends Controller {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_ESCAPE){
-				setChanged();
-				notifyObservers();
-				deleteObservers();
-				
+				setNext(MainMenuController.getInstance());
 			}
 			
 		}
@@ -97,7 +90,6 @@ public class ConfigController extends Controller {
 	        else if(binding){
 	        	binding = false;
 	        	KeySet.setKey(cc.getState(), e.getKeyCode());
-	        	RunGame.paint();
 	        }
 			
 		}
@@ -120,7 +112,6 @@ public class ConfigController extends Controller {
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_R){
 				KeySet.keyReset();
-				RunGame.paint();
 			}
 			
 		}
