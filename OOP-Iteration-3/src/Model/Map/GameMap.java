@@ -34,7 +34,6 @@ public class GameMap{
 	public GameMap(int width, int height) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
-		 mapView = new GameView();
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
 	}
 
