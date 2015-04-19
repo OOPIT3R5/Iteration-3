@@ -1,9 +1,7 @@
 package View;
 
-import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
-import Model.Items.*;
 
 import java.awt.*;
 import java.io.IOException;

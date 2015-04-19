@@ -148,7 +148,7 @@ public class Entity implements MovementInterface {
         return inventory.stealGold(gold);
     }
 
-    public int getGold(int gold){
+    public int getGold(){
         return inventory.getGoldamount();
     }
 

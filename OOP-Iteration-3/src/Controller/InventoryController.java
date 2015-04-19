@@ -17,6 +17,7 @@ public class InventoryController extends Controller {
 	KeyListener render = new Render();
 	MouseListener ml = new UseItem();
     Entity e;
+
 	private static InventoryController instance;
 	
 	private static InventoryView inventoryView;
@@ -33,6 +34,7 @@ public class InventoryController extends Controller {
 		}
 		return instance;
 	}
+
 	@Override
 	public ModelView getView() {
 		// TODO Auto-generated method stub
@@ -123,8 +125,10 @@ public class InventoryController extends Controller {
             int Y = pointclicked.y;
             System.out.println(pointclicked);
 
-            if(X < InventoryStartingX || Y < InventoryStartingY || X > (InventoryStartingX+(Xspacing*6)) || Y > (InventoryStartingY+(Yspacing*4)))
+            if(X < InventoryStartingX || Y < InventoryStartingY || X > (InventoryStartingX+(Xspacing*6)) || Y > (InventoryStartingY+(Yspacing*4))){
                 checkEquipment(X, Y);
+                return;
+            }
 
             X -= InventoryStartingX;
             X /= Xspacing;
@@ -143,24 +147,28 @@ public class InventoryController extends Controller {
                 checkSkills(X,Y);
             //else...
             X -= EquipmentStartingX;
+            if(X < 0)
+                return;
             X /= Xspacing;
 
             Y -= EquipmentStartingY;
+            if(Y < 0)
+                return;
             Y /= Yspacing;
             System.out.println(X+" "+Y);
-            if (X == 0)
+            if (X == 0 && Y == 1)
                 e.unequipWeapon();
-            else if (X == 2)
+            else if (X == 2 && Y == 1)
                 e.unequipOffHand();
             else switch (Y) {
                     case 0:
-                        e.unequipAccessory();
+                        if(X == 1) e.unequipAccessory();
                         break;
                     case 1:
-                        e.unequipArmor();
+                        if(X == 1) e.unequipArmor();
                         break;
                     case 2:
-                        e.unequipShoes();
+                        if(X == 1) e.unequipShoes();
                         break;
                     default:
                         break;
@@ -168,7 +176,7 @@ public class InventoryController extends Controller {
         }
 
         private void checkSkills(int X, int Y) {
-
+            //TODO: Implement
         }
 
         @Override
