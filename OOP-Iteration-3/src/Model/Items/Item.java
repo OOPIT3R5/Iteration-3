@@ -42,5 +42,15 @@ public abstract class Item implements MapObject, Savable{
     {
     	saver.save(this);
     }
+    
+    public String toString()
+    {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append(name);
+    	
+    	
+    	
+    	return "";
+    }
 
 }

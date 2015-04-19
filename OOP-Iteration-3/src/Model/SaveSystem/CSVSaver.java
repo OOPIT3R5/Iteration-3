@@ -9,12 +9,16 @@ import Model.Items.Item;
 import Model.Items.ShoesItem;
 import View.MapObjectView;
 
-public class XMLSaver implements Saver{
+public class CSVSaver implements Saver{
 
 	@Override
 	public String save(Item item) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder builder = new StringBuilder();
+		
+		String itemType = item.toString();
+		
+		builder.append("<Item>");
+		return builder.toString();
 	}
 
 	@Override
