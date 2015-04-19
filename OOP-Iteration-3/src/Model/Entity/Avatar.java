@@ -6,7 +6,7 @@ public class Avatar extends Entity{
 		
 	}
 
-	public Avatar(String name, Occupation o) {
+	public Avatar(String name, Occupation o){
 		super(name, o);
 	}
 

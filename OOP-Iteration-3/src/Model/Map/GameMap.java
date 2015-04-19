@@ -9,6 +9,7 @@ import Model.Entity.Entity;
 import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.Grid;
 import Model.Map.Grid.HexagonalGrid;
+import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
 import View.GameView;
 import View.ModelView;
@@ -51,6 +52,7 @@ public class GameMap{
 			int height, int radius)
 	{
 		((DrawableHexGridInterface)gameMapGrid).drawRectangleWithCoords(g, p, (HexagonalLocation)center, width, height, radius);
+		
 	}
 	
 	public ModelView getView() {
@@ -60,6 +62,9 @@ public class GameMap{
 
 	public void spawn(Avatar av)
 	{
+		HexagonalTile hexTile = new HexagonalTile();
+		hexTile.setEntity(av);
+		
 		
 	}
 	

@@ -24,11 +24,10 @@ import View.ModelView;
 
 public class GameController extends Controller {
 	String next = "";
-	Avatar avatar;
+	private static Avatar avatar;
 
-	Game game;
+	private static Game game;
 	private static GameController instance = null;
-	GameMap map = new GameMap(100,100);
 
 	KeyListener back = new BacktoMainMenu();
 	KeyListener inv = new InventoryListener();
@@ -37,25 +36,15 @@ public class GameController extends Controller {
 	 //This will be removed
 	
 	private GameController() {
-		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
-		map.add(1, 1, new HexagonalTile(new Water()));
-		map.add(5, 5, new HexagonalTile(new Mountain()));
-
-        avatar = new Avatar("Joshua");
-        new Smasher(avatar);
-        try{
-            avatar.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
-            avatar.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));
-            avatar.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9, 7))));
-            avatar.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass Book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
-            avatar.addToInventory(new OneHandedWeaponItem(25, new DoNothing(), "Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(13,3))));
-            avatar.addToInventory(new ArmorItem(55, new DoNothing(), "Big Boss Armor", new MapObjectView(MapObjectView.getSpriteFromFE(31,0))));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        game = new Game(map, avatar);
+		
 	}
-
+	public static void setGame(Game g){
+		
+		game = g;
+		avatar = g.getAvatar();
+		
+	}
+	
 	public static GameController getInstance(){
 		
 		if(instance == null){
