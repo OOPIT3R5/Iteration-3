@@ -148,6 +148,10 @@ public class Entity implements MovementInterface {
         return inventory.stealGold(gold);
     }
 
+    public int getGold(int gold){
+        return inventory.getGoldamount();
+    }
+
     public void changeHealth(int change){
         stats.changeHealth(change);
     }
@@ -209,9 +213,15 @@ public class Entity implements MovementInterface {
         return inventory.getViews();
     }
 
+    public void useSkillPoint(){
+        numOfPointsCanAllocateToLevelUpSkill--;
+    }
+
+
+
 	public void makeActionChoice() {
 		// hook
-		
+
 	}
 
 	public void getOccupationTestMethod() {
