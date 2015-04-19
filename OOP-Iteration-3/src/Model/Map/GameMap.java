@@ -81,7 +81,8 @@ public class GameMap{
 	
 	public void render(Graphics g, Avatar av)
 	{
-		mapView.render(g);
+		DrawableHexGridInterface drawable_grid = gameMapGrid;
+		drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
 	}
 
 	

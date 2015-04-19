@@ -48,6 +48,11 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	}*/
 	
 	@Override
+	public void render (Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size){
+		drawHex(g, origin, center, grid_radius, hexagon_size);
+	}
+	
+	@Override
 	public void drawHex(Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size) {
 		ArrayList<HexagonalTile> hex_tiles = getHexTiles(HexagonalLocation.circle(center, grid_radius));
 		for (HexagonalTile hex_tile : hex_tiles) {
