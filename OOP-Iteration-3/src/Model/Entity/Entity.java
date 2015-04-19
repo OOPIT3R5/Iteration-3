@@ -247,7 +247,7 @@ public class Entity implements MovementInterface {
 	}
 
     public void observe(){
-		
+		// TODO send info about Entity to log/output
 	}
     
     public void receiveDamage(int damage) {
@@ -302,6 +302,11 @@ public class Entity implements MovementInterface {
     }
 	
 	public void useMana(SummonerAbility summonerAbility) {		// TODO useMana()
+		int requiredMana = summonerAbility.getRequiredMana();
+		if (stats.useMana(requiredMana)){
+			summonerAbility.cast();
+		}
+		
 	}
 	
 	public void useSkillPoint(){

@@ -129,8 +129,13 @@ public class StatisticContainer {
         checkIfDead();
     }
 
-    public void useMana(int manausage){
-        mana.addPermanentValue(-1*manausage);
+    public boolean useMana(int manausage){
+    	if (manausage > getMana()){
+    		return false;
+    	} else {
+    		mana.addPermanentValue(-1*manausage);
+    		return true;
+    	}
     }
 
     private void checkIfDead() {
