@@ -14,23 +14,23 @@ import java.util.Map.Entry;
 @SuppressWarnings("serial")
 public class InventoryView extends ModelView {
 
-	public final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+	public final static int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	public final static int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-	public final int INV_X = 0;
-	public final int INV_Y = 0;
-	public final int INV_WIDTH = 2*SCREEN_WIDTH/3;
-	public final int INV_HEIGHT = 2*SCREEN_HEIGHT/3;
+	public static final int INV_X = 0;
+	public static final int INV_Y = 0;
+	public static final int INV_WIDTH = 2*SCREEN_WIDTH/3;
+	public static final int INV_HEIGHT = 2*SCREEN_HEIGHT/3;
 
-	public final int INV_GRIDX = INV_WIDTH/8;
-	public final int INV_GRIDY = INV_HEIGHT/6;
-	public final int INV_GRIDWIDTH = 4*INV_GRIDX;
-	public final int INV_GRIDHEIGHT = 4*INV_GRIDY;
+	public final static int INV_GRIDX = INV_WIDTH/8;
+	public final static int INV_GRIDY = INV_HEIGHT/6;
+	public final static int INV_GRIDWIDTH = 4*INV_GRIDX;
+	public final static int INV_GRIDHEIGHT = 4*INV_GRIDY;
 
-	public final int EQUIP_X = INV_WIDTH;
-	public final int EQUIP_Y = 0;
-	public final int EQUIP_WIDTH = SCREEN_WIDTH/3;
-	public final int EQUIP_HEIGHT = 2*SCREEN_HEIGHT/3;
+	public final static int EQUIP_X = INV_WIDTH;
+	public final static int EQUIP_Y = 0;
+	public final static int EQUIP_WIDTH = SCREEN_WIDTH/3;
+	public final static int EQUIP_HEIGHT = 2*SCREEN_HEIGHT/3;
 
 	public final int STATS_X = 0;
 	public final int STATS_Y = INV_HEIGHT;
@@ -38,6 +38,8 @@ public class InventoryView extends ModelView {
 	public final int STATS_HEIGHT = SCREEN_HEIGHT/3;
 
     private Entity avatar;
+    
+    String info = "asd";
 
 	public InventoryView(Entity entity) {
         avatar = entity;
@@ -62,6 +64,10 @@ public class InventoryView extends ModelView {
 		stats.add(new JLabel("Insert Stats Here"));
 		add(stats);
 		*/
+	}
+	
+	public void setInfo(String s){
+		info = s;
 	}
 
     @Override
@@ -115,17 +121,22 @@ public class InventoryView extends ModelView {
                 }
             }
         }
+        
+        g.drawString("Gold: " + avatar.getGold(), INV_WIDTH/2 - (w), INV_HEIGHT-50);
+        
+        g.drawString(info, INV_GRIDWIDTH + INV_GRIDX + 10, INV_HEIGHT/2);
+        
     }
 
     private void renderEquipment(Graphics g) throws IOException {
 
-            float old = g.getFont().getSize();
-            g.setFont(g.getFont().deriveFont(40.0f));
-            String title = "Equipment";
-            FontMetrics fm = g.getFontMetrics();
-            int w = fm.stringWidth(title);
-            g.drawString(title, INV_WIDTH + EQUIP_WIDTH/2 - (2*w / 3), 50);
-            g.setFont(g.getFont().deriveFont(old));
+        float old = g.getFont().getSize();
+        g.setFont(g.getFont().deriveFont(40.0f));
+        String title = "Equipment";
+        FontMetrics fm = g.getFontMetrics();
+        int w = fm.stringWidth(title);
+        g.drawString(title, INV_WIDTH + EQUIP_WIDTH/2 - (2*w / 3), 50);
+        g.setFont(g.getFont().deriveFont(old));
 
         MapObjectView[] views = avatar.getEquipmentViews();
 
@@ -191,7 +202,7 @@ public class InventoryView extends ModelView {
     	
     	float old = g.getFont().getSize();
 		g.setFont(g.getFont().deriveFont(25.0f));
-		String title = "Skills : You Have " + avatar.getskillPoints() +  " Points";
+		String title = "Skills : You Have " + avatar.getskillPoints() +  " Point(s)";
 		FontMetrics fm = g.getFontMetrics();
 	    int w = fm.stringWidth(title);
 		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);

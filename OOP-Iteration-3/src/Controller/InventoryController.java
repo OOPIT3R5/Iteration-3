@@ -84,10 +84,10 @@ public class InventoryController extends Controller {
 
     private class UseItem implements MouseListener {
 
-        private static final int InventoryStartingX = 141;
-        private static final int InventoryStartingY = 131;
-        private static final int EquipmentStartingX = 1163;
-        private static final int EquipmentStartingY = 131;
+        private final int InventoryStartingX = InventoryView.INV_GRIDX;//= 141;
+        private final int InventoryStartingY = InventoryView.INV_GRIDY;//= 131;
+        private final int EquipmentStartingX = InventoryView.EQUIP_Y;//= 1163;
+        private final int EquipmentStartingY = InventoryView.EQUIP_Y;//= 131;
 
         private static final int EquipmentMidXLo    =1251;
         private static final int EquipmentMidYLo    = 131;
@@ -99,8 +99,8 @@ public class InventoryController extends Controller {
         private static final int EquipmentTopXHi    =1427;
         private static final int EquipmentTopYHi    = 331;
 
-        private static final int Xspacing           =  88;
-        private static final int Yspacing           = 100;
+        private final int Xspacing           = InventoryView.INV_GRIDWIDTH/6;//=  88;
+        private final int Yspacing           = InventoryView.INV_GRIDHEIGHT/4;//= 100;
 
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -113,7 +113,7 @@ public class InventoryController extends Controller {
             else {
                 setChanged();
                 notifyObservers();
-                
+                getInfo(e.getPoint());
             }
         }
 
@@ -136,6 +136,24 @@ public class InventoryController extends Controller {
             System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
             e.utilizeTakeableItem((X+(Y*6))); //Go all VISITOR PATTERN ON THIS thing.
 
+        }
+        
+        private void getInfo(Point pointclicked) {
+            int X = pointclicked.x;
+            int Y = pointclicked.y;
+            System.out.println(pointclicked);
+
+            if(X < InventoryStartingX || Y < InventoryStartingY || X > (InventoryStartingX+(Xspacing*6)) || Y > (InventoryStartingY+(Yspacing*4)))
+                checkEquipment(X, Y);
+
+            X -= InventoryStartingX;
+            X /= Xspacing;
+
+            Y -= InventoryStartingY;
+            Y /= Yspacing;
+
+            System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+            inventoryView.setInfo(e.getItem((X+(Y*6))).toString());
         }
 
         private void checkEquipment(int X, int Y) {
