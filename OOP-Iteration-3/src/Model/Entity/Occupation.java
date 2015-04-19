@@ -68,15 +68,15 @@ public abstract class Occupation implements TakeableItemVisitor {
         return skills;
     }
 
-    public HashMap<String, Ability> getAbilities() {
+    public ArrayList<Ability> getAbilities() {
 
-        HashMap<String, Ability> abilities = new HashMap<String, Ability>();
+        ArrayList<Ability> abilities = new ArrayList<Ability>();
         //attack
 
-        abilities.put("Bind Wounds", bindwoundsAbil);
-        abilities.put("Attack", attackAbil);
-        abilities.put("Observation", observeAbil);
-        abilities.putAll(getAbilitiesSub());
+        abilities.add(bindwoundsAbil);
+        abilities.add(attackAbil);
+        abilities.add(observeAbil);
+        abilities.addAll(getAbilities());
         return abilities;
 
     }
@@ -96,8 +96,8 @@ public abstract class Occupation implements TakeableItemVisitor {
 		subclasses of OccupationSpecificItem
 	*/
 
-    protected abstract Map<? extends String, ? extends Ability> getAbilitiesSub();
-
+    protected abstract ArrayList<Ability> getAbilitiesSub();
+    
     public int getBindWoundsSkillLevel() {
         return bindwounds.getCurrentLevel();
     }

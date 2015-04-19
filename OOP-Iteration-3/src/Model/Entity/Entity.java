@@ -60,6 +60,25 @@ public class Entity implements MovementInterface {
         setDirection(Direction.NORTH);
         
         inventoryView = new InventoryView(this);
+      //  decal = new Decal();
+	}
+	
+	public InventoryView getInventoryView(){
+		return inventoryView;
+	}
+	/*
+	public Decal getDecal() {
+		// TODO Auto-generated method stub
+		return decal;
+	}
+	
+	public void setDecal(Decal d) {
+		//TODO 
+		decal = d;
+	}*/
+	
+	public void examineItem(String s){
+		inventoryView.setInfo(s);
 	}
 	
 	public Entity (String name){
