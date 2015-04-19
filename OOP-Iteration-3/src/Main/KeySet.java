@@ -32,7 +32,9 @@ public class KeySet {
         keyBindings.put("ACTION7",55);
         keyBindings.put("ACTION8",56);
         keyBindings.put("ACTION9",57);
-        keyBindings.put("ACTION0",48);
+        keyBindings.put("ACTION10",48);
+        keyBindings.put("ACTION11",KeyEvent.VK_MINUS);
+        keyBindings.put("ACTION12",KeyEvent.VK_EQUALS);
     }
     public static int getKey(String s){
         return keyBindings.get(s);

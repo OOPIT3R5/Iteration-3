@@ -74,7 +74,7 @@ public class GameController extends Controller {
 		String name = "ACTION" + i;
 		for(Entry<String, Ability> entry : abilities.entrySet()){
 			listeners.add(new AbilityListener(entry.getKey(),name));
-			name = "ACTION" + (i++);
+			name = "ACTION" + (++i);
 		}
 		for(KeyListener k : listeners){
 			f.addKeyListener(k);
@@ -289,12 +289,13 @@ public class GameController extends Controller {
 		String key = "";
 		public AbilityListener(String s,  String key){
 			this.s = s;
+			this.key = key;
 		}
 		@Override
 		public void keyPressed(KeyEvent k) {
 			if(k.getKeyCode() == KeySet.getKey(key)){
-				//avatar.ability(String s);
-				System.out.println("You just " + s);
+				avatar.ability(s);
+				System.out.println(s);
 			}
 			
 		}

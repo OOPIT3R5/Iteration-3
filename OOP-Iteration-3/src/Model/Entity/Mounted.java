@@ -33,10 +33,16 @@ public class Mounted {
 	
 	public void unMount(){
 		isMounted = false;
-		//place avatar on map
+		//rider.setDecal(((NPC)mount).getDecal())
+		//change avatar decal to avatar's decal
+		//move avatar to adjacent tile
+		//place mount on map where avatar was last
 	}
 	public void mount(Avatar avatar){
-		//take avatar off the map.
+		// remove mount from map.
+		//change avatar decal to mount's
+		//place avatar on mount's tile/last position
+
 		setRider(avatar);
 		isMounted = true;
 	}
