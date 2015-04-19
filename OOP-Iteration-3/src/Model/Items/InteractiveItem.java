@@ -6,8 +6,8 @@ import View.Model.MapObjectView;
 
 public class InteractiveItem extends Item{
 
-    public InteractiveItem(Ability ability, String name, MapObjectView mov) {
-        super(ability, name, mov);
+    public InteractiveItem(String name, MapObjectView mov) {
+        super(name, mov);
     }
 
     @Override
