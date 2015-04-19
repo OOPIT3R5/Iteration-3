@@ -50,6 +50,7 @@ public class GameView extends ModelView {
 		gameMap.drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
 		
 		*/
+		System.out.println("um");
 		gameMap.render(g, avatar);
 	}
 

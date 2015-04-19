@@ -32,7 +32,6 @@ public class GameMapView extends ModelView {
 	@Override
 	public void accept(View view) {
 		view.visit(this);
-		
 	}
 
 	@Override
@@ -41,10 +40,9 @@ public class GameMapView extends ModelView {
 		int hexagon_size = 100;
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
-		HexagonalLocation center = new HexagonalLocation(4, 4);
+		HexagonalLocation center = avatar.getLocation();
 		int grid_radius = View.WIDTH / hexagon_size;
 		ArrayList<HexagonalTile> hex_tiles = gMap.getTilesSurroundingAvatar(grid_radius);
-		System.out.println("here2: " + hex_tiles.toString());
 		
 		for (HexagonalTile hex_tile : hex_tiles) {
 			hex_tile.render(g, origin, center);
