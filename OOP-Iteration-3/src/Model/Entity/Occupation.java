@@ -9,9 +9,6 @@ import java.util.Map;
 public abstract class Occupation implements TakeableItemVisitor {
 
 
-
-
-
     private Entity entity;
     private Skill bindwounds;
     private Skill bargain;

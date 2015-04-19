@@ -25,6 +25,8 @@ public class Entity implements MovementInterface {
 	private ArrayList<Ability> movement_;
 	
 	private int movementSpeed;
+	//rename
+	protected int numOfPointsCanAllocateToLevelUpSkill;
 	
 	/*Use */
 	public Entity(){
@@ -101,6 +103,8 @@ public class Entity implements MovementInterface {
     }
     //end of package protected methods to be called ONLY by the occupations
 
+    
+    	//can't award more than numOfPointsCanAllocateToLevelUpSkill
     public void awardExperience(int award){
         stats.awardExperience(award);
     }
@@ -160,6 +164,7 @@ public class Entity implements MovementInterface {
 	
     public void autoLevelUp() {
         awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
+        numOfPointsCanAllocateToLevelUpSkill++;
     }
 
 
