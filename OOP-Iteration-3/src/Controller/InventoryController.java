@@ -101,6 +101,8 @@ public class InventoryController extends Controller {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            setChanged();
+            notifyObservers();
             placeClicked(e.getPoint());
         }
 

@@ -70,35 +70,42 @@ public class InventoryView extends ModelView {
 	}
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		g.drawString("Insert inventory here", 500, 50);
-		g.drawRect(INV_X, INV_Y, INV_WIDTH, INV_HEIGHT);
-		g.drawRect(INV_GRIDX, INV_GRIDY, INV_GRIDWIDTH, INV_GRIDHEIGHT);
+        renderInventory(g);
+        renderEquipment(g);
+    }
 
-		g.drawRect(EQUIP_X, EQUIP_Y, EQUIP_WIDTH, EQUIP_HEIGHT);
-		g.drawRect(STATS_X, STATS_Y, STATS_WIDTH, STATS_HEIGHT);
+    private void renderInventory(Graphics g){
+        g.drawString("INVENTORY", 500, 50);
+        g.drawRect(INV_X, INV_Y, INV_WIDTH, INV_HEIGHT);
+        g.drawRect(INV_GRIDX, INV_GRIDY, INV_GRIDWIDTH, INV_GRIDHEIGHT);
+
+        g.drawRect(EQUIP_X, EQUIP_Y, EQUIP_WIDTH, EQUIP_HEIGHT);
+        g.drawRect(STATS_X, STATS_Y, STATS_WIDTH, STATS_HEIGHT);
 
 
 
         ArrayList<MapObjectView> mov = avatar.getInventory();
         int counter = mov.size();
 
-		for(int i = 0; i < 4; ++i){
-			for(int j = 0; j < 6; ++j){
-				g.drawRect(INV_GRIDX+j*INV_GRIDWIDTH/6, INV_GRIDY+i*INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
+        for(int i = 0; i < 4; ++i){
+            for(int j = 0; j < 6; ++j){
+                g.drawRect(INV_GRIDX+j*INV_GRIDWIDTH/6, INV_GRIDY+i*INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
                 if(counter > 0){
                     g.drawImage(mov.get((6*i)+j).getBufferedImage().getScaledInstance(65,65, Image.SCALE_DEFAULT),(INV_GRIDX+j*INV_GRIDWIDTH/6)+12,(INV_GRIDY+i*INV_GRIDHEIGHT/4)+12,null);
                     counter--;
                 }
             }
-		}
-		
-		g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
-		g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
-		g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 + INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
-		g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 - INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
-		g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/2, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);
-	}
+        }
+    }
+
+    private void renderEquipment(Graphics g){
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                                        //TOP BOX (helmet)
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //MIDDLE BOX (Armor)
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 + INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //RIGHT BOX (Off-hand)
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 - INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //LEFT BOX (Weapon)
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/2, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //BOTTOM BOX (Shoes)
+
+    }
 
 	@Override
 	public void update(Observable o, Object arg) {
