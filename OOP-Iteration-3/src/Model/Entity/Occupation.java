@@ -76,7 +76,7 @@ public abstract class Occupation implements TakeableItemVisitor {
         abilities.put("Bind Wounds",bindwoundsAbil);
         abilities.put("Attack",attackAbil);
         abilities.put("Observe",observeAbil);
-        abilities.putAll(getAbilitiesSub());
+        //abilities.putAll(getAbilitiesSub());
         return abilities;
 
     }

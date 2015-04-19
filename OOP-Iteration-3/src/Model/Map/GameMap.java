@@ -57,9 +57,9 @@ public class GameMap {
 
 	public ArrayList<HexagonalTile> getTilesSurroundingAvatar(int radius) {
 		ArrayList<HexagonalLocation> hex_coords;
-		//hex_coords = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), radius);
-		hex_coords = HexagonalLocation.circle(new HexagonalLocation(4, 4), radius);
-		ArrayList<HexagonalTile> foo = gameMapGrid.getHexTiles(hex_coords);
+		hex_coords = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), radius);
+		//hex_coords = HexagonalLocation.circle(new HexagonalLocation(4, 4), radius);
+		//ArrayList<HexagonalTile> foo = gameMapGrid.getHexTiles(hex_coords);
 		return gameMapGrid.getHexTiles(hex_coords);
 	}
 
@@ -91,8 +91,9 @@ public class GameMap {
 	
 	public void render(Graphics g, Avatar av)
 	{
-		DrawableHexGridInterface drawable_grid = gameMapGrid;
-		drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
+		mapView.render(g);
+		//DrawableHexGridInterface drawable_grid = gameMapGrid;
+		//drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
 	}
 
 	public void spawn(Entity e, HexagonalLocation location)
