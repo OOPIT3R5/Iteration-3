@@ -4,7 +4,6 @@ package Model.Items;
 import Model.Entity.Ability.Ability;
 import View.MapObjectView;
 
-import java.awt.image.BufferedImage;
 
 public abstract class Item implements MapObject{
 
@@ -26,6 +25,8 @@ public abstract class Item implements MapObject{
     public String getName(){
         return name;
     }
+
+   // public abstract String getHelp();
 
     public void execute(){
         ability.execute();
