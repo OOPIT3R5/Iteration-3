@@ -2,12 +2,12 @@ package Model.Items;
 
 import Model.Entity.Ability.*;
 import Model.Entity.Entity;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class Obstacle extends Item{
 
     public Obstacle(String name, MapObjectView mov) {
-        super(new DoNothing(), name, mov);
+        super(name, mov);
     }
 
     @Override
@@ -18,10 +18,5 @@ public class Obstacle extends Item{
     @Override
     public void onTouch(Entity entity) {
         throw new RuntimeException("Should not have an Obstacle be touched.");
-    }
-
-    @Override
-    public void execute() {
-        throw new RuntimeException("Should not have an Obstacle be ran.");
     }
 }

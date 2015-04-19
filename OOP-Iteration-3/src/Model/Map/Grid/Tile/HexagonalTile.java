@@ -1,14 +1,17 @@
 package Model.Map.Grid.Tile;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import Model.Entity.MovementInterface;
 import Model.Map.Direction;
+import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
-import View.HexTileView;
+import View.Model.HexTileView;
 
 
 public class HexagonalTile extends Tile {
@@ -20,15 +23,14 @@ public class HexagonalTile extends Tile {
 		hView = new HexTileView(this);
 	}
 	
-	public HexagonalTile( Terrain terrain) {
+	public HexagonalTile(Terrain terrain) {
 		super(terrain);
 		hView = new HexTileView(this);
-		
 	}
 
 	@Override
 	public HexagonalTile clone() {
-		return new HexagonalTile( super.getTerrain());
+		return new HexagonalTile(super.getTerrain());
 	}
 	
 	@Override
@@ -71,6 +73,10 @@ public class HexagonalTile extends Tile {
 			getTerrain().notifyOfEntity(target, direction);
 	}
 	
+	
+	public void render(Graphics g, Point origin, HexagonalLocation center) {
+		hView.render(g, origin, center);
+	}
 	
 	public void render(Graphics g)
 	{

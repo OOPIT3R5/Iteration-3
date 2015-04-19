@@ -1,14 +1,13 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
 import Model.Entity.Entity;
 import Model.Entity.TakeableItemVisitor;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public abstract class TakeableItem extends Item{
 
-    public TakeableItem(Ability ability, String name, MapObjectView mov) {
-        super(ability, name, mov);
+    public TakeableItem(String name, MapObjectView mov) {
+        super(name, mov);
     }
 
     @Override

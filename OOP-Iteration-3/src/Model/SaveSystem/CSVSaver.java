@@ -7,7 +7,7 @@ import Model.Entity.Ability.DoNothing;
 import Model.Items.AreaEffect;
 import Model.Items.Item;
 import Model.Items.ShoesItem;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class CSVSaver implements Saver{
 

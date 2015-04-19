@@ -1,6 +1,6 @@
 package Model.Items;
 
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public abstract class AreaEffect implements MapObject {
     private MapObjectView mov;

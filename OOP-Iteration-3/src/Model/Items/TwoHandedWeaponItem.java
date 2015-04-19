@@ -1,14 +1,13 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class TwoHandedWeaponItem extends SmasherWeaponItem {
 
     private String name;
 
-    public TwoHandedWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
-        super(AttackSpeed.SLOW, statchange, ability, name, mov);
+    public TwoHandedWeaponItem(int statchange, String name, MapObjectView mov) {
+        super(AttackSpeed.SLOW, statchange, name, mov);
     }
 
     @Override

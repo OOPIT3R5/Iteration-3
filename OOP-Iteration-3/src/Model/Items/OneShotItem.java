@@ -2,12 +2,15 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Entity;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class OneShotItem extends Item {
 
+    private Ability ability;
+
     public OneShotItem(Ability ability, String name, MapObjectView mov) {
-        super(ability, name, mov);
+        super(name, mov);
+        this.ability = ability;
     }
 
     @Override
@@ -15,10 +18,9 @@ public class OneShotItem extends Item {
         return true;
     }
 
-
     //TODO: Figure out the situation of triggering a OneShotItem.
     @Override
     public void onTouch(Entity entity) {
-        getAbility().execute();
+        ability.execute();
     }
 }

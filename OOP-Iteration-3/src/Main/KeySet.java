@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,14 +12,14 @@ public class KeySet {
 		 keyReset();
 	  }
     public static void keyReset(){
-        keyBindings.put("SOUTHWEST",97);
-        keyBindings.put("SOUTH",83);
-        keyBindings.put("SOUTHEAST",99);
-        keyBindings.put("EAST",68);
-        keyBindings.put("NORTHEAST",105);
-        keyBindings.put("NORTH",87);
-        keyBindings.put("NORTHWEST",103);
-        keyBindings.put("WEST",65);
+        keyBindings.put("SOUTHWEST",KeyEvent.VK_A);
+        keyBindings.put("SOUTH",KeyEvent.VK_S);
+        keyBindings.put("SOUTHEAST",KeyEvent.VK_D);
+        keyBindings.put("EAST",null);
+        keyBindings.put("NORTHEAST",KeyEvent.VK_E);
+        keyBindings.put("NORTH",KeyEvent.VK_W);
+        keyBindings.put("NORTHWEST",KeyEvent.VK_Q);
+        keyBindings.put("WEST",null);
         keyBindings.put("ENTER",10);
         keyBindings.put("BACK",27);
         keyBindings.put("INVENTORY",73);
@@ -31,7 +32,9 @@ public class KeySet {
         keyBindings.put("ACTION7",55);
         keyBindings.put("ACTION8",56);
         keyBindings.put("ACTION9",57);
-        keyBindings.put("ACTION0",48);
+        keyBindings.put("ACTION10",48);
+        keyBindings.put("ACTION11",KeyEvent.VK_MINUS);
+        keyBindings.put("ACTION12",KeyEvent.VK_EQUALS);
     }
     public static int getKey(String s){
         return keyBindings.get(s);

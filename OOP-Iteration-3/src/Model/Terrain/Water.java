@@ -17,6 +17,7 @@ public class Water extends Terrain {
 
 	@Override
 	public Color getColor() {
+		System.out.print(".");
 		return Color.BLUE;
 	}
 	
