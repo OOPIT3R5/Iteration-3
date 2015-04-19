@@ -51,5 +51,15 @@ public class NPC extends Entity {
 		return map;
 	}
 	
+	public void sleep() {
+	}
+	
+	public void charm() {
+		becomeNonHostile();
+	}
+
+	public void polymorph() {		// TODO enchantment spell methods
+	}
+	
 
 }

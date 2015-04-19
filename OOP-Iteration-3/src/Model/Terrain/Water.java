@@ -12,12 +12,11 @@ public class Water extends Terrain {
 	}
 	
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.disableWalk(Direction.intToHex(Direction.hexToInt(direction) + 3));
+		target.disableWalk(direction);
 	}
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
 		return Color.BLUE;
 	}
 	

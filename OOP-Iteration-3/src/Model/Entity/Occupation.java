@@ -1,7 +1,10 @@
 package Model.Entity;
 
 
+
+import Model.Entity.Ability.*;
 import Model.Items.UsableItem;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,19 +13,32 @@ public abstract class Occupation implements TakeableItemVisitor {
 
 
     private Entity entity;
+    
+    private Skill attack;
     private Skill bindwounds;
     private Skill bargain;
     private Skill observation;
+    
+    private Ability bindwoundsAbil;
+    //private Ability bargainAbil;
+    private Ability observeAbil;
+    private Ability attackAbil;
 
 	public Occupation(Entity entity) {
         this.entity = entity;
         
         //BREAKING TDA fix!!!!
         this.entity.setOccupation(this);
+        attack = new Skill (1,10);
         bindwounds = new Skill(1, 10);
         bargain = new Skill(1, 10);
         observation = new Skill(1, 10);
-    }
+        
+        bindwoundsAbil = new BindWounds(entity, bindwounds);
+        //bargainAbil= new Bargain(entity, bargain);
+        observeAbil = new Observe(entity , entity.map, observation);
+        attackAbil = new Attack(entity, entity.map, attack );
+	}
 
   
 	protected Entity getEntity(){
@@ -33,10 +49,24 @@ public abstract class Occupation implements TakeableItemVisitor {
 		
 		HashMap<String, Skill> skills = new HashMap<String, Skill>();
 		skills.put("Bind Wounds", bindwounds);
+		skills.put("Attack", attack);
 		skills.put("Bargain", bargain);
 		skills.put("Observation", observation);
 		skills.putAll(getSkillsSub());
 		return skills;
+		
+	}
+	
+	public HashMap<String,Ability> getAbilities(){
+		
+		HashMap<String, Ability> abilities = new HashMap<String, Ability>();
+		//attack
+		
+		abilities.put("Bind Wounds", bindwoundsAbil);
+		abilities.put("Attack", attackAbil);
+		abilities.put("Observation", observeAbil);
+		abilities.putAll(getAbilitiesSub());
+		return abilities;
 		
 	}
 
@@ -55,7 +85,10 @@ public abstract class Occupation implements TakeableItemVisitor {
 		subclasses of OccupationSpecificItem
 	*/
 
-    protected abstract Map<? extends String, ? extends Skill> getSkillsSub();
+    protected abstract Map<? extends String, ? extends Ability> getAbilitiesSub();
+
+
+	protected abstract Map<? extends String, ? extends Skill> getSkillsSub();
 
 
 	public int getBindWoundsSkillLevel(){

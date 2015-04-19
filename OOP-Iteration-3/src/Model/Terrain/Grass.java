@@ -12,12 +12,11 @@ public class Grass extends Terrain {
 	}
 	
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.enableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
+		target.enableMove(direction);
 	}
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
 		return Color.GREEN;
 	}
 	

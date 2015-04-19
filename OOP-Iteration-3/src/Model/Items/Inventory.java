@@ -29,6 +29,13 @@ public class Inventory {
         inventory.remove(index);
         return ti;
     }
+    
+    public TakeableItem getFromInventory(int index){
+        if(index >= inventory.size())
+            return null;
+        TakeableItem ti = inventory.get(index);
+        return ti;
+    }
 
     public int getGoldamount(){
         return goldamount;

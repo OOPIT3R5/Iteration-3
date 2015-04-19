@@ -12,12 +12,11 @@ public class Mountain extends Terrain {
 	}
 	
 	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.disableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
+		target.disableMove(direction);
 	}
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
 		return Color.RED;
 	}
 	

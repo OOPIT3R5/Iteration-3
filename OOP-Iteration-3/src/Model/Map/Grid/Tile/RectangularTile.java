@@ -46,11 +46,16 @@ public class RectangularTile extends Tile {
 	}
 	
 	@Override
-	public void notifyOfEntity(MovementInterface target, Direction direction) {
+	public void notifyOfEntity(MovementInterface target, Direction direction) {		// TODO replace with prospectiveMovement?
 		if (super.hasEntity())
 			target.disableMove(Direction.intToHex(Direction.hexToInt(direction) + 4));
 		else
 			getTerrain().notifyOfEntity(target, direction);
+	}
+
+	@Override
+	public void prospectiveMovement(MovementInterface target, Direction direction) {
+		
 	}
 	
 }
