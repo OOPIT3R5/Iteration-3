@@ -1,17 +1,21 @@
 package View;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
+import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
+import Model.Map.Grid.HexagonalGrid;
 import Model.Menu.ConfigControls;
 
 public class View extends JPanel{
 	public static final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;;
 	public static final int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	private ModelView modelView;
-	
+
 	public View(){
 		setSize(WIDTH, HEIGHT);
 		this.setBounds(0, 0, WIDTH, HEIGHT);

@@ -3,7 +3,21 @@ package Model.Entity;
 public abstract class Adversarial extends NPC {
 
 	public Adversarial() {
-		// TODO Auto-generated constructor stub
+		super();
+		becomeHostile();
 	}
+
+	public Adversarial(String name, Occupation o) {
+		super(name, o);
+		becomeHostile();
+	}
+
+	public Adversarial(String name) {
+		super(name);
+		becomeHostile();
+	}
+
+
+	
 
 }

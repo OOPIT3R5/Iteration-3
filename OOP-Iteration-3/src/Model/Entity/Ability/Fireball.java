@@ -3,51 +3,47 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
 
 public class Fireball extends SummonerAbility {
+	
+	private ArrayList<Tile> targetTiles;
+	private Skill skill;
 
-	public Fireball(ArrayList<Tile> targetList, Entity entity) {
-        
+	public Fireball(ArrayList<Tile> targetTiles, Skill skill) {
+        this.targetTiles = targetTiles;
+        this.skill = skill;
     }
 
 	@Override
     public void execute() {
 		// sourceAvatar.checkMana(this);
 	}
-	
-	public void complete(){
+
+	@Override
+	protected void cast() {
 		
 	}
 
 	@Override
 	public int getSkillLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return skill.getCurrentLevel();
 	}
 
 	@Override
 	protected int getRequiredMana() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
 	@Override
-	protected void scaleMagnitude() {
-		// TODO Auto-generated method stub
-		
+	protected int scaleMagnitude() {
+		return 150 * getSkillLevel()/100;
 	}
 
 	@Override
 	protected ArrayList<Tile> getTargetTiles() {
-		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	protected void cast() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -29,6 +29,7 @@ public class Test extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
+		
 		((HexagonalGrid)gg_).drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(x, y), 100, 100, 20);	// 75 = good size
 		
 		/*g.setColor(Color.WHITE);

@@ -150,7 +150,19 @@ public class Entity implements MovementInterface {
         awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
     }
 
+
     public ArrayList<MapObjectView> getInventory() {
         return inventory.getViews();
     }
+
+	public void makeActionChoice() {
+		// hook
+		
+	}
+
+	public void getOccupationTestMethod() {
+		occupation.printName();
+		
+	}
+
 }

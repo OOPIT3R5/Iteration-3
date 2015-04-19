@@ -21,6 +21,11 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		this.po = po;
 	}
 
+	public HelpfulMenace() {
+		super();
+		isOwned = false;
+	}
+
 	/*AI stuff*/
 	public void makeActionChoice(){
 		Ability a;
@@ -63,6 +68,12 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
 		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile
 		//if there are no tiles, just move in a random direction.
+	}
+	
+	protected void becomePet(PetOwnership po){
+		po.setPet(this);
+		this.po = po;
+		
 	}
 
 }
