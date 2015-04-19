@@ -72,10 +72,20 @@ public class InventoryView extends ModelView {
 	public void render(Graphics g) {
         renderInventory(g);
         renderEquipment(g);
+        renderStats(g);
+        renderSkills(g);
     }
 
     private void renderInventory(Graphics g){
-        g.drawString("INVENTORY", 500, 50);
+    	
+    	float old = g.getFont().getSize();
+		g.setFont(g.getFont().deriveFont(40.0f));
+		String title = "Inventory";
+		FontMetrics fm = g.getFontMetrics();
+	    int w = fm.stringWidth(title);
+		g.drawString(title, INV_WIDTH/2 - (w), 50);
+		g.setFont(g.getFont().deriveFont(old));
+		
         g.drawRect(INV_X, INV_Y, INV_WIDTH, INV_HEIGHT);
         g.drawRect(INV_GRIDX, INV_GRIDY, INV_GRIDWIDTH, INV_GRIDHEIGHT);
 
@@ -99,12 +109,74 @@ public class InventoryView extends ModelView {
     }
 
     private void renderEquipment(Graphics g){
+    	
+    	float old = g.getFont().getSize();
+		g.setFont(g.getFont().deriveFont(40.0f));
+		String title = "Equipment";
+		FontMetrics fm = g.getFontMetrics();
+	    int w = fm.stringWidth(title);
+		g.drawString(title, INV_WIDTH + EQUIP_WIDTH/2 - (2*w / 3), 50);
+		g.setFont(g.getFont().deriveFont(old));
+		
         g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                                        //TOP BOX (helmet)
         g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //MIDDLE BOX (Armor)
         g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 + INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //RIGHT BOX (Off-hand)
         g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 - INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //LEFT BOX (Weapon)
         g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/2, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //BOTTOM BOX (Shoes)
 
+    }
+    
+    private void renderStats(Graphics g){
+    	int buttonWidth = 150;
+    	int buttonHeight = 22;
+    	
+    	float old = g.getFont().getSize();
+		g.setFont(g.getFont().deriveFont(25.0f));
+		String title = "Primary Stats";
+		FontMetrics fm = g.getFontMetrics();
+	    int w = fm.stringWidth(title);
+		g.drawString(title, INV_GRIDX + buttonWidth - (w / 2), STATS_Y+ 35);
+		g.setFont(g.getFont().deriveFont(old));
+		
+    	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5, Color.black, "Lives left : " + avatar.getStatistics().getNumLivesLeft() );
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Strength : " + avatar.getStatistics().getStrength() );
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + buttonHeight*2, Color.black, "Agility  : " + avatar.getStatistics().getAgility() );
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + buttonHeight*3, Color.black, "Intellect : " + avatar.getStatistics().getIntellect() );
+    	m.render(g, INV_GRIDX + buttonWidth, STATS_Y + STATS_HEIGHT/5, Color.black, "Hardiness : " + avatar.getStatistics().getHardiness() );
+    	m.render(g, INV_GRIDX + buttonWidth, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Experience : " + avatar.getStatistics().getExperience() );
+    	m.render(g, INV_GRIDX + buttonWidth, STATS_Y + STATS_HEIGHT/5 + buttonHeight*2, Color.black, "Movement : " + avatar.getStatistics().getMovement() );
+    	
+    	old = g.getFont().getSize();
+		g.setFont(g.getFont().deriveFont(25.0f));
+		title = "Derived Stats";
+		fm = g.getFontMetrics();
+	    w = fm.stringWidth(title);
+		g.drawString(title, INV_GRIDX + buttonWidth*4 - (w / 2), STATS_Y+ 35);
+		g.setFont(g.getFont().deriveFont(old));
+		
+    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5, Color.black, "Level  : " + avatar.getStatistics().getLevel() );
+    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Life : " + avatar.getStatistics().getLife() );
+    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5 + buttonHeight*2, Color.black, "Mana  : " + avatar.getStatistics().getMana() );
+    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5 + buttonHeight*3, Color.black, "Offensive rating : " + avatar.getStatistics().getOffensiveRating() );
+    	m.render(g, INV_GRIDX + buttonWidth*4, STATS_Y + STATS_HEIGHT/5, Color.black, "Defensive rating : " + avatar.getStatistics().getDefensiveRating() );
+    	m.render(g, INV_GRIDX + buttonWidth*4, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Armor rating : " + avatar.getStatistics().getArmorRating() );
+    }
+    
+    private void renderSkills(Graphics g){
+    	int buttonWidth = 150;
+    	int buttonHeight = 22;
+    	
+    	float old = g.getFont().getSize();
+		g.setFont(g.getFont().deriveFont(25.0f));
+		String title = "Skills : You Have _ Level Ups";
+		FontMetrics fm = g.getFontMetrics();
+	    int w = fm.stringWidth(title);
+		g.drawString(title, INV_GRIDX + buttonWidth*7 - (w / 2), STATS_Y+ 35);
+		g.setFont(g.getFont().deriveFont(old));
+		
+    	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
+    	m.render(g, INV_GRIDX + buttonWidth*6, STATS_Y + STATS_HEIGHT/5, Color.black, "Lives left : " + avatar.getStatistics().getNumLivesLeft() );
     }
 
 	@Override
