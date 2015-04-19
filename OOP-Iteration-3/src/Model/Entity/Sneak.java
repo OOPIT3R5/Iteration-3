@@ -3,6 +3,7 @@ package Model.Entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import Model.Entity.Ability.*;
 import Model.Items.*;
 
 public class Sneak extends Occupation{
@@ -11,6 +12,11 @@ public class Sneak extends Occupation{
     private Skill detecttraps;
     private Skill creep;
     private Skill rangedweapon;
+    
+    private Ability pickAbil;
+    private Ability detectAbil;
+    private Ability creepAbil;
+    //ranged weapon is implicit
 
 	public Sneak(Entity e){
         super(e);
@@ -18,6 +24,10 @@ public class Sneak extends Occupation{
         detecttraps = new Skill(1,10);
         creep       = new Skill(1,10);
         rangedweapon= new Skill(1,25);
+        
+        pickAbil = new Pickpocket(getEntity(), getEntity().map, pickpocket);
+        detectAbil = new DetectTrap(getEntity(),getEntity().map,detecttraps);
+        creepAbil = new Creep(getEntity(), getEntity().map, creep);
     }
 
     //TODO: Replace all 'System.out.println()' methods with something with Logger.
@@ -102,5 +112,15 @@ public class Sneak extends Occupation{
 		skills.put("Creep", creep);
 		skills.put("Ranged Weapon", rangedweapon);
 		return skills;
+	}
+
+	@Override
+	protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
+		HashMap<String, Ability> abilities = new HashMap<String, Ability>();
+
+		abilities.put("Pickpocket", pickAbil);
+		abilities.put("Detect Traps", detectAbil);
+		abilities.put("Creep", creepAbil);
+		return abilities;
 	}
 }

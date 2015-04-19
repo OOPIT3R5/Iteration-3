@@ -3,6 +3,7 @@ package Model.Entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import Model.Entity.Ability.*;
 import Model.Items.*;
 
 public class Summoner extends Occupation{
@@ -11,14 +12,50 @@ public class Summoner extends Occupation{
     private Skill boon;
     private Skill bane;
     private Skill staff;
-
+    
+    private Ability enhanceAbil;
+    private Ability hasteAbil;
+    private Ability floatAbil;
+    //enhance = boon
+    //haste
+    //float
+    
+    private Ability blizzAbil;
+    private Ability fireballAbil;
+    private Ability shockAbil;
+    //blizzard = bane
+    //fireball
+    //shock
+    private Ability charmAbil;
+    private Ability sleepAbil;
+    private Ability polymorphAbil;
+    //charm = enchantment
+    //sleep
+    //polymorph
+    
+    
 	public Summoner(Entity e){
         super(e);
         enchantment = new Skill(1, 10);
         boon        = new Skill(1, 20);
         bane        = new Skill(1, 20);
         staff       = new Skill(1,  5);
-    }
+        
+      /* BOONS
+       * enhanceAbil = new Enhance(getEntity(),getEntity().map,boon);
+        hasteAbil = new Haste(getEntity(),getEntity().map,boon);
+        floatAbil = new Float(getEntity(),getEntity().map,boon);
+       */
+        
+        blizzAbil = new Blizzard(getEntity(),getEntity().map,bane);
+        fireballAbil = new Fireball(getEntity(),getEntity().map,bane);
+        shockAbil = new Shock(getEntity(),getEntity().map,bane);
+        
+        charmAbil = new Charm(getEntity(),getEntity().map,enchantment);
+        sleepAbil = new Sleep(getEntity(),getEntity().map,enchantment);
+        polymorphAbil = new Polymorph(getEntity(),getEntity().map,enchantment);
+	
+	}
 
 
 
@@ -102,6 +139,28 @@ public class Summoner extends Occupation{
 		skills.put("Staff", staff);
 		return skills;
 	}
+
+
+
+	@Override
+	protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
+		HashMap<String, Ability> abilities = new HashMap<String, Ability>();
+
+		abilities.put("Blizzard",blizzAbil);
+		abilities.put("Fireball",fireballAbil);
+		abilities.put("Shock", shockAbil);
+		
+		abilities.put("Charm", charmAbil);
+		abilities.put("Sleep", sleepAbil);
+		abilities.put("Polymporph", polymorphAbil);
+		
+		return abilities;
+		/* BOONS
+		 * "Enhance", enhanceAbil;
+	     * "Haste", hasteAbil;
+	     * "Float", floatAbil;
+	     */
+	 	}
     
     
     
