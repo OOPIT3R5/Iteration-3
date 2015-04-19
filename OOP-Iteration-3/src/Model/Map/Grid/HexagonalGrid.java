@@ -14,11 +14,14 @@ import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.RectangularTile;
 import Model.Map.Grid.Tile.Tile;
 import Model.Map.View.FlatHexagon;
+import Model.Terrain.Grass;
 
 public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	
 	public HexagonalGrid(int width, int height) {
 		super(width, height);
+		fill(new HexagonalTile(new Grass()));
+		System.out.println("hex grid constructed");
 	}
 	
 	public void add(HexagonalCoordinateInterface hex_coord, HexagonalTile hex_tile) {
@@ -43,6 +46,11 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 					hexagon_size, true).draw(g);
 		}
 	}*/
+	
+	@Override
+	public void render (Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size){
+		drawHex(g, origin, center, grid_radius, hexagon_size);
+	}
 	
 	@Override
 	public void drawHex(Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size) {
@@ -89,11 +97,18 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 
 	@Override
 	public void fill(Tile hex_tile) {
+		System.out.println("Super width: " + super.getWidth());
+		System.out.println("Super height: " + super.getHeight());
+			
 		for (int row = 0; row < super.getHeight(); row++)
 			for (int col = 0; col < super.getWidth(); col++) {
 				HexagonalTile insert = (HexagonalTile)hex_tile.clone();
-				insert(col, row, insert.clone());
+				HexagonalLocation location = new HexagonalLocation(row, col);
+				//System.out.println(location.getU() + " , " +  location.getV());
+				//insert.setLocation(location);
 				insert.setLocation(col, row - (col / 2));
+				insert(col, row, insert);
+				
 			}
 	}
 	
@@ -205,6 +220,11 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 		}
 		string.append(" ]");
 		return string.toString();
+	}
+
+	public void initalize() {
+		
+		
 	}
 	
 }

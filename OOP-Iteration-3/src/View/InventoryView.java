@@ -53,7 +53,6 @@ public class InventoryView extends ModelView {
 
     @Override
 	public void accept(View view) {
-		// TODO Auto-generated method stub
 		view.visit(this);
 	}
 	@Override
@@ -198,12 +197,10 @@ public class InventoryView extends ModelView {
     }
 
 	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+	public void update(Observable o, Object arg) {	// TODO
 
 	}
 		/*
-        // TODO Auto-generated method stub
         try {
             //g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,0,24,24), 0, 0, null);
            // g.drawImage(ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/item_sprites.png")).getSubimage(0,25,24,24).getScaledInstance(50,50,Image.SCALE_DEFAULT), 0, 0, null);

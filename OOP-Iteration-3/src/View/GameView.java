@@ -27,7 +27,6 @@ public class GameView extends ModelView{
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -36,9 +35,12 @@ public class GameView extends ModelView{
 		view.visit(this);
 		
 	}
+	
+	
 
 	@Override
 	public void render(Graphics g) {
+		/*
 		g.drawOval(50, 50,50, 50);
 		gameMap = new GameMap(100, 100);
 		gameMap.fill(new HexagonalTile(new Grass()));
@@ -48,6 +50,9 @@ public class GameView extends ModelView{
 		gameMap.add(5, 5, new HexagonalTile(new Mountain()));
 		
 		gameMap.drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
+		
+		*/
+		gameMap.render(g, avatar);
 	
 	
 	}

@@ -51,7 +51,7 @@ public class Test extends JPanel {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		GameMap gg = new GameMap(10, 10);
+		/*GameMap gg = new GameMap(10, 10);
 		gg.fill(new HexagonalTile(new Grass()));
 		//System.out.println(gg.toString());
 
@@ -61,7 +61,7 @@ public class Test extends JPanel {
 		//System.out.println(gg.toString());
 
 		gg.add(1, 1, new HexagonalTile(new Water()));
-		gg.add(5, 5, new HexagonalTile(new Mountain()));
+		gg.add(5, 5, new HexagonalTile(new Mountain()));*/
 		
 		//gg.drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
 		

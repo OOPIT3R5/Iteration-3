@@ -58,7 +58,7 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-        return null; // new Attack(this, map, );		// TODO add skill for attacking
+        return null; // new Attack(this, map, );		// TODO add skill for attacking (one-handed?)
     }
 
 

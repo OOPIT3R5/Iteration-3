@@ -15,5 +15,8 @@ public interface DrawableHexGridInterface {
 	
 	public void drawRectangleWithCoords(Graphics g, Point origin, HexagonalLocation hex,
 			int grid_width_radius, int grid_height_radius, int hexagon_size);
+
+	void render(Graphics g, Point origin, HexagonalLocation center,
+			int grid_radius, int hexagon_size);
 	
 }

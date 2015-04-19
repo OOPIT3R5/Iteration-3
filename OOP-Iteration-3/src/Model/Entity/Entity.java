@@ -39,24 +39,14 @@ public class Entity implements MovementInterface {
 	
 	private int movementSpeed;
 
-	//rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
+	//TODO rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
 	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
 
 	protected GameMap map;
 	
 	/*Use */
 	public Entity(){
-		//initialize movement
-		ArrayList<Entity> entity_list = new ArrayList<Entity>();
-		entity_list.add(this);
-		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
-		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
-		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,movementSpeed)));
-		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,movementSpeed)));
-		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,movementSpeed)));
-		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,movementSpeed)));
-		
-        equipmentManager = new Equipment(this);
+		equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer();
         movementSpeed = 1;
@@ -82,6 +72,18 @@ public class Entity implements MovementInterface {
 		this(name);
 		occupation = o;
 	}
+	
+	public Entity (GameMap map){
+		this();
+		this.map = map;
+		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
+		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
+		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,movementSpeed)));
+		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,movementSpeed)));
+		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,movementSpeed)));
+		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,movementSpeed)));
+	}
+	
 	
 	public int getMovementSpeed(){
 		return movementSpeed;
@@ -261,8 +263,7 @@ public class Entity implements MovementInterface {
 		stats.changeHealth(-damage);		
 	}
 
-	public void useMana(SummonerAbility summonerAbility) {
-		// TODO Auto-generated method stub
+	public void useMana(SummonerAbility summonerAbility) {		// TODO useMana()
 	}
 
 	public Occupation getOccupation() {
@@ -279,4 +280,9 @@ public class Entity implements MovementInterface {
 		}
 	}
 
+	protected void setLocation(HexagonalLocation loc)
+	{
+		this.currentPosition = loc;
+	}
+	
 }

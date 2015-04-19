@@ -4,8 +4,11 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 import Model.Entity.Entity;
+import Model.Map.HexagonalLocation;
 import Model.Map.Location;
+import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
+import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
 
 
@@ -26,6 +29,7 @@ public abstract class Grid {
 		width_ = width;
 		height_ = height;
 		size_ = 0;
+		//fill(new HexagonalTile(new Grass()));
 	}
 	
 	//public abstract void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
@@ -111,9 +115,11 @@ public abstract class Grid {
 	
 	public void fill(Tile defaultTile)
 	{
+		System.out.println("HERE");
 		for (int row = 0; row < getHeight(); row++)
 			for (int col = 0; col < getWidth(); col++) {
 				Tile insert = defaultTile.clone();
+				//insert.setLocation(new HexagonalLocation(row, col));
 				insert(col, row, insert.clone());
 				insert.setLocation(col, row - (col / 2));
 			}

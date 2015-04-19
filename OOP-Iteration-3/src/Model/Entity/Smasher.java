@@ -3,12 +3,18 @@ package Model.Entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import Model.Entity.Ability.Ability;
 import Model.Items.*;
 
 public class Smasher extends Occupation{
     private Skill onehandedweapon;
     private Skill twohandedweapon;
     private Skill brawlingweapon;
+    
+    
+   // private Ability onehandAbil;
+   // private Ability twohandAbil;
+   // private Ability brawlAbil;
 
 	public Smasher(Entity e) {
         super(e);
@@ -92,5 +98,13 @@ public class Smasher extends Occupation{
 		skills.put("Two-handed Weapon", twohandedweapon);
 		skills.put("Brawling Weapon", brawlingweapon);
 		return skills;
+	}
+
+
+
+	@Override
+	protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
+		
+		return null;
 	}
 }
