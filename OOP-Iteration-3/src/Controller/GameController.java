@@ -4,12 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Main.Game;
 import Main.KeySet;
-import Main.RunGame;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
@@ -46,12 +44,12 @@ public class GameController extends Controller {
         avatar = new Avatar("Joshua");
         new Smasher(avatar);
         try{
-            avatar.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
-            avatar.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));
-            avatar.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9, 7))));
-            avatar.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
-            //System.out.println(e.inven
-            
+            e.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
+            e.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));
+            e.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9, 7))));
+            e.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass Book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
+            e.addToInventory(new OneHandedWeaponItem(25, new DoNothing(), "Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(13,3))));
+            e.addToInventory(new ArmorItem(55, new DoNothing(), "Big Boss Armor", new MapObjectView(MapObjectView.getSpriteFromFE(31,0))));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
