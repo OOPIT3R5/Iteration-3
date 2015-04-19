@@ -31,7 +31,7 @@ public class Game {
 		gameMap = new GameMap(100, 100, avatar);
 	    setUpAvatar(avatar);
 		
-		gameMap.spawn(avatar);
+		gameMap.spawn(avatar, avatar.getLocation());
 		gameView = new GameView(gameMap, avatar);
 	}
 	

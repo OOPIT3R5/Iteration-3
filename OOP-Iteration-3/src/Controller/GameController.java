@@ -45,6 +45,7 @@ public class GameController extends Controller {
 	private GameController() {
 		
 	}
+	
 	public static void setGame(Game g){
 		
 		game = g;

@@ -18,21 +18,12 @@ import View.ModelView;
 
 public class GameMap{
 	
-	
 	GameMapView mapView;
 	HexagonalGrid gameMapGrid;
 	private int HEIGHT;
 	private int WIDTH;
 	private Avatar avatar;
-	public ArrayList<HexagonalLocation> getLine(Location loc)
-	{
-		return null;
-		//TODO modify location interface
-		
-		
 	
-	}
-
 	public GameMap(int width, int height, Avatar a) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
@@ -42,16 +33,6 @@ public class GameMap{
 		 //gameMapGrid.initalize();
 	}
 
-	public void fill(Tile defaultTile)
-	{
-		gameMapGrid.fill(defaultTile);
-	}
-	
-	public void add(int x, int y, Tile t)
-	{
-		
-	}
-	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
 			int height, int radius)
 	{
@@ -59,43 +40,17 @@ public class GameMap{
 		
 	}
 	
-	public ModelView getView() {
-		return mapView;
-	}
-
-	public void spawn(Avatar av)
+	public void fill(Tile defaultTile)
 	{
-		HexagonalTile hexTile = new HexagonalTile();
-		hexTile.setEntity(av);
-		
-		
+		gameMapGrid.fill(defaultTile);
 	}
 	
-	public void spawn(Avatar av, Location location)
-	{
-		HexagonalTile hexTile = gameMapGrid.get(location);
-		hexTile.setEntity(av);
+	public Avatar getAvatar() {
+		return avatar;
 	}
 	
-	public Tile getTile(Location location){
-		return gameMapGrid.get(location);
-	}
-
 	public Entity getEntity(Location location) {
 		return ((HexagonalGrid) gameMapGrid).getEntity(location);
-	}
-	
-	public void render(Graphics g, Avatar av)
-	{
-		DrawableHexGridInterface drawable_grid = gameMapGrid;
-		drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
-	}
-
-	
-
-	public Avatar getAvatar() {
-		// TODO Auto-generated method stub
-		return avatar;
 	}
 
 	public ArrayList<HexagonalLocation> getHexTiles() {
@@ -104,6 +59,36 @@ public class GameMap{
 		locations = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), 49);
 		
 		return locations;
+	}
+	
+	public ArrayList<HexagonalLocation> getLine(Location loc)
+	{
+		return null;
+		//TODO modify location interface
+		
+		
+	
+	}
+	
+	public Tile getTile(Location location){
+		return gameMapGrid.get(location);
+	}
+
+	public ModelView getView() {
+		return mapView;
+	}
+	
+	public void render(Graphics g, Avatar av)
+	{
+		DrawableHexGridInterface drawable_grid = gameMapGrid;
+		drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
+	}
+
+	public void spawn(Entity e, Location location)
+	{
+		HexagonalTile hexTile = gameMapGrid.get(location);
+		e.setLocation(location);
+		hexTile.setEntity(e);
 	}
 	
 }
