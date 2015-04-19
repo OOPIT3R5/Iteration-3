@@ -61,7 +61,8 @@ public class Summoner extends Occupation{
 
 	@Override
     public void visit(SmasherWeaponItem smawi) {
-        System.out.println("You are not able to equip the "+smawi.getName()+" due to being too weak!");
+        System.out.println("You are not able to equip the " + smawi.getName() + " due to being too weak!");
+        getEntity().addToInventory(smawi);
     }
 
     @Override
@@ -72,6 +73,7 @@ public class Summoner extends Occupation{
     @Override
     public void visit(SneakWeaponItem snewi) {
         System.out.println("You are not able to equip the "+snewi.getName()+". Besides, it's not your style to sneak up on people.");
+        getEntity().addToInventory(snewi);
     }
 
     @Override
@@ -82,6 +84,7 @@ public class Summoner extends Occupation{
     @Override
     public void visit(SmasherShieldOffHandItem ssohi) {
         System.out.println("You cannot equip the "+ssohi.getName()+"! You can't carry a shield and cast a spell at someone at the same time.");
+        getEntity().addToInventory(ssohi);
     }
 
     @Override

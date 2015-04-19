@@ -43,6 +43,7 @@ public class Smasher extends Occupation{
     @Override
     public void visit(SummonerTomeOffHandItem stohi) {
         System.out.println("You can't equip this! A book does not make a good shield!");
+        getEntity().addToInventory(stohi);
     }
 
     @Override
