@@ -18,4 +18,8 @@ public class NonAdversarial extends NPC{
 		becomeNonHostile();
 	}
 
+	public void makeActionChoice(){
+		super.makeActionChoice();
+	}
+	
 }

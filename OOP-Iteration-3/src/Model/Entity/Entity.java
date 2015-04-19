@@ -18,6 +18,7 @@ import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 import View.Model.MapObjectView;
+import View.InventoryView;
 
 public class Entity implements MovementInterface {
 
@@ -32,6 +33,10 @@ public class Entity implements MovementInterface {
 	private Location currentPosition;
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
+	private InventoryView inventoryView;
+	private ArrayList<String> skillList = new ArrayList<String>();
+	private int skillSelected = 0;
+	
 	private int movementSpeed;
 
 	//TODO rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
@@ -45,6 +50,16 @@ public class Entity implements MovementInterface {
         inventory = new Inventory();
         stats = new StatisticContainer();
         movementSpeed = 1;
+        
+        inventoryView = new InventoryView(this);
+	}
+	
+	public InventoryView getInventoryView(){
+		return inventoryView;
+	}
+	
+	public void examineItem(String s){
+		inventoryView.setInfo(s);
 	}
 	
 	public Entity (String name){
@@ -58,8 +73,7 @@ public class Entity implements MovementInterface {
 		occupation = o;
 	}
 	
-	public Entity (GameMap map){
-		this();
+	public void setMap(GameMap map){
 		this.map = map;
 		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
 		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
@@ -105,6 +119,7 @@ public class Entity implements MovementInterface {
     }
     
     public TakeableItem getItem(int inventoryIndex){
+    	TakeableItem ti = inventory.getFromInventory(inventoryIndex);
         return inventory.getFromInventory(inventoryIndex);
     }
 
@@ -224,6 +239,12 @@ public class Entity implements MovementInterface {
     public void useSkillPoint(){
         numOfPointsCanAllocateToLevelUpSkill--;
     }
+    
+    public void incSkill(Skill s){
+    	if(numOfPointsCanAllocateToLevelUpSkill > 0){
+    		s.levelSkillUp();
+    	}
+    }
 
 	public void makeActionChoice() {
 		// hook
@@ -260,6 +281,11 @@ public class Entity implements MovementInterface {
 	protected void setLocation(HexagonalLocation loc)
 	{
 		this.currentPosition = loc;
+	}
+	
+	public void moveNorth(){
+		moveMap.get(Direction.NORTH).execute();
+		alertNeighboringTiles();
 	}
 	
 }

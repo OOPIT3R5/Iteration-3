@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import Main.KeySet;
 import Model.Entity.Entity;
+import Model.Items.TakeableItem;
 import View.InventoryView;
 import View.Model.ModelView;
 
@@ -21,7 +22,7 @@ public class InventoryController extends Controller {
 
 	private static InventoryController instance;
 	
-	private static InventoryView inventoryView;
+	//private InventoryView inventoryView;
 
 	private InventoryController(Entity e){
         this.e = e;
@@ -31,14 +32,15 @@ public class InventoryController extends Controller {
 		if(instance == null){
 			
 			instance = new InventoryController(e);
-			inventoryView = new InventoryView(e);
+			//inventoryView = new InventoryView(e);
 		}
 		return instance;
 	}
 
 	@Override
 	public ModelView getView() {
-		return inventoryView;
+		// TODO Auto-generated method stub
+		return e.getInventoryView();
 	}
 
 	@Override
@@ -85,23 +87,24 @@ public class InventoryController extends Controller {
 
     private class UseItem implements MouseListener {
 
-        private final int InventoryStartingX = InventoryView.INV_GRIDX;//= 141;
-        private final int InventoryStartingY = InventoryView.INV_GRIDY;//= 131;
-        private final int EquipmentStartingX = InventoryView.EQUIP_Y;//= 1163;
-        private final int EquipmentStartingY = InventoryView.EQUIP_Y;//= 131;
-
-        private static final int EquipmentMidXLo    =1251;
-        private static final int EquipmentMidYLo    = 131;
-        private static final int EquipmentMidXHi    =1339;
-        private static final int EquipmentMidYHi    = 431;
-
-        private static final int EquipmentTopXLo    =1163;
-        private static final int EquipmentTopYLo    = 231;
-        private static final int EquipmentTopXHi    =1427;
-        private static final int EquipmentTopYHi    = 331;
 
         private final int Xspacing           = InventoryView.INV_GRIDWIDTH/6;//=  88;
         private final int Yspacing           = InventoryView.INV_GRIDHEIGHT/4;//= 100;
+
+        private final int InventoryStartingX = InventoryView.INV_GRIDX;//= 141;
+        private final int InventoryStartingY = InventoryView.INV_GRIDY;//= 131;
+        private final int EquipmentStartingX = InventoryView.INV_WIDTH + InventoryView.EQUIP_WIDTH/3 - InventoryView.INV_GRIDWIDTH/6;//= 1163;
+        private final int EquipmentStartingY = InventoryView.INV_GRIDY;//= 131;
+
+        private final int EquipmentMidXLo    = InventoryView.INV_WIDTH + InventoryView.EQUIP_WIDTH/3; //1251
+        private final int EquipmentMidYLo    = InventoryView.INV_GRIDY;//131
+        private final int EquipmentMidXHi    =EquipmentMidXLo+(Xspacing);//1339
+        private final int EquipmentMidYHi    =EquipmentMidYLo+(Yspacing*3);//431
+
+        private final int EquipmentTopXLo    =EquipmentStartingX;//1163
+        private final int EquipmentTopYLo    =EquipmentStartingY+Yspacing;//231
+        private final int EquipmentTopXHi    =EquipmentTopXLo+(Xspacing*3);//1427
+        private final int EquipmentTopYHi    =EquipmentTopYLo+Yspacing;//331
 
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -133,9 +136,10 @@ public class InventoryController extends Controller {
 
             Y -= InventoryStartingY;
             Y /= Yspacing;
-
-            System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+            System.out.println(e.getItem((X+(Y*6))).toString());
+          //  System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
             e.utilizeTakeableItem((X+(Y*6))); //Go all VISITOR PATTERN ON THIS thing.
+           
 
         }
         
@@ -153,8 +157,8 @@ public class InventoryController extends Controller {
             Y -= InventoryStartingY;
             Y /= Yspacing;
 
-            System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
-            inventoryView.setInfo(e.getItem((X+(Y*6))).toString());
+           //System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+            e.examineItem(e.getItem((X+(Y*6))).getName());
         }
 
         private void checkEquipment(int X, int Y) {

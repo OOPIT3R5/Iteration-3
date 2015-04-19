@@ -2,21 +2,13 @@ package Controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import Main.Game;
 import Main.KeySet;
-import Model.Entity.Ability.DoNothing;
-import Model.Entity.Ability.Move;
 import Model.Entity.Avatar;
-import Model.Entity.Entity;
-import Model.Entity.Smasher;
-import Model.Items.*;
-import Model.Map.Direction;
-import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -50,8 +42,8 @@ public class GameController extends Controller {
 		game = g;
 		avatar = g.getAvatar();
 		avatar.setLocation(new HexagonalLocation(2,3));
-		//g.getGameMap().spawn(avatar,new HexagonalLocation(2,3));
-		//avatar.setMap(g.getGameMap());
+		g.getGameMap().spawn(avatar,new HexagonalLocation(2,3));
+		avatar.setMap(g.getGameMap());
 		
 	}
 	
@@ -139,7 +131,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTH")){
-				//avatar.moveNorth();
+				avatar.moveNorth();
 				System.out.println(avatar.getLocation());
 			}
 			

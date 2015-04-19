@@ -42,30 +42,11 @@ public class InventoryView extends ModelView {
     private Entity avatar;
     
     String info = "asd";
+    
+    private HashMap<String,Color> options = new HashMap<String,Color>();
 
 	public InventoryView(Entity entity) {
         avatar = entity;
-		/*
-		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		setLayout(null);
-		JPanel inventory = new JPanel();
-		inventory.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		inventory.setBounds(INV_X,INV_Y,INV_WIDTH,INV_HEIGHT);
-		inventory.add(new JLabel("Insert Inventory Here"));
-		add(inventory);
-
-		JPanel equipment = new JPanel();
-		equipment.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		equipment.setBounds(EQUIP_X,EQUIP_Y,EQUIP_WIDTH,EQUIP_HEIGHT);
-		equipment.add(new JLabel("Insert Equipment Here"));
-		add(equipment);
-
-		JPanel stats = new JPanel();
-		stats.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		stats.setBounds(STATS_X,STATS_Y,STATS_WIDTH,STATS_HEIGHT);
-		stats.add(new JLabel("Insert Stats Here"));
-		add(stats);
-		*/
 	}
 	
 	public void setInfo(String s){
@@ -86,11 +67,6 @@ public class InventoryView extends ModelView {
         }
         renderStats(g);
         renderSkills(g);
-        try {
-            renderEquipment(g);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void renderInventory(Graphics g){
@@ -209,12 +185,12 @@ public class InventoryView extends ModelView {
 	    int w = fm.stringWidth(title);
 		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
 		g.setFont(g.getFont().deriveFont(old));
-		
-		HashMap<String,Skill> skills = avatar.getOccupation().getSkills();
+
+        ArrayList<Skill> skillz = avatar.getOccupation().getSkillAL();
     	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
-    	int i = 0;
-    	for(Entry<String, Skill> entry: skills.entrySet()){
-    		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getKey() + " : " + entry.getValue().getCurrentLevel() );
+
+    	for(Skill entry : skillz){
+    		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getName() + " : " + entry.getCurrentLevel() );
     		startY += buttonHeight;
     		if(startY > 3*buttonHeight){
     			startX += buttonWidth;
