@@ -4,8 +4,8 @@ import Model.Entity.Ability.Ability;
 import View.Model.MapObjectView;
 
 public class BrawlingWeaponItem extends SmasherWeaponItem {
-    BrawlingWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
-        super(AttackSpeed.FAST, statchange, ability, name, mov);
+    BrawlingWeaponItem(int statchange,String name, MapObjectView mov) {
+        super(AttackSpeed.FAST, statchange,name, mov);
     }
 
     @Override

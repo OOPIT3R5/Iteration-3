@@ -3,20 +3,16 @@ package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.swing.JFrame;
 
 import Main.Game;
 import Main.KeySet;
 import Model.Entity.Avatar;
+import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
-import Model.Map.Location;
-import Model.Map.Grid.Tile.HexagonalTile;
-import Model.Terrain.Grass;
-import Model.Terrain.Mountain;
-import Model.Terrain.Water;
-import View.Model.GameView;
-import View.Model.MapObjectView;
 import View.Model.ModelView;
 
 public class GameController extends Controller {
@@ -37,6 +33,7 @@ public class GameController extends Controller {
 	private GameController() {
 		
 	}
+	
 	public static void setGame(Game g){
 		
 		game = g;
@@ -72,6 +69,13 @@ public class GameController extends Controller {
 		listeners.add(new MoveNorthwest());
 		listeners.add(new MoveSoutheast());
 		listeners.add(new MoveSouthwest());
+		HashMap<String, Ability> abilities = avatar.getOccupation().getAbilities();
+		int i = 1;
+		String name = "ACTION" + i;
+		for(Entry<String, Ability> entry : abilities.entrySet()){
+			listeners.add(new AbilityListener(entry.getKey(),name));
+			name = "ACTION" + (i++);
+		}
 		for(KeyListener k : listeners){
 			f.addKeyListener(k);
 		}
@@ -161,7 +165,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTH")){
-				//avatar.moveSouth();
+				avatar.moveSouth();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -186,7 +190,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTHEAST")){
-				//avatar.moveNortheast();
+				avatar.moveNortheast();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -211,7 +215,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTHWEST")){
-				//avatar.moveNorthwest();
+				avatar.moveNorthwest();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -235,7 +239,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTHEAST")){
-				//avatar.moveSoutheast();
+				avatar.moveSoutheast();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -260,8 +264,37 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTHWEST")){
-				//avatar.moveSouthwest();
+				avatar.moveSouthwest();
 				System.out.println(avatar.getLocation());
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	public class AbilityListener implements KeyListener {
+		
+		String s = "";
+		String key = "";
+		public AbilityListener(String s,  String key){
+			this.s = s;
+		}
+		@Override
+		public void keyPressed(KeyEvent k) {
+			if(k.getKeyCode() == KeySet.getKey(key)){
+				//avatar.ability(String s);
+				System.out.println("You just " + s);
 			}
 			
 		}

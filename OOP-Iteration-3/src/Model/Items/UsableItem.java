@@ -5,8 +5,12 @@ import Model.Entity.TakeableItemVisitor;
 import View.Model.MapObjectView;
 
 public class UsableItem extends TakeableItem{
+
+    private Ability ability;
+
     public UsableItem(Ability ability, String name, MapObjectView mov) {
-        super(ability, name, mov);
+        super(name, mov);
+        this.ability = ability;
     }
 
     @Override
@@ -17,5 +21,9 @@ public class UsableItem extends TakeableItem{
     @Override
     public void accept(TakeableItemVisitor eiv) {
         eiv.visit(this);
+    }
+
+    public void execute() {
+        ability.execute();
     }
 }

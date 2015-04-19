@@ -1,13 +1,12 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
 import View.Model.MapObjectView;
 
 public class SummonerWeaponItem extends WeaponItem {
 
-    public SummonerWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
-        super(AttackSpeed.SLOW, statchange, ability, name, mov);
+    public SummonerWeaponItem(int statchange, String name, MapObjectView mov) {
+        super(AttackSpeed.SLOW, statchange, name, mov);
     }
 
     public void accept(TakeableItemVisitor eiv){
