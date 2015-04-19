@@ -17,4 +17,7 @@ public abstract class Location {
 		return coordinate[0] + ", " + coordinate[1];
 	}
 	
+	public int getX() {return coordinate[0];}
+	public int getY() {return coordinate[1];}
+	
 }

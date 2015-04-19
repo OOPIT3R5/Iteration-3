@@ -59,9 +59,9 @@ public class GameMap{
 		return mapView;
 	}
 
-	public void spawn(Avatar av)
+	public void spawn(Entity entity)
 	{
-		
+		gameMapGrid.spawnEntity(entity.getLocation(), entity);
 	}
 	
 	public Tile getTile(Location location){
