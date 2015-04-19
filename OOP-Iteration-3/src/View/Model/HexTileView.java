@@ -33,7 +33,7 @@ public class HexTileView extends ModelView {
 	}
 	
 	public void render(Graphics g, Point origin, HexagonalLocation relative_position) {
-		int hexagon_size = 40;
+		int hexagon_size = 100;
 		//g.drawOval(tile.getLocation().getU() * View.WIDTH / 100, tile.getLocation().getV() * View.HEIGHT / 100, View.WIDTH / 200,
 				//View.HEIGHT/200);
 		//FlatHexagon fh = new FlatHexagon(new Point(tile.getLocation().getU() * View.WIDTH/100 ,tile.getLocation().getV() * View.HEIGHT/100), 10, true);
