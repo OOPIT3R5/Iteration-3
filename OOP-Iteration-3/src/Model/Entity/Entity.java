@@ -316,4 +316,8 @@ public class Entity implements MovementInterface {
         }
     }
 	
+	public void ability(String s){
+		occupation.getAbilities().get(s).execute();
+	}
+	
 }

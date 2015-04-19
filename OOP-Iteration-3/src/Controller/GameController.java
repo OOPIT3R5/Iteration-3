@@ -10,13 +10,6 @@ import Main.Game;
 import Main.KeySet;
 import Model.Entity.Avatar;
 import Model.Map.HexagonalLocation;
-import Model.Map.Location;
-import Model.Map.Grid.Tile.HexagonalTile;
-import Model.Terrain.Grass;
-import Model.Terrain.Mountain;
-import Model.Terrain.Water;
-import View.Model.GameView;
-import View.Model.MapObjectView;
 import View.Model.ModelView;
 
 public class GameController extends Controller {
@@ -162,7 +155,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTH")){
-				//avatar.moveSouth();
+				avatar.moveSouth();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -187,7 +180,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTHEAST")){
-				//avatar.moveNortheast();
+				avatar.moveNortheast();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -212,7 +205,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTHWEST")){
-				//avatar.moveNorthwest();
+				avatar.moveNorthwest();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -236,7 +229,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTHEAST")){
-				//avatar.moveSoutheast();
+				avatar.moveSoutheast();
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -261,7 +254,7 @@ public class GameController extends Controller {
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTHWEST")){
-				//avatar.moveSouthwest();
+				avatar.moveSouthwest();
 				System.out.println(avatar.getLocation());
 			}
 			

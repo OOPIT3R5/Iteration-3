@@ -34,7 +34,7 @@ public class Game {
 		
 		gameMap.spawn(avatar, avatar.getLocation());
 		gameView = new GameView(gameMap, avatar);
-		this.gameMap.fill(new HexagonalTile(new Water()));
+		this.gameMap.fill(new HexagonalTile(new Grass()));
 	}
 	
 	//constructor for load game
