@@ -54,7 +54,7 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeySet.getKey("NORTH") || key == KeySet.getKey("EAST")){
+			if(key == KeySet.getKey("SOUTH") ){
 				cm.MoveUp();
 			}
 			
@@ -77,7 +77,7 @@ public class CharacterCreationController extends Controller  {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeySet.getKey("WEST") || key == KeySet.getKey("SOUTH")){
+			if(key == KeySet.getKey("NORTH")){
 				cm.MoveDown();
 			}
 			
@@ -102,7 +102,20 @@ public class CharacterCreationController extends Controller  {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("ENTER")){
-				setNext(MainMenuController.getInstance());
+				String state = cm.getState();
+				if(state.equals("Summoner")){ //Is there a way around this?
+					setNext(GameController.getInstance());
+				}
+				else if(state.equals("Smasher")){
+					setNext(GameController.getInstance());
+				}
+				else if(state.equals("Sneak")){
+					setNext(GameController.getInstance());
+				}
+				else{
+					setNext(MainMenuController.getInstance());
+				}
+				
 				
 			}
 			
