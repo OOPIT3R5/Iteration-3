@@ -5,8 +5,11 @@ import java.awt.event.KeyListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import Main.Game;
 import Main.KeySet;
 import Main.RunGame;
+import Model.Entity.Avatar;
+import Model.Entity.Summoner;
 import Model.Menu.MainMenu;
 import View.ModelView;
 
@@ -111,6 +114,11 @@ public class MainMenuController extends Controller {
 				}
 				else if(state.equals("load")){
 					setNext(GameController.getInstance());
+					
+					Avatar avatar = new Avatar();
+					new Summoner(avatar); // delete later
+					Game game = new Game(avatar);
+					GameController.setGame(game);
 				}
 				else{
 					setNext(null);
