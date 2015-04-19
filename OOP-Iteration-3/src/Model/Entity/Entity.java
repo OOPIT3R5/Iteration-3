@@ -71,6 +71,7 @@ public class Entity implements MovementInterface {
 		return directionFacing;
 	}
 	
+	public int getskillPoints(){
 		return numOfPointsCanAllocateToLevelUpSkill;
 	}
 	
