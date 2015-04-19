@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
 import Model.Map.Grid.DrawableHexGridInterface;
-import Model.Map.Grid.Grid;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
 import View.Model.GameMapView;
-import View.Model.GameView;
 import View.Model.ModelView;
 
 
@@ -90,7 +88,7 @@ public class GameMap {
 		drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
 	}
 
-	public void spawn(Entity e, Location location)
+	public void spawn(Entity e, HexagonalLocation location)
 	{
 		HexagonalTile hexTile = gameMapGrid.get(location);
 		e.setLocation(location);

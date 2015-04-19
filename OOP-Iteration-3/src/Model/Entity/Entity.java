@@ -37,7 +37,7 @@ public class Entity implements MovementInterface {
 	private Equipment equipmentManager;
 	private Inventory inventory;
     private StatisticContainer stats;
-	private Location currentPosition;
+	private HexagonalLocation currentPosition;
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
 	private InventoryView inventoryView;
@@ -179,7 +179,7 @@ public class Entity implements MovementInterface {
         return inventory.getFromInventory(inventoryIndex);
     }
 
-    public Location getLocation(){
+    public HexagonalLocation getLocation(){
 		return this.currentPosition;
 	}
 
@@ -257,13 +257,8 @@ public class Entity implements MovementInterface {
 	public void setDirection(Direction d){
 		directionFacing = d;
 	}
-
-	protected void setLocation(HexagonalLocation loc)
-	{
-		this.currentPosition = loc;
-	}
 	
-	public void setLocation(Location newPosition){
+	public void setLocation(HexagonalLocation newPosition){
 		this.currentPosition = newPosition;
 	}
 
