@@ -14,8 +14,9 @@ import Model.Items.TwoHandedWeaponItem;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
-import View.GameView;
-import View.MapObjectView;
+import Model.Terrain.Water;
+import View.Model.GameView;
+import View.Model.MapObjectView;
 
 public class Game {
 	
@@ -33,6 +34,7 @@ public class Game {
 		
 		gameMap.spawn(avatar);
 		gameView = new GameView(gameMap, avatar);
+		this.gameMap.fill(new HexagonalTile(new Water()));
 	}
 	
 	//constructor for load game
@@ -40,9 +42,7 @@ public class Game {
 		
 		this.gameMap = gameMap;
 		this.avatar = avatar;
-		this.gameMap.fill(new HexagonalTile(new Grass()));
-	
-		
+		this.gameMap.fill(new HexagonalTile(new Water()));
 	}
 	
 	public void setUpAvatar(Avatar avatar){

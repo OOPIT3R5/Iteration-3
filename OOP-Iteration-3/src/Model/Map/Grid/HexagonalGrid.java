@@ -13,8 +13,8 @@ import Model.Map.RectangularLocation;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.RectangularTile;
 import Model.Map.Grid.Tile.Tile;
-import Model.Map.View.FlatHexagon;
 import Model.Terrain.Grass;
+import View.Model.FlatHexagon;
 
 public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	
@@ -48,8 +48,8 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	}*/
 	
 	@Override
-	public void render (Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size){
-		drawHex(g, origin, center, grid_radius, hexagon_size);
+	public void render(Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size){
+		
 	}
 	
 	@Override
@@ -103,12 +103,10 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 		for (int row = 0; row < super.getHeight(); row++)
 			for (int col = 0; col < super.getWidth(); col++) {
 				HexagonalTile insert = (HexagonalTile)hex_tile.clone();
-				HexagonalLocation location = new HexagonalLocation(row, col);
 				//System.out.println(location.getU() + " , " +  location.getV());
 				//insert.setLocation(location);
 				insert.setLocation(col, row - (col / 2));
 				insert(col, row, insert);
-				
 			}
 	}
 	

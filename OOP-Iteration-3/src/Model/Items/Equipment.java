@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Entity;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

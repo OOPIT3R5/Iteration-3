@@ -2,7 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public abstract class EquippableItem extends TakeableItem {
 

@@ -17,7 +17,7 @@ public class Mountain extends Terrain {
 
 	@Override
 	public Color getColor() {
-		return Color.RED;
+		return Color.LIGHT_GRAY;
 	}
 	
 }

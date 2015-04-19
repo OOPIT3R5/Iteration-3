@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Main.KeySet;
-import View.ModelView;
+import View.Model.ModelView;
 
 public abstract class Controller extends Observable {
 	Controller next;

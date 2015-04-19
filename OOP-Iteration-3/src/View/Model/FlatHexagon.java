@@ -1,4 +1,4 @@
-package Model.Map.View;
+package View.Model;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ public class FlatHexagon extends Polygon {
 	private final int size_;
 	private final boolean filled_;
 	
-	private Color color = Color.BLACK;
+	private Color color = Color.DARK_GRAY;
 	
 	public FlatHexagon(Point p, int size, boolean filled) {
 		npoints = SIDES;
@@ -23,7 +23,7 @@ public class FlatHexagon extends Polygon {
 		ypoints = new int[SIDES];
 		
 		center_ = p;
-		size_ = size;
+		size_ = (int)(size*1.05);
 		filled_ = filled;
 		
 		for (int i = 0; i < npoints; i++) {
@@ -52,12 +52,13 @@ public class FlatHexagon extends Polygon {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.drawPolygon(xpoints, ypoints, npoints);
+		Color cache = g.getColor();
 		g.setColor(color);
-		g.fillPolygon(xpoints, ypoints, npoints);
+		if (filled_)
+			g.fillPolygon(this);
+		else
+			g.drawPolygon(this);
+		g.setColor(cache);
 	}
-	
-	
 	
 }

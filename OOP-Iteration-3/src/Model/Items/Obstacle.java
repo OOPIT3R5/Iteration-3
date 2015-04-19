@@ -2,7 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.*;
 import Model.Entity.Entity;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class Obstacle extends Item{
 

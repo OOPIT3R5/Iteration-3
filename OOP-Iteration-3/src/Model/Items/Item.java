@@ -4,7 +4,7 @@ package Model.Items;
 import Model.Entity.Ability.Ability;
 import Model.SaveSystem.Savable;
 import Model.SaveSystem.Saver;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 
 public abstract class Item implements MapObject, Savable{

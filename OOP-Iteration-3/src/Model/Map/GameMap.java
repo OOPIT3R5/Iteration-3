@@ -11,12 +11,12 @@ import Model.Map.Grid.Grid;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
-import View.GameMapView;
-import View.GameView;
-import View.ModelView;
+import View.Model.GameMapView;
+import View.Model.GameView;
+import View.Model.ModelView;
 
 
-public class GameMap{
+public class GameMap {
 	
 	
 	GameMapView mapView;
@@ -44,6 +44,7 @@ public class GameMap{
 
 	public void fill(Tile defaultTile)
 	{
+		System.out.println("this is never called");
 		gameMapGrid.fill(defaultTile);
 	}
 	
@@ -53,8 +54,7 @@ public class GameMap{
 	}
 	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
-			int height, int radius)
-	{
+			int height, int radius) {
 		((DrawableHexGridInterface)gameMapGrid).drawRectangleWithCoords(g, p, (HexagonalLocation)center, width, height, radius);
 		
 	}
@@ -79,10 +79,10 @@ public class GameMap{
 		return ((HexagonalGrid) gameMapGrid).getEntity(location);
 	}
 	
-	public void render(Graphics g, Avatar av)
-	{
-		DrawableHexGridInterface drawable_grid = gameMapGrid;
-		drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
+	public void render(Graphics g, Avatar av) {
+		//DrawableHexGridInterface drawable_grid = gameMapGrid;
+		//drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 8, 40);
+		mapView.render(g);
 	}
 
 	
@@ -92,7 +92,14 @@ public class GameMap{
 		return avatar;
 	}
 
-	public ArrayList<HexagonalLocation> getHexTiles() {
+	public ArrayList<HexagonalTile> getTilesSurroundingAvatar(int radius) {
+		ArrayList<HexagonalLocation> hex_coords;
+		hex_coords = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), radius);
+		return gameMapGrid.getHexTiles(hex_coords);
+	}
+
+	public ArrayList<HexagonalLocation> getHexTileLocations() {
+		
 		ArrayList<HexagonalLocation> locations;
 		
 		locations = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), 49);

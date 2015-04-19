@@ -1,7 +1,9 @@
-package View;
+package View.Model;
 
 import java.awt.Graphics;
 import java.util.Observer;
+
+import View.View;
 
 public abstract class ModelView implements Observer {
 

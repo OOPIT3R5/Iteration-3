@@ -2,7 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class SneakWeaponItem extends WeaponItem{
     SneakWeaponItem(AttackSpeed attackspeed, int statchange, Ability ability, String name, MapObjectView mov) {

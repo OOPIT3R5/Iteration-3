@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class OneHandedWeaponItem extends SmasherWeaponItem {
 

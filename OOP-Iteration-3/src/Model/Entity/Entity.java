@@ -17,7 +17,7 @@ import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class Entity implements MovementInterface {
 
@@ -200,11 +200,11 @@ public class Entity implements MovementInterface {
 		this.currentPosition = newPosition;
 	}
 
-	public Location getLocation(){
-		return this.currentPosition;
+	public HexagonalLocation getLocation(){
+		return (HexagonalLocation)this.currentPosition;
 	}
 	
-	public Location getLocationFacing() {
+	public HexagonalLocation getLocationFacing() {
 		return getLocation().getNeighbor(getDirectionFacing());
 	}
 
@@ -250,7 +250,6 @@ public class Entity implements MovementInterface {
 	
 	public void alertNeighboringTiles(){
 		Location center = getLocation();
-		
 		for(Entry<Direction, Ability> entry: moveMap.entrySet()){
 			Direction currentDirection = entry.getKey();
 			Tile neighboringTile = map.getTile(center.getNeighbor(currentDirection));

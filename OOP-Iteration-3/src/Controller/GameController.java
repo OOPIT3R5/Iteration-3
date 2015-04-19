@@ -23,9 +23,9 @@ import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
 import Model.Terrain.Mountain;
 import Model.Terrain.Water;
-import View.GameView;
-import View.MapObjectView;
-import View.ModelView;
+import View.Model.GameView;
+import View.Model.MapObjectView;
+import View.Model.ModelView;
 
 public class GameController extends Controller {
 	String next = "";
