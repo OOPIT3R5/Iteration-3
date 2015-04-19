@@ -221,10 +221,6 @@ public class Entity implements MovementInterface {
 
 	public void makeActionChoice() {
 		// hook
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/OOPIT3R5/Iteration-3.git
 	}
 
 	public void getOccupationTestMethod() {
@@ -239,13 +235,10 @@ public class Entity implements MovementInterface {
 		
 	}
 
-<<<<<<< HEAD
 	public void receiveDamage(int damage) {
 		stats.changeHealth(-damage);		
 	}
 
-=======
->>>>>>> branch 'master' of https://github.com/OOPIT3R5/Iteration-3.git
 	public void charm() {
 		// TODO Auto-generated method stub
 	}
@@ -254,13 +247,11 @@ public class Entity implements MovementInterface {
 		// TODO Auto-generated method stub
 	}
 
-<<<<<<< HEAD
+
 	public void useMana(SummonerAbility summonerAbility) {
 		// TODO Auto-generated method stub
 	}
 
-=======
->>>>>>> branch 'master' of https://github.com/OOPIT3R5/Iteration-3.git
 	public Occupation getOccupation() {
 		return occupation;
 	}
