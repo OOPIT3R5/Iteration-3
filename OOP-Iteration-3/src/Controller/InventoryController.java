@@ -5,20 +5,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Main.KeySet;
-import Main.RunGame;
-import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
-import Model.Items.AccessoryItem;
-import Model.Items.ShoesItem;
-import Model.Items.TwoHandedWeaponItem;
 import View.InventoryView;
-import View.MapObjectView;
 import View.ModelView;
 
 public class InventoryController extends Controller {
@@ -96,6 +87,19 @@ public class InventoryController extends Controller {
 
         private static final int InventoryStartingX = 141;
         private static final int InventoryStartingY = 131;
+        private static final int EquipmentStartingX = 1163;
+        private static final int EquipmentStartingY = 131;
+
+        private static final int EquipmentMidXLo    =1251;
+        private static final int EquipmentMidYLo    = 131;
+        private static final int EquipmentMidXHi    =1339;
+        private static final int EquipmentMidYHi    = 431;
+
+        private static final int EquipmentTopXLo    =1163;
+        private static final int EquipmentTopYLo    = 231;
+        private static final int EquipmentTopXHi    =1427;
+        private static final int EquipmentTopYHi    = 331;
+
         private static final int Xspacing           =  88;
         private static final int Yspacing           = 100;
 
@@ -109,10 +113,10 @@ public class InventoryController extends Controller {
         private void placeClicked(Point pointclicked) {
             int X = pointclicked.x;
             int Y = pointclicked.y;
-
+            System.out.println(pointclicked);
 
             if(X < InventoryStartingX || Y < InventoryStartingY || X > (InventoryStartingX+(Xspacing*6)) || Y > (InventoryStartingY+(Yspacing*4)))
-                return;
+                checkEquipment(X, Y);
 
             X -= InventoryStartingX;
             X /= Xspacing;
@@ -123,6 +127,36 @@ public class InventoryController extends Controller {
             System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
             e.utilizeTakeableItem((X+(Y*6))); //Go all VISITOR PATTERN ON THIS thing.
 
+        }
+
+        private void checkEquipment(int X, int Y) {
+            //If we're not in the right square...
+            if (!((((X >= EquipmentTopXLo) && (X <= EquipmentTopXHi)) && ((Y >= EquipmentTopYLo) && (Y <= EquipmentTopYHi))) || (((X >= EquipmentMidXLo) && (X <= EquipmentMidXHi)) && ((Y >= EquipmentMidYLo) && (Y <= EquipmentMidYHi)))))
+                return;
+            //else...
+            X -= EquipmentStartingX;
+            X /= Xspacing;
+
+            Y -= EquipmentStartingY;
+            Y /= Yspacing;
+            System.out.println(X+" "+Y);
+            if (X == 0)
+                e.unequipWeapon();
+            else if (X == 2)
+                e.unequipOffHand();
+            else switch (Y) {
+                    case 0:
+                        e.unequipAccessory();
+                        break;
+                    case 1:
+                        e.unequipArmor();
+                        break;
+                    case 2:
+                        e.unequipShoes();
+                        break;
+                    default:
+                        break;
+                }
         }
 
         @Override
