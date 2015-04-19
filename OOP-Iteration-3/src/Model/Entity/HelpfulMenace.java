@@ -9,9 +9,10 @@ import Model.Map.Direction;
 
 import Utility.RandomlyGenerate;
 
-public class HelpfulMenace extends NonAdversarial implements Pet{
+public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 
 	PetOwnership po;
+	Mounted m;
 	boolean isOwned;
 	
 	public HelpfulMenace(PetOwnership po) {
@@ -19,15 +20,35 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		po.setPet(this);
 		isOwned = true;
 		this.po = po;
+		m = new Mounted(this);
 	}
 
 	public HelpfulMenace() {
 		super();
 		isOwned = false;
+		m = new Mounted(this);
 	}
 
+	
+	public void mount(Avatar avatar){
+		m.mount(avatar);
+	}
+	
 	/*AI stuff*/
 	public void makeActionChoice(){
+		if (m.isMounted()){
+			makeMountedActionChoice();
+		}
+		else{
+			makeUnMountedActionChoice();
+		}
+	}
+	
+	public void makeMountedActionChoice(){
+		m.forwardControlOfMountToRider();
+	}
+	
+	public void makeUnMountedActionChoice(){
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned), go where avatar directs it (if mounted)
 		attack in vicinity, or go after treasure*/
@@ -76,6 +97,11 @@ public class HelpfulMenace extends NonAdversarial implements Pet{
 		po.setPet(this);
 		this.po = po;
 		
+	}
+
+	@Override
+	public void unMount() {
+		m.unMount();
 	}
 
 }
