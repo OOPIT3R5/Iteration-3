@@ -3,27 +3,41 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Entity.NPC;
 import Model.Entity.Skill;
+import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
+import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
+import Utility.RandomlyGenerate;
 
 public class Fireball extends SummonerAbility {
 	
-	private ArrayList<Tile> targetTiles;
+	private Entity sourceEntity;
+	private GameMap map;
 	private Skill skill;
 
-	public Fireball(ArrayList<Tile> targetTiles, Skill skill) {
-        this.targetTiles = targetTiles;
-        this.skill = skill;
+	public Fireball(Entity sourceEntity, GameMap map, Skill skill) {
+		this.sourceEntity = sourceEntity;
+		this.map = map;
+		this.skill = skill;
     }
 
 	@Override
     public void execute() {
-		// sourceAvatar.checkMana(this);
+		sourceEntity.checkMana(this);
 	}
 
 	@Override
 	public void cast() {
+		double chanceOfSuccess = getSkillLevel()/50;
+		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
+		for(Tile tile : getTargetTiles()){
+			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
+				((NPC)tile.getEntity()).receiveDamage(scaleMagnitude());
+			}
+		}
 	}
 
 	@Override
@@ -41,14 +55,21 @@ public class Fireball extends SummonerAbility {
 		return 150 * getSkillLevel()/100;
 	}
 
-	protected ArrayList<Tile> getTargetTiles() {
-		return null;
+	protected ArrayList<Tile> getTargetTiles(){
+		Location center = (getSourceEntity().getLocation());
+		int length = 3;
+		
+		ArrayList<Tile> result = new ArrayList<Tile>();
+		for (HexagonalLocation location : HexagonalLocation.line((HexagonalLocation)center ,length,getSourceEntity().getDirectionFacing())){
+			result.add(map.getTile(location));
+		}
+		
+		return result;
 	}
 
 	@Override
 	protected Entity getSourceEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return sourceEntity;
 	}
 
 }
