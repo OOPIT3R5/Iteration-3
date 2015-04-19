@@ -189,9 +189,12 @@ public class InventoryView extends ModelView {
     	int buttonWidth = 150;
     	int buttonHeight = 22;
     	
+    	int startX = 0;
+    	int startY = 0;
+    	
     	float old = g.getFont().getSize();
 		g.setFont(g.getFont().deriveFont(25.0f));
-		String title = "Skills : You Have _ Level Ups";
+		String title = "Skills : You Have " + avatar.getLevels() +  " Points";
 		FontMetrics fm = g.getFontMetrics();
 	    int w = fm.stringWidth(title);
 		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
@@ -201,7 +204,12 @@ public class InventoryView extends ModelView {
     	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
     	int i = 0;
     	for(Entry<String, Skill> entry: skills.entrySet()){
-    		m.render(g, INV_GRIDX + buttonWidth*6, STATS_Y + STATS_HEIGHT/5 + buttonHeight*(i++), Color.black, entry.getKey() + " : " + entry.getValue().getCurrentLevel() );
+    		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getKey() + " : " + entry.getValue().getCurrentLevel() );
+    		startY += buttonHeight;
+    		if(startY > 3*buttonHeight){
+    			startX += buttonWidth;
+    			startY = 0;
+    		}
    		 }
     }
 
