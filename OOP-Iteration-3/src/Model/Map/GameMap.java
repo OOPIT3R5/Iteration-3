@@ -56,7 +56,6 @@ public class GameMap{
 	}
 	
 	public ModelView getView() {
-		// TODO Auto-generated method stub
 		return mapView;
 	}
 

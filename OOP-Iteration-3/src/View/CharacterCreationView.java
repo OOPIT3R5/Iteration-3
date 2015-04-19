@@ -45,15 +45,13 @@ private HashMap<String,Color> options = new HashMap<String,Color>();
 
 	@Override
 	public void accept(View view) {
-		// TODO Auto-generated method stub
 		view.visit(this);
 	}
 
 	
 
 	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub		
+	public void render(Graphics g) {	
 		int start = 0;
 		g.drawRect(boxX, boxY, boxWidth, boxHeight);
 		float old = g.getFont().getSize();
