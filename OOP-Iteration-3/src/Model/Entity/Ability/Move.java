@@ -1,31 +1,36 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
 import Model.Map.Direction;
 import Model.Map.GameMap;
+import Model.Map.Grid.Tile.Tile;
 
 public class Move extends Ability {
 	
 	private int movementSpeed;
 	private GameMap map;
     private Entity sourceEntity;
+    private Direction direction;
 
-	public Move(Entity sourceEntity, GameMap map, int movementSpeed) {
+	public Move(Entity sourceEntity, GameMap map, Direction direction, int movementSpeed) {
 	    this.sourceEntity = sourceEntity;
 		this.map = map;
+		this.direction = direction;
 		this.movementSpeed = movementSpeed;
     }
 
 	@Override
 	public void execute() {
 		Entity currentEntity = getSourceEntity();
-		//map.getTile(currentEntity.getLocation());		// get oldTile
-		//currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
-		// get newTile
-		// remove Entity from oldTile
-		// place Entity on newTile
+		Tile oldTile = map.getTile(currentEntity.getLocation());
+		if (currentEntity.getDirectionFacing() == direction){		// move forward
+			currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
+			Tile newTile = map.getTile(currentEntity.getLocation());
+			oldTile.removeEntity();
+			newTile.setEntity(currentEntity);
+		} else {	// turn around without moving forward
+			currentEntity.setDirection(direction);
+		}
 	}
 
 	@Override

@@ -2,12 +2,15 @@ package View;
 
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
+import Model.Entity.Skill;
 import Model.Items.*;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
+import java.util.Map.Entry;
 
 
 @SuppressWarnings("serial")
@@ -194,8 +197,12 @@ public class InventoryView extends ModelView {
 		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
 		g.setFont(g.getFont().deriveFont(old));
 		
+		HashMap<String,Skill> skills = avatar.getOccupation().getSkills();
     	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
-    	m.render(g, INV_GRIDX + buttonWidth * 6, STATS_Y + STATS_HEIGHT / 5, Color.black, "Lives left : " + avatar.getStatistics().getNumLivesLeft());
+    	int i = 0;
+    	for(Entry<String, Skill> entry: skills.entrySet()){
+    		m.render(g, INV_GRIDX + buttonWidth*6, STATS_Y + STATS_HEIGHT/5 + buttonHeight*(i++), Color.black, entry.getKey() + " : " + entry.getValue().getCurrentLevel() );
+   		 }
     }
 
 	@Override

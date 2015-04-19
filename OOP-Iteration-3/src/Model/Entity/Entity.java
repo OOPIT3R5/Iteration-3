@@ -27,8 +27,10 @@ public class Entity implements MovementInterface {
 	private ArrayList<Ability> movement_;
 	
 	private int movementSpeed;
-	//rename
-	protected int numOfPointsCanAllocateToLevelUpSkill;
+
+	//rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
+	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
+
 	protected GameMap map;
 	
 	/*Use */
@@ -37,11 +39,13 @@ public class Entity implements MovementInterface {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
 		movement_ = new ArrayList<Ability>();
-		for (int i = 0; i < 6; i++) {
-			// TODO movement_.add(new Move(this,map,movementSpeed)));
-
-		}
-
+		movement_.add(new Move(this,map,Direction.NORTH,movementSpeed));
+		movement_.add(new Move(this,map,Direction.NORTHEAST,movementSpeed));
+		movement_.add(new Move(this,map,Direction.NORTHWEST,movementSpeed));
+		movement_.add(new Move(this,map,Direction.SOUTH,movementSpeed));
+		movement_.add(new Move(this,map,Direction.SOUTHEAST,movementSpeed));
+		movement_.add(new Move(this,map,Direction.SOUTHWEST,movementSpeed));
+		
         equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer();
@@ -235,6 +239,11 @@ public class Entity implements MovementInterface {
 	public void useMana(SummonerAbility summonerAbility) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Occupation getOccupation() {
+		// TODO Auto-generated method stub
+		return occupation;
 	}
 
 }

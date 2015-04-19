@@ -80,16 +80,12 @@ public class Hostility {
 		else{
 			if (prob < .60){
 				//60% chance of moving toward avatar
-
-				npc.setDirection(TowardAvatarDirectionPlaceholder);
-				a = new Move(npc, npc.getMap(), npc.getMovementSpeed());		// TODO need reference to map
+				a = new Move(npc, npc.getMap(), TowardAvatarDirectionPlaceholder, npc.getMovementSpeed());
 				System.out.println("I'm moving toward avatar");
 			}
 			else if (prob < .90){
 				//30% chance of moving in random direction
-
-				npc.setDirection(RandomlyGenerate.direction());
-				a = new Move(npc, npc.getMap(), npc.getMovementSpeed());		// TODO need reference to map
+				a = new Move(npc, npc.getMap(), RandomlyGenerate.direction(), npc.getMovementSpeed());
 				System.out.println("I'm moving in rand dir");
 			}
 			else {
