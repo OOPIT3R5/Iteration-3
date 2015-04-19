@@ -52,11 +52,22 @@ public class Entity implements MovementInterface {
         movementSpeed = 1;
         
         inventoryView = new InventoryView(this);
+      //  decal = new Decal();
 	}
 	
 	public InventoryView getInventoryView(){
 		return inventoryView;
 	}
+	/*
+	public Decal getDecal() {
+		// TODO Auto-generated method stub
+		return decal;
+	}
+	
+	public void setDecal(Decal d) {
+		//TODO 
+		decal = d;
+	}*/
 	
 	public void examineItem(String s){
 		inventoryView.setInfo(s);

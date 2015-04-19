@@ -75,9 +75,9 @@ public class Smasher extends Occupation{
     }
 
 
-    @Override
-	protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
+    protected ArrayList<Ability> getAbilitiesSub() {
 		
 		return null;
 	}
+
 }

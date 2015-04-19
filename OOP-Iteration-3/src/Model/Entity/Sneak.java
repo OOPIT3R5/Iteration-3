@@ -33,8 +33,15 @@ public class Sneak extends Occupation{
     }
 
     @Override
-    protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
-        return null;
+    protected ArrayList<Ability> getAbilitiesSub(){
+    	ArrayList<Ability> abilities = new ArrayList<Ability>();
+
+        abilities.add(pickAbil);
+        abilities.add(detectAbil);
+        abilities.add(creepAbil);
+//        abilities.add(rangedweapon);
+
+        return abilities;
     }
 
     //TODO: Replace all 'System.out.println()' methods with something with Logger.
