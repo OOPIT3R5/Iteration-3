@@ -24,8 +24,8 @@ import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
+import View.Model.MapObjectView;
 import View.InventoryView;
-import View.MapObjectView;
 
 public class Entity implements MovementInterface {
 
@@ -79,7 +79,6 @@ public class Entity implements MovementInterface {
 	
 	public void alertNeighboringTiles(){
 		Location center = getLocation();
-		
 		for(Entry<Direction, Ability> entry: moveMap.entrySet()){
 			Direction currentDirection = entry.getKey();
 			Tile neighboringTile = map.getTile(center.getNeighbor(currentDirection));

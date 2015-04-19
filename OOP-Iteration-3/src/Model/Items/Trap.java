@@ -1,6 +1,6 @@
 package Model.Items;
 
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class Trap extends TakeDamageAreaEffect{
     private boolean detected;

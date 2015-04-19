@@ -2,7 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class UsableItem extends TakeableItem{
     public UsableItem(Ability ability, String name, MapObjectView mov) {

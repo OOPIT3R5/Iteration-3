@@ -1,4 +1,4 @@
-package View;
+package View.Model;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -14,8 +14,9 @@ import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
 import Model.Terrain.Mountain;
 import Model.Terrain.Water;
+import View.View;
 
-public class GameView extends ModelView{
+public class GameView extends ModelView {
 	Game game;
 	GameMap gameMap;
 	Avatar avatar;
@@ -33,10 +34,7 @@ public class GameView extends ModelView{
 	@Override
 	public void accept(View view) {
 		view.visit(this);
-		
 	}
-	
-	
 
 	@Override
 	public void render(Graphics g) {
@@ -53,8 +51,6 @@ public class GameView extends ModelView{
 		
 		*/
 		gameMap.render(g, avatar);
-	
-	
 	}
 
 

@@ -9,7 +9,7 @@ import Controller.Controller.Render;
 import Main.KeySet;
 import Main.RunGame;
 import Model.Menu.ConfigControls;
-import View.ModelView;
+import View.Model.ModelView;
 
 public class ConfigController extends Controller {
 	

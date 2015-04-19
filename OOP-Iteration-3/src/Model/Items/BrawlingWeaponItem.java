@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class BrawlingWeaponItem extends SmasherWeaponItem {
     BrawlingWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {

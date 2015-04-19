@@ -16,6 +16,10 @@ public abstract class Adversarial extends NPC {
 		super(name);
 		becomeHostile();
 	}
+	
+	public void makeActionChoice(){
+		super.makeActionChoice();
+	}
 
 
 	

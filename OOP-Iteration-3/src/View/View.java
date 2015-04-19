@@ -10,9 +10,13 @@ import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Menu.ConfigControls;
+import View.Model.GameMapView;
+import View.Model.GameView;
+import View.Model.ModelView;
+import View.Model.TileView;
 
 public class View extends JPanel{
-	public static final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;;
+	public static final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
 	public static final int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	private ModelView modelView;
 
@@ -67,16 +71,10 @@ public class View extends JPanel{
 
 	}
 	
-
-	
-	
-	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (modelView != null) {
-			
-			
 			modelView.render(g);
 		}
 		

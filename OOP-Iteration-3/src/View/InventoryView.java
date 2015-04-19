@@ -2,6 +2,8 @@ package View;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
+import View.Model.MapObjectView;
+import View.Model.ModelView;
 
 import java.awt.*;
 import java.io.IOException;
@@ -183,11 +185,12 @@ public class InventoryView extends ModelView {
 	    int w = fm.stringWidth(title);
 		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
 		g.setFont(g.getFont().deriveFont(old));
-		
-		HashMap<String,Skill> skills = avatar.getOccupation().getSkills();
+
+        ArrayList<Skill> skillz = avatar.getOccupation().getSkillAL();
     	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
-    	for(Entry<String, Skill> entry: skills.entrySet()){
-    		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getKey() + " : " + entry.getValue().getCurrentLevel() );
+
+    	for(Skill entry : skillz){
+    		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getName() + " : " + entry.getCurrentLevel() );
     		startY += buttonHeight;
     		if(startY > 3*buttonHeight){
     			startX += buttonWidth;

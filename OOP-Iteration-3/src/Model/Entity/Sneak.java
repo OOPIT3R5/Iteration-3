@@ -1,5 +1,7 @@
 package Model.Entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,14 +22,19 @@ public class Sneak extends Occupation{
 
 	public Sneak(Entity e){
         super(e);
-        pickpocket  = new Skill(1,10);
-        detecttraps = new Skill(1,10);
-        creep       = new Skill(1,10);
-        rangedweapon= new Skill(1,25);
+        pickpocket  = new Skill(1,10, "Pickpocket");
+        detecttraps = new Skill(1,10, "Detect Traps");
+        creep       = new Skill(1,10, "Creep");
+        rangedweapon= new Skill(1,25, "Ranged Weapons");
         
         pickAbil = new Pickpocket(getEntity(), getEntity().map, pickpocket);
         detectAbil = new DetectTrap(getEntity(),getEntity().map,detecttraps);
         creepAbil = new Creep(getEntity(), getEntity().map, creep);
+    }
+
+    @Override
+    protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
+        return null;
     }
 
     //TODO: Replace all 'System.out.println()' methods with something with Logger.
@@ -77,54 +84,15 @@ public class Sneak extends Occupation{
         getEntity().equipItem(si);
     }
 
-    public int getPickpocketSkillLevel(){
-        return pickpocket.getCurrentLevel();
+    @Override
+    public Collection<? extends Skill> getSubSkills() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+
+        skills.add(pickpocket);
+        skills.add(detecttraps);
+        skills.add(creep);
+        skills.add(rangedweapon);
+
+        return skills;
     }
-
-    public int getDetectTrapsSkillLevel(){
-        return detecttraps.getCurrentLevel();
-    }
-
-    public int getCreepSkillLevel(){
-        return creep.getCurrentLevel();
-    }
-
-    public int getRangedWeaponSkillLevel(){
-        return rangedweapon.getCurrentLevel();
-    }
-
-    public void levelPickpocketSkill(){
-        pickpocket.levelSkillUp();
-    }
-
-    public void levelDetectTrapsSkill(){
-        detecttraps.levelSkillUp();
-    }
-
-    public void levelCreepSkill(){
-        creep.levelSkillUp();
-    }
-    public void levelRangedWeaponSkill(){
-        rangedweapon.levelSkillUp();
-    }
-    
-    protected Map<? extends String, ? extends Skill> getSkillsSub() {
-		HashMap<String, Skill> skills = new HashMap<String, Skill>();
-
-		skills.put("Pickpocket",pickpocket);
-		skills.put("Detect Traps", detecttraps);
-		skills.put("Creep", creep);
-		skills.put("Ranged Weapon", rangedweapon);
-		return skills;
-	}
-
-	@Override
-	protected Map<? extends String, ? extends Ability> getAbilitiesSub() {
-		HashMap<String, Ability> abilities = new HashMap<String, Ability>();
-
-		abilities.put("Pickpocket", pickAbil);
-		abilities.put("Detect Traps", detectAbil);
-		abilities.put("Creep", creepAbil);
-		return abilities;
-	}
 }

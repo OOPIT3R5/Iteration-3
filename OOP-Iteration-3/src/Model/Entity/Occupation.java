@@ -5,6 +5,8 @@ package Model.Entity;
 import Model.Entity.Ability.*;
 import Model.Items.UsableItem;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,39 +15,39 @@ public abstract class Occupation implements TakeableItemVisitor {
 
 
     private Entity entity;
-    
+
     private Skill attack;
     private Skill bindwounds;
     private Skill bargain;
     private Skill observation;
-    
+
     private Ability bindwoundsAbil;
     //private Ability bargainAbil;
     private Ability observeAbil;
     private Ability attackAbil;
 
-	public Occupation(Entity entity) {
+    public Occupation(Entity entity) {
         this.entity = entity;
-        
+
         //BREAKING TDA fix!!!!
         this.entity.setOccupation(this);
-        attack = new Skill (1,10);
-        bindwounds = new Skill(1, 10);
-        bargain = new Skill(1, 10);
-        observation = new Skill(1, 10);
-        
+        attack = new Skill(1, 10, "Attack");
+        bindwounds = new Skill(1, 10, "Bind Wounds");
+        bargain = new Skill(1, 10, "Bargain");
+        observation = new Skill(1, 10, "Observation");
+
         bindwoundsAbil = new BindWounds(entity, bindwounds);
         //bargainAbil= new Bargain(entity, bargain);
-        observeAbil = new Observe(entity , entity.map, observation);
-        attackAbil = new Attack(entity, entity.map, attack );
-	}
+        observeAbil = new Observe(entity, entity.map, observation);
+        attackAbil = new Attack(entity, entity.map, attack);
+    }
 
-  
-	protected Entity getEntity(){
+
+    protected Entity getEntity() {
         return entity;
     }
 	
-	public HashMap<String,Skill> getSkills(){
+/*	public HashMap<String,Skill> getSkills(){
 		
 		HashMap<String, Skill> skills = new HashMap<String, Skill>();
 		skills.put("Bind Wounds", bindwounds);
@@ -55,22 +57,31 @@ public abstract class Occupation implements TakeableItemVisitor {
 		skills.putAll(getSkillsSub());
 		return skills;
 		
-	}
-	
-	public HashMap<String,Ability> getAbilities(){
-		
-		HashMap<String, Ability> abilities = new HashMap<String, Ability>();
-		//attack
-		
-		abilities.put("Bind Wounds", bindwoundsAbil);
-		abilities.put("Attack", attackAbil);
-		abilities.put("Observation", observeAbil);
-		abilities.putAll(getAbilitiesSub());
-		return abilities;
-		
-	}
+	}*/
 
-	//Told that summoner tome isn't a thing anymore??? Potentially? by Ryan
+    public ArrayList<Skill> getSkillAL() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(bindwounds);
+        skills.add(bargain);
+        skills.add(observation);
+        skills.addAll(getSubSkills());
+        return skills;
+    }
+
+    public HashMap<String, Ability> getAbilities() {
+
+        HashMap<String, Ability> abilities = new HashMap<String, Ability>();
+        //attack
+
+        abilities.put("Bind Wounds", bindwoundsAbil);
+        abilities.put("Attack", attackAbil);
+        abilities.put("Observation", observeAbil);
+        abilities.putAll(getAbilitiesSub());
+        return abilities;
+
+    }
+
+    //Told that summoner tome isn't a thing anymore??? Potentially? by Ryan
 	/*OFF HAND ITEMS THAT ARE CALLED "SUMMONERTOME" or "SMASHERSHIELD" BUT DON'T
 	INHERIT FROM "SUMMONER WEAPON ITEM" OR "SMASHER WEAPON ITEM". I know they're not
 	weapon's but these occupation specific items should share a common interface.
@@ -87,43 +98,41 @@ public abstract class Occupation implements TakeableItemVisitor {
 
     protected abstract Map<? extends String, ? extends Ability> getAbilitiesSub();
 
-
-	protected abstract Map<? extends String, ? extends Skill> getSkillsSub();
-
-
-	public int getBindWoundsSkillLevel(){
+    public int getBindWoundsSkillLevel() {
         return bindwounds.getCurrentLevel();
     }
 
-    public int getBargainSkillLevel(){
+    public int getBargainSkillLevel() {
         return bargain.getCurrentLevel();
     }
 
-    public int getObservationSkillLevel(){
+    public int getObservationSkillLevel() {
         return observation.getCurrentLevel();
     }
 
-    public void levelBindWoundsSkill(){
+    public void levelBindWoundsSkill() {
         bindwounds.levelSkillUp();
     }
 
-    public void levelBargainSkill(){
+    public void levelBargainSkill() {
         bargain.levelSkillUp();
     }
 
-    public void levelObservationSkill(){
+    public void levelObservationSkill() {
         observation.levelSkillUp();
     }
 
 
-	public void printName() {
-		System.out.println(this.toString());
-		
-	}
+    public void printName() {
+        System.out.println(this.toString());
+
+    }
 
     @Override
 
-    public void visit(UsableItem ui){
+    public void visit(UsableItem ui) {
         ui.execute();
     }
+
+    public abstract Collection<? extends Skill> getSubSkills();
 }

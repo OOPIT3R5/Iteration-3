@@ -1,8 +1,10 @@
-package View;
+package View.Model;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
+
+import View.View;
 
 public class TileView extends ModelView{
 	BufferedImage tileImage;

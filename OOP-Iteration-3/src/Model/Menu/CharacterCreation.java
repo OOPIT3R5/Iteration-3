@@ -5,7 +5,7 @@ import java.util.Observable;
 import javax.swing.JComponent;
 
 import View.CharacterCreationView;
-import View.ModelView;
+import View.Model.ModelView;
 
 
 public class CharacterCreation extends Observable {

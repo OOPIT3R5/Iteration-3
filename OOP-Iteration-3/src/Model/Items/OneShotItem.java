@@ -2,7 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Entity;
-import View.MapObjectView;
+import View.Model.MapObjectView;
 
 public class OneShotItem extends Item {
 
