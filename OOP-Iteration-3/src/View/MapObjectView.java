@@ -25,6 +25,6 @@ public class MapObjectView {
     }
 
     public static BufferedImage getSpriteFromAvatar(int col, int row) throws IOException {
-        return ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/weapon_sprites.png")).getSubimage(32*col,32*row,32,32);
+        return ImageIO.read(new File(System.getProperty("user.dir") + "/OOP-Iteration-3/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32);
     }
 }
