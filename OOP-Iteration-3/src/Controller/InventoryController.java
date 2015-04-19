@@ -1,36 +1,44 @@
 package Controller;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Main.KeySet;
 import Main.RunGame;
+import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
+import Model.Items.AccessoryItem;
+import Model.Items.ShoesItem;
+import Model.Items.TwoHandedWeaponItem;
 import View.InventoryView;
+import View.MapObjectView;
 import View.ModelView;
 
 public class InventoryController extends Controller {
 	KeyListener back = new BacktoGame();
 	KeyListener render = new Render();
-	
+	MouseListener ml = new UseItem();
+    Entity e;
 	private static InventoryController instance;
 	
 	private static InventoryView inventoryView;
-	
+
 	private InventoryController(Entity e){
-		
-		
-	}
+        this.e = e;
+    }
 	
 	public static InventoryController getInstance(Entity e){
 		if(instance == null){
 			
 			instance = new InventoryController(e);
 			inventoryView = new InventoryView(e);
-			
 		}
 		return instance;
 	}
@@ -44,12 +52,14 @@ public class InventoryController extends Controller {
 	public void register(JFrame f) {
 		f.addKeyListener(back);
 		f.addKeyListener(render);
+        f.addMouseListener(ml);
 	}
 
 	@Override
 	public void deRegister(JFrame f) {
 		f.removeKeyListener(render);
 		f.removeKeyListener(back);
+        f.removeMouseListener(ml);
 	}
 	
 	public class BacktoGame implements KeyListener {
@@ -61,7 +71,12 @@ public class InventoryController extends Controller {
 				setNext(GameController.getInstance());
 				
 			}
-			
+
+			if(key == KeySet.getKey("BACK")) {
+                setChanged();
+                notifyObservers();
+                deleteObservers();
+            }
 		}
 
 		@Override
@@ -77,4 +92,55 @@ public class InventoryController extends Controller {
 		}
 	}
 
+    private class UseItem implements MouseListener {
+
+        private static final int InventoryStartingX = 141;
+        private static final int InventoryStartingY = 131;
+        private static final int Xspacing           =  88;
+        private static final int Yspacing           = 100;
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            placeClicked(e.getPoint());
+        }
+
+        private void placeClicked(Point pointclicked) {
+            int X = pointclicked.x;
+            int Y = pointclicked.y;
+
+
+            if(X < InventoryStartingX || Y < InventoryStartingY || X > (InventoryStartingX+(Xspacing*6)) || Y > (InventoryStartingY+(Yspacing*4)))
+                return;
+
+            X -= InventoryStartingX;
+            X /= Xspacing;
+
+            Y -= InventoryStartingY;
+            Y /= Yspacing;
+
+            System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+            e.utilizeTakeableItem((X+(Y*6))); //Go all VISITOR PATTERN ON THIS thing.
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
 }

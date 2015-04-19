@@ -71,6 +71,14 @@ public class Entity implements MovementInterface {
         ei.accept(occupation);
     }
 
+    public void utilizeTakeableItem(int inventoryIndex){
+        TakeableItem ti = inventory.takeFromInventory(inventoryIndex);
+        if(ti != null) {
+            System.out.println("You're going to equip the " + ti.getName() + "!");
+            ti.accept(occupation);
+        }
+    }
+
     //The below equip methods are package-protected. They should oly be called by Occupation due to the Visitor pattern. Please use the above method (equipEquippableItem()) to globally make an Entity equip an item.
     void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
@@ -110,7 +118,7 @@ public class Entity implements MovementInterface {
     }
 
     public void checkMana(SummonerAbility sa){
-      //  sa.
+        //
     }
 
     public StatisticContainer getStatistics(){

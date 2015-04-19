@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import Model.Entity.EquippableItemVisitor;
+import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public class ShoesItem extends EquippableItem {
@@ -10,7 +10,7 @@ public class ShoesItem extends EquippableItem {
     }
 
     @Override
-    public void accept(EquippableItemVisitor eiv) {
+    public void accept(TakeableItemVisitor eiv) {
         eiv.visit(this);
     }
 }

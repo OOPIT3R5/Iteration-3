@@ -2,28 +2,35 @@ package Controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Main.KeySet;
 import Main.RunGame;
+import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
+import Model.Entity.Smasher;
+import Model.Items.AccessoryItem;
+import Model.Items.ShoesItem;
+import Model.Items.TwoHandedWeaponItem;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
 import Model.Terrain.Mountain;
 import Model.Terrain.Water;
 import View.GameView;
+import View.MapObjectView;
 import View.ModelView;
-
 
 public class GameController extends Controller {
 	String next = "";
-	Entity e = new Entity(); //TBD!!!!!!!!!!!!!!!!!!!!
+	Entity e;
+
 	private static GameController instance = null;
 	GameMap map = new GameMap(100,100);
-	
+
 	KeyListener back = new BacktoMainMenu();
 	KeyListener inv = new InventoryListener();
 	KeyListener render = new Render();
@@ -31,7 +38,24 @@ public class GameController extends Controller {
 	ModelView tempView = new GameView(); //This will be removed
 	
 	private GameController() {
+		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
+		map.add(1, 1, new HexagonalTile(new Water()));
+		map.add(5, 5, new HexagonalTile(new Mountain()));
 
+        e = new Entity("Joshua");
+        new Smasher(e);
+        try{
+            e.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
+            System.out.println("ITEM ADDED #1");
+            e.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22,13))));
+            System.out.println("ITEM ADDED #2");
+            e.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9,7))));
+            System.out.println("ITEM ADDED #3");
+            System.out.println(e.getInventory().size());
+            //System.out.println(e.inven
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 	}
 
 	public static GameController getInstance(){

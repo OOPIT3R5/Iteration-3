@@ -1,6 +1,8 @@
 package View;
 
+import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
+import Model.Items.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -76,21 +78,9 @@ public class InventoryView extends ModelView {
 		g.drawRect(EQUIP_X, EQUIP_Y, EQUIP_WIDTH, EQUIP_HEIGHT);
 		g.drawRect(STATS_X, STATS_Y, STATS_WIDTH, STATS_HEIGHT);
 
+
+
         ArrayList<MapObjectView> mov = avatar.getInventory();
-
-        try {
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromFE(7,7)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromFE(7,5)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromFE(7,7)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromFE(7,5)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13)));
-            mov.add(new MapObjectView(MapObjectView.getSpriteFromFE(7,7)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         int counter = mov.size();
 
 		for(int i = 0; i < 4; ++i){

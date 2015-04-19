@@ -1,6 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
+import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public class UsableItem extends TakeableItem{
@@ -11,5 +12,10 @@ public class UsableItem extends TakeableItem{
     @Override
     public boolean isPassable() {
         return true;
+    }
+
+    @Override
+    public void accept(TakeableItemVisitor eiv) {
+        eiv.visit(this);
     }
 }

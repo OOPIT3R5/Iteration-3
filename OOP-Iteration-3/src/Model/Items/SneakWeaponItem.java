@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import Model.Entity.EquippableItemVisitor;
+import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public class SneakWeaponItem extends WeaponItem{
@@ -15,7 +15,7 @@ public class SneakWeaponItem extends WeaponItem{
     }
 
     @Override
-    public void accept(EquippableItemVisitor eiv) {
+    public void accept(TakeableItemVisitor eiv) {
         eiv.visit(this);
     }
 }

@@ -3,7 +3,7 @@ package Model.Entity;
 import Model.Items.*;
 
 
-public interface EquippableItemVisitor {
+public interface TakeableItemVisitor {
 
     //Visit methods for the specialized weapon items.
     void visit(SmasherWeaponItem smawi);
@@ -19,4 +19,5 @@ public interface EquippableItemVisitor {
     void visit(AccessoryItem acci);
     void visit(ShoesItem si);
 
+    void visit(UsableItem ui);
 }

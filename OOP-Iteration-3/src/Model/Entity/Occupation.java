@@ -1,6 +1,8 @@
 package Model.Entity;
 
-public abstract class Occupation implements EquippableItemVisitor {
+import Model.Items.UsableItem;
+
+public abstract class Occupation implements TakeableItemVisitor {
 
     private Entity entity;
     private Skill bindwounds;
@@ -66,4 +68,10 @@ public abstract class Occupation implements EquippableItemVisitor {
 		System.out.println(this.toString());
 		
 	}
+
+    @Override
+
+    public void visit(UsableItem ui){
+        ui.execute();
+    }
 }

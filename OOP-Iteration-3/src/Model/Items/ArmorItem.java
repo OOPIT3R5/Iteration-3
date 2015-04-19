@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import Model.Entity.EquippableItemVisitor;
+import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public class ArmorItem extends EquippableItem{
@@ -9,7 +9,7 @@ public class ArmorItem extends EquippableItem{
         super(statchange, ability, name, mov);
     }
 
-    public void accept(EquippableItemVisitor eiv){
+    public void accept(TakeableItemVisitor eiv){
         eiv.visit(this);
     }
 }

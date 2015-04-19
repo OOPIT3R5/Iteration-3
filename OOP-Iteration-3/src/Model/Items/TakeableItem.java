@@ -2,6 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Entity;
+import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public abstract class TakeableItem extends Item{
@@ -19,4 +20,6 @@ public abstract class TakeableItem extends Item{
     public void onTouch(Entity entity){
         entity.addToInventory(this); //Add to inventory.
     }
+
+    public abstract void accept(TakeableItemVisitor eiv);
 }

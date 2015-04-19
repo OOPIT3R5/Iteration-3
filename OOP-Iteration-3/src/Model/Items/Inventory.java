@@ -23,6 +23,8 @@ public class Inventory {
     }
 
     public TakeableItem takeFromInventory(int index){
+        if(index >= inventory.size())
+            return null;
         TakeableItem ti = inventory.get(index);
         inventory.remove(index);
         return ti;

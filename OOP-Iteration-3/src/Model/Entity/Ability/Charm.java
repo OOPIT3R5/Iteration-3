@@ -30,9 +30,9 @@ public class Charm extends SummonerAbility {
 	}
 
 	@Override
-	protected void scaleMagnitude() {
+	protected int scaleMagnitude() {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override

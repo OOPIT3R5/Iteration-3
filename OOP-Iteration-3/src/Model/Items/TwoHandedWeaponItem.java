@@ -7,7 +7,7 @@ public class TwoHandedWeaponItem extends SmasherWeaponItem {
 
     private String name;
 
-    TwoHandedWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
+    public TwoHandedWeaponItem(int statchange, Ability ability, String name, MapObjectView mov) {
         super(AttackSpeed.SLOW, statchange, ability, name, mov);
     }
 

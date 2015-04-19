@@ -30,9 +30,9 @@ public class Blizzard extends SummonerAbility{
 	}
 
 	@Override
-	protected void scaleMagnitude() {
+	protected int scaleMagnitude() {
 		// TODO Auto-generated method stub
-		
+        return 0;
 	}
 
 	@Override

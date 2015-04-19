@@ -1,7 +1,7 @@
 package Model.Items;
 
 import Model.Entity.Ability.Ability;
-import Model.Entity.EquippableItemVisitor;
+import Model.Entity.TakeableItemVisitor;
 import View.MapObjectView;
 
 public abstract class EquippableItem extends TakeableItem {
@@ -17,5 +17,4 @@ public abstract class EquippableItem extends TakeableItem {
         return statchange;
     }
 
-    public abstract void accept(EquippableItemVisitor eiv);
 }
