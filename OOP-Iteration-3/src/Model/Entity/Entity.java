@@ -62,10 +62,6 @@ public class Entity implements MovementInterface {
         inventoryView = new InventoryView(this);
       //  decal = new Decal();
 	}
-	
-	public InventoryView getInventoryView(){
-		return inventoryView;
-	}
 	/*
 	public Decal getDecal() {
 		// TODO Auto-generated method stub
@@ -77,9 +73,6 @@ public class Entity implements MovementInterface {
 		decal = d;
 	}*/
 	
-	public void examineItem(String s){
-		inventoryView.setInfo(s);
-	}
 	
 	public Entity (String name){
 		this();
@@ -172,6 +165,7 @@ public class Entity implements MovementInterface {
     void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
     }
+	
 
     public void examineItem(String s){
 		inventoryView.setInfo(s);
@@ -335,7 +329,7 @@ public class Entity implements MovementInterface {
         }
     }
 	
-	public void ability(String s){
+	public void ability(int s){
 		occupation.getAbilities().get(s).execute();
 	}
 	
