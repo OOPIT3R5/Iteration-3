@@ -30,7 +30,7 @@ public class Creep extends SkillAbility{
 		
 		for(Tile tile : getTargetTiles()){
 			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
-				//((NPC)tile.getEntity()).becomeNonHostile();
+				((NPC)tile.getEntity()).becomeNonHostile();
 			}
 		}
 	}
