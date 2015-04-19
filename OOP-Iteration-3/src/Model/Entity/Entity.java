@@ -29,6 +29,7 @@ import View.InventoryView;
 
 public class Entity implements MovementInterface {
 
+	private static final Exception InvalidAbilityException = null;
 	private String name;
 	private Occupation occupation;
 	private Direction directionFacing;
@@ -62,10 +63,6 @@ public class Entity implements MovementInterface {
         inventoryView = new InventoryView(this);
       //  decal = new Decal();
 	}
-	
-	public InventoryView getInventoryView(){
-		return inventoryView;
-	}
 	/*
 	public Decal getDecal() {
 		// TODO Auto-generated method stub
@@ -77,9 +74,6 @@ public class Entity implements MovementInterface {
 		decal = d;
 	}*/
 	
-	public void examineItem(String s){
-		inventoryView.setInfo(s);
-	}
 	
 	public Entity (String name){
 		this();
@@ -172,6 +166,7 @@ public class Entity implements MovementInterface {
     void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
     }
+	
 
     public void examineItem(String s){
 		inventoryView.setInfo(s);
@@ -341,7 +336,12 @@ public class Entity implements MovementInterface {
     }
 	
 	public void ability(String s){
-		occupation.getAbilities().get(s).execute();
+		Ability a = (occupation.getAbilities().get(s));
+		try {
+			a.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Invalid Ability");
+		}
 	}
-	
 }

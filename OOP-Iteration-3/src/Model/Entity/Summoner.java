@@ -117,16 +117,16 @@ public class Summoner extends Occupation{
 
 
     @Override
-	protected ArrayList<Ability> getAbilitiesSub() {
-		ArrayList<Ability> abilities = new ArrayList<Ability>();
+	protected HashMap<String, Ability> getAbilitiesSub() {
+    	HashMap<String, Ability> abilities = new HashMap<String, Ability>();
 
-		abilities.add(blizzAbil);
-		abilities.add(fireballAbil);
-		abilities.add(shockAbil);
+		abilities.put("Blizzard",blizzAbil);
+		abilities.put("Fireball",fireballAbil);
+		abilities.put("Shock",shockAbil);
 		
-		abilities.add(charmAbil);
-		abilities.add(sleepAbil);
-		abilities.add(polymorphAbil);
+		abilities.put("Charm",charmAbil);
+		abilities.put("Sleep",sleepAbil);
+		abilities.put("Polymorph",polymorphAbil);
 		
 		return abilities;
 		/* BOONS

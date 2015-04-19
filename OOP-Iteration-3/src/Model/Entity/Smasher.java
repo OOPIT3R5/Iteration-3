@@ -75,7 +75,7 @@ public class Smasher extends Occupation{
     }
 
 
-    protected ArrayList<Ability> getAbilitiesSub() {
+    protected HashMap<String, Ability> getAbilitiesSub() {
 		
 		return null;
 	}

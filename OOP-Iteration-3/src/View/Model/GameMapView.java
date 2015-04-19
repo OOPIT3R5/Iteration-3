@@ -38,12 +38,11 @@ public class GameMapView extends ModelView {
 	@Override
 	public void render(Graphics g) {
 		System.out.println("why only once");
-		int hexagon_size = 20;
+		int hexagon_size = 100;
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
 		HexagonalLocation center = new HexagonalLocation(4, 4);
 		int grid_radius = View.WIDTH / hexagon_size;
-		grid_radius = 4;
 		ArrayList<HexagonalTile> hex_tiles = gMap.getTilesSurroundingAvatar(grid_radius);
 		System.out.println("here2: " + hex_tiles.toString());
 		
