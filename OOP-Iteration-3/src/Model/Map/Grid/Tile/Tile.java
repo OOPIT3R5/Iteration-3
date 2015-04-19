@@ -104,5 +104,6 @@ public abstract class Tile {
 	}
 
 	public abstract void notifyOfEntity(MovementInterface target, Direction direction);
+	public abstract void prospectiveMovement(MovementInterface target, Direction direction);
 	
 }

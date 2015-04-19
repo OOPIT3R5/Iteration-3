@@ -52,5 +52,11 @@ public class RectangularTile extends Tile {
 		else
 			getTerrain().notifyOfEntity(target, direction);
 	}
+
+	@Override
+	public void prospectiveMovement(MovementInterface target, Direction direction) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

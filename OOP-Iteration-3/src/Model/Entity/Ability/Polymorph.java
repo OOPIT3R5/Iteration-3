@@ -31,7 +31,7 @@ public class Polymorph extends SummonerAbility {
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			getTargetEntity().polymorph();		
+			((NPC)getTargetEntity()).polymorph();		
 		} else {		// failure
 			((NPC)targetEntity).provoke();
 		}

@@ -34,7 +34,7 @@ public class Charm extends SummonerAbility {
 		double chanceOfSuccess = getSkillLevel()/100;
 		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			getTargetEntity().charm();		
+			((NPC)getTargetEntity()).charm();		
 		} else {		// failure
 			((NPC)targetEntity).provoke();
 		}

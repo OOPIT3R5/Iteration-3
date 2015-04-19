@@ -1,7 +1,11 @@
 package Model.Entity;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.DoNothing;
@@ -10,7 +14,9 @@ import Model.Entity.Ability.SummonerAbility;
 import Model.Items.*;
 import Model.Map.Direction;
 import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
 import Model.Map.Location;
+import Model.Map.Grid.Tile.Tile;
 import View.MapObjectView;
 
 public class Entity implements MovementInterface {
@@ -24,7 +30,7 @@ public class Entity implements MovementInterface {
 	private Inventory inventory;
     private StatisticContainer stats;
 	private Location currentPosition;
-	private ArrayList<Ability> movement_;
+	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
 	private int movementSpeed;
 
@@ -38,13 +44,12 @@ public class Entity implements MovementInterface {
 		//initialize movement
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_ = new ArrayList<Ability>();
-		movement_.add(new Move(this,map,Direction.NORTH,movementSpeed));
-		movement_.add(new Move(this,map,Direction.NORTHEAST,movementSpeed));
-		movement_.add(new Move(this,map,Direction.NORTHWEST,movementSpeed));
-		movement_.add(new Move(this,map,Direction.SOUTH,movementSpeed));
-		movement_.add(new Move(this,map,Direction.SOUTHEAST,movementSpeed));
-		movement_.add(new Move(this,map,Direction.SOUTHWEST,movementSpeed));
+		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
+		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
+		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,movementSpeed)));
+		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,movementSpeed)));
+		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,movementSpeed)));
+		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,movementSpeed)));
 		
         equipmentManager = new Equipment(this);
         inventory = new Inventory();
@@ -172,19 +177,17 @@ public class Entity implements MovementInterface {
     }
     @Override
 	public void disableMove(Direction direction) {
-		movement_.add(Direction.hexToInt(direction), new DoNothing());
+		moveMap.put(direction, new DoNothing());
 	}
     
     @Override
 	public void disableWalk(Direction direction) {
-		movement_.add(Direction.hexToInt(direction), new DoNothing());
+		moveMap.put(direction, new DoNothing());
 	}
     
     @Override
 	public void enableMove(Direction direction) {
-		ArrayList<Entity> entity_list = new ArrayList<Entity>();
-		entity_list.add(this);
-		// TODO movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
+		moveMap.put(direction, new Move(this, map, direction, this.getMovementSpeed()));
 	}
 	
 	public void setLocation(Location newPosition){
@@ -208,7 +211,6 @@ public class Entity implements MovementInterface {
         numOfPointsCanAllocateToLevelUpSkill++;
     }
 
-
     public ArrayList<MapObjectView> getInventory() {
         return inventory.getViews();
     }
@@ -217,18 +219,12 @@ public class Entity implements MovementInterface {
         numOfPointsCanAllocateToLevelUpSkill--;
     }
 
-
-
 	public void makeActionChoice() {
 		// hook
 	}
 
 	public void getOccupationTestMethod() {
 		occupation.printName();
-	}
-
-	public void sleep() {
-		// TODO Auto-generated method stub
 	}
 	
 	public void observe(){
@@ -239,21 +235,22 @@ public class Entity implements MovementInterface {
 		stats.changeHealth(-damage);		
 	}
 
-	public void charm() {
-		// TODO Auto-generated method stub
-	}
-
-	public void polymorph() {
-		// TODO Auto-generated method stub
-	}
-
-
 	public void useMana(SummonerAbility summonerAbility) {
 		// TODO Auto-generated method stub
 	}
 
 	public Occupation getOccupation() {
 		return occupation;
+	}
+	
+	public void alertNeighboringTiles(){
+		Location center = getLocation();
+		
+		for(Entry<Direction, Ability> entry: moveMap.entrySet()){
+			Direction currentDirection = entry.getKey();
+			Tile neighboringTile = map.getTile(center.getNeighbor(currentDirection));
+			neighboringTile.prospectiveMovement(this,currentDirection);
+		}
 	}
 
 }

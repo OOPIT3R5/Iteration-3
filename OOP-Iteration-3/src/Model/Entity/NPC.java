@@ -51,5 +51,17 @@ public class NPC extends Entity {
 		return map;
 	}
 	
+	public void sleep() {
+		// TODO Auto-generated method stub
+	}
+	
+	public void charm() {
+		becomeNonHostile();
+	}
+
+	public void polymorph() {
+		// TODO Auto-generated method stub
+	}
+	
 
 }
