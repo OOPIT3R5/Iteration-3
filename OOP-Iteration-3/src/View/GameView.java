@@ -38,7 +38,9 @@ public class GameView extends ModelView{
 		gg.add(1, 1, new HexagonalTile(new Water()));
 		gg.add(5, 5, new HexagonalTile(new Mountain()));
 		
-		((HexagonalGrid)gg).drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
+		gg.drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
+	
+	
 	}
 
 
