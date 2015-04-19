@@ -3,6 +3,7 @@ package Model.Map.Grid;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import Model.Entity.Entity;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 import Model.Terrain.Terrain;
@@ -116,5 +117,13 @@ public abstract class Grid {
 				insert(col, row, insert.clone());
 				insert.setLocation(col, row - (col / 2));
 			}
+	}
+	
+	public void spawnEntity(Location location, Entity e)
+	{
+		int x = location.getX();
+		int y = location.getY();
+		
+		grid_[x][y].setEntity(e);
 	}
 }

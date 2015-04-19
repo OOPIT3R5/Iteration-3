@@ -22,13 +22,13 @@ public class CharacterCreation extends Observable {
 	}
 	
 	public void MoveUp(){
-		selected = Math.abs((selected+1)%4);
+		selected = Math.abs((selected+1)% options.length);
 		setChanged();
 		notifyObservers(options[selected]);
 	}
 	public void MoveDown(){
 		if((--selected) < 0){
-			selected = 3;
+			selected = options.length - 1;
 		}
 		setChanged();
 		notifyObservers(options[Math.abs(selected)]);

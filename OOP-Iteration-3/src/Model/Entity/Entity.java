@@ -71,6 +71,10 @@ public class Entity implements MovementInterface {
 		return directionFacing;
 	}
 	
+	public int getskillPoints(){
+		return numOfPointsCanAllocateToLevelUpSkill;
+	}
+	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}
@@ -144,12 +148,19 @@ public class Entity implements MovementInterface {
         return inventory.stealGold(gold);
     }
 
+    public int getGold(){
+        return inventory.getGoldamount();
+    }
+
     public void changeHealth(int change){
         stats.changeHealth(change);
     }
 
     public void checkMana(SummonerAbility sa){
-        //
+        if(sa.getRequiredMana() <= getStatistics().getMana()){
+            getStatistics().useMana(sa.getRequiredMana());
+            sa.cast();
+        }
     }
 
     public StatisticContainer getStatistics(){
@@ -202,8 +213,18 @@ public class Entity implements MovementInterface {
         return inventory.getViews();
     }
 
+    public void useSkillPoint(){
+        numOfPointsCanAllocateToLevelUpSkill--;
+    }
+
+
+
 	public void makeActionChoice() {
 		// hook
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/OOPIT3R5/Iteration-3.git
 	}
 
 	public void getOccupationTestMethod() {
@@ -218,10 +239,13 @@ public class Entity implements MovementInterface {
 		
 	}
 
+<<<<<<< HEAD
 	public void receiveDamage(int damage) {
 		stats.changeHealth(-damage);		
 	}
 
+=======
+>>>>>>> branch 'master' of https://github.com/OOPIT3R5/Iteration-3.git
 	public void charm() {
 		// TODO Auto-generated method stub
 	}
@@ -230,10 +254,13 @@ public class Entity implements MovementInterface {
 		// TODO Auto-generated method stub
 	}
 
+<<<<<<< HEAD
 	public void useMana(SummonerAbility summonerAbility) {
 		// TODO Auto-generated method stub
 	}
 
+=======
+>>>>>>> branch 'master' of https://github.com/OOPIT3R5/Iteration-3.git
 	public Occupation getOccupation() {
 		return occupation;
 	}

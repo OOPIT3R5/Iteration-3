@@ -34,7 +34,6 @@ public class GameMap{
 	public GameMap(int width, int height) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
-		 mapView = new GameView();
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
 	}
 
@@ -45,7 +44,7 @@ public class GameMap{
 	
 	public void add(int x, int y, Tile t)
 	{
-		
+		gameMapGrid.add(x, y, t);
 	}
 	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
@@ -59,9 +58,9 @@ public class GameMap{
 		return mapView;
 	}
 
-	public void spawn(Avatar av)
+	public void spawn(Entity entity)
 	{
-		
+		gameMapGrid.spawnEntity(entity.getLocation(), entity);
 	}
 	
 	public Tile getTile(Location location){

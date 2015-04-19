@@ -2,11 +2,12 @@ package Model.Items;
 
 
 import Model.Entity.Ability.Ability;
+import Model.SaveSystem.Savable;
+import Model.SaveSystem.Saver;
 import View.MapObjectView;
 
-import java.awt.image.BufferedImage;
 
-public abstract class Item implements MapObject{
+public abstract class Item implements MapObject, Savable{
 
     private Ability ability;                //Ability.
     private String name;                    //Name of object.
@@ -27,12 +28,29 @@ public abstract class Item implements MapObject{
         return name;
     }
 
+   // public abstract String getHelp();
+
     public void execute(){
         ability.execute();
     }
 
     public MapObjectView getMapObjectView(){
         return mov;
+    }
+    
+    public void save(Saver saver)
+    {
+    	saver.save(this);
+    }
+    
+    public String toString()
+    {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append(name);
+    	
+    	
+    	
+    	return "";
     }
 
 }
