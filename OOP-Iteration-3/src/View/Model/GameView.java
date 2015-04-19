@@ -21,11 +21,11 @@ public class GameView extends ModelView {
 	GameMap gameMap;
 	Avatar avatar;
 	
-	public GameView(GameMap gameMap, Avatar avatar){
-		
+	public GameView(GameMap gameMap, Avatar avatar) {
 		this.gameMap = gameMap;
 		this.avatar = avatar;
 	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		

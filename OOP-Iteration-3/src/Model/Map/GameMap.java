@@ -42,9 +42,7 @@ public class GameMap {
 		 //gameMapGrid.initalize();
 	}
 
-	public void fill(Tile defaultTile)
-	{
-		System.out.println("this is never called");
+	public void fill(Tile defaultTile) {
 		gameMapGrid.fill(defaultTile);
 	}
 	
@@ -100,7 +98,9 @@ public class GameMap {
 
 	public ArrayList<HexagonalTile> getTilesSurroundingAvatar(int radius) {
 		ArrayList<HexagonalLocation> hex_coords;
-		hex_coords = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), radius);
+		//hex_coords = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), radius);
+		hex_coords = HexagonalLocation.circle(new HexagonalLocation(4, 4), radius);
+		ArrayList<HexagonalTile> foo = gameMapGrid.getHexTiles(hex_coords);
 		return gameMapGrid.getHexTiles(hex_coords);
 	}
 

@@ -42,7 +42,7 @@ public class Game {
 		
 		this.gameMap = gameMap;
 		this.avatar = avatar;
-		this.gameMap.fill(new HexagonalTile(new Water()));
+		this.gameMap.fill(new HexagonalTile(new Grass()));
 	}
 	
 	public void setUpAvatar(Avatar avatar){

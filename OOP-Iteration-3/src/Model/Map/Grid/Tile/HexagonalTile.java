@@ -20,7 +20,6 @@ public class HexagonalTile extends Tile {
 	
 	public HexagonalTile() {
 		super(new Grass());
-		System.out.println("er2: " + super.getTerrain().getColor().toString());
 		hView = new HexTileView(this);
 	}
 	
@@ -75,8 +74,8 @@ public class HexagonalTile extends Tile {
 	}
 	
 	
-	public void render(Graphics g, Point center, HexagonalLocation relative_position) {
-		hView.render(g, center, relative_position);
+	public void render(Graphics g, Point origin, HexagonalLocation center) {
+		hView.render(g, origin, center);
 	}
 	
 	public void render(Graphics g)
