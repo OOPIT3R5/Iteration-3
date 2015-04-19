@@ -26,7 +26,7 @@ public class Game {
 	public Game(Avatar a){
 		
 		this.avatar = a;
-		gameMap = new GameMap(10, 10);
+		gameMap = new GameMap(100, 100, avatar);
 	    setUpAvatar(avatar);
 		
 		gameMap.spawn(avatar);

@@ -11,6 +11,7 @@ import Model.Map.Grid.Grid;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
+import View.GameMapView;
 import View.GameView;
 import View.ModelView;
 
@@ -18,11 +19,11 @@ import View.ModelView;
 public class GameMap{
 	
 	
-	GameView mapView;
-	Grid gameMapGrid;
-	private static int HEIGHT;
-	private static int WIDTH;
-	
+	GameMapView mapView;
+	HexagonalGrid gameMapGrid;
+	private int HEIGHT;
+	private int WIDTH;
+	private Avatar avatar;
 	public ArrayList<HexagonalLocation> getLine(Location loc)
 	{
 		return null;
@@ -32,10 +33,13 @@ public class GameMap{
 	
 	}
 
-	public GameMap(int width, int height) {
+	public GameMap(int width, int height, Avatar a) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
+		this.avatar = a;
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
+		 mapView = new GameMapView(this);
+		 //gameMapGrid.initalize();
 	}
 
 	public void fill(Tile defaultTile)
@@ -74,6 +78,26 @@ public class GameMap{
 
 	public Entity getEntity(Location location) {
 		return ((HexagonalGrid) gameMapGrid).getEntity(location);
+	}
+	
+	public void render(Graphics g, Avatar av)
+	{
+		mapView.render(g);
+	}
+
+	
+
+	public Avatar getAvatar() {
+		// TODO Auto-generated method stub
+		return avatar;
+	}
+
+	public ArrayList<HexagonalLocation> getHexTiles() {
+		ArrayList<HexagonalLocation> locations;
+		
+		locations = HexagonalLocation.circle((HexagonalLocation)avatar.getLocation(), 49);
+		
+		return locations;
 	}
 	
 }

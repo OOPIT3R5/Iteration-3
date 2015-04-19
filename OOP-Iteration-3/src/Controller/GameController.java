@@ -57,6 +57,7 @@ public class GameController extends Controller {
 	}
 	@Override
 	public ModelView getView() {
+		
 		return game.getView(); 	//TBD!!!!!!!!!!!!!!!!!!!!!!
 	}
 

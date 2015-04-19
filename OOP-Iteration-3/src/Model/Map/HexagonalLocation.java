@@ -96,7 +96,8 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 	
 	public static ArrayList<HexagonalLocation> ring(HexagonalLocation center, int radius) {
 		ArrayList<HexagonalLocation> ring = new ArrayList<HexagonalLocation>();
-		HexagonalLocation hex = new HexagonalLocation(center.getU(), center.getV() + radius);
+	
+		HexagonalLocation hex = new HexagonalLocation(center.getX(), center.getY() + radius);
 		for (int direction = 0; direction < 6; direction++)
 			for (int i = 0; i < radius; i++) {
 				ring.add(hex.clone());

@@ -10,6 +10,7 @@ import Model.Entity.Ability.SummonerAbility;
 import Model.Items.*;
 import Model.Map.Direction;
 import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import View.MapObjectView;
 
@@ -256,4 +257,9 @@ public class Entity implements MovementInterface {
 		return occupation;
 	}
 
+	protected void setLocation(HexagonalLocation loc)
+	{
+		this.currentPosition = loc;
+	}
+	
 }
