@@ -9,29 +9,16 @@ import View.Model.MapObjectView;
 
 public abstract class Item implements MapObject, Savable{
 
-    private Ability ability;                //Ability.
     private String name;                    //Name of object.
     private MapObjectView mov;               //BufferedImage.
 
-    public Item(Ability ability, String name, MapObjectView mov) {
-        this.ability = ability;
+    public Item(String name, MapObjectView mov) {
         this.name = name;
         this.mov   = mov;
     }
 
-
-    public Ability getAbility() {
-        return ability;
-    }
-
     public String getName(){
         return name;
-    }
-
-   // public abstract String getHelp();
-
-    public void execute(){
-        ability.execute();
     }
 
     public MapObjectView getMapObjectView(){
@@ -47,10 +34,9 @@ public abstract class Item implements MapObject, Savable{
     {
     	StringBuilder builder = new StringBuilder();
     	builder.append(name);
-    	
-    	
-    	
-    	return "";
+
+    	//return "";
+        return name;
     }
 
 }
