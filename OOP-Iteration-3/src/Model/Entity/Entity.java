@@ -17,6 +17,7 @@ import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
+import View.InventoryView;
 import View.MapObjectView;
 
 public class Entity implements MovementInterface {
@@ -31,6 +32,10 @@ public class Entity implements MovementInterface {
     private StatisticContainer stats;
 	private Location currentPosition;
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
+	
+	private InventoryView inventoryView;
+	private ArrayList<String> skillList = new ArrayList<String>();
+	private int skillSelected = 0;
 	
 	private int movementSpeed;
 
@@ -55,6 +60,16 @@ public class Entity implements MovementInterface {
         inventory = new Inventory();
         stats = new StatisticContainer();
         movementSpeed = 1;
+        
+        inventoryView = new InventoryView(this);
+	}
+	
+	public InventoryView getInventoryView(){
+		return inventoryView;
+	}
+	
+	public void examineItem(String s){
+		inventoryView.setInfo(s);
 	}
 	
 	public Entity (String name){
@@ -103,6 +118,7 @@ public class Entity implements MovementInterface {
     }
     
     public TakeableItem getItem(int inventoryIndex){
+    	TakeableItem ti = inventory.getFromInventory(inventoryIndex);
         return inventory.getFromInventory(inventoryIndex);
     }
 
@@ -221,6 +237,12 @@ public class Entity implements MovementInterface {
 
     public void useSkillPoint(){
         numOfPointsCanAllocateToLevelUpSkill--;
+    }
+    
+    public void incSkill(Skill s){
+    	if(numOfPointsCanAllocateToLevelUpSkill > 0){
+    		s.levelSkillUp();
+    	}
     }
 
 	public void makeActionChoice() {

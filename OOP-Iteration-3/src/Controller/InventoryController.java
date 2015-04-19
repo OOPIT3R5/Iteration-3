@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
 
 import Main.KeySet;
 import Model.Entity.Entity;
+import Model.Items.TakeableItem;
 import View.InventoryView;
 import View.ModelView;
 
@@ -20,7 +22,7 @@ public class InventoryController extends Controller {
 
 	private static InventoryController instance;
 	
-	private static InventoryView inventoryView;
+	//private InventoryView inventoryView;
 
 	private InventoryController(Entity e){
         this.e = e;
@@ -30,7 +32,7 @@ public class InventoryController extends Controller {
 		if(instance == null){
 			
 			instance = new InventoryController(e);
-			inventoryView = new InventoryView(e);
+			//inventoryView = new InventoryView(e);
 		}
 		return instance;
 	}
@@ -38,7 +40,7 @@ public class InventoryController extends Controller {
 	@Override
 	public ModelView getView() {
 		// TODO Auto-generated method stub
-		return inventoryView;
+		return e.getInventoryView();
 	}
 
 	@Override
@@ -135,9 +137,10 @@ public class InventoryController extends Controller {
 
             Y -= InventoryStartingY;
             Y /= Yspacing;
-
-            System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+            System.out.println(e.getItem((X+(Y*6))).toString());
+          //  System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
             e.utilizeTakeableItem((X+(Y*6))); //Go all VISITOR PATTERN ON THIS thing.
+           
 
         }
         
@@ -155,8 +158,8 @@ public class InventoryController extends Controller {
             Y -= InventoryStartingY;
             Y /= Yspacing;
 
-            System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
-            inventoryView.setInfo(e.getItem((X+(Y*6))).toString());
+           //System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+            e.examineItem(e.getItem((X+(Y*6))).getName());
         }
 
         private void checkEquipment(int X, int Y) {
