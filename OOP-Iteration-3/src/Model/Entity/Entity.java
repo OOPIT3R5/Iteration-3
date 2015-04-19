@@ -8,6 +8,7 @@ import Model.Entity.Ability.Move;
 import Model.Entity.Ability.SummonerAbility;
 import Model.Items.*;
 import Model.Map.Direction;
+import Model.Map.GameMap;
 import Model.Map.Location;
 import View.MapObjectView;
 
@@ -27,6 +28,7 @@ public class Entity implements MovementInterface {
 	private int movementSpeed;
 	//rename
 	protected int numOfPointsCanAllocateToLevelUpSkill;
+	protected GameMap map;
 	
 	/*Use */
 	public Entity(){
@@ -35,7 +37,7 @@ public class Entity implements MovementInterface {
 		entity_list.add(this);
 		movement_ = new ArrayList<Ability>();
 		for (int i = 0; i < 6; i++) {
-			movement_.add(new Move(this, Direction.intToHex(i), 1));
+			// TODO movement_.add(new Move(this,map,movementSpeed)));
 		}
 
         equipmentManager = new Equipment(this);
@@ -65,6 +67,10 @@ public class Entity implements MovementInterface {
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
+	}
+	
+	public void setDirection(Direction d){
+		directionFacing = d;
 	}
 
 
@@ -143,7 +149,7 @@ public class Entity implements MovementInterface {
 	public void enableMove(Direction direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
+		// TODO movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
 	}
 	
 	public void setLocation(Location newPosition){

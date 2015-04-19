@@ -53,7 +53,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		return new Attack(null, null);
+		return new Attack(null, null, null);		// TODO doesn't do anything
 
 		//find closest entity (not avatar), face, and attack
 
@@ -62,7 +62,8 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	@Override
 	public Ability stealInVicinity() {
 		Direction randDir = RandomlyGenerate.direction();
-		return new Move(this, randDir, getMovementSpeed());
+		setDirection(randDir);
+		return new Move(this, map, getMovementSpeed());
 		//can pickup item on tile
 		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
 		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile

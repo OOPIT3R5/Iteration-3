@@ -71,18 +71,20 @@ public class Hostility {
 		Direction TowardAvatarDirectionPlaceholder = null;
 		
 		if (npc.avatarIsWithinRange()){
-			a = new Attack(null, null);//attack in avatar direction
+			a = new Attack(null, null, null);	//TODO attack in avatar direction
 			System.out.println("I'm attacking the avatar who is/was next to me");
 		}
 		else{
 			if (prob < .60){
 				//60% chance of moving toward avatar
-				a = new Move(npc, TowardAvatarDirectionPlaceholder, npc.getMovementSpeed());
+				npc.setDirection(TowardAvatarDirectionPlaceholder);
+				a = new Move(npc, npc.getMap(), npc.getMovementSpeed());		// TODO need reference to map
 				System.out.println("I'm moving toward avatar");
 			}
 			else if (prob < .90){
 				//30% chance of moving in random direction
-				a = new Move(npc, RandomlyGenerate.direction(), npc.getMovementSpeed());
+				npc.setDirection(RandomlyGenerate.direction());
+				a = new Move(npc, npc.getMap(), npc.getMovementSpeed());		// TODO need reference to map
 				System.out.println("I'm moving in rand dir");
 			}
 			else {
