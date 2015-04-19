@@ -3,6 +3,7 @@ package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -10,9 +11,11 @@ import javax.swing.JFrame;
 import Main.KeySet;
 import Main.RunGame;
 import Model.Entity.Ability.DoNothing;
+import Model.Entity.Ability.Move;
 import Model.Entity.Entity;
 import Model.Entity.Smasher;
 import Model.Items.*;
+import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
@@ -28,10 +31,8 @@ public class GameController extends Controller {
 
 	private static GameController instance = null;
 	GameMap map = new GameMap(100,100);
-
-	KeyListener back = new BacktoMainMenu();
-	KeyListener inv = new InventoryListener();
-	KeyListener render = new Render();
+	
+	ArrayList<KeyListener> listeners = new ArrayList<KeyListener>();
 	
 	ModelView tempView = new GameView(); //This will be removed
 	
@@ -39,7 +40,6 @@ public class GameController extends Controller {
 		map.fill(new HexagonalTile(new Grass()));		// populate map from file?
 		map.add(1, 1, new HexagonalTile(new Water()));
 		map.add(5, 5, new HexagonalTile(new Mountain()));
-
         e = new Entity("Joshua");
         new Smasher(e);
         try{
@@ -51,6 +51,9 @@ public class GameController extends Controller {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        listeners.add(new BacktoMainMenu());
+        listeners.add(new InventoryListener());
+        listeners.add(new Render());
 	}
 
 	public static GameController getInstance(){
@@ -68,16 +71,16 @@ public class GameController extends Controller {
 
 	@Override
 	public void register(JFrame f) {
-		f.addKeyListener(back);
-		f.addKeyListener(inv);
-		f.addKeyListener(render);
+		for(int i = 0; i < listeners.size(); i++){
+			f.addKeyListener(listeners.get(i));
+		}
 	}
 
 	@Override
 	public void deRegister(JFrame f) {
-		f.removeKeyListener(back);
-		f.removeKeyListener(inv);
-		f.removeKeyListener(render);
+		for(int i = 0; i < listeners.size(); i++){
+			f.removeKeyListener(listeners.get(i));
+		}
 	}
 	
 	public class BacktoMainMenu implements KeyListener {
@@ -112,6 +115,31 @@ public class GameController extends Controller {
 			if(key == KeySet.getKey("INVENTORY")){
 				setNext(InventoryController.getInstance(e));
 				
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	public class MoveUpListener implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent k) {
+			int key = k.getKeyCode();
+			if(key == KeySet.getKey("NORTH")){
+				Move m = new Move(e,map,Direction.NORTH,e.getMovementSpeed());
+				m.execute();
 			}
 			
 		}
