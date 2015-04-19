@@ -71,6 +71,9 @@ public class Entity implements MovementInterface {
 		return directionFacing;
 	}
 	
+		return numOfPointsCanAllocateToLevelUpSkill;
+	}
+	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}

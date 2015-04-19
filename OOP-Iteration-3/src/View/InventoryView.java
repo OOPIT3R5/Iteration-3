@@ -194,7 +194,7 @@ public class InventoryView extends ModelView {
     	
     	float old = g.getFont().getSize();
 		g.setFont(g.getFont().deriveFont(25.0f));
-		String title = "Skills : You Have " + avatar.getLevels() +  " Points";
+		String title = "Skills : You Have " + avatar.getskillPoints() +  " Points";
 		FontMetrics fm = g.getFontMetrics();
 	    int w = fm.stringWidth(title);
 		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
