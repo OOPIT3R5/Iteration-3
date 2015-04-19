@@ -3,14 +3,14 @@ package Model.Map;
 import java.util.ArrayList;
 
 import Model.Map.Grid.HexagonalGrid;
-import View.GameMapView;
+import View.GameView;
 import View.ModelView;
 
 
 public class GameMap extends HexagonalGrid {
 	
 	
-	GameMapView mapView;
+	GameView mapView;
 	
 	public ArrayList<HexagonalLocation> getLine(Location loc)
 	{
@@ -23,7 +23,7 @@ public class GameMap extends HexagonalGrid {
 
 	public GameMap(int width, int height) {
 		super(width, height);
-		 mapView = new GameMapView();
+		 mapView = new GameView();
 	}
 
 	public ModelView getView() {

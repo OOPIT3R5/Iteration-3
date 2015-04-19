@@ -31,11 +31,7 @@ public class View extends JPanel{
 		this.modelView = mv;
 		this.repaint();
 	}
-	public void visit(GameView mv) {
-		this.modelView = mv;
-		this.repaint();
-
-	}
+	
 	
 	public void visit(InventoryView mv) {
 		this.modelView = mv;
@@ -48,7 +44,7 @@ public class View extends JPanel{
 
 	}
 	
-	public void visit(GameMapView mv) {
+	public void visit(GameView mv) {
 		this.modelView = mv;
 		this.repaint();
 
