@@ -74,9 +74,18 @@ public class InventoryView extends ModelView {
 	@Override
 	public void render(Graphics g) {
         renderInventory(g);
-        renderEquipment(g);
+        try{
+            renderEquipment(g);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         renderStats(g);
         renderSkills(g);
+        try {
+            renderEquipment(g);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void renderInventory(Graphics g){
@@ -111,22 +120,32 @@ public class InventoryView extends ModelView {
         }
     }
 
-    private void renderEquipment(Graphics g){
-    	
-    	float old = g.getFont().getSize();
-		g.setFont(g.getFont().deriveFont(40.0f));
-		String title = "Equipment";
-		FontMetrics fm = g.getFontMetrics();
-	    int w = fm.stringWidth(title);
-		g.drawString(title, INV_WIDTH + EQUIP_WIDTH/2 - (2*w / 3), 50);
-		g.setFont(g.getFont().deriveFont(old));
-		
-        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                                        //TOP BOX (helmet)
-        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //MIDDLE BOX (Armor)
-        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 + INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //RIGHT BOX (Off-hand)
-        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 - INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //LEFT BOX (Weapon)
-        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/2, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //BOTTOM BOX (Shoes)
+    private void renderEquipment(Graphics g) throws IOException {
 
+            float old = g.getFont().getSize();
+            g.setFont(g.getFont().deriveFont(40.0f));
+            String title = "Equipment";
+            FontMetrics fm = g.getFontMetrics();
+            int w = fm.stringWidth(title);
+            g.drawString(title, INV_WIDTH + EQUIP_WIDTH/2 - (2*w / 3), 50);
+            g.setFont(g.getFont().deriveFont(old));
+
+        MapObjectView[] views = avatar.getEquipmentViews();
+
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                                        //TOP BOX (helmet)
+        g.drawImage(views[3].getBufferedImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT), (INV_WIDTH + EQUIP_WIDTH / 3) + 12, INV_GRIDY + 12, null);
+
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH / 3, INV_GRIDY + INV_GRIDHEIGHT / 4, INV_GRIDWIDTH / 6, INV_GRIDHEIGHT / 4);                     //MIDDLE BOX (Armor)
+        g.drawImage(views[2].getBufferedImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT), (INV_WIDTH + EQUIP_WIDTH / 3) + 12, (INV_GRIDY + INV_GRIDHEIGHT / 4) + 12, null);
+
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH / 3 + INV_GRIDWIDTH / 6, INV_GRIDY + INV_GRIDHEIGHT / 4, INV_GRIDWIDTH / 6, INV_GRIDHEIGHT / 4);   //RIGHT BOX (Off-hand)
+        g.drawImage(views[1].getBufferedImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT), (INV_WIDTH + EQUIP_WIDTH / 3 + INV_GRIDWIDTH / 6) + 12, (INV_GRIDY + INV_GRIDHEIGHT / 4) + 12, null);
+
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3 - INV_GRIDWIDTH/6, INV_GRIDY + INV_GRIDHEIGHT/4, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);   //LEFT BOX (Weapon)
+        g.drawImage(views[0].getBufferedImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT), (INV_WIDTH + EQUIP_WIDTH / 3 - INV_GRIDWIDTH/6) + 12, (INV_GRIDY + INV_GRIDHEIGHT / 4) + 12, null);
+
+        g.drawRect(INV_WIDTH + EQUIP_WIDTH/3, INV_GRIDY + INV_GRIDHEIGHT/2, INV_GRIDWIDTH/6, INV_GRIDHEIGHT/4);                     //BOTTOM BOX (Shoes)
+        g.drawImage(views[4].getBufferedImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT), (INV_WIDTH + EQUIP_WIDTH / 3) + 12, (INV_GRIDY + INV_GRIDHEIGHT/2) + 12, null);
     }
     
     private void renderStats(Graphics g){
@@ -175,7 +194,7 @@ public class InventoryView extends ModelView {
 		String title = "Skills : You Have _ Level Ups";
 		FontMetrics fm = g.getFontMetrics();
 	    int w = fm.stringWidth(title);
-		g.drawString(title, INV_GRIDX + buttonWidth*7 - (w / 2), STATS_Y+ 35);
+		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
 		g.setFont(g.getFont().deriveFont(old));
 		
 		HashMap<String,Skill> skills = avatar.getOccupation().getSkills();

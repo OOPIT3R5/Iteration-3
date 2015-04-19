@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import Model.Entity.Avatar;
+import Model.Entity.Entity;
 import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.Grid;
 import Model.Map.Grid.HexagonalGrid;
@@ -20,6 +21,7 @@ public class GameMap{
 	Grid gameMapGrid;
 	private static int HEIGHT;
 	private static int WIDTH;
+	
 	public ArrayList<HexagonalLocation> getLine(Location loc)
 	{
 		return null;
@@ -57,9 +59,17 @@ public class GameMap{
 		return mapView;
 	}
 
-	public void respawn(Avatar av)
+	public void spawn(Avatar av)
 	{
 		
+	}
+	
+	public Tile getTile(Location location){
+		return gameMapGrid.get(location);
+	}
+
+	public Entity getEntity(Location location) {
+		return ((HexagonalGrid) gameMapGrid).getEntity(location);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package Model.Entity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Model.Entity.Ability.Ability;
@@ -8,6 +9,7 @@ import Model.Entity.Ability.Move;
 import Model.Entity.Ability.SummonerAbility;
 import Model.Items.*;
 import Model.Map.Direction;
+import Model.Map.GameMap;
 import Model.Map.Location;
 import View.MapObjectView;
 
@@ -25,8 +27,11 @@ public class Entity implements MovementInterface {
 	private ArrayList<Ability> movement_;
 	
 	private int movementSpeed;
-	//rename
-	protected int numOfPointsCanAllocateToLevelUpSkill;
+
+	//rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
+	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
+
+	protected GameMap map;
 	
 	/*Use */
 	public Entity(){
@@ -34,10 +39,13 @@ public class Entity implements MovementInterface {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
 		movement_ = new ArrayList<Ability>();
-		for (int i = 0; i < 6; i++) {
-			movement_.add(new Move(this, Direction.intToHex(i), 1));
-		}
-
+		movement_.add(new Move(this,map,Direction.NORTH,movementSpeed));
+		movement_.add(new Move(this,map,Direction.NORTHEAST,movementSpeed));
+		movement_.add(new Move(this,map,Direction.NORTHWEST,movementSpeed));
+		movement_.add(new Move(this,map,Direction.SOUTH,movementSpeed));
+		movement_.add(new Move(this,map,Direction.SOUTHEAST,movementSpeed));
+		movement_.add(new Move(this,map,Direction.SOUTHWEST,movementSpeed));
+		
         equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer();
@@ -65,6 +73,10 @@ public class Entity implements MovementInterface {
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
+	}
+	
+	public void setDirection(Direction d){
+		directionFacing = d;
 	}
 
 
@@ -103,8 +115,23 @@ public class Entity implements MovementInterface {
     }
     //end of package protected methods to be called ONLY by the occupations
 
-    
     	//can't award more than numOfPointsCanAllocateToLevelUpSkill
+    public void unequipWeapon(){
+        equipmentManager.unequipWeapon();
+    }
+    public void unequipOffHand(){
+        equipmentManager.unequipOffHandItem();
+    }
+    public void unequipArmor(){
+        equipmentManager.unequipArmor();
+    }
+    public void unequipAccessory(){
+        equipmentManager.unequipAccessory();
+    }
+    public void unequipShoes(){
+        equipmentManager.unequipShoes();
+    }
+
     public void awardExperience(int award){
         stats.awardExperience(award);
     }
@@ -129,6 +156,9 @@ public class Entity implements MovementInterface {
         return stats;
     }
 
+    public MapObjectView[] getEquipmentViews() throws IOException {
+        return equipmentManager.getViews();
+    }
     @Override
 	public void disableMove(Direction direction) {
 		movement_.add(Direction.hexToInt(direction), new DoNothing());
@@ -143,7 +173,7 @@ public class Entity implements MovementInterface {
 	public void enableMove(Direction direction) {
 		ArrayList<Entity> entity_list = new ArrayList<Entity>();
 		entity_list.add(this);
-		movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
+		// TODO movement_.add(Direction.hexToInt(direction), new Move(this, direction, 1));
 	}
 	
 	public void setLocation(Location newPosition){
@@ -209,6 +239,11 @@ public class Entity implements MovementInterface {
 	public void useMana(SummonerAbility summonerAbility) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Occupation getOccupation() {
+		// TODO Auto-generated method stub
+		return occupation;
 	}
 
 }

@@ -1,5 +1,6 @@
 package Model.Entity;
 
+import Model.Map.GameMap;
 import Utility.RandomlyGenerate;
 
 public class NPC extends Entity {
@@ -44,6 +45,10 @@ public class NPC extends Entity {
 		if (rand>.10){
 			becomeHostile();
 		}
+	}
+
+	public GameMap getMap() {
+		return map;
 	}
 	
 

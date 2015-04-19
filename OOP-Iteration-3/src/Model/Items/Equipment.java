@@ -1,6 +1,10 @@
 package Model.Items;
 
 import Model.Entity.Entity;
+import View.MapObjectView;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Equipment {
     //TODO: Get the Equipment all working!
@@ -22,6 +26,31 @@ public class Equipment {
         entity = e;
     }
 
+    public MapObjectView[] getViews() throws IOException {
+        MapObjectView[] returned = new MapObjectView[5];
+        if(isWeaponNull())
+            returned[0] = new MapObjectView(MapObjectView.getSpriteFromPokemon(2,17));
+        else returned[0] = weapon.getMapObjectView();
+
+        if(isOffHandNull())
+            returned[1] = new MapObjectView(MapObjectView.getSpriteFromPokemon(2,17));
+        else returned[1] = offhand.getMapObjectView();
+
+        if(isArmorNull())
+            returned[2] = new MapObjectView(MapObjectView.getSpriteFromPokemon(2,17));
+        else returned[2] = armor.getMapObjectView();
+
+        if(isAccessoryNull())
+            returned[3] = new MapObjectView(MapObjectView.getSpriteFromPokemon(2,17));
+        else returned[3] = accessory.getMapObjectView();
+
+        if(isShoesNull())
+            returned[4] = new MapObjectView(MapObjectView.getSpriteFromPokemon(2,17));
+        else returned[4] = shoes.getMapObjectView();
+
+        return returned;
+    }
+
     public void equip(WeaponItem weaponitem){
         if(!isWeaponNull())
             unequipWeapon();        //If we already have a weapon equipped, unequip it first.
@@ -35,6 +64,7 @@ public class Equipment {
         if(!isOffHandNull())
             unequipOffHandItem();   //If we already have an off-hand item, unequip it first.
 
+        if(!isWeaponNull())
         if(weapon.isTwoHanded())
             unequipWeapon();        //We can't be having a two-handed weapon AND an off-hand item on, now can we?
 
@@ -95,7 +125,7 @@ public class Equipment {
         if(isShoesNull())
             return;
         entity.addToInventory(shoes);
-        entity.getStatistics().addDefense(-1*accessory.getStatChangingValue());
+        entity.getStatistics().addDefense(-1*shoes.getStatChangingValue());
         nullifyShoes();
     }
 

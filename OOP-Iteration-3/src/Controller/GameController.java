@@ -12,9 +12,7 @@ import Main.RunGame;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Entity;
 import Model.Entity.Smasher;
-import Model.Items.AccessoryItem;
-import Model.Items.ShoesItem;
-import Model.Items.TwoHandedWeaponItem;
+import Model.Items.*;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
@@ -46,12 +44,9 @@ public class GameController extends Controller {
         new Smasher(e);
         try{
             e.addToInventory(new TwoHandedWeaponItem(50, new DoNothing(), "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
-            System.out.println("ITEM ADDED #1");
-            e.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22,13))));
-            System.out.println("ITEM ADDED #2");
-            e.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9,7))));
-            System.out.println("ITEM ADDED #3");
-            System.out.println(e.getInventory().size());
+            e.addToInventory(new AccessoryItem(10, new DoNothing(), "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));
+            e.addToInventory(new ShoesItem(5, new DoNothing(), "Boots of Fury", new MapObjectView(MapObjectView.getSpriteFromFE(9, 7))));
+            e.addToInventory(new SmasherShieldOffHandItem(2, new DoNothing(), "Kickass book", new MapObjectView(MapObjectView.getSpriteFromFE(0,6))));
             //System.out.println(e.inven
         } catch (IOException ex) {
             ex.printStackTrace();
