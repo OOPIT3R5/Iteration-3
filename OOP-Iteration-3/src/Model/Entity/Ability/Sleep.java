@@ -12,18 +12,6 @@ public class Sleep extends SummonerAbility {
     }
 
 	@Override
-    public void execute() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getSkillLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	protected int getRequiredMana() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -32,7 +20,7 @@ public class Sleep extends SummonerAbility {
 	@Override
 	protected int scaleMagnitude() {
 		// TODO Auto-generated method stub
-        return 0;
+		return 0;
 	}
 
 	@Override
@@ -42,9 +30,29 @@ public class Sleep extends SummonerAbility {
 	}
 
 	@Override
+	protected int getSkillLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	protected ArrayList<Tile> getTargetTiles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

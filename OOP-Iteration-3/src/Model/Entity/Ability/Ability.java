@@ -1,5 +1,8 @@
 package Model.Entity.Ability;
 
-public abstract class Ability {
-    public abstract void execute();
+import Model.Entity.Entity;
+
+public abstract class Ability {    
+	public abstract void execute();
+    protected abstract Entity getSourceEntity();
 }

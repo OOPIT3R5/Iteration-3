@@ -4,29 +4,33 @@ import java.util.ArrayList;
 
 import Model.Entity.Entity;
 import Model.Map.Direction;
+import Model.Map.GameMap;
 
 public class Move extends Ability {
 	
 	private int movementSpeed;
-	private Direction direction;
-    private Entity entity;
+	private GameMap map;
+    private Entity sourceEntity;
 
-	public Move(Entity entity, Direction direction, int movementSpeed) {
-		this.direction = direction;
+	public Move(Entity sourceEntity, GameMap map, int movementSpeed) {
+	    this.sourceEntity = sourceEntity;
+		this.map = map;
 		this.movementSpeed = movementSpeed;
-	    this.entity = entity;
     }
 
 	@Override
 	public void execute() {
-		Entity currentEntity = entity;
-		// get oldTile
-		//System.out.println(currentEntity.getLocation().toString());	// testing
+		Entity currentEntity = getSourceEntity();
+		//map.getTile(currentEntity.getLocation());		// get oldTile
 		//currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
-		//System.out.println(currentEntity.getLocation().toString());	// testing
 		// get newTile
 		// remove Entity from oldTile
 		// place Entity on newTile
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import Model.Entity.Entity;
 import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
@@ -100,6 +101,10 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	public HexagonalTile get(Location hex_location) {
 		HexagonalCoordinateInterface hex_coord = (HexagonalCoordinateInterface)hex_location;
 		return get(hex_coord.getU(), hex_coord.getV());
+	}
+	
+	public Entity getEntity(Location location){
+		return get(location).getEntity();
 	}
 	
 	@Override

@@ -149,6 +149,10 @@ public class Entity implements MovementInterface {
 	public Location getLocation(){
 		return this.currentPosition;
 	}
+	
+	public Location getLocationFacing() {
+		return getLocation().getNeighbor(getDirectionFacing());
+	}
 
 	protected void setOccupation(Occupation o) {
 		occupation = o;	

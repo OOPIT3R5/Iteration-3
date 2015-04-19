@@ -32,7 +32,7 @@ public class Polymorph extends SummonerAbility {
 	@Override
 	protected int scaleMagnitude() {
 		// TODO Auto-generated method stub
-        return 0;
+		return 0;
 	}
 
 	@Override
@@ -41,8 +41,14 @@ public class Polymorph extends SummonerAbility {
 		
 	}
 
-	@Override
+	
 	protected ArrayList<Tile> getTargetTiles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
 		// TODO Auto-generated method stub
 		return null;
 	}

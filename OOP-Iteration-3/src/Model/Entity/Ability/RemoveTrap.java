@@ -2,19 +2,20 @@ package Model.Entity.Ability;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
+import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
-public class RemoveTrap extends SingleTargetAbility {
+public class RemoveTrap extends SkillAbility {
 
-	private Tile targetTile;
-	private Skill skill;
 	private Entity sourceEntity;
+	private GameMap map;
+	private Skill skill;
 	
-	public RemoveTrap(Tile targetTile, Skill skill, Entity sourceEntity){
-		this.targetTile = targetTile;
-		this.skill = skill;
+	public RemoveTrap(Entity sourceEntity, GameMap map, Skill skill) {
 		this.sourceEntity = sourceEntity;
+		this.map = map;
+		this.skill = skill;
     }
 
 	@Override
@@ -29,23 +30,26 @@ public class RemoveTrap extends SingleTargetAbility {
 		}
 	}
 	
+	public Tile getTargetTile(){		// TODO: breaks LoD
+		return map.get(getSourceEntity().getLocation().getNeighbor(getSourceEntity().getDirectionFacing()));
+	}
+	
 	private void activateTargetTrap(){
-		targetTile.activateTrap(sourceEntity);
+		getTargetTile().activateTrap(sourceEntity);
 	}
 	
 	private void removeTargetTrap(){
-		targetTile.removeTrap();
-	}
-	
-
-	@Override
-	protected Tile getTargetTile() {
-		return targetTile;
+		getTargetTile().removeTrap();
 	}
 
 	@Override
 	protected int getSkillLevel() {
 		return skill.getCurrentLevel();
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
 	}
 
 }

@@ -30,12 +30,6 @@ public class Blizzard extends SummonerAbility{
 	}
 
 	@Override
-	protected int scaleMagnitude() {
-		// TODO Auto-generated method stub
-        return 0;
-	}
-
-	@Override
 	protected void cast() {
 		// TODO Auto-generated method stub
 		
@@ -43,6 +37,18 @@ public class Blizzard extends SummonerAbility{
 
 	@Override
 	protected ArrayList<Tile> getTargetTiles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected int scaleMagnitude() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
 		// TODO Auto-generated method stub
 		return null;
 	}

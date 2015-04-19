@@ -2,19 +2,20 @@ package Model.Entity.Ability;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
+import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
-public class Pickpocket extends SingleTargetAbility {
+public class Pickpocket extends SkillAbility {
 	
-	private Tile targetTile;
-	private Skill skill;
 	private Entity sourceEntity;
-
-	public Pickpocket(Tile targetTile, Skill skill, Entity sourceEntity) {
-		this.targetTile = targetTile;
-		this.skill = skill;
+	private GameMap map;
+	private Skill skill;
+	
+	public Pickpocket(Entity sourceEntity, GameMap map, Skill skill) {
 		this.sourceEntity = sourceEntity;
+		this.map = map;
+		this.skill = skill;
     }
 
 	@Override
@@ -33,18 +34,18 @@ public class Pickpocket extends SingleTargetAbility {
 		}
 	}
 	
-	private Entity getTargetEntity() {
-		return targetTile.getEntity();
-	}
-	
-	@Override
-	protected Tile getTargetTile() {
-		return targetTile;
+	private Entity getTargetEntity() {		// TODO: breaking LoD?
+		return map.getEntity(getSourceEntity().getLocationFacing());
 	}
 
 	@Override
 	protected int getSkillLevel() {
 		return skill.getCurrentLevel();
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
 	}
 
 }

@@ -2,27 +2,23 @@ package Model.Entity.Ability;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
+import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
 
-public class BindWounds extends SingleTargetAbility{
+public class BindWounds extends SkillAbility{
 	
-	private Tile targetTile;
+    private Entity sourceEntity;
 	private Skill skill;
 
-	public BindWounds(Tile targetTile, Skill skill) {
-		this.targetTile = targetTile;
+	public BindWounds(Entity sourceEntity, Skill skill) {
+		this.sourceEntity = sourceEntity;
 		this.skill = skill;
 	}
 
 	@Override
     public void execute() {
-		Entity targetEntity = getTargetEntity();
 		int amountToHeal = getSkillLevel() * 2;
-		targetEntity.changeHealth(amountToHeal);
-	}
-
-	private Entity getTargetEntity() {
-		return targetTile.getEntity();
+		getSourceEntity().changeHealth(amountToHeal);
 	}
 
 	@Override
@@ -31,8 +27,8 @@ public class BindWounds extends SingleTargetAbility{
 	}
 
 	@Override
-	protected Tile getTargetTile() {
-		return targetTile;
+	protected Entity getSourceEntity() {
+		return sourceEntity;
 	}
 
 }

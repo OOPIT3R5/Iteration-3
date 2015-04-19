@@ -6,7 +6,7 @@ import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Map.Grid.Tile.Tile;
 
-public class Attack extends MultipleTargetAbility{
+public class Attack extends SkillAbility{
 	
 	private ArrayList<Tile> targetTiles;
 	private Skill skill;
@@ -17,19 +17,20 @@ public class Attack extends MultipleTargetAbility{
     }
 
 	@Override
-    public void execute() {
-        
+	protected int getSkillLevel() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int getSkillLevel() {
+	public void execute() {
 		// TODO Auto-generated method stub
-		return skill.getCurrentLevel();
+		
 	}
 
 	@Override
-	public ArrayList<Tile> getTargetTiles() {
+	protected Entity getSourceEntity() {
 		// TODO Auto-generated method stub
-		return targetTiles;
+		return null;
 	}
 }

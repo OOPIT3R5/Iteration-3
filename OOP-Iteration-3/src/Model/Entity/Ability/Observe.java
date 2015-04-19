@@ -23,4 +23,10 @@ public class Observe extends SkillAbility{
 		return 0;
 	}
 
+	@Override
+	protected Entity getSourceEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

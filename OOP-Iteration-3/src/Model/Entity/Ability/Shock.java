@@ -24,12 +24,6 @@ public class Shock extends SummonerAbility {
 	}
 
 	@Override
-	protected ArrayList<Tile> getTargetTiles() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	protected int getRequiredMana() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -45,6 +39,18 @@ public class Shock extends SummonerAbility {
 	protected void cast() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected ArrayList<Tile> getTargetTiles() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

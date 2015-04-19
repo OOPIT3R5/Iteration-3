@@ -46,4 +46,10 @@ public class Fireball extends SummonerAbility {
 		return null;
 	}
 
+	@Override
+	protected Entity getSourceEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
