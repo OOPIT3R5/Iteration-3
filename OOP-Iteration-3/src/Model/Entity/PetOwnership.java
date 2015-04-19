@@ -31,7 +31,8 @@ public class PetOwnership {
 
 
 	public Move followAvatar() {
-		// TODO Auto-generated method stub
+		//Direction d = ((NPC) pet).getAvatarDirectionInRelationToMe();
+		//return new Move(pet, d, ((NPC)pet).getMovementSpeed());
 		return null;
 	}
 }
