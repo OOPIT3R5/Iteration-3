@@ -14,6 +14,7 @@ import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.RectangularTile;
 import Model.Map.Grid.Tile.Tile;
 import Model.Terrain.Grass;
+import View.View;
 import View.Model.FlatHexagon;
 
 public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
@@ -47,9 +48,12 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 		}
 	}*/
 	
-	@Override
-	public void render(Graphics g, Point origin, HexagonalLocation center, int grid_radius, int hexagon_size){
-		
+	public void render(Graphics g, HexagonalLocation center, int grid_radius) {
+		for (HexagonalLocation hex_coord : HexagonalLocation.circle(center, grid_radius)) {
+			HexagonalTile hex_tile = get(hex_coord);
+			if (hex_tile != null)
+				get(hex_coord).render(g, center);
+		}
 	}
 	
 	@Override
@@ -222,6 +226,13 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 
 	public void initalize() {
 		
+		
+	}
+
+	@Override
+	public void render(Graphics g, Point origin, HexagonalLocation center,
+			int grid_radius, int hexagon_size) {
+		// TODO Auto-generated method stub
 		
 	}
 	

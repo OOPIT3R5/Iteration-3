@@ -10,8 +10,8 @@ import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
+import View.ModelView;
 import View.Model.GameMapView;
-import View.Model.ModelView;
 
 
 public class GameMap {
@@ -27,7 +27,7 @@ public class GameMap {
 		this.WIDTH = width;
 		this.avatar = a;
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
-		 mapView = new GameMapView(this);
+		 mapView = new GameMapView();
 		 //gameMapGrid.initalize();
 	}
 	
@@ -89,9 +89,9 @@ public class GameMap {
 		return mapView;
 	}
 	
-	public void render(Graphics g, Avatar av)
-	{
+	public void render(Graphics g, Avatar av) {
 		mapView.render(g);
+		gameMapGrid.render(g, avatar.getLocation(), 7);
 		//DrawableHexGridInterface drawable_grid = gameMapGrid;
 		//drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
 	}

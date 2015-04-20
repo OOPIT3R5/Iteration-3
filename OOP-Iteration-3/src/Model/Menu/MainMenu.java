@@ -5,7 +5,7 @@ import java.util.Observable;
 import javax.swing.JComponent;
 
 import View.MainMenuView;
-import View.Model.ModelView;
+import View.ModelView;
 
 public class MainMenu extends Observable {
 	int selected = 0;

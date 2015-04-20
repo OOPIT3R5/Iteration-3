@@ -14,7 +14,7 @@ import Model.Entity.Smasher;
 import Model.Entity.Sneak;
 import Model.Entity.Summoner;
 import Model.Menu.CharacterCreation;
-import View.Model.ModelView;
+import View.ModelView;
 
 public class CharacterCreationController extends Controller  {
 	private static Avatar avatar;

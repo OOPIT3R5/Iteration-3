@@ -11,8 +11,6 @@ import Model.Map.HexagonalLocation;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Menu.ConfigControls;
 import View.Model.GameMapView;
-import View.Model.GameView;
-import View.Model.ModelView;
 import View.Model.TileView;
 
 public class View extends JPanel{

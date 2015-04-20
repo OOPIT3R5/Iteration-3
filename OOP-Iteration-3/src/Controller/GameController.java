@@ -13,7 +13,7 @@ import Main.KeySet;
 import Model.Entity.Avatar;
 import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
-import View.Model.ModelView;
+import View.ModelView;
 
 public class GameController extends Controller {
 	String next = "";

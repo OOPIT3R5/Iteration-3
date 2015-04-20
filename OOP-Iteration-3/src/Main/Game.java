@@ -10,7 +10,7 @@ import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
 import Model.Terrain.Water;
-import View.Model.GameView;
+import View.GameView;
 import View.Model.MapObjectView;
 
 public class Game {

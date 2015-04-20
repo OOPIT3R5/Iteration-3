@@ -12,7 +12,7 @@ import Main.KeySet;
 import Model.Entity.Entity;
 import Model.Items.TakeableItem;
 import View.InventoryView;
-import View.Model.ModelView;
+import View.ModelView;
 
 public class InventoryController extends Controller {
 	KeyListener back = new BacktoGame();
