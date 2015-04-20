@@ -1,13 +1,17 @@
 package Model.Entity;
 
+import java.awt.Graphics;
+import java.io.IOException;
 import java.util.Observer;
 
 import Model.Map.HexagonalLocation;
+import View.AvatarView;
 
 public class Avatar extends Entity{
-
+    AvatarView avatarView;
 	public Avatar(){
 		super.setLocation(new HexagonalLocation(0 , 0));
+		avatarView = new AvatarView();
 	}
 
 	public Avatar(String name, Occupation o){
@@ -24,4 +28,13 @@ public class Avatar extends Entity{
     	setChanged();
 		notifyObservers();
     }
+
+	@Override
+	public void render(Graphics g, HexagonalLocation center) {
+		try {
+			avatarView.render(g, center, this.getDirectionFacing(), this.getLocation(), this.getStatistics().getLife(), this.getStatistics().getMaxLife());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
 }

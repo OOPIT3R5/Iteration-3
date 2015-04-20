@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import Model.Entity.Entity;
 import Model.Entity.MovementInterface;
 import Model.Map.Direction;
 import Model.Map.HexagonalCoordinateInterface;
@@ -81,8 +82,10 @@ public class HexagonalTile extends Tile {
 	
 	public void render(Graphics g, HexagonalLocation center) {
 		hView.render(g, center);
-		if (hasEntity())
-			getEntity().render(g, center);
+		if (hasEntity()){
+			Entity e = getEntity();
+			e.render(g, center);
+	}
 		if(hasMapObject())
 			getMapObject().getMapObjectView().render(g, center, (HexagonalLocation)super.getLocation());
 	}
