@@ -7,6 +7,7 @@ import java.util.Observable;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 
 import Main.Game;
 import Main.RunGame;
@@ -22,10 +23,17 @@ import Model.Terrain.Water;
 public class GameView extends ModelView {
 	private GameMap gameMap;
 	private Avatar avatar;
+	private static JTextArea log = new JTextArea();
+	private static String s = "Welcome";
 	
 	public GameView(GameMap gameMap, Avatar avatar) {
 		this.gameMap = gameMap;
 		this.avatar = avatar;
+		log.setText("WELCOME \n");
+		log.setBackground(Color.BLACK);
+		log.setForeground(Color.RED);
+		log.setEditable(false);
+		log.setFocusable(false);
 	}
 	
 	@Override
@@ -58,10 +66,15 @@ public class GameView extends ModelView {
 		renderExperienceBar(g);
 		renderLives(g);
 		renderInfo(g);
+		
+		log.setBounds(3*View.WIDTH/4, 2*View.HEIGHT/4, View.WIDTH/4, View.HEIGHT/4);
+		g.translate(9*View.WIDTH/10, 2*View.HEIGHT/4);
+		log.paint(g);
+		g.translate(-(9*View.WIDTH/10), -(2*View.HEIGHT/4));
 	}
 	
 	public void renderInfo(Graphics g){
-		JLabel info = new JLabel("<html><p style=\"font-size:15; color:black;\">" + avatar.getOccupation().displayName() + " : Level " + avatar.getStatistics().getLevel() + "</p></html>");
+		JLabel info = new JLabel("<html><p style=\"font-size:15; color:white;\">" + avatar.getOccupation().displayName() + " : Level " + avatar.getStatistics().getLevel() + "</p></html>");
 		info.setBounds(10, 0, 200, 20);
 		g.translate(10, 10);
 		info.paint(g);
@@ -122,6 +135,11 @@ public class GameView extends ModelView {
 			g.translate(-(10 + i*20), -40);
 		}
 		
+	}
+	
+	public static void writeToLog(String data){
+		s = data + "\n";
+		log.setText(s);
 	}
 
 

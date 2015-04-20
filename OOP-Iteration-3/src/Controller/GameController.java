@@ -16,6 +16,7 @@ import Model.Entity.Avatar;
 import Model.Entity.Entity;
 import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
+import View.GameView;
 import Model.SaveSystem.CSVSaver;
 import Model.SaveSystem.SaveDriver;
 import View.ModelView;
@@ -80,10 +81,13 @@ public class GameController extends Controller implements Observer {
 		HashMap<String, Ability> abilities = avatar.getOccupation().getAbilities();
 		int i = 1;
 		String name = "ACTION" + i;
+		String info = "";
 		for(Entry<String, Ability> entry : abilities.entrySet()){
 			listeners.add(new AbilityListener(entry.getKey(),name));
+			info += entry.getKey() + " : " + KeyEvent.getKeyText(KeySet.getKey(name)) + "\n";
 			name = "ACTION" + (++i);
 		}
+		GameView.writeToLog(info);
 		for(KeyListener k : listeners){
 			f.addKeyListener(k);
 		}
@@ -174,7 +178,7 @@ public class GameController extends Controller implements Observer {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTH")){
 				avatar.moveNorth();
-				avatar.getStatistics().changeHealth(-10);
+			//	avatar.getStatistics().changeHealth(-10);
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -200,7 +204,7 @@ public class GameController extends Controller implements Observer {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTH")){
 				avatar.moveSouth();
-				avatar.getStatistics().useMana(5);
+			//	avatar.getStatistics().useMana(5);
 				System.out.println(avatar.getLocation());
 			}
 			
