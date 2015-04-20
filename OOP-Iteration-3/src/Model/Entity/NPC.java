@@ -51,7 +51,9 @@ public class NPC extends Entity {
 			makeActionChoice();
 		}
 	}
-	
+	public void setIfShouldFollowingEntity(boolean follow){
+		isfollowingEntity = follow;
+	}
 	public void makeActionChoice(){
 		hostility.act();
 	}
