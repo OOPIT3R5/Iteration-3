@@ -384,4 +384,6 @@ public class Entity implements MovementInterface {
 	public void changeMovementSpeed(int delta){
 		movementSpeed += delta;
 	}
+	
+	
 }

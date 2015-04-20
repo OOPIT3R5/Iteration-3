@@ -39,43 +39,33 @@ public class EntityView {
 
 		switch(directionFacing){
 		
-		case NORTH:
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 3), x, y, null);
-			break;
-		case SOUTH:
-			
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 0), x, y, null);
-
-			break;
-		case NORTHEAST:
-			
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 2), x, y, null);
-
-			break;
-		case NORTHWEST:
-			
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 1), x, y, null);
-
-			break;
-		case SOUTHWEST:
-			
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 1), x, y, null);
-
-			break;
-		case SOUTHEAST:
-			
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 2), x, y, null);
-			break;
-		default:
-			
-			g.drawImage(MapObjectView.getSpriteFromAvatar(6, 1), x, y, null);
+			case NORTH:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 3), x, y, null);
+				break;
+			case SOUTH:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 0), x, y, null);
+				break;
+			case NORTHEAST:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 2), x, y, null);
+				break;
+			case NORTHWEST:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 1), x, y, null);
+				break;
+			case SOUTHWEST:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 1), x, y, null);
+				break;
+			case SOUTHEAST:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 2), x, y, null);
+				break;
+			default:
+				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 1), x, y, null);
 			
 		}
 		
 		
-		
-		}
 		
 	}
+		
+}
 
 
