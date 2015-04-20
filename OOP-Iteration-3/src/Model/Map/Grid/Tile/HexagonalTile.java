@@ -135,12 +135,13 @@ public class HexagonalTile extends Tile {
 			if (cached_entity_ != null)
 				try {
 					new NpcView().render(g, center, cached_entity_.directionFacing_, cached_entity_.currentLocation_, cached_entity_.hp_, cached_entity_.mhp_);
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		}
-		if (Math.abs(distance) < 3) {
+		if (Math.abs(distance) <= 3) {
 			has_been_seen_ = true;
 			if (hasEntity()) {
 				cacheEntity();

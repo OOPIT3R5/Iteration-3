@@ -36,9 +36,10 @@ public class MapObjectView {
 	public void render(Graphics g, HexagonalLocation center, HexagonalLocation location) {
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
+	
 		int x = (int)(origin.getX() + 3 / 2.0 * 100 * (location.getU() - center.getU()));
-		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((location.getV() - center.getV() + (location.getV() - center.getV()) / 2.0)));
+		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((location.getV() - center.getV()) + (location.getU() - center.getU()) / 2.0));
 		
-		g.drawImage(bi.getScaledInstance(75,75,Image.SCALE_DEFAULT), x, y, null);
+		g.drawImage(bi.getScaledInstance(70,70,Image.SCALE_DEFAULT), x, y, null);
 	}
 }
