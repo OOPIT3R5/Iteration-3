@@ -14,7 +14,7 @@ public final class RandomlyGenerate {
 	}
 	
 	public static double probability(){
-		return 0;
+		return random.nextDouble();		// TODO causing null-pointer....
 	}
 
 
