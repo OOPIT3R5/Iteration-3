@@ -344,8 +344,4 @@ public class Entity implements MovementInterface {
 			System.out.println("Invalid Ability");
 		}
 	}
-
-    public void teleport(int teleportSpotX, int teleportSpotY) {
-        //TODO: Implement this method.
-    }
 }
