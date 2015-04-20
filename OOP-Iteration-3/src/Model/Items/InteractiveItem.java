@@ -1,12 +1,16 @@
 package Model.Items;
 
+import Model.Entity.Ability.ItemAbility;
 import Model.Entity.Entity;
 import View.Model.MapObjectView;
 
 public class InteractiveItem extends Item{
 
-    public InteractiveItem(String name, MapObjectView mov) {
+    ItemAbility ability;
+
+    public InteractiveItem(String name, MapObjectView mov, ItemAbility ability) {
         super(name, mov);
+        this.ability = ability;
     }
 
     @Override
@@ -16,6 +20,7 @@ public class InteractiveItem extends Item{
 
     @Override
     public void onTouch(Entity entity) {
-        throw new RuntimeException("Need to overwrite this method to do what you want.");
+        ability.setEntity(entity);
+        ability.execute();
     }
 }

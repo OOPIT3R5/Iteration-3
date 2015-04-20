@@ -8,9 +8,7 @@ import java.util.Observable;
 
 import Model.Entity.Avatar;
 import Model.Map.GameMap;
-import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
-import Model.Map.Location;
 import Model.Map.Grid.Tile.HexagonalTile;
 import View.ModelView;
 import View.View;
