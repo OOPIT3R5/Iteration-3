@@ -11,6 +11,7 @@ import java.util.Observable;
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
+import Model.Entity.Ability.RiverMove;
 import Model.Entity.Ability.SummonerAbility;
 import Model.Items.AccessoryItem;
 import Model.Items.ArmorItem;
@@ -163,7 +164,8 @@ public abstract class Entity extends MapObject implements MovementInterface {
 
     @Override
 	public void disableWalk(Direction direction) {
-		moveMap.put(direction, new DoNothing());
+    	moveMap.put(direction, new RiverMove(this, direction, this.getMovementSpeed()));
+		//moveMap.put(direction, new DoNothing());
 	}
 
     @Override

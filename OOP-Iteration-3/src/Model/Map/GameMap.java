@@ -49,12 +49,10 @@ public class GameMap {
 	public void initialize() {
 		gameMapGrid.add(0, 0, new HexagonalTile(new Water()));
 		System.out.println("what");
-		for (int i = 0; i < 4; i++) {
-			gameMapGrid.add(6, i, new HexagonalTile(new Water()));
+		for (int i = 0; i < 8; i++) {
+			gameMapGrid.add(7, i, new HexagonalTile(new Water()));
 		}
 	}
-	
-
 	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
 			int height, int radius) {
