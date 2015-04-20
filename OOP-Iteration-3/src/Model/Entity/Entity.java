@@ -48,7 +48,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
 	private EntityView entityView;
-	
+	public boolean alive;
 	private InventoryView inventoryView;
 	private ArrayList<String> skillList = new ArrayList<String>();
 	private int skillSelected = 0;
@@ -64,6 +64,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	
 	/*Use */
 	public Entity(){
+		alive = true;
 		isCreeping = false;
 		polymorph = false;
 		entityView = new EntityView();
@@ -88,17 +89,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		//TODO 
 		decal = d;
 	}*/
-	public boolean isCreeping(){
-		return isCreeping;
-	}
-	public void creep(){
-		if(isCreeping == true){
-			isCreeping = false;
-		}else{
-			isCreeping = true;
-			
-		}
-	}
+	
 	
 	public Entity (String name){
 		this();
@@ -427,7 +418,17 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		return polymorph;
 	}
 
-
+	public boolean isCreeping(){
+		return isCreeping;
+	}
+	public void creep(){
+		if(isCreeping == true){
+			isCreeping = false;
+		}else{
+			isCreeping = true;
+			
+		}
+	}
 
 
 

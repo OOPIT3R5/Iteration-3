@@ -427,6 +427,7 @@ public class Dialogue implements KeyListener {
 			avatar.deleteObservers();
 		}
 		else{
+
 			avatar.awardExperience(500);
 			avatar.awardGold(500);
 		}
