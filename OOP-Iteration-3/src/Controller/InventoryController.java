@@ -14,7 +14,7 @@ import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Items.TakeableItem;
 import View.InventoryView;
-import View.Model.ModelView;
+import View.ModelView;
 
 public class InventoryController extends Controller {
 	KeyListener back = new BacktoGame();
@@ -64,7 +64,7 @@ public class InventoryController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeySet.getKey("BACK")){
+			if(key == KeySet.getKey("BACK") || key == KeySet.getKey("INVENTORY")){
 				setNext(GameController.getInstance());
 				
 			}
@@ -160,7 +160,11 @@ public class InventoryController extends Controller {
             Y /= Yspacing;
 
            //System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
-            e.examineItem(e.getItem((X+(Y*6))).getName());
+            String s = "";
+            s += e.getItem((X+(Y*6))).getName();
+            s = s + '\n' + e.getItem((X+(Y*6))).getDescription();
+            e.examineItem(s);
+
         }
 
         private void checkEquipment(int X, int Y) {

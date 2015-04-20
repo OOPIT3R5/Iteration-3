@@ -21,6 +21,9 @@ public class Water extends Terrain {
 		return Color.BLUE;
 	}
 	
-	
+	public String toString()
+	{
+		return "Water Tile";
+	}
 	
 }

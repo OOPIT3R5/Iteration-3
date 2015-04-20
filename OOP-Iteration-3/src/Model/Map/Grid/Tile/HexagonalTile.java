@@ -20,12 +20,12 @@ public class HexagonalTile extends Tile {
 	
 	public HexagonalTile() {
 		super(new Grass());
-		hView = new HexTileView(this);
+		hView = new HexTileView(getLocation(), getColor());
 	}
 	
 	public HexagonalTile(Terrain terrain) {
 		super(terrain);
-		hView = new HexTileView(this);
+		hView = new HexTileView(getLocation(), getColor());
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class HexagonalTile extends Tile {
 	@Override
 	public void setLocation(Location hex_location) {
 		super.putLocation((HexagonalLocation)hex_location);
+		hView.update(getLocation());
 	}
 
 	@Override
@@ -54,7 +55,11 @@ public class HexagonalTile extends Tile {
 	}
 	
 	public String toString() {
-		return getLocation().getU() + ", " + getLocation().getV();
+		//return getLocation().getU() + ", " + getLocation().getV();
+		StringBuilder builder = new StringBuilder();
+		//builder.append(super.getTerrain().toString());
+		
+		return builder.toString();
 	}
 	
 	@Override
@@ -74,13 +79,20 @@ public class HexagonalTile extends Tile {
 	}
 	
 	
-	public void render(Graphics g, Point origin, HexagonalLocation center) {
-		hView.render(g, origin, center);
-	}
-	
-	public void render(Graphics g)
-	{
-		hView.render(g);
+	public void render(Graphics g, HexagonalLocation center) {
+		hView.render(g, center);
+		if (hasEntity())
+			getEntity().render(g, center);
+		if(hasMapObject())
+			getMapObject().getMapObjectView().render(g, center, (HexagonalLocation)super.getLocation());
 	}
 	
 }
+
+
+
+
+
+
+
+

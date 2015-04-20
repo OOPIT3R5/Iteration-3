@@ -3,7 +3,6 @@ package View;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 import View.Model.MapObjectView;
-import View.Model.ModelView;
 
 import java.awt.*;
 import java.io.IOException;
@@ -44,7 +43,7 @@ public class InventoryView extends ModelView {
 
     private Entity avatar;
     
-    String info = "asd";
+    String info = "";
     
     private HashMap<String,Color> options = new HashMap<String,Color>();
 

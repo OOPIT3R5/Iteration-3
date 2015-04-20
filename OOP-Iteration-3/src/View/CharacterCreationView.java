@@ -14,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import View.Model.ModelView;
-
 
 @SuppressWarnings("serial")
 public class CharacterCreationView extends ModelView implements Observer {

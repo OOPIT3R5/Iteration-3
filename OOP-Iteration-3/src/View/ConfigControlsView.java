@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 
 import Main.KeySet;
 import Main.RunGame;
-import View.Model.ModelView;
 @SuppressWarnings("serial")
 public class ConfigControlsView extends ModelView implements Observer{
 	

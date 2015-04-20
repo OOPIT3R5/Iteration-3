@@ -11,7 +11,8 @@ import Main.RunGame;
 import Model.Entity.Avatar;
 import Model.Entity.Summoner;
 import Model.Menu.MainMenu;
-import View.Model.ModelView;
+import Utility.DefaultGame;
+import View.ModelView;
 
 
 
@@ -114,7 +115,9 @@ public class MainMenuController extends Controller {
 					Avatar avatar = new Avatar();
 					new Summoner(avatar); // delete later
 					Game game = new Game(avatar);
+					DefaultGame dg = new DefaultGame(game.getGameMap());
 					GameController.setGame(game);
+					
 				}
 				else{
 					setNext(null);

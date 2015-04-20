@@ -163,4 +163,8 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return coordinate[1];
 	}
 	
+	public boolean equals(HexagonalLocation other) {
+		return (getU() == other.getU() && getV() == other.getV());
+	}
+	
 }

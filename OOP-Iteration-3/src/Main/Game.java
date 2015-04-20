@@ -2,15 +2,15 @@ package Main;
 
 import java.io.IOException;
 
+import Model.Entity.Ability.HealLifeItemAbility;
+import Model.Entity.Ability.HealManaItemAbility;
 import Model.Entity.Avatar;
-import Model.Entity.Smasher;
-import Model.Entity.Ability.DoNothing;
 import Model.Items.*;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
-import Model.Terrain.Water;
-import View.Model.GameView;
+import Model.Terrain.Mountain;
+import View.GameView;
 import View.Model.MapObjectView;
 
 public class Game {
@@ -30,6 +30,7 @@ public class Game {
 		gameMap.spawn(avatar, avatar.getLocation());
 		gameView = new GameView(gameMap, avatar);
 		this.gameMap.fill(new HexagonalTile(new Grass()));
+		gameMap.border(new HexagonalTile(new Mountain()));
 	}
 	
 	//constructor for load game
@@ -52,6 +53,10 @@ public class Game {
 	            avatar.addToInventory(new ArmorItem(55,"Big Boss Armor", new MapObjectView(MapObjectView.getSpriteFromFE(31,0))));
                 avatar.addToInventory(new SneakWeaponItem(25, "Ranged Bow", new MapObjectView(MapObjectView.getSpriteFromFE(18,4))));
                 avatar.addToInventory(new SummonerWeaponItem(50, "Staff of Awesomeness", new MapObjectView(MapObjectView.getSpriteFromFE(8,6))));
+                avatar.addToInventory(new UsableItem(new HealLifeItemAbility(50),"HP Potion", new MapObjectView(MapObjectView.getSpriteFromPokemon(5,0)), avatar));
+                avatar.addToInventory(new UsableItem(new HealManaItemAbility(50),"MP Potion", new MapObjectView(MapObjectView.getSpriteFromPokemon(5,6)), avatar));
+                avatar.awardGold(100);
+                avatar.awardExperience(250);
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
 	        }

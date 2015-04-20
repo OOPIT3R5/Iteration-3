@@ -70,12 +70,18 @@ public class Hostility {
 		Ability a;
 		Direction TowardAvatarDirectionPlaceholder = null;
 		
+
 		if (npc.avatarIsWithinRange(1)){
-			a = new Attack(null, null, null);	//TODO attack in avatar direction
+
+			a = new Attack(null);	//TODO attack in avatar direction
+
+			//a = new Attack(null, null);//attack in avatar direction
+
+
 			System.out.println("I'm attacking the avatar who is/was next to me");
 		}
 		else if(npc.avatarIsWithinRange(5)){
-			a = new Attack(null, null, null);	//TODO chase avatar direction
+			a = new Attack(null);	//TODO chase avatar direction
 			System.out.println("I'm chasing the avatar who is/was next to me");
 		}
 		else{		//avatar is not within range, so meander around
