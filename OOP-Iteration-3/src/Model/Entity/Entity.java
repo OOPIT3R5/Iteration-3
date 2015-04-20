@@ -30,7 +30,7 @@ import View.Model.MapObjectView;
 import View.EntityView;
 import View.InventoryView;
 
-public class Entity extends Observable implements MovementInterface {
+public abstract class Entity extends Observable implements MovementInterface {
 
 	private static final Exception InvalidAbilityException = null;
 	private String name;
@@ -356,14 +356,10 @@ public class Entity extends Observable implements MovementInterface {
         }
     }
 	
-	public void render(Graphics g, HexagonalLocation center){
-		try {
-			entityView.render(g, center, directionFacing, this.getLocation(), this.getStatistics().getLife(), this.getStatistics().getMaxLife());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public abstract void render(Graphics g, HexagonalLocation center);
 		
-	}
+		
+	
 	
 	public void ability(String s){
 		Ability a = (occupation.getAbilities().get(s));
