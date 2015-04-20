@@ -3,9 +3,11 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Entity.Monster;
 import Model.Entity.NPC;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
@@ -23,13 +25,18 @@ public class Charm extends SummonerAbility {
 	public void execute() {
 		useMana(sourceEntity);
 		
-		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
+		/*ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
 		for(int i=0; i<entities.size(); i++){
 			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,2)){
 				NPC targetEntity = (NPC)entities.get(i);
 				((NPC)targetEntity).setIfShouldFollowingEntity(true);
 			}
-		}
+		}*/
+		GameMap gm = sourceEntity.getGamemap();
+		Entity monster = new Monster();
+		monster.setLocation(new HexagonalLocation(sourceEntity.getLocation().getU(), sourceEntity.getLocation().getV()+1));
+		gm.spawn(monster, new HexagonalLocation(sourceEntity.getLocation().getU(), sourceEntity.getLocation().getU()+1));
+		monster.setMap(gm);
 	}
 	
 	@Override
