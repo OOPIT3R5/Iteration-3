@@ -355,7 +355,7 @@ public class Entity implements MovementInterface {
 	
 	public void render(Graphics g, HexagonalLocation center){
 		try {
-			entityView.render(g, center, directionFacing, this.getLocation());
+			entityView.render(g, center, directionFacing, this.getLocation(), this.getStatistics().getLife(), this.getStatistics().getMaxLife());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
