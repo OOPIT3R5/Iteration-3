@@ -56,12 +56,14 @@ public class SaveDriver {
 	
 	private String saveEverything()
 	{
+		
 		StringBuilder gameSave = new StringBuilder();
-		
 		gameSave.append(avatar.toString());
-		
+		gameSave.append("\n");
 		for(Entity e: entities)
 		{
+			if(e instanceof Avatar)
+				continue;
 			gameSave.append(saver.save(e));
 			gameSave.append("\n");
 		}
