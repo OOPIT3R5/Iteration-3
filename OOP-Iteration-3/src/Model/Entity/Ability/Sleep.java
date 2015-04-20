@@ -9,12 +9,10 @@ import Utility.RandomlyGenerate;
 public class Sleep extends SummonerAbility {
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 	
-	public Sleep(Entity sourceEntity, GameMap map, Skill skill) {
+	public Sleep(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 	
@@ -60,6 +58,6 @@ public class Sleep extends SummonerAbility {
 	}
 	
 	private Entity getTargetEntity() {
-		return map.getEntity(getSourceEntity().getLocationFacing());
+		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
 	}
 }

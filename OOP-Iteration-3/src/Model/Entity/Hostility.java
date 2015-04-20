@@ -68,26 +68,22 @@ public class Hostility {
 	public void hostileAct(){
 		double prob = RandomlyGenerate.probability();	
 		Ability a;
-		Direction TowardAvatarDirectionPlaceholder = null;
+		Direction TowardAvatarDir = npc.directionTowardAvatar();
 		
 
 		if (npc.avatarIsWithinRange(1)){
-
-			a = new Attack(null);	//TODO attack in avatar direction
-
-			//a = new Attack(null, null);//attack in avatar direction
-
-
+			
+			a = new Attack(npc);	//TODO attack in avatar direction
 			System.out.println("I'm attacking the avatar who is/was next to me");
 		}
 		else if(npc.avatarIsWithinRange(5)){
-			a = new Attack(null);	//TODO chase avatar direction
+			a = new Move(npc, TowardAvatarDir , npc.getMovementSpeed());	//TODO chase avatar direction
 			System.out.println("I'm chasing the avatar who is/was next to me");
 		}
 		else{		//avatar is not within range, so meander around
-			if (prob < .5){
+			if (prob < 1){
 				//30% chance of moving in random direction
-				a = new Move(npc, npc.getMap(), RandomlyGenerate.direction(), npc.getMovementSpeed());
+				a = new Move(npc, RandomlyGenerate.direction(), npc.getMovementSpeed());
 				System.out.println("I'm moving in rand dir");
 			}
 			else {
@@ -96,7 +92,7 @@ public class Hostility {
 				System.out.println("I'm doing nothing");
 			}
 		}
-		//a.execute();
+		a.execute();
 			
 	}
 
@@ -110,7 +106,7 @@ public class Hostility {
 			System.out.println("I'm moving in rand dir and not hostile");
 			Direction d = RandomlyGenerate.direction();
 		}
-		Ability a = new DoNothing();
+		//Ability a = new DoNothing();
 			System.out.println("I'm doing nothing and not hostile");
 		//if you don't move, then you [currently do nothing]
 	}

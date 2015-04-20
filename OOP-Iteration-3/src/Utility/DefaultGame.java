@@ -40,6 +40,8 @@ public class DefaultGame {
 		gm.addEntity(5, 5, monster);
 		gm.addMapObject(1, 2, shoes);
 		
+		monster.setMap(gm);
+		
 		
 	}
 	

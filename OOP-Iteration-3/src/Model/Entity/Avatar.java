@@ -1,5 +1,7 @@
 package Model.Entity;
 
+import java.util.Observer;
+
 import Model.Map.HexagonalLocation;
 
 public class Avatar extends Entity{
@@ -16,4 +18,10 @@ public class Avatar extends Entity{
 		super(name);
 		super.setLocation(new HexagonalLocation(0 , 0));
 	}
+
+    @Override
+    public void removeFromMap(){
+    	setChanged();
+		notifyObservers();
+    }
 }

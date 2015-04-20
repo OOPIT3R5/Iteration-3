@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 
@@ -15,7 +17,7 @@ import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
 import View.ModelView;
 
-public class GameController extends Controller {
+public class GameController extends Controller implements Observer {
 	String next = "";
 	private static Avatar avatar;
 
@@ -41,6 +43,7 @@ public class GameController extends Controller {
 		avatar.setLocation(new HexagonalLocation(2,3));
 		g.getGameMap().spawn(avatar,new HexagonalLocation(2,3));
 		avatar.setMap(g.getGameMap());
+		avatar.addObserver(GameController.getInstance());
 		
 	}
 	
@@ -69,6 +72,8 @@ public class GameController extends Controller {
 		listeners.add(new MoveNorthwest());
 		listeners.add(new MoveSoutheast());
 		listeners.add(new MoveSouthwest());
+		listeners.add(new UpdateAllEntities());
+		listeners.add(new Save());
 		HashMap<String, Ability> abilities = avatar.getOccupation().getAbilities();
 		int i = 1;
 		String name = "ACTION" + i;
@@ -96,6 +101,28 @@ public class GameController extends Controller {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("BACK")){
 				setNext(MainMenuController.getInstance());		
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			
+		}
+	}
+	
+	public class Save implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if(key == KeySet.getKey("SAVE")){
+				//INSERT SAVE HERE	
 			}
 			
 		}
@@ -313,6 +340,31 @@ public class GameController extends Controller {
 			// TODO Auto-generated method stub
 			
 		}
+	}
+	public class UpdateAllEntities implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			
+		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		setNext(MainMenuController.getInstance());
+		avatar.deleteObservers();
 	}
 	
 	

@@ -14,12 +14,10 @@ import Utility.RandomlyGenerate;
 public class Creep extends SkillAbility{
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 
-	public Creep(Entity sourceEntity, GameMap map, Skill skill) {
+	public Creep(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -41,6 +39,8 @@ public class Creep extends SkillAbility{
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int radius = 5;
+
+		GameMap map = sourceEntity.getGamemap();
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){

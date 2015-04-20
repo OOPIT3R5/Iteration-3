@@ -8,18 +8,17 @@ import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
+import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
 public class Shock extends SummonerAbility{
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 
-	public Shock(Entity sourceEntity, GameMap map, Skill skill) {
+	public Shock(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -30,7 +29,9 @@ public class Shock extends SummonerAbility{
 
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
-		int radius = 5;
+		int radius = 3;
+
+		GameMap map = sourceEntity.getGamemap();
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.arc((HexagonalLocation)center ,radius,getSourceEntity().getDirectionFacing())){
@@ -65,6 +66,7 @@ public class Shock extends SummonerAbility{
 			if (targetEntity != null){
 				if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
 					targetEntity.changeHealth(-1*scaleMagnitude());
+					System.out.println(targetEntity.getStatistics().getLife());
 				}
 			}
 		}
@@ -72,6 +74,6 @@ public class Shock extends SummonerAbility{
 
 	@Override
 	protected int scaleMagnitude() {
-		return 150 * getSkillLevel()/100;
+		return 150 * getSkillLevel();
 	}
 }

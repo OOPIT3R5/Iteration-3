@@ -20,7 +20,7 @@ public class Enhance extends SummonerAbility {
 	
 	@Override
 	public void cast() {
-		Entity targetEntity = getSourceEntity();
+		final Entity targetEntity = getSourceEntity();
 		
 		new Thread(new Runnable() {
 			@Override
