@@ -1,5 +1,6 @@
 package Model.Entity;
 
+import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 import View.Model.MapObjectView;
+import View.EntityView;
 import View.InventoryView;
 
 public class Entity implements MovementInterface {
@@ -41,6 +43,8 @@ public class Entity implements MovementInterface {
 	private HexagonalLocation currentPosition;
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
+	private EntityView entityView;
+	
 	private InventoryView inventoryView;
 	private ArrayList<String> skillList = new ArrayList<String>();
 	private int skillSelected = 0;
@@ -54,6 +58,7 @@ public class Entity implements MovementInterface {
 	
 	/*Use */
 	public Entity(){
+		entityView = new EntityView();
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer();
@@ -334,6 +339,16 @@ public class Entity implements MovementInterface {
             ti.accept(occupation);
         }
     }
+	
+	public void render(Graphics g, HexagonalLocation center){
+		try {
+			entityView.render(g, center, directionFacing, this.getLocation());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void ability(String s){
 		Ability a = (occupation.getAbilities().get(s));
