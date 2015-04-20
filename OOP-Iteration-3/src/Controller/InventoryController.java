@@ -5,11 +5,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import Main.KeySet;
 import Model.Entity.Entity;
+import Model.Entity.Skill;
 import Model.Items.TakeableItem;
 import View.InventoryView;
 import View.Model.ModelView;
@@ -163,8 +165,11 @@ public class InventoryController extends Controller {
 
         private void checkEquipment(int X, int Y) {
             //If we're not in the right square...
-            if (!((((X >= EquipmentTopXLo) && (X <= EquipmentTopXHi)) && ((Y >= EquipmentTopYLo) && (Y <= EquipmentTopYHi))) || (((X >= EquipmentMidXLo) && (X <= EquipmentMidXHi)) && ((Y >= EquipmentMidYLo) && (Y <= EquipmentMidYHi)))))
+            if (!((((X >= EquipmentTopXLo) && (X <= EquipmentTopXHi)) && ((Y >= EquipmentTopYLo) && (Y <= EquipmentTopYHi))) || (((X >= EquipmentMidXLo) && (X <= EquipmentMidXHi)) && ((Y >= EquipmentMidYLo) && (Y <= EquipmentMidYHi))))){
                 checkSkills(X,Y);
+                return;
+            }
+
             //else...
             X -= EquipmentStartingX;
             if(X < 0)
@@ -196,7 +201,26 @@ public class InventoryController extends Controller {
         }
 
         private void checkSkills(int X, int Y) {
-            //TODO: Implement
+            ArrayList<Skill> skills = e.getOccupation().getSkillAL();
+            int skillamount = skills.size();
+
+            if((X < (InventoryView.INV_GRIDX + (InventoryView.BUTTONWIDTH * 6))) || (Y < InventoryView.STATS_HEIGHT/5 + InventoryView.STATS_Y+31)){
+                System.out.println("CLICKED OUTSIDE BOY");
+                return;
+            }
+
+            X -=  (InventoryView.INV_GRIDX + (InventoryView.BUTTONWIDTH * 6));
+            X /=  InventoryView.BUTTONWIDTH;
+
+            Y -=  (InventoryView.STATS_HEIGHT/5 + InventoryView.STATS_Y+31);
+            Y /=  InventoryView.BUTTONHEIGHT;
+
+            if(((X*4)+Y) < skillamount && e.getskillPoints() > 0){
+                skills.get(((X*4)+Y)).levelSkillUp();   //LEVEL THAT SHIZ UP
+                System.out.println("Skill "+skills.get((X*4)+Y).getName()+" leveled up!");
+                e.useSkillPoint();
+            }
+
         }
 
         @Override
