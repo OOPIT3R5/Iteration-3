@@ -13,10 +13,34 @@ public class entityandAvatarTests {
 		//avatarCreation();
 		//monsterMovement();
 		//helpfulMenace();
-		troublesomeMenace();
+		//troublesomeMenace();
+		//horse();
+		mountHelpfulMenace();
 	}
 
 	
+
+	private static void mountHelpfulMenace() {
+		Avatar avatar = new Avatar("bob");
+		new Smasher(avatar);
+		avatar.getOccupationTestMethod();
+		Pet pet = new HelpfulMenace();
+		PetOwnership po = new PetOwnership(avatar, pet);
+		
+		((Mount)pet).mount(avatar);
+		for(int i=0; i<10; i++){
+			((NPC) pet).makeActionChoice();
+		}
+	}
+
+
+
+	private static void horse() {
+		
+		//TODO
+	}
+
+
 
 	private static void troublesomeMenace() {
 		Avatar avatar = new Avatar("bob");
