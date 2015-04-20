@@ -8,7 +8,7 @@ public class PublicHorse extends NonAdversarial implements Mount{
 	Mounted m;
 	public PublicHorse() {	// TODO PublicHorse class
 		m = new Mounted(this);
-		
+		changeMovementSpeed(3);
 	}
 
 	
