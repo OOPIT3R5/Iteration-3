@@ -40,7 +40,7 @@ public class Statistic {
         temporaryvalue += tempval;
     }
 
-    /* REMOVE? Reason: Replicated behavior.Could just pass in negative value to addTemporaryValue()
+    /* TODO REMOVE? Reason: Replicated behavior.Could just pass in negative value to addTemporaryValue()
     //PRECONDITION: The same parameter tempval must have been passed to the void addTemporaryValue() method earlier.
     public void removeTemporaryValue(int tempval){
         temporaryvalue -= tempval;
