@@ -357,7 +357,6 @@ public class Entity implements MovementInterface {
 		try {
 			entityView.render(g, center, directionFacing, this.getLocation());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -371,5 +370,9 @@ public class Entity implements MovementInterface {
 			e.printStackTrace();
 			System.out.println("Invalid Ability");
 		}
+	}
+	
+	public void changeMovementSpeed(int delta){
+		movementSpeed += delta;
 	}
 }

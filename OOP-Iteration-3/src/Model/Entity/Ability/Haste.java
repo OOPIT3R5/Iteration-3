@@ -1,23 +1,15 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
-import Model.Entity.NPC;
 import Model.Entity.Skill;
-import Model.Map.GameMap;
-import Model.Map.Grid.Tile.Tile;
-import Utility.RandomlyGenerate;
 
 public class Haste extends SummonerAbility {
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 	
-	public Haste(Entity sourceEntity, GameMap map, Skill skill) {
+	public Haste(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 	
@@ -28,15 +20,20 @@ public class Haste extends SummonerAbility {
 	
 	@Override
 	public void cast() {
-		Entity targetEntity = getTargetEntity();
+		Entity targetEntity = getSourceEntity();
 		
-		double probabilityOfSuccess = RandomlyGenerate.probability();
-		double chanceOfSuccess = getSkillLevel()/100;
-		
-		if (chanceOfSuccess > probabilityOfSuccess){		// success
-					
-		}
-		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				targetEntity.changeMovementSpeed(2);
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				targetEntity.changeMovementSpeed(-2);
+			}
+		}).start();
 	}
 
 	@Override
@@ -57,9 +54,5 @@ public class Haste extends SummonerAbility {
 	@Override
 	protected Entity getSourceEntity() {
 		return sourceEntity;
-	}
-	
-	private Entity getTargetEntity() {
-		return map.getEntity(getSourceEntity().getLocationFacing());
 	}
 }

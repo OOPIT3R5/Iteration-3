@@ -3,12 +3,12 @@ package Model.Entity.Ability;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 
-public class Enhance extends SummonerAbility {
+public class Heal extends SummonerAbility {
 
 	private Entity sourceEntity;
 	private Skill skill;
 	
-	public Enhance(Entity sourceEntity, Skill skill) {
+	public Heal(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
 		this.skill = skill;
     }
@@ -21,19 +21,7 @@ public class Enhance extends SummonerAbility {
 	@Override
 	public void cast() {
 		Entity targetEntity = getSourceEntity();
-		
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				targetEntity.changeMovementSpeed(2);
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				targetEntity.changeMovementSpeed(-2);
-			}
-		}).start();
+		targetEntity.getStatistics().changeHealth(getSkillLevel());
 	}
 
 	@Override
