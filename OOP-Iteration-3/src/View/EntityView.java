@@ -37,7 +37,7 @@ public class EntityView {
 		health.paint(g);
 		g.translate(-(x+3), -(y-5));
 
-		switch(directionFacing){
+		switch (directionFacing) {
 		
 			case NORTH:
 				g.drawImage(MapObjectView.getSpriteFromAvatar(6, 3), x, y, null);
