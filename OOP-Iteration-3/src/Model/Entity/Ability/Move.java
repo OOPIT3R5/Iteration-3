@@ -29,7 +29,8 @@ public class Move extends Ability {
 			Tile newTile = map.getTile(currentEntity.getLocation());
 			oldTile.removeEntity();
 			newTile.setEntity(currentEntity);
-			newTile.getMapObject().onTouch(currentEntity);
+			if (newTile.getMapObject() != null)
+				newTile.getMapObject().onTouch(currentEntity);
 		} else {	// turn around without moving forward
 			currentEntity.setDirection(direction);
 		}

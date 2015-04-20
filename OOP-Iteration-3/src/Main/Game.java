@@ -31,7 +31,7 @@ public class Game {
 		gameView = new GameView(gameMap, avatar);
 		this.gameMap.fill(new HexagonalTile(new Grass()));
 		gameMap.border(new HexagonalTile(new Mountain()));
-		
+		gameMap.initialize();
 		
 	}
 	
