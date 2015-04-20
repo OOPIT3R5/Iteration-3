@@ -22,7 +22,6 @@ public abstract class Occupation implements TakeableItemVisitor {
     private Skill observation;
 
     private Ability bindwoundsAbil;
-    //private Ability bargainAbil;
     private Ability observeAbil;
     private Ability attackAbil;
 
@@ -31,13 +30,11 @@ public abstract class Occupation implements TakeableItemVisitor {
 
         //BREAKING TDA fix!!!!
         this.entity.setOccupation(this);
-        // attack = new Skill(1, 10, "Attack");	// TODO not needed
         bindwounds = new Skill(1, 10, "Bind Wounds");
         bargain = new Skill(1, 10, "Bargain");
         observation = new Skill(1, 10, "Observation");
 
         bindwoundsAbil = new BindWounds(entity, bindwounds);
-        //bargainAbil= new Bargain(entity, bargain);
         observeAbil = new Observe(entity, entity.map, observation);
         attackAbil = new Attack(entity);
     }
@@ -76,7 +73,9 @@ public abstract class Occupation implements TakeableItemVisitor {
         abilities.put("Bind Wounds",bindwoundsAbil);
         abilities.put("Attack",attackAbil);
         abilities.put("Observe",observeAbil);
-        abilities.putAll(getAbilitiesSub());
+        if (getAbilitiesSub() != null){
+        	abilities.putAll(getAbilitiesSub());
+        }
         return abilities;
 
     }

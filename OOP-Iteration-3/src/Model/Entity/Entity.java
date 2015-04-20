@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Observable;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.DoNothing;
@@ -29,7 +30,7 @@ import View.Model.MapObjectView;
 import View.EntityView;
 import View.InventoryView;
 
-public class Entity implements MovementInterface {
+public class Entity extends Observable implements MovementInterface {
 
 	private static final Exception InvalidAbilityException = null;
 	private String name;

@@ -33,6 +33,7 @@ public class KeySet {
         keyBindings.put("ACTION10",48);
         keyBindings.put("ACTION11",KeyEvent.VK_MINUS);
         keyBindings.put("ACTION12",KeyEvent.VK_EQUALS);
+        keyBindings.put("SAVE",KeyEvent.VK_P);
     }
     public static int getKey(String s){
         return keyBindings.get(s);
