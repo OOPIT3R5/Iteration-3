@@ -49,9 +49,4 @@ public abstract class Item implements MapObject, Savable{
     	//return "";
         return name;
     }
-
-	
-    
-    
-
 }

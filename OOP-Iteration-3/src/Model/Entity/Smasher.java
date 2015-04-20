@@ -23,10 +23,22 @@ public class Smasher extends Occupation{
 	}
 
 
+    @Override
+    public void visit(OneHandedWeaponItem ohwi) {
+        getEntity().equipItem(ohwi);
+        getEntity().setActiveSkill(onehandedweapon);
+    }
 
-	@Override
-    public void visit(SmasherWeaponItem smawi) {
-       getEntity().equipItem(smawi);
+    @Override
+    public void visit(TwoHandedWeaponItem thwi) {
+        getEntity().equipItem(thwi);
+        getEntity().setActiveSkill(twohandedweapon);
+    }
+
+    @Override
+    public void visit(BrawlingWeaponItem bwi) {
+        getEntity().equipItem(bwi);
+        getEntity().setActiveSkill(brawlingweapon);
     }
 
     @Override

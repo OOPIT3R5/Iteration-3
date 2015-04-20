@@ -97,31 +97,6 @@ public abstract class Occupation implements TakeableItemVisitor {
 	*/
 
     protected abstract HashMap<String, Ability> getAbilitiesSub();
-    
-    public int getBindWoundsSkillLevel() {
-        return bindwounds.getCurrentLevel();
-    }
-
-    public int getBargainSkillLevel() {
-        return bargain.getCurrentLevel();
-    }
-
-    public int getObservationSkillLevel() {
-        return observation.getCurrentLevel();
-    }
-
-    public void levelBindWoundsSkill() {
-        bindwounds.levelSkillUp();
-    }
-
-    public void levelBargainSkill() {
-        bargain.levelSkillUp();
-    }
-
-    public void levelObservationSkill() {
-        observation.levelSkillUp();
-    }
-
 
     public void printName() {
         System.out.println(this.toString());
