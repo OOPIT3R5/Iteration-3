@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.Map.Entry;
 
 import javax.swing.JLabel;
@@ -18,7 +20,8 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class CharacterCreationView extends ModelView implements Observer {
 	
-private HashMap<String,Color> options = new HashMap<String,Color>();
+	private HashMap<String,Color> options = new HashMap<String,Color>();
+	private String[] orderedOptions;
 	
 	int boxWidth = View.WIDTH/2;
 	int boxHeight = View.HEIGHT;
@@ -33,6 +36,7 @@ private HashMap<String,Color> options = new HashMap<String,Color>();
 			this.options.put(s,Color.BLACK);
 		}
 		this.options.put(options[0], Color.RED);
+		orderedOptions = options;
 	}
 
 	@Override
@@ -55,15 +59,15 @@ private HashMap<String,Color> options = new HashMap<String,Color>();
 		int start = 0;
 		g.drawRect(boxX, boxY, boxWidth, boxHeight);
 		float old = g.getFont().getSize();
-		g.setFont(g.getFont().deriveFont(100.0f));
-		String title = "Main Menu";
+		g.setFont(g.getFont().deriveFont(75.0f));
+		String title = "Character Creation";
 		FontMetrics fm = g.getFontMetrics();
-	    int w = fm.stringWidth("Main Menu");
-		g.drawString("Main Menu", boxX + boxWidth/2 - (w / 2), boxY + 100);
+	    int w = fm.stringWidth(title);
+		g.drawString(title, boxX + boxWidth/2 - (w / 2), boxY + 100);
 		g.setFont(g.getFont().deriveFont(old));
 		MenuButton m = new MenuButton(buttonWidth, buttonHeight);
-		for(Entry<String, Color> entry: options.entrySet()){
-			m.render(g, View.WIDTH/2 - buttonWidth/2, View.HEIGHT/3 + start, entry.getValue(),entry.getKey());
+		for(String s : orderedOptions){
+			m.render(g, View.WIDTH/2 - buttonWidth/2, View.HEIGHT/3 + start, options.get(s),s);
 			start = start + buttonHeight*2;
    		 }
 		g.setColor(Color.BLACK);
