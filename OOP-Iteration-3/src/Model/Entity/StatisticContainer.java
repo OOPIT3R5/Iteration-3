@@ -194,8 +194,9 @@ public class StatisticContainer {
     }
 
     private void checkIfGameOver() {
-        if(livesleft.getCurrentValue() == 0) {
+        if(livesleft.getCurrentValue() <= 0) {
             System.out.println("You're dead.");
+            e.setLocation(null);
             e.removeFromMap();
         }
         else
