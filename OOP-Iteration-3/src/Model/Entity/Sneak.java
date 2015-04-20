@@ -114,4 +114,10 @@ public class Sneak extends Occupation{
 
         return skills;
     }
+
+	@Override
+	public String displayName() {
+		// TODO Auto-generated method stub
+		return "Sneak";
+	}
 }
