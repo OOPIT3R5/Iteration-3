@@ -105,6 +105,7 @@ public class MainMenuController extends Controller {
 				String state = mm.getState();
 				if(state.equals("new")){ //Is there a way around this?
 					setNext(CharacterCreationController.getInstance());
+					
 				}
 				else if(state.equals("options")){
 					setNext(ConfigController.getInstance());
@@ -115,7 +116,7 @@ public class MainMenuController extends Controller {
 					Avatar avatar = new Avatar();
 					new Summoner(avatar); // delete later
 					Game game = new Game(avatar);
-					DefaultGame dg = new DefaultGame(game.getGameMap());
+					//DefaultGame dg = new DefaultGame(game.getGameMap());
 					GameController.setGame(game);
 					
 				}

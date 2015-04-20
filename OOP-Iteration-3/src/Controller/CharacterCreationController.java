@@ -14,6 +14,7 @@ import Model.Entity.Smasher;
 import Model.Entity.Sneak;
 import Model.Entity.Summoner;
 import Model.Menu.CharacterCreation;
+import Utility.DefaultGame;
 import View.ModelView;
 
 public class CharacterCreationController extends Controller  {
@@ -109,6 +110,7 @@ public class CharacterCreationController extends Controller  {
 					setNext(GameController.getInstance()); //change controllers
 					new Summoner(avatar); //create summoner
 					Game game = new Game(avatar); //create new game with our new avatar
+					DefaultGame dg = new DefaultGame(game.getGameMap());
 					GameController.setGame(game); //set the game to the controller
 					
 
@@ -117,12 +119,14 @@ public class CharacterCreationController extends Controller  {
 					setNext(GameController.getInstance());
 					new Smasher(avatar);
 					Game game = new Game(avatar);
+					DefaultGame dg = new DefaultGame(game.getGameMap());
 					GameController.setGame(game);
 				}
 				else if(state.equals("Sneak")){
 					setNext(GameController.getInstance());
 					new Sneak(avatar);
 					Game game = new Game(avatar);
+					DefaultGame dg = new DefaultGame(game.getGameMap());
 					GameController.setGame(game);
 				}
 				else{
