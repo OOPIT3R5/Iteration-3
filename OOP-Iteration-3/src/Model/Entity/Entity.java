@@ -301,7 +301,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	}
     
     public void receiveDamage(int damage) {
-		stats.changeHealth(-damage);		
+		stats.changeHealth(-damage);
 	}
 
 	public void setDirection(Direction d){

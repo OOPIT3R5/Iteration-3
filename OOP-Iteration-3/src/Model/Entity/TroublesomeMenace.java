@@ -60,7 +60,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		return new Attack(this);		// TODO doesn't do anything
+		return new Attack(this,this.getOccupation().getAttack());		// TODO doesn't do anything
 
 		//find closest entity (not avatar), face, and attack
 
@@ -69,8 +69,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	@Override
 	public Ability stealInVicinity() {
 		Direction Dir = dirOfitemInSurroundingArea();
-		Dir = RandomlyGenerate.direction();
-		
+
 		return new Move(this, Dir, getMovementSpeed());
 		
 		//check neighboring tiles (hexlocation get neighborhood)
@@ -80,13 +79,13 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	
 	private Direction dirOfitemInSurroundingArea() {
 		ArrayList<HexagonalLocation> a = HexagonalLocation.circle(getLocation(), 1);
-		//LOD IS SO BAD HERE IT HURTS!
+		
 		for(int i=0; i<a.size(); i++){
 			if (getMap().getTile(a.get(i)).getMapObject() != null){
 				return Direction.intToHex(i);
 			}
 		}
-		return RandomlyGenerate.direction();
+		return directionTowardAvatar();
 	}
 
 	public void becomePet(PetOwnership po){

@@ -46,6 +46,11 @@ public class NPC extends Entity {
 		hostility.act();
 	}
 
+	 public void receiveDamage(int damage) {
+			stats.changeHealth(-damage);
+			becomeHostile();
+		}
+
 	public boolean avatarIsWithinRange(int range){
 		ArrayList<HexagonalLocation> a = HexagonalLocation.circle(getLocation(), range);
 		Avatar av = getMap().getAvatar();
