@@ -34,8 +34,8 @@ public class Charm extends SummonerAbility {
 		}*/
 		GameMap gm = sourceEntity.getGamemap();
 		Entity monster = new Monster();
-		monster.setLocation(new HexagonalLocation(sourceEntity.getLocation().getU(), sourceEntity.getLocation().getV()+1));
-		gm.spawn(monster, new HexagonalLocation(sourceEntity.getLocation().getU(), sourceEntity.getLocation().getU()+1));
+		monster.setLocation(new HexagonalLocation(gm.getAvatar().getLocation().getU()+1, gm.getAvatar().getLocation().getV()));
+		gm.spawn(monster, new HexagonalLocation(gm.getAvatar().getLocation().getU()+1, gm.getAvatar().getLocation().getU()));
 		monster.setMap(gm);
 	}
 	
