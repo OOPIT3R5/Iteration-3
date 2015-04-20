@@ -34,7 +34,6 @@ public class EntityView {
 		int x = (int)(origin.getX() + 3 / 2.0 * 100 * (currentLocation.getU() - avatar_location.getU()));
 		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((currentLocation.getV() - avatar_location.getV()) + (currentLocation.getU() - avatar_location.getU()) / 2.0));
 		
-		
 		JProgressBar health = new JProgressBar(0, mhp);
 		health.setForeground(Color.RED);
 		health.setValue(hp);

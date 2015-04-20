@@ -17,14 +17,16 @@ import Model.Terrain.Terrain;
 import View.EntityView;
 import View.Model.HexTileView;
 
-
 public class HexagonalTile extends Tile {
 	
 	HexTileView hView;
 	HexTileView hViewNonvisible;
+	HexTileView black;
 	
 	private CachedEntity cached_entity_;
 	private MapObject cached_map_object_;
+	
+	private boolean has_been_seen_ = false;
 
 	private class CachedEntity {
 		public Direction directionFacing_;
@@ -40,17 +42,18 @@ public class HexagonalTile extends Tile {
 		}
 	}
 	
-	
 	public HexagonalTile() {
 		super(new Grass());
 		hView = new HexTileView(getLocation(), getColor());
 		hViewNonvisible = new HexTileView(getLocation(), getColor().darker().darker());
+		black = new HexTileView(getLocation(), Color.DARK_GRAY);
 	}
 	
 	public HexagonalTile(Terrain terrain) {
 		super(terrain);
 		hView = new HexTileView(getLocation(), getColor());
 		hViewNonvisible = new HexTileView(getLocation(), getColor().darker().darker());
+		black = new HexTileView(getLocation(), Color.DARK_GRAY);
 	}
 
 	@Override
@@ -68,6 +71,7 @@ public class HexagonalTile extends Tile {
 		super.putLocation((HexagonalLocation)hex_location);
 		hView.update(getLocation());
 		hViewNonvisible.update(getLocation());
+		black.update(getLocation());
 	}
 
 	@Override
@@ -115,9 +119,15 @@ public class HexagonalTile extends Tile {
 		int distance = HexagonalLocation.rectilinearDistance(getLocation(), center);
 		if (Math.abs(distance) < 3)
 			hView.render(g, center);
-		else
-			hViewNonvisible.render(g, center);
+		else {
+			if (!has_been_seen_) {
+				black.render(g, center);
+			} else {
+				hViewNonvisible.render(g, center);
+			}
+		}
 		if (Math.abs(distance) < 3) {
+			has_been_seen_ = true;
 			if (hasEntity()) {
 				cacheEntity();
 				getEntity().render(g, center);

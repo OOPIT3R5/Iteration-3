@@ -19,6 +19,9 @@ public abstract class MapObject {
 
 	abstract void render(Graphics g, HexagonalLocation center, Location location);
 	
-    abstract public String getName();
+<<<<<<< HEAD
+    public String getName();
     
+=======
+>>>>>>> cf3f8b44d955b85ab6c2803ed3d6da3588e116c5
 }

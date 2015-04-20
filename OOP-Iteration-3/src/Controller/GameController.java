@@ -17,6 +17,8 @@ import Model.Entity.Entity;
 import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
 import View.GameView;
+import Model.SaveSystem.CSVSaver;
+import Model.SaveSystem.SaveDriver;
 import View.ModelView;
 
 public class GameController extends Controller implements Observer {
@@ -127,7 +129,8 @@ public class GameController extends Controller implements Observer {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("SAVE")){
-				//INSERT SAVE HERE	
+				SaveDriver saveDriver = new SaveDriver(game.getGameMap() , new CSVSaver());
+				
 			}
 			
 		}

@@ -2,6 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.ItemAbility;
 import Model.Entity.Entity;
+import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 
 public class OneShotItem extends Item {
@@ -24,4 +25,10 @@ public class OneShotItem extends Item {
         ability.setEntity(entity);
         ability.execute();
     }
+
+	@Override
+	public void save(Saver saver) {
+		// TODO Auto-generated method stub
+		
+	}
 }

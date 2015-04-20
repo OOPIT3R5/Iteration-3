@@ -16,4 +16,10 @@ public class TakeDamageAreaEffect extends AreaEffect{
     public void onTouch(Entity entity) {
         entity.changeHealth(-1*damage);
     }
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

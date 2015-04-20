@@ -359,6 +359,9 @@ public abstract class Entity extends Observable implements MovementInterface {
     }
 	
 	public abstract void render(Graphics g, HexagonalLocation center);
+		
+		
+	
 	
 	public void ability(String s){
 		Ability a = (occupation.getAbilities().get(s));
@@ -375,8 +378,12 @@ public abstract class Entity extends Observable implements MovementInterface {
 		stats.increaseSpeed(newSpeed);
 	}
 	
+<<<<<<< HEAD
 	public String toString()
 	{
-		return this.name + " , " +  this.currentPosition.toString();
+		return this.name + this.currentPosition.toString();
 	}
+=======
+	
+>>>>>>> cf3f8b44d955b85ab6c2803ed3d6da3588e116c5
 }
