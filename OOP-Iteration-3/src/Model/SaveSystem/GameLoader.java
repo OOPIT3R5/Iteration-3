@@ -49,11 +49,7 @@ public class GameLoader {
 	{
 		System.out.println("WE ARE HERE");
 		String cur;
-		while(!(cur = scanner.next()).equalsIgnoreCase("STATS"))
-		{
-			if(cur.contains("Dirty Rapier"))
-				
-		}
+		
 	}
 }
 
