@@ -85,7 +85,11 @@ public class StatisticContainer {
         return mana.getCurrentValue();
     }
     public int getMaxMana(){
-        return mana.getMinValue();
+        return mana.getMaxValue();
+    }
+
+    public int getMaxLivesLeft(){
+        return livesleft.getMaxValue();
     }
     public int getOffensiveRating(){
         return offense.getCurrentValue() + level.getCurrentValue();
