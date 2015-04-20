@@ -84,7 +84,7 @@ public class HexagonalTile extends Tile {
 		if (hasEntity())
 			getEntity().render(g, center);
 		if(hasMapObject())
-			getMapObject().render(g, center, super.getLocation());
+			getMapObject().getMapObjectView().render(g, center, (HexagonalLocation)super.getLocation());
 	}
 	
 }

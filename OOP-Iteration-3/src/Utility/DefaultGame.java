@@ -38,7 +38,7 @@ public class DefaultGame {
 		
 		
 		gm.addEntity(5, 5, monster);
-		gm.addMapObject(2, 2, shoes);
+		gm.addMapObject(1, 2, shoes);
 		
 		
 	}
