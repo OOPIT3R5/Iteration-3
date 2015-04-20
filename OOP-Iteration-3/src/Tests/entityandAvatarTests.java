@@ -11,11 +11,11 @@ public class entityandAvatarTests {
 	public static void main(String[] args){
 		RandomlyGenerate r = new RandomlyGenerate();
 		//avatarCreation();
-		//monsterMovement();
+		monsterMovement();
 		//helpfulMenace();
 		//troublesomeMenace();
 		//horse();
-		mountHelpfulMenace();
+		//mountHelpfulMenace();
 	}
 
 	

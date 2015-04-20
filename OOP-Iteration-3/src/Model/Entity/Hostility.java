@@ -81,18 +81,18 @@ public class Hostility {
 			System.out.println("I'm chasing the avatar who is/was next to me");
 		}
 		else{		//avatar is not within range, so meander around
-			if (prob < .5){
+			if (prob < 1){
 				//30% chance of moving in random direction
 				a = new Move(npc, npc.getMap(), RandomlyGenerate.direction(), npc.getMovementSpeed());
 				System.out.println("I'm moving in rand dir");
 			}
 			else {
 				//10% chance of doing nothing
-				//a = new DoNothing();
+				a = new DoNothing();
 				System.out.println("I'm doing nothing");
 			}
 		}
-		//a.execute();
+		a.execute();
 			
 	}
 
@@ -106,7 +106,7 @@ public class Hostility {
 			System.out.println("I'm moving in rand dir and not hostile");
 			Direction d = RandomlyGenerate.direction();
 		}
-		Ability a = new DoNothing();
+		//Ability a = new DoNothing();
 			System.out.println("I'm doing nothing and not hostile");
 		//if you don't move, then you [currently do nothing]
 	}
