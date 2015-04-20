@@ -16,4 +16,9 @@ public class Avatar extends Entity{
 		super(name);
 		super.setLocation(new HexagonalLocation(0 , 0));
 	}
+
+    @Override
+    public void removeFromMap(){
+        //TODO: Implement Death Remove Logic
+    }
 }

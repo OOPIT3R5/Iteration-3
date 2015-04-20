@@ -18,32 +18,6 @@ public class StatisticContainer {
     private Statistic offense;      //USED FOR WEAPONS
     private Statistic defense;      //USED FOR OTHER EQUIPMENT
 
-    public StatisticContainer(){
-        strength = new Statistic();
-        agility = new Statistic();
-        intellect = new Statistic();
-        hardiness = new Statistic();
-        experience = new Statistic();
-
-        strength.addPermanentValue(5);
-        agility.addPermanentValue(5);
-        intellect.addPermanentValue(5);
-        hardiness.addPermanentValue(5);
-
-        movement = new Statistic(1,50);
-        level = new Statistic(1,100,0);
-
-        livesleft = new Statistic(0, 9, 0);
-        livesleft.addPermanentValue(3);         //Start with 3 lives
-        life = new Statistic(0, 100, 50);
-        mana = new Statistic(0, 100, 25);
-
-        life.addPermanentValue(100);
-        mana.addPermanentValue(100);
-
-        offense = new Statistic();
-        defense = new Statistic();
-    }
 
     public StatisticContainer(Entity e){
         strength = new Statistic();
@@ -61,7 +35,7 @@ public class StatisticContainer {
         level = new Statistic(1,100,0);
 
         livesleft = new Statistic(0, 9, 0);
-        livesleft.addPermanentValue(3);         //Start with 3 lives
+        livesleft.addPermanentValue(3);         //Start with 3 life
         life = new Statistic(0, 100, 50);
         mana = new Statistic(0, 100, 25);
 
@@ -73,6 +47,36 @@ public class StatisticContainer {
 
         this.e = e;
     }
+
+    public StatisticContainer(Entity e, int NumLives){
+        strength = new Statistic();
+        agility = new Statistic();
+        intellect = new Statistic();
+        hardiness = new Statistic();
+        experience = new Statistic();
+
+        strength.addPermanentValue(5);
+        agility.addPermanentValue(5);
+        intellect.addPermanentValue(5);
+        hardiness.addPermanentValue(5);
+
+        movement = new Statistic(1,50);
+        level = new Statistic(1,100,0);
+
+        livesleft = new Statistic(0, 9, 0);
+        livesleft.addPermanentValue(NumLives);         //Start with X lives
+        life = new Statistic(0, 100, 50);
+        mana = new Statistic(0, 100, 25);
+
+        life.addPermanentValue(100);
+        mana.addPermanentValue(100);
+
+        offense = new Statistic();
+        defense = new Statistic();
+
+        this.e = e;
+    }
+
 
     public int getLevel(){
         return level.getCurrentValue();
@@ -188,7 +192,7 @@ public class StatisticContainer {
     private void checkIfGameOver() {
         if(livesleft.getCurrentValue() == 0) {
             System.out.println("You're dead.");
-            e.disableAll();
+            e.removeFromMap();
         }
         else
             life.addPermanentValue(life.getMaxValue());   //Make it go back to the top.

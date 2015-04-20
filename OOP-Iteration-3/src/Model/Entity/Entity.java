@@ -148,13 +148,8 @@ public class Entity implements MovementInterface {
 		moveMap.put(direction, new DoNothing());
 	}
 
-    public void disableAll(){
-        moveMap.put(Direction.NORTHWEST, new DoNothing());
-        moveMap.put(Direction.NORTHEAST, new DoNothing());
-        moveMap.put(Direction.SOUTHEAST, new DoNothing());
-        moveMap.put(Direction.SOUTH, new DoNothing());
-        moveMap.put(Direction.NORTH, new DoNothing());
-        moveMap.put(Direction.SOUTHWEST, new DoNothing());
+    public void removeFromMap(){
+        map.getTile(getLocation()).removeEntity(); //Removes entity from map.
     }
 
     @Override
@@ -250,12 +245,7 @@ public class Entity implements MovementInterface {
     public StatisticContainer getStatistics(){
         return stats;
     }
-    
-    public void incSkill(Skill s){
-    	if(numOfPointsCanAllocateToLevelUpSkill > 0){
-    		s.levelSkillUp();
-    	}
-    }
+
     
     public void makeActionChoice() {
 		// hook
