@@ -11,9 +11,9 @@ public class Smasher extends Occupation{
     private Skill brawlingweapon;
     
     
-   // private Ability onehandAbil;
-   // private Ability twohandAbil;
-   // private Ability brawlAbil;
+    // private Ability onehandAbil;
+    // private Ability twohandAbil;
+    // private Ability brawlAbil;
 
 	public Smasher(Entity e) {
         super(e);
@@ -88,7 +88,6 @@ public class Smasher extends Occupation{
 
 
     protected HashMap<String, Ability> getAbilitiesSub() {
-		
 		return null;
 	}
 
