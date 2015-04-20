@@ -22,6 +22,14 @@ public class Charm extends SummonerAbility {
 	@Override
 	public void execute() {
 		useMana(sourceEntity);
+		
+		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
+		for(int i=0; i<entities.size(); i++){
+			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,2)){
+				NPC targetEntity = (NPC)entities.get(i);
+				((NPC)targetEntity).setIfShouldFollowingEntity(true);
+			}
+		}
 	}
 	
 	@Override
