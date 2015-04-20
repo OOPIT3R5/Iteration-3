@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import Model.Entity.Avatar;
 import Model.Entity.Entity;
 import Model.Items.MapObject;
 import Model.Map.GameMap;
@@ -18,6 +19,7 @@ public class SaveDriver {
 	ArrayList<Entity> entities;
 	//ArrayList<MapObject> mapObjects;
 	HashMap<HexagonalLocation, MapObject> mapObjects;
+	Avatar avatar;
 	//HashMap<HexagonalLocation, Entity> entities;
 	Iterator<HexagonalTile> iterator;
 	GameMap map;
@@ -33,7 +35,7 @@ public class SaveDriver {
 		this.map = map;
 		initialize();
 		this.saver = saver;
-		
+		avatar = map.getAvatar();
 		save = saveEverything();
 		
 		String fname = "save.csv";
@@ -55,7 +57,8 @@ public class SaveDriver {
 	private String saveEverything()
 	{
 		StringBuilder gameSave = new StringBuilder();
-	
+		
+		gameSave.append(avatar.toString());
 		
 		for(Entity e: entities)
 		{
