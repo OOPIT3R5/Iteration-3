@@ -92,4 +92,12 @@ public class Smasher extends Occupation{
 		return null;
 	}
 
+
+
+	@Override
+	public String displayName() {
+		// TODO Auto-generated method stub
+		return "Smasher";
+	}
+
 }
