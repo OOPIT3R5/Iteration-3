@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Model.Entity.Ability.Ability;
+import Model.Entity.Ability.Move;
 import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
@@ -17,6 +19,8 @@ public class NPC extends Entity {
 
 	private NpcView npcView;
 	protected Hostility hostility;
+	protected boolean isfollowingEntity;
+	
 	public NPC(){
 		super();
 		npcView = new NpcView();
@@ -39,7 +43,13 @@ public class NPC extends Entity {
 
 	/*AI stuff*/
 	public void performAction(){
-		makeActionChoice();
+		if(isfollowingEntity){
+			Ability m = new Move(this, directionTowardAvatar(), this.getMovementSpeed());
+			m.execute();
+		}
+		else{
+			makeActionChoice();
+		}
 	}
 	
 	public void makeActionChoice(){
