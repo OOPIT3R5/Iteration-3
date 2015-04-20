@@ -57,6 +57,10 @@ public class GameMap {
 		gameMapGrid.fill(defaultTile);
 	}
 	
+	public void border(Tile border) {
+		gameMapGrid.border(border);
+	}
+	
 	public Avatar getAvatar() {
 		return avatar;
 	}

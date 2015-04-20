@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MapObjectView {
+	
     private BufferedImage bi;
 
     public MapObjectView(BufferedImage bi){
