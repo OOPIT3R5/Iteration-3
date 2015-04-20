@@ -137,6 +137,10 @@ public class StatisticContainer {
     public int getArmorRating(){
         return defense.getCurrentValue() + level.getCurrentValue();
     }
+    
+    public void regenMana(){
+    	mana.addPermanentValue(5);
+    }
 
     private void checkLevelUp(){
         if(level.getCurrentValue() < (experience.getCurrentValue() / 1000)){

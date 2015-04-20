@@ -47,6 +47,13 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return circle;
 	}
 	
+	public static ArrayList<HexagonalLocation> circleNoCenter(HexagonalLocation center, int radius) {
+		ArrayList<HexagonalLocation> circle = new ArrayList<HexagonalLocation>();
+		for (int i = 0; i < radius; i++)
+			circle.addAll(HexagonalLocation.ring(center, i + 1));
+		return circle;
+	}
+	
 	public static ArrayList<HexagonalLocation> line(HexagonalLocation start, int length) {
 		ArrayList<HexagonalLocation> line = new ArrayList<HexagonalLocation>();
 		HexagonalLocation next = start;
@@ -109,7 +116,7 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 	/** Rectilinear distance between two Hex coordinates. */
 	public static int rectilinearDistance(HexagonalLocation a, HexagonalLocation b) {				
 		return Math.max(Math.max(Math.abs(a.getU() - b.getU()),
-				Math.abs(-a.getU() - a.getV() + b.getU() + b.getV())),
+				Math.abs(- a.getU() - a.getV() + b.getU() + b.getV())),
 				Math.abs(a.getV() - b.getV()));
 	}
 	

@@ -28,7 +28,7 @@ public class Blizzard extends SummonerAbility{
 
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
-		int radius = 5;
+		int radius = 20;
 		
 		GameMap map = sourceEntity.getGamemap();
 		
@@ -62,12 +62,13 @@ public class Blizzard extends SummonerAbility{
 		
 		for(Tile tile : getTargetTiles()){
 			Entity targetEntity = tile.getEntity();
-			
-			if (targetEntity != null){
-				if (chanceOfSuccess > probabilityOfSuccess){		// success = damage
-					targetEntity.changeHealth(-1*scaleMagnitude());
-				}
-			}
+			targetEntity.changeHealth(-1*(scaleMagnitude()+10));
+//			if (targetEntity != null){
+//				if (chanceOfSuccess > probabilityOfSuccess){		// success = damage
+//					targetEntity.changeHealth(-1*scaleMagnitude());
+//				}
+//			}
+			System.out.println("Blizzard Success");
 		}
 	}
 
