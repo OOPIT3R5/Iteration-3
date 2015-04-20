@@ -76,7 +76,7 @@ public class Hostility {
 			a = new Attack(npc);	//TODO attack in avatar direction
 			System.out.println("I'm attacking the avatar who is/was next to me");
 		}
-		else if(npc.avatarIsWithinRange(8)){
+		else if(npc.avatarIsWithinRange(5)){
 			if (prob < .15){
 				//25% chance of moving in random direction
 				a = new Move(npc, RandomlyGenerate.direction(), npc.getMovementSpeed());
