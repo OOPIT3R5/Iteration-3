@@ -47,36 +47,14 @@ public class GameMapView extends ModelView {
 		for (HexagonalTile hex_tile : hex_tiles) {
 			hex_tile.render(g, origin, center);
 			
-			
-			//HexagonalCoordinateInterface h = hex_tile.getLocation();
-			// Just outlines for now
-			/*new FlatHexagon(new Point(
-					(int)(origin.getX() + 3 / 2.0 * hexagon_size * h.getU()), 
-					(int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((h.getV() - center.getV()) + (h.getU() - center.getU()) / 2.0))),
-					(int)(hexagon_size * 1.02), true).draw(g);
-			
-			new FlatHexagon(new Point(
-					(int)(origin.getX() + 3 / 2.0 * hexagon_size * h.getU()), 
-					(int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((h.getV() - center.getV()) + (h.getU() - center.getU()) / 2.0))),
-					(int)(hexagon_size * .95), true, Color.GREEN).draw(g);*/
 		}
-
-		/*ArrayList<HexagonalLocation> hex_locations = gMap.getHexTileLocations();
-		for (HexagonalLocation hl : hex_locations) {
-			HexagonalTile hexTile = (HexagonalTile)gMap.getTile(hl);
-			//System.out.println(hexTile.getLocation().getU());
-			if(hexTile != null)
-				hexTile.render(g);
-			else
-				System.out.println(hl.getU() + " , " + hl.getV());*/
-			// Just outlines for now
-			/*
-			new FlatHexagon(new Point(
-					(int)(origin.getX() + 3 / 2.0 * hexagon_size * h.getU()), 
-					(int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((h.getV() - center.getV()) + (h.getU() - center.getU()) / 2.0))),
-					hexagon_size, false).draw(g);
-		}*/
 		
+	}
+	
+	public void renderStatus(Graphics g){
+//		float healthScale = avatar.getStatistics(). / maxHealth;
+//	    g.setColor(healthBarColor);
+//	    g.fillRect(healthBarX, healthBarY, healthBarWidth * healthScale, healthBarHeight);
 	}
 
 }
