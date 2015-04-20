@@ -63,7 +63,9 @@ public class DefaultGame {
 		gm.spawn(NoMoveEntity, new HexagonalLocation(1,6));
 		
 		gm.addMapObject(1, 2, shoes);
-		gm.addEntity(2, 2, pet);
+		
+		pet.setLocation(new HexagonalLocation(2, 2));
+		gm.spawn(pet, new HexagonalLocation(2, 2));
 		
 		NoMoveEntity.setMap(gm);
 		pet.setMap(gm);
