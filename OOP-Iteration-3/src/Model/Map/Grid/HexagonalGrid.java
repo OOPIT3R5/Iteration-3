@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import Model.Entity.Entity;
 import Model.Items.MapObject;
+import Model.Items.TakeableItem;
 import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
@@ -280,6 +281,8 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 		return cur;
 		
 	}
+
+	
 
 	
 }

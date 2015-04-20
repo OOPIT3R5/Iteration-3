@@ -141,7 +141,7 @@ public class HexagonalTile extends Tile {
 					e.printStackTrace();
 				}
 		}
-		if (Math.abs(distance) <= 3) {
+		if (Math.abs(distance) < 3) {
 			has_been_seen_ = true;
 			if (hasEntity()) {
 				cacheEntity();

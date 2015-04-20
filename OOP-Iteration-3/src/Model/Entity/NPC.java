@@ -81,7 +81,7 @@ public class NPC extends Entity {
 		int EU = getLocation().getU();
 		int EV = getLocation().getV();
 		
-		int AU = a.getLocation().getU();
+		int AU = a.getLocation().getU() + 1;
 		int AV = a.getLocation().getV();
 		
 		

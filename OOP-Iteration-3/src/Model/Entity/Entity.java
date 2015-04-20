@@ -120,6 +120,8 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		inventory.addToInventory(ti);
 	}
 	
+	
+	
 	public void alertNeighboringTiles(){
 		Location center = getLocation();
 		for(Entry<Direction, Ability> entry: moveMap.entrySet()){
@@ -130,7 +132,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	}
 	
 	public void autoLevelUp() {
-        awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
+        awardExperience(1000 - stats.getExperience() + 1); //Get the remaining amt of EXP needed to level up and add that to ourselves.
         numOfPointsCanAllocateToLevelUpSkill++;
     }
 	

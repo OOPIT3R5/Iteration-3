@@ -9,6 +9,7 @@ import Model.Entity.Avatar;
 import Model.Entity.Entity;
 import Model.Entity.NPC;
 import Model.Items.MapObject;
+import Model.Items.TakeableItem;
 import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -178,5 +179,7 @@ public class GameMap {
 			tile.nullify();
 		}
 	}
+
+	
 	
 }
