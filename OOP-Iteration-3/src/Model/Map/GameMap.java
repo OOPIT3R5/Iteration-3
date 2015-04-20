@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -40,13 +41,10 @@ public class GameMap {
 		this.HEIGHT = height;
 		this.WIDTH = width;
 		gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
-		mapView = new GameMapView(this);
+		mapView = new GameMapView();
 	}
 	
-	public void add(int x, int y, Tile t)
-	{
-		
-	}
+
 	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
 			int height, int radius) {
@@ -129,5 +127,10 @@ public class GameMap {
 		gameMapGrid.addEntity(i, j, e);
 	}
 	
+	
+	public void addMapObject(int i , int j , MapObject mo)
+	{
+		gameMapGrid.addMapObject(i , j , mo);
+	}
 	
 }

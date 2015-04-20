@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -144,4 +145,11 @@ public abstract class Grid {
 	{
 		return grid_[i][j];
 	}
+	
+	public void addMapObject(int i, int j, MapObject mo) 
+	{
+		
+		grid_[i][j].setMapObject(mo);
+	}
+	
 }
