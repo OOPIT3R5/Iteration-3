@@ -38,8 +38,8 @@ public class DefaultGame {
 		System.out.println("EMPHASIS");
 		Entity monster = new Monster();
 		
-		Entity pet = null;
-		//PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
+		Entity pet = new TroublesomeMenace();
+		PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
 		
 		
 		Entity NoMoveEntity = new Monster();
@@ -66,11 +66,11 @@ public class DefaultGame {
 		
 		gm.addMapObject(1, 2, shoes);
 		
-		//pet.setLocation(new HexagonalLocation(2, 2));
-		//gm.spawn(pet, new HexagonalLocation(2, 2));
+		pet.setLocation(new HexagonalLocation(2, 2));
+		gm.spawn(pet, new HexagonalLocation(2, 2));
 		
 		NoMoveEntity.setMap(gm);
-		//pet.setMap(gm);
+		pet.setMap(gm);
 		monster.setMap(gm);
 		System.out.println("MONSTER BEEN ADDED TO MAP");
 		

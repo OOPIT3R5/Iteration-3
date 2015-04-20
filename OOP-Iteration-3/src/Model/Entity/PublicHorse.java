@@ -1,10 +1,14 @@
 package Model.Entity;
 
+import Model.Entity.Ability.Ability;
+import Model.Entity.Ability.DoNothing;
+
 public class PublicHorse extends NonAdversarial implements Mount{
 
 	Mounted m;
 	public PublicHorse() {	// TODO PublicHorse class
 		m = new Mounted(this);
+		
 	}
 
 	
@@ -27,6 +31,7 @@ public class PublicHorse extends NonAdversarial implements Mount{
 	public void makeUnMountedActionChoice() {
 		//TO DO
 		//do nothing. Public horse is stabled at some location and doens't move
+		Ability d = new DoNothing();
 		
 	}
 
