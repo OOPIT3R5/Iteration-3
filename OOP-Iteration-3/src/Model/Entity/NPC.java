@@ -184,6 +184,12 @@ public class NPC extends Entity {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String dialogue() {
+		// TODO Auto-generated method stub
+		return "I'm a nonplayable character";
+	}
 	
 
 }

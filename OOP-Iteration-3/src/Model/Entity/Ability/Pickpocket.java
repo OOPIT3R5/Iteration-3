@@ -30,7 +30,9 @@ public class Pickpocket extends SkillAbility {
 		for(int i=0; i<entities.size(); i++){
 			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,2)){
 				entities.get(i).stealGold(5);
+				System.out.println("STOLE GOLD!!!!");
 			}
+			sourceEntity.awardGold(5);
 		}
 		
 //		if (targetEntity != null){

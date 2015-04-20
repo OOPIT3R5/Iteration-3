@@ -197,6 +197,7 @@ public class StatisticContainer {
         if(livesleft.getCurrentValue() == 0) {
             System.out.println("You're dead.");
             e.removeFromMap();
+            e = null;
         }
         else
             life.addPermanentValue(life.getMaxValue());   //Make it go back to the top.

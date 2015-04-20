@@ -70,6 +70,7 @@ public class GameController extends Controller implements Observer {
 
 	@Override
 	public void register(JFrame f) {
+		listeners.add(new Dialogue());
 		listeners.add(new BacktoMainMenu());
 		listeners.add(new InventoryListener());
 		listeners.add(new Render());
@@ -311,6 +312,47 @@ public class GameController extends Controller implements Observer {
 			}
 			
 		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+public class Dialogue implements KeyListener {
+	
+		
+		@Override
+		public void keyPressed(KeyEvent k) {
+			if(k.getKeyCode() == KeyEvent.VK_C){
+				System.out.println("Dialogue");
+				ArrayList<Entity> entities = avatar.getGamemap().getAllNPCS();
+				for(int i=0; i<entities.size(); i++){
+					if(checkDistance(avatar.getLocation(),entities.get(i).getLocation(),1,2)){
+						String s = entities.get(i).dialogue();
+						System.out.println(s);
+						GameView.writeToLog(s);
+						
+					}
+				}
+			}
+			
+		}
+		 protected boolean checkDistance(HexagonalLocation a, HexagonalLocation b, int min, int max){
+		    	if(Math.abs(a.getV() - b.getV()) < min && Math.abs(a.getU() - b.getU()) < min){
+		    		return false;
+		    	}
+		    	else if(Math.abs(a.getV() - b.getV()) <= max && Math.abs(a.getU() - b.getU()) <= max){
+		    		return true;
+		    	}
+		    	return false;
+		    }
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {

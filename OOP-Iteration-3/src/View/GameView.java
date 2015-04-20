@@ -25,6 +25,8 @@ public class GameView extends ModelView {
 	private Avatar avatar;
 	private static JTextArea log = new JTextArea();
 	private static String s = "Welcome";
+	private static JTextArea dialogue = new JTextArea();
+
 	
 	public GameView(GameMap gameMap, Avatar avatar) {
 		this.gameMap = gameMap;
@@ -68,8 +70,12 @@ public class GameView extends ModelView {
 		renderInfo(g);
 		
 		log.setBounds(3*View.WIDTH/4, 2*View.HEIGHT/4, View.WIDTH/4, View.HEIGHT/4);
+		log.setBounds(3*View.WIDTH/4, 3*View.HEIGHT/4, View.WIDTH/4, View.HEIGHT/4);
+
 		g.translate(9*View.WIDTH/10, 2*View.HEIGHT/4);
 		log.paint(g);
+		dialogue.paint(g);
+		
 		g.translate(-(9*View.WIDTH/10), -(2*View.HEIGHT/4));
 	}
 	
@@ -135,6 +141,10 @@ public class GameView extends ModelView {
 			g.translate(-(10 + i*20), -40);
 		}
 		
+	}
+	
+	public static void dialoguePanel(String s){
+		dialogue.setText(s);
 	}
 	
 	public static void writeToLog(String data){

@@ -11,18 +11,24 @@ import View.Model.MapObjectView;
 
 public class Avatar extends Entity{
     AvatarView avatarView;
+    
+   
 	public Avatar(){
 		super.setLocation(new HexagonalLocation(0 , 0));
-		avatarView = new AvatarView();
+		avatarView = new AvatarView(this);
 	}
 
 	public Avatar(String name, Occupation o){
 		super(name, o);
+		avatarView = new AvatarView(this);
+
 	}
 
 	public Avatar(String name) {
 		super(name);
 		super.setLocation(new HexagonalLocation(0 , 0));
+		avatarView = new AvatarView(this);
+
 	}
 
     @Override
@@ -88,4 +94,16 @@ public class Avatar extends Entity{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+
+	@Override
+	public String dialogue() {
+		// TODO Auto-generated method stub
+		return "I'm the hero character";
+	}
+	
+		
+		
+	
 }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JProgressBar;
 
+import Model.Entity.Avatar;
 import Model.Map.Direction;
 import Model.Map.HexagonalLocation;
 import View.Model.MapObjectView;
@@ -18,9 +19,10 @@ import View.Model.MapObjectView;
 public class AvatarView {
 	MapObjectView spriteSheet;
 	BufferedImage sprite;
+	Avatar avatar;
 	
-	public AvatarView(){
-		
+	public AvatarView(Avatar avatar){
+		this.avatar = avatar;
 		
 	}
 	  public static Image getSpriteFromAvatar(int col, int row) throws IOException {
@@ -42,43 +44,73 @@ public class AvatarView {
 		health.paint(g);
 		g.translate(-(x+3), -(y-5));
 
-	switch(directionFacing){
+		if(!avatar.isCreeping()){
+			
+			
+			
 		
-		case NORTH:
-			g.drawImage(getSpriteFromAvatar(0, 3), x, y, null);
-			break;
+			switch(directionFacing){
 			
-		case SOUTH:
-			
-			g.drawImage(getSpriteFromAvatar(0, 0), x, y, null);
+			case NORTH:
+				if(avatar.isPolymorph())
+					g.drawImage(getSpriteFromAvatar(6, 3), x, y, null);
+				
+				else
+					g.drawImage(getSpriteFromAvatar(0, 3), x, y, null);
 
-			break;
-		case NORTHEAST:
+				break;
+				
+			case SOUTH:
+				
+				if(avatar.isPolymorph())
+					g.drawImage(getSpriteFromAvatar(6, 0), x, y, null);
+				
+				else
+					g.drawImage(getSpriteFromAvatar(0, 0), x, y, null);
+	
+				break;
+			case NORTHEAST:
+				
+				if(avatar.isPolymorph())
+					g.drawImage(getSpriteFromAvatar(6, 2), x, y, null);
+				
+				else
+					g.drawImage(getSpriteFromAvatar(0, 2), x, y, null);
+	
+				break;
+			case NORTHWEST:
+				
+				if(avatar.isPolymorph())
+					g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
+				
+				else
+					g.drawImage(getSpriteFromAvatar(0, 1), x, y, null);
+	
+				break;
+			case SOUTHWEST:
+				
+				if(avatar.isPolymorph())
+					g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
+				
+				else
+					g.drawImage(getSpriteFromAvatar(0, 1), x, y, null);
+	
+				break;
+			case SOUTHEAST:
+				
+				if(avatar.isPolymorph())
+					g.drawImage(getSpriteFromAvatar(6, 2), x, y, null);
+				
+				else
+					g.drawImage(getSpriteFromAvatar(0, 2), x, y, null);
+				break;
+			default:
+				
+				g.drawImage(getSpriteFromAvatar(0, 1), x, y, null);
+				
+			}
 			
-			g.drawImage(getSpriteFromAvatar(0, 2), x, y, null);
-
-			break;
-		case NORTHWEST:
-			
-			g.drawImage(getSpriteFromAvatar(0, 1), x, y, null);
-
-			break;
-		case SOUTHWEST:
-			
-			g.drawImage(getSpriteFromAvatar(0, 1), x, y, null);
-
-			break;
-		case SOUTHEAST:
-			
-			g.drawImage(getSpriteFromAvatar(0, 2), x, y, null);
-			break;
-		default:
-			
-			g.drawImage(getSpriteFromAvatar(0, 1), x, y, null);
-			
-		}
-		
-		
+			}
 		
 	}
 		

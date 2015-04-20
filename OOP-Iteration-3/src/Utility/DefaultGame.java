@@ -13,6 +13,7 @@ import Model.Entity.TroublesomeMenace;
 import Model.Items.MapObject;
 import Model.Items.ShoesItem;
 import Model.Items.TakeDamageAreaEffect;
+import Model.Items.TwoHandedWeaponItem;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import View.Model.MapObjectView;
@@ -45,10 +46,11 @@ public class DefaultGame {
 		Entity NoMoveEntity = new Monster();
 		((NPC)NoMoveEntity).becomeNonHostile();
 
-		
+		MapObject sword = null;
 		MapObject shoes = null;
 		try {
 			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(1, 1)));
+			sword = new TwoHandedWeaponItem(10, "sword", new MapObjectView(MapObjectView.getSpriteFromFE(3, 1)));
 			//pet =  new TroublesomeMenace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -57,7 +59,7 @@ public class DefaultGame {
 
 		
 		
-
+		
 		monster.setLocation(new HexagonalLocation(5, 5));
 		gm.spawn(monster, new HexagonalLocation(5, 5));
 
@@ -65,6 +67,7 @@ public class DefaultGame {
 		gm.spawn(NoMoveEntity, new HexagonalLocation(1,6));
 		
 		gm.addMapObject(1, 2, shoes);
+		gm.addMapObject(1, 4, sword);
 		
 		pet.setLocation(new HexagonalLocation(2, 2));
 		gm.spawn(pet, new HexagonalLocation(2, 2));

@@ -106,7 +106,7 @@ public class Sneak extends Occupation{
     @Override
     public Collection<? extends Skill> getSubSkills() {
         ArrayList<Skill> skills = new ArrayList<Skill>();
-
+        
         skills.add(pickpocket);
         skills.add(detecttraps);
         skills.add(creep);
@@ -114,6 +114,8 @@ public class Sneak extends Occupation{
 
         return skills;
     }
+    
+
 
 	@Override
 	public String displayName() {

@@ -51,7 +51,8 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	private InventoryView inventoryView;
 	private ArrayList<String> skillList = new ArrayList<String>();
 	private int skillSelected = 0;
-	
+	 boolean isCreeping;
+	 boolean polymorph;
 	//private int movementSpeed;
 	
 	private Skill activeSkill;
@@ -62,6 +63,8 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	
 	/*Use */
 	public Entity(){
+		isCreeping = false;
+		polymorph = false;
 		entityView = new EntityView();
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
@@ -70,6 +73,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
         setDirection(Direction.NORTH);
         
         inventoryView = new InventoryView(this);
+        
         
       //  decal = new Decal();
 	}
@@ -83,7 +87,17 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		//TODO 
 		decal = d;
 	}*/
-	
+	public boolean isCreeping(){
+		return isCreeping;
+	}
+	public void creep(){
+		if(isCreeping == true){
+			isCreeping = false;
+		}else{
+			isCreeping = true;
+			
+		}
+	}
 	
 	public Entity (String name){
 		this();
@@ -95,6 +109,8 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		this(name);
 		occupation = o;
 	}
+	
+	public abstract String dialogue();
 	
 	public Skill getActiveSkill(){
 		return activeSkill;
@@ -392,6 +408,21 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	public String toString()
 	{
 		return this.name + "," +  this.currentPosition.toString();
+	}
+	public void polymorph() {
+		if(polymorph){
+			polymorph = false;
+			
+		}else{
+			
+			polymorph = true;
+		}
+		
+	}
+	
+	public boolean isPolymorph(){
+		
+		return polymorph;
 	}
 
 

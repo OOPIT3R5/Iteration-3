@@ -19,6 +19,8 @@ public class Polymorph extends SummonerAbility {
 	@Override
 	public void execute() {
 		useMana(sourceEntity);
+		 sourceEntity.polymorph();	
+
 	}
 	
 	@Override
@@ -26,14 +28,12 @@ public class Polymorph extends SummonerAbility {
 		Entity targetEntity = getTargetEntity();
 		
 		if (targetEntity != null){
-			double probabilityOfSuccess = RandomlyGenerate.probability();
-			double chanceOfSuccess = getSkillLevel()/100;
+		
 			
-			if (chanceOfSuccess > probabilityOfSuccess){		// success
-				((NPC)getTargetEntity()).polymorph();		
-			} else {		// failure
-				((NPC)targetEntity).provoke();
-			}
+				
+			
+				
+			
 		}
 	}
 

@@ -28,7 +28,7 @@ public class EntityView {
 	        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32).getScaledInstance(70, 70, Image.SCALE_DEFAULT);
 	    }
 
-	public void render(Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp) throws IOException{
+	public void render(Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp  ) throws IOException{
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
 		int x = (int)(origin.getX() + 3 / 2.0 * 100 * (currentLocation.getU() - avatar_location.getU()));
@@ -41,45 +41,45 @@ public class EntityView {
 		g.translate(x+3, y-5);
 		health.paint(g);
 		g.translate(-(x+3), -(y-5));
-
-		switch (directionFacing) {
 		
-		case NORTH:
-			g.drawImage(getSpriteFromAvatar(6, 3), x, y, null);
-			break;
-		case SOUTH:
+			switch (directionFacing) {
 			
-			g.drawImage(getSpriteFromAvatar(6, 0), x, y, null);
-
-			break;
-		case NORTHEAST:
-			
-			g.drawImage(getSpriteFromAvatar(6, 2), x, y, null);
-
-			break;
-		case NORTHWEST:
-			
-			g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
-
-			break;
-		case SOUTHWEST:
-			
-			g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
-
-			break;
-		case SOUTHEAST:
-			
-			g.drawImage(getSpriteFromAvatar(6, 2), x, y, null);
-			break;
-		default:
-			
-			g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
-			
+			case NORTH:
+				g.drawImage(getSpriteFromAvatar(6, 3), x, y, null);
+				break;
+			case SOUTH:
+				
+				g.drawImage(getSpriteFromAvatar(6, 0), x, y, null);
+	
+				break;
+			case NORTHEAST:
+				
+				g.drawImage(getSpriteFromAvatar(6, 2), x, y, null);
+	
+				break;
+			case NORTHWEST:
+				
+				g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
+	
+				break;
+			case SOUTHWEST:
+				
+				g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
+	
+				break;
+			case SOUTHEAST:
+				
+				g.drawImage(getSpriteFromAvatar(6, 2), x, y, null);
+				break;
+			default:
+				
+				g.drawImage(getSpriteFromAvatar(6, 1), x, y, null);
+				
+			}
 		}
 		
 		
 		
-		}
 		
 	}
 

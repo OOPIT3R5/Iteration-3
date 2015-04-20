@@ -26,11 +26,18 @@ public class Creep extends SkillAbility{
 		double chanceOfSuccess = getSkillLevel()/50;
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
+		System.out.println("IM CREEPIN");
 		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
 		for(int i=0; i<entities.size(); i++){
+			if(sourceEntity.isCreeping()){
+				sourceEntity.creep();
+			}else{
+				sourceEntity.creep();
+			}
 			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,25)){
 				NPC targetEntity = (NPC)entities.get(i);
 				((NPC)targetEntity).becomeNonHostile();
+				
 			}
 		}
 		
