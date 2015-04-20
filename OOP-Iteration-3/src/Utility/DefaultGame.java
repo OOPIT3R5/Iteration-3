@@ -41,6 +41,10 @@ public class DefaultGame {
 		PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
 		
 		
+		Entity NoMoveEntity = new Monster();
+		((NPC)NoMoveEntity).becomeNonHostile();
+
+		
 		MapObject shoes = null;
 		try {
 			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(1, 1)));
@@ -49,15 +53,15 @@ public class DefaultGame {
 		}
 		
 
-		Entity NoMoveEntity = new Monster();
-		((NPC)NoMoveEntity).becomeNonHostile();
-		gm.addEntity(1, 6, NoMoveEntity );
 		
-		gm.addEntity(5, 5, monster);
+		
 
 		monster.setLocation(new HexagonalLocation(5, 5));
 		gm.spawn(monster, new HexagonalLocation(5, 5));
 
+		NoMoveEntity.setLocation(new HexagonalLocation(1,6));
+		gm.spawn(NoMoveEntity, new HexagonalLocation(1,6));
+		
 		gm.addMapObject(1, 2, shoes);
 		gm.addEntity(2, 2, pet);
 		
