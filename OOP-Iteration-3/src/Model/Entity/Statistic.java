@@ -63,4 +63,11 @@ public class Statistic {
     }
 
 
+    public int getMaxValue() {
+        return maximum;
+    }
+
+    public int getMinValue(){
+        return minimum;
+    }
 }

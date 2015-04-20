@@ -216,6 +216,10 @@ public class Entity implements MovementInterface {
     public int getskillPoints(){
 		return numOfPointsCanAllocateToLevelUpSkill;
 	}
+
+    public void useSkillPoint(){
+        numOfPointsCanAllocateToLevelUpSkill--;
+    }
     public StatisticContainer getStatistics(){
         return stats;
     }
@@ -322,11 +326,7 @@ public class Entity implements MovementInterface {
 		}
 		
 	}
-	
-	public void useSkillPoint(){
-        numOfPointsCanAllocateToLevelUpSkill--;
-    }
-	
+
 	public void utilizeTakeableItem(int inventoryIndex){
         TakeableItem ti = inventory.takeFromInventory(inventoryIndex);
         if(ti != null) {
