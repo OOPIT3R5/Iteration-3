@@ -46,6 +46,8 @@ public class Entity implements MovementInterface {
 	private int skillSelected = 0;
 	
 	private int movementSpeed;
+	
+	private Skill activeSkill;
 
 	//TODO rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
 	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
@@ -84,6 +86,14 @@ public class Entity implements MovementInterface {
 	public Entity (String name, Occupation o){
 		this(name);
 		occupation = o;
+	}
+	
+	public Skill getActiveSkill(){
+		return activeSkill;
+	}
+	
+	public void setActiveSkill(Skill skill){
+		activeSkill = skill;
 	}
 	
 	public void addToInventory(TakeableItem ti){
