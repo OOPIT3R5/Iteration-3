@@ -21,5 +21,11 @@ public class HealDamageAreaEffect extends AreaEffect {
         entity.changeHealth(heal);
     }
 
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return "HealDamageAreaEffect";
+	}
+
 	
 }

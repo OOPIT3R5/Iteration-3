@@ -51,6 +51,7 @@ public abstract class Tile {
 
 	public void setEntity(Entity entity) {
 		entity_ = entity;
+		System.out.println(entity_.toString()+" ENTITY IT SHOULD BE SETTING TO"+ entity.toString());
 	}
 	
 	public Entity getEntity() {

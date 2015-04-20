@@ -13,8 +13,11 @@ import javax.swing.JFrame;
 import Main.Game;
 import Main.KeySet;
 import Model.Entity.Avatar;
+import Model.Entity.Entity;
 import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
+import Model.SaveSystem.CSVSaver;
+import Model.SaveSystem.SaveDriver;
 import View.ModelView;
 
 public class GameController extends Controller implements Observer {
@@ -122,7 +125,8 @@ public class GameController extends Controller implements Observer {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("SAVE")){
-				//INSERT SAVE HERE	
+				SaveDriver saveDriver = new SaveDriver(game.getGameMap() , new CSVSaver());
+				
 			}
 			
 		}
@@ -345,8 +349,11 @@ public class GameController extends Controller implements Observer {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			
-			
+			ArrayList<Entity> entities = game.getGameMap().getAllNPCS();
+			for(int i=0; i<entities.size(); i++){
+				entities.get(i).performAction();
+				
+			}
 		}
 
 		@Override

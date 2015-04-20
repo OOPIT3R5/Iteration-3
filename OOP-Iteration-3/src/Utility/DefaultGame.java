@@ -27,6 +27,7 @@ public class DefaultGame {
 	
 	private void initializeGame()
 	{
+		System.out.println("EMPHASIS");
 		Entity monster = new Monster();
 		MapObject shoes = null;
 		try {
@@ -40,6 +41,7 @@ public class DefaultGame {
 		gm.addMapObject(1, 2, shoes);
 		
 		monster.setMap(gm);
+		System.out.println("MONSTER BEEN ADDED TO MAP");
 		
 		
 	}

@@ -9,13 +9,14 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import Utility.RandomlyGenerate;
 import View.View;
 import Controller.Controller;
 import Controller.MainMenuController;
 
 
 public class RunGame implements Observer {
-
+	private RandomlyGenerate r = new RandomlyGenerate();
     private JFrame frame = new JFrame();
     Controller c = null;
     private View view;

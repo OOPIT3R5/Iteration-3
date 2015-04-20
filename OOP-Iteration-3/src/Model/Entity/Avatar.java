@@ -30,11 +30,18 @@ public class Avatar extends Entity{
     }
 
 	@Override
+
+	public void performAction() {
+		// TODO Auto-generated method stub
+		System.out.println("Entities should be moving");
+	}
+		
 	public void render(Graphics g, HexagonalLocation center) {
 		try {
 			avatarView.render(g, center, this.getDirectionFacing(), this.getLocation(), this.getStatistics().getLife(), this.getStatistics().getMaxLife());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+
 	}
 }
