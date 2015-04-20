@@ -18,6 +18,6 @@ public interface MapObject {
 
 	void render(Graphics g, HexagonalLocation center, Location location);
 	
-    
+    public String getName();
     
 }

@@ -8,6 +8,7 @@ import Model.Items.AreaEffect;
 import Model.Items.Item;
 import Model.Items.MapObject;
 import Model.Items.ShoesItem;
+import Model.Map.HexagonalLocation;
 import View.Model.MapObjectView;
 
 public class CSVSaver implements Saver{
@@ -15,15 +16,17 @@ public class CSVSaver implements Saver{
 
 
 	@Override
-	public String save(MapObject mapObject) {
-		// TODO Auto-generated method stub
-		return null;
+	public String save(HexagonalLocation location , MapObject mapObject) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(mapObject.getName() + " , " + location.toString());
+		return builder.toString();
 	}
 
 	@Override
 	public String save(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder builder = new StringBuilder();
+		builder.append(entity.toString());
+		return builder.toString();
 	}
 
 	

@@ -19,5 +19,11 @@ public class LevelUpAreaEffect extends AreaEffect {
        entity.autoLevelUp();
     }
 
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

@@ -376,4 +376,9 @@ public class Entity extends Observable implements MovementInterface {
 		int newSpeed = stats.getMovement() + delta;
 		stats.increaseSpeed(newSpeed);
 	}
+	
+	public String toString()
+	{
+		return this.name + this.currentPosition.toString();
+	}
 }

@@ -14,7 +14,7 @@ import View.View;
 import View.Model.MapObjectView;
 
 
-public abstract class Item implements MapObject, Savable{
+public abstract class Item implements MapObject{
 
     private String name;                    //Name of object.
     private MapObjectView mov;               //BufferedImage.
@@ -43,10 +43,7 @@ public abstract class Item implements MapObject, Savable{
         return description;
     }
     
-    public void save(Saver saver)
-    {
-    	saver.save(this);
-    }
+  
     
     public String toString()
     {
