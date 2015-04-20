@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.Observer;
 
 import Model.Map.HexagonalLocation;
+import Model.Map.Location;
 import View.AvatarView;
+import View.Model.MapObjectView;
 
 public class Avatar extends Entity{
     AvatarView avatarView;
@@ -55,5 +57,36 @@ public class Avatar extends Entity{
 		builder.append("LOCATION,");
 		builder.append(super.getLocation().toString());
 		return builder.toString();
+	}
+
+	@Override
+	protected boolean isPassable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onTouch(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MapObjectView getMapObjectView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void render(Graphics g, HexagonalLocation center,
+			Location location) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

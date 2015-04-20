@@ -38,8 +38,8 @@ public class DefaultGame {
 		System.out.println("EMPHASIS");
 		Entity monster = new Monster();
 		
-		Entity pet 
-		PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
+		Entity pet = null;
+		//PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
 		
 		
 		Entity NoMoveEntity = new Monster();
@@ -49,7 +49,7 @@ public class DefaultGame {
 		MapObject shoes = null;
 		try {
 			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(1, 1)));
-			pet = = new TroublesomeMenace();
+			//pet =  new TroublesomeMenace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,11 +66,11 @@ public class DefaultGame {
 		
 		gm.addMapObject(1, 2, shoes);
 		
-		pet.setLocation(new HexagonalLocation(2, 2));
-		gm.spawn(pet, new HexagonalLocation(2, 2));
+		//pet.setLocation(new HexagonalLocation(2, 2));
+		//gm.spawn(pet, new HexagonalLocation(2, 2));
 		
 		NoMoveEntity.setMap(gm);
-		pet.setMap(gm);
+		//pet.setMap(gm);
 		monster.setMap(gm);
 		System.out.println("MONSTER BEEN ADDED TO MAP");
 		
