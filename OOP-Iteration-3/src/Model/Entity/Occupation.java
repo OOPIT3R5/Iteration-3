@@ -39,7 +39,7 @@ public abstract class Occupation implements TakeableItemVisitor {
         bindwoundsAbil = new BindWounds(entity, bindwounds);
         //bargainAbil= new Bargain(entity, bargain);
         observeAbil = new Observe(entity, entity.map, observation);
-        attackAbil = new Attack(entity, entity.map);
+        attackAbil = new Attack(entity);
     }
 
 

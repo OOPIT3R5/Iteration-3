@@ -96,6 +96,10 @@ public class Entity implements MovementInterface {
 		activeSkill = skill;
 	}
 	
+	public GameMap getGamemap(){
+		return map;
+	}
+	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}

@@ -71,7 +71,7 @@ public class Hostility {
 		Direction TowardAvatarDirectionPlaceholder = null;
 		
 		if (npc.avatarIsWithinRange()){
-			a = new Attack(null, null);	//TODO attack in avatar direction
+			a = new Attack(null);	//TODO attack in avatar direction
 
 			//a = new Attack(null, null);//attack in avatar direction
 

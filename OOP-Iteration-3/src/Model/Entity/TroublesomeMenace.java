@@ -53,7 +53,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	}
 	@Override
 	public Ability attackInVicinity() {
-		return new Attack(null, null);		// TODO doesn't do anything
+		return new Attack(null);		// TODO doesn't do anything
 
 		//find closest entity (not avatar), face, and attack
 
