@@ -156,6 +156,8 @@ public abstract class Entity extends MapObject implements MovementInterface {
 
     public void removeFromMap(){
         map.getTile(getLocation()).removeEntity(); //Removes entity from map.
+        setChanged();
+		notifyObservers();
     }
 
     @Override

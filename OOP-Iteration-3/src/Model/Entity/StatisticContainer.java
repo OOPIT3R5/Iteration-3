@@ -143,7 +143,7 @@ public class StatisticContainer {
     }
 
     private void checkLevelUp(){
-        if(level.getCurrentValue() < (experience.getCurrentValue() / 1000)){
+        if(experience.getCurrentValue() > 1000){
             level.addPermanentValue(1);             //Update level.
             levelupAllStatistics();                 //Level up all primary statistics.
             experience.reset();

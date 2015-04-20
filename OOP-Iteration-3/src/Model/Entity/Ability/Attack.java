@@ -1,5 +1,7 @@
 package Model.Entity.Ability;
 
+import java.util.ArrayList;
+
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
@@ -9,6 +11,7 @@ public class Attack extends SkillAbility{
 	
 	private Entity sourceEntity;
 	private Skill skill;
+	int range = 0;
 	
 	public Attack(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
@@ -17,18 +20,24 @@ public class Attack extends SkillAbility{
 
 	@Override
 	public void execute() {
-		Entity targetEntity = getTargetEntity();
-		
-		if (targetEntity != null){
-			double probabilityOfSuccess = RandomlyGenerate.probability();
-			double chanceOfSuccess = getSkillLevel()/100;
-			int damage = (int) (probabilityOfSuccess * getSkillLevel() + 25);
+		//Entity targetEntity = getTargetEntity();
+		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
+		for(int i=0; i<entities.size(); i++){
+			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,2)){
+				entities.get(i).changeHealth(-10);
+			}
 			
-//			if (chanceOfSuccess > probabilityOfSuccess){		// success
-//				targetEntity.changeHealth(-1*damage);
-//			}
-			targetEntity.changeHealth(-1*damage);
 		}
+		
+//		if (targetEntity != null){
+//			double probabilityOfSuccess = RandomlyGenerate.probability();
+//			double chanceOfSuccess = getSkillLevel()/100;
+//			int damage = (int) (probabilityOfSuccess * getSkillLevel() + 25);
+//			
+////			if (chanceOfSuccess > probabilityOfSuccess){		// success
+////				targetEntity.changeHealth(-1*damage);
+////			}
+//		}
 	}
 
 	private Entity getTargetEntity() {

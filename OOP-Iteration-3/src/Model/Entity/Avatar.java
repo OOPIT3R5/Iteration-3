@@ -27,8 +27,7 @@ public class Avatar extends Entity{
 
     @Override
     public void removeFromMap(){
-    	setChanged();
-		notifyObservers();
+    	
     }
 
 	@Override

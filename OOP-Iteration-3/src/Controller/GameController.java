@@ -41,7 +41,10 @@ public class GameController extends Controller implements Observer {
 	}
 	
 	public static void setGame(Game g){
-		
+		ArrayList<Entity> entities = g.getGameMap().getAllNPCS();
+		for(int i=0; i<entities.size(); i++){
+			entities.get(i).addObserver(GameController.getInstance());
+		}
 		game = g;
 		avatar = g.getAvatar();
 		avatar.setLocation(new HexagonalLocation(2,3));
@@ -377,8 +380,16 @@ public class GameController extends Controller implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		setNext(MainMenuController.getInstance());
-		avatar.deleteObservers();
+		if(avatar.getStatistics().getNumLivesLeft() < 1){
+			setNext(MainMenuController.getInstance());
+			avatar.deleteObservers();
+		}
+		else{
+			avatar.awardExperience(500);
+			avatar.awardGold(500);
+		}
+		
+		
 	}
 	
 	

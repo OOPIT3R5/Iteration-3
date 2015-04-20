@@ -30,15 +30,25 @@ public class Fireball extends SummonerAbility {
 	public void cast() {
 		double chanceOfSuccess = getSkillLevel()/50;
 		double probabilityOfSuccess = RandomlyGenerate.probability();
-		
-		for(Tile tile : getTargetTiles()){
-			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
-				NPC targetNPC = (NPC)tile.getEntity();
-				if (targetNPC != null){
-					targetNPC.changeHealth(-1*scaleMagnitude());
+		int count  = 2;
+		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
+		for(int i=0; i<entities.size(); i++){
+			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,5)){
+				entities.get(i).changeHealth(-15);
+				if(--count <= 0){
+					break;
 				}
 			}
 		}
+		
+//		for(Tile tile : getTargetTiles()){
+//			if (chanceOfSuccess > probabilityOfSuccess || true){		// success = detection
+//				NPC targetNPC = (NPC)tile.getEntity();
+//				if (targetNPC != null){
+//					targetNPC.changeHealth(-1*scaleMagnitude());
+//				}
+//			}
+//		}
 	}
 
 	@Override
@@ -53,7 +63,7 @@ public class Fireball extends SummonerAbility {
 
 	@Override
 	protected int scaleMagnitude() {
-		return 150 * getSkillLevel()/100;
+		return 150 * getSkillLevel()/100 + 50;
 	}
 
 	protected ArrayList<Tile> getTargetTiles(){
