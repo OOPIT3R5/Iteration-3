@@ -39,7 +39,8 @@ public class SaveDriver {
 	private String saveEverything()
 	{
 		StringBuilder gameSave = new StringBuilder();
-		gameSave.append("gamesave");
+	
+		
 		for(Entity e: entities)
 		{
 			gameSave.append(saver.save(e));
