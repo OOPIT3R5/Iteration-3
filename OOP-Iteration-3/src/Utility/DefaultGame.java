@@ -7,6 +7,7 @@ import Model.Entity.Monster;
 import Model.Items.MapObject;
 import Model.Items.ShoesItem;
 import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
 import View.Model.MapObjectView;
 
 /**
@@ -36,8 +37,8 @@ public class DefaultGame {
 			e.printStackTrace();
 		}
 		
-		
-		gm.addEntity(5, 5, monster);
+		monster.setLocation(new HexagonalLocation(5, 5));
+		gm.spawn(monster, new HexagonalLocation(5, 5));
 		gm.addMapObject(1, 2, shoes);
 		
 		monster.setMap(gm);
