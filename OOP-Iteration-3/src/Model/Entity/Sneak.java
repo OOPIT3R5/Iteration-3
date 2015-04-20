@@ -27,9 +27,9 @@ public class Sneak extends Occupation{
         creep       = new Skill(1,10, "Creep");
         rangedweapon= new Skill(1,25, "Ranged Weapons");
         
-        pickAbil = new Pickpocket(getEntity(), getEntity().map, pickpocket);
-        detectAbil = new DetectTrap(getEntity(),getEntity().map,detecttraps);
-        creepAbil = new Creep(getEntity(), getEntity().map, creep);
+        pickAbil = new Pickpocket(getEntity(), pickpocket);
+        detectAbil = new DetectTrap(getEntity(),detecttraps);
+        creepAbil = new Creep(getEntity(), creep);
     }
 
     @Override

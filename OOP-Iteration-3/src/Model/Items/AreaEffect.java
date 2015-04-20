@@ -6,7 +6,7 @@ import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import View.Model.MapObjectView;
 
-public abstract class AreaEffect implements MapObject {
+public abstract class AreaEffect extends MapObject {
     private MapObjectView mov;
 
     public AreaEffect(MapObjectView mov){

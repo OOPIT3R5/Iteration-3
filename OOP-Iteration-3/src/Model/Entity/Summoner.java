@@ -49,13 +49,13 @@ public class Summoner extends Occupation{
         floatAbil = new Float(getEntity(),getEntity().map,boon);
        */
         
-        blizzAbil = new Blizzard(getEntity(),getEntity().map,bane);
-        fireballAbil = new Fireball(getEntity(),getEntity().map,bane);
-        shockAbil = new Shock(getEntity(),getEntity().map,bane);
+        blizzAbil = new Blizzard(getEntity(),bane);
+        fireballAbil = new Fireball(getEntity(),bane);
+        shockAbil = new Shock(getEntity(),bane);
         
-        charmAbil = new Charm(getEntity(),getEntity().map,enchantment);
-        sleepAbil = new Sleep(getEntity(),getEntity().map,enchantment);
-        polymorphAbil = new Polymorph(getEntity(),getEntity().map,enchantment);
+        charmAbil = new Charm(getEntity(),enchantment);
+        sleepAbil = new Sleep(getEntity(),enchantment);
+        polymorphAbil = new Polymorph(getEntity(),enchantment);
 	
 	}
 

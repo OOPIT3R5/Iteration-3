@@ -30,11 +30,6 @@ public class HexTileView {
 				(int)(origin.getX() + 3 / 2.0 * hexagon_size * (location_.getU() - avatar_location.getU())), 
 				(int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((location_.getV() - avatar_location.getV()) + (location_.getU() - avatar_location.getU()) / 2.0))),
 				(int)(hexagon_size * .95), true, representation_).draw(g);
-		if (location_.equals(avatar_location))
-			new FlatHexagon(new Point(
-					(int)(origin.getX() + 3 / 2.0 * hexagon_size * (location_.getU() - avatar_location.getU())), 
-					(int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((location_.getV() - avatar_location.getV()) + (location_.getU() - avatar_location.getU()) / 2.0))),
-					(int)(hexagon_size * .5), true, Color.RED).draw(g);
 	}
 
 	public void update(HexagonalLocation location) {

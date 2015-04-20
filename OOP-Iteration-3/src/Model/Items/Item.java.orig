@@ -14,7 +14,11 @@ import View.View;
 import View.Model.MapObjectView;
 
 
+<<<<<<< HEAD
+public abstract class Item implements MapObject{
+=======
 public abstract class Item extends MapObject implements Savable{
+>>>>>>> cf3f8b44d955b85ab6c2803ed3d6da3588e116c5
 
     private String name;                    //Name of object.
     private MapObjectView mov;               //BufferedImage.

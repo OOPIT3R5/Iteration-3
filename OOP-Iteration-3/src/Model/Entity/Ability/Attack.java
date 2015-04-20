@@ -8,12 +8,10 @@ import Utility.RandomlyGenerate;
 public class Attack extends SkillAbility{
 	
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 	
 	public Attack(Entity sourceEntity) {
 		this.sourceEntity = sourceEntity;
-		this.map = sourceEntity.getGamemap();
 		this.skill = sourceEntity.getActiveSkill();
     }
 
@@ -33,7 +31,7 @@ public class Attack extends SkillAbility{
 	}
 
 	private Entity getTargetEntity() {
-		return map.getEntity(getSourceEntity().getLocationFacing());
+		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
 	}
 
 	@Override

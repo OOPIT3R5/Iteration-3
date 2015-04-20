@@ -86,7 +86,7 @@ public class entityandAvatarTests {
 	
 	private static void mockAvatarMovement() {
 		
-		Move m = new Move(avatar, gm, Direction.NORTHEAST, 1);
+		Move m = new Move(avatar, Direction.NORTHEAST, 1);
 		
 	}
 
