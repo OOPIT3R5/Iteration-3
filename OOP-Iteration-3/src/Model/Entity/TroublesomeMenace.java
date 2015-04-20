@@ -49,7 +49,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 			a = new DoNothing();
 			System.out.println("doing nothing");
 		}
-		a.execute();
+		//a.execute();
 	}
 	@Override
 	public Ability attackInVicinity() {

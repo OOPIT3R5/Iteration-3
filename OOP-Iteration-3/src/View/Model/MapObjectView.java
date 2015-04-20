@@ -43,7 +43,7 @@ public class MapObjectView {
 		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((location.getU() - center.getU() + (location.getU() - center.getU()) / 2.0)));
 		
 		try {
-			g.drawImage(MapObjectView.getSpriteFromAvatar(0, 0), x, y, null);
+			g.drawImage(MapObjectView.getSpriteFromPokemon(2 ,  2), x, y, null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

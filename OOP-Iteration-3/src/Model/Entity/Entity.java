@@ -62,11 +62,12 @@ public class Entity implements MovementInterface {
 		entityView = new EntityView();
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
-        stats = new StatisticContainer();
+        stats = new StatisticContainer(this);
         movementSpeed = 1;
         setDirection(Direction.NORTH);
         
         inventoryView = new InventoryView(this);
+        
       //  decal = new Decal();
 	}
 	/*
@@ -147,6 +148,14 @@ public class Entity implements MovementInterface {
 		moveMap.put(direction, new DoNothing());
 	}
 
+    public void disableAll(){
+        moveMap.put(Direction.NORTHWEST, new DoNothing());
+        moveMap.put(Direction.NORTHEAST, new DoNothing());
+        moveMap.put(Direction.SOUTHEAST, new DoNothing());
+        moveMap.put(Direction.SOUTH, new DoNothing());
+        moveMap.put(Direction.NORTH, new DoNothing());
+        moveMap.put(Direction.SOUTHWEST, new DoNothing());
+    }
 
     @Override
 	public void disableWalk(Direction direction) {
