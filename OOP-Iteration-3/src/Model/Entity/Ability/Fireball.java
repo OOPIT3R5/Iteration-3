@@ -35,7 +35,10 @@ public class Fireball extends SummonerAbility {
 		
 		for(Tile tile : getTargetTiles()){
 			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
-				((NPC)tile.getEntity()).changeHealth(-1*scaleMagnitude());
+				NPC targetNPC = (NPC)tile.getEntity();
+				if (targetNPC != null){
+					targetNPC.changeHealth(-1*scaleMagnitude());
+				}
 			}
 		}
 	}

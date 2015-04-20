@@ -26,12 +26,14 @@ public class Pickpocket extends SkillAbility {
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
-		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			int gold = (int) (probabilityOfSuccess * 100);
-			int amountStolen = targetEntity.stealGold(gold);
-			sourceEntity.awardGold(amountStolen);
-		} else {		// failure
-			((NPC)targetEntity).provoke();		// needs to be implemented
+		if (targetEntity != null){
+			if (chanceOfSuccess > probabilityOfSuccess){		// success
+				int gold = (int) (probabilityOfSuccess * 100);
+				int amountStolen = targetEntity.stealGold(gold);
+				sourceEntity.awardGold(amountStolen);
+			} else {		// failure
+				((NPC)targetEntity).provoke();		// needs to be implemented
+			}
 		}
 	}
 	

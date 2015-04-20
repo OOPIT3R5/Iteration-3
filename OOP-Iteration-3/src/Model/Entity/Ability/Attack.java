@@ -21,12 +21,14 @@ public class Attack extends SkillAbility{
 	public void execute() {
 		Entity targetEntity = getTargetEntity();
 		
-		double probabilityOfSuccess = RandomlyGenerate.probability();
-		double chanceOfSuccess = getSkillLevel()/100;
-		int damage = (int) (probabilityOfSuccess * getSkillLevel());
-		
-		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			targetEntity.changeHealth(-1*damage);
+		if (targetEntity != null){
+			double probabilityOfSuccess = RandomlyGenerate.probability();
+			double chanceOfSuccess = getSkillLevel()/100;
+			int damage = (int) (probabilityOfSuccess * getSkillLevel());
+			
+			if (chanceOfSuccess > probabilityOfSuccess){		// success
+				targetEntity.changeHealth(-1*damage);
+			}
 		}
 	}
 

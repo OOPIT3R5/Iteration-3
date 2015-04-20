@@ -3,6 +3,7 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
+import Model.Entity.NPC;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
@@ -28,9 +29,12 @@ public class Observe extends SkillAbility{
 		
 		for(Tile tile : getTargetTiles()){
 			double probabilityOfSuccess = RandomlyGenerate.probability();
+			Entity targetEntity = tile.getEntity();
 			
-			if (chanceOfSuccess > probabilityOfSuccess){		// success = observed
-				tile.getEntity().observe();
+			if (targetEntity != null){
+				if (chanceOfSuccess > probabilityOfSuccess){		// success = observed
+					targetEntity.observe();
+				}
 			}
 		}
 		

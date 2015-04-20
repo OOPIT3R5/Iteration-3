@@ -30,15 +30,16 @@ public class Charm extends SummonerAbility {
 	public void cast() {
 		Entity targetEntity = getTargetEntity();
 		
-		double probabilityOfSuccess = RandomlyGenerate.probability();
-		double chanceOfSuccess = getSkillLevel()/100;
-		
-		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			((NPC)getTargetEntity()).charm();		
-		} else {		// failure
-			((NPC)targetEntity).provoke();
+		if (targetEntity != null){
+			double probabilityOfSuccess = RandomlyGenerate.probability();
+			double chanceOfSuccess = getSkillLevel()/100;
+			
+			if (chanceOfSuccess > probabilityOfSuccess){		// success
+				((NPC)getTargetEntity()).charm();		
+			} else {		// failure
+				((NPC)targetEntity).provoke();
+			}
 		}
-		
 	}
 
 	@Override

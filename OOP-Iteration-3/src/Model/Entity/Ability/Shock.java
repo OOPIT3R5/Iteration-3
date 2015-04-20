@@ -61,8 +61,11 @@ public class Shock extends SummonerAbility{
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
 		for(Tile tile : getTargetTiles()){
-			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
-				((NPC)tile.getEntity()).changeHealth(-1*scaleMagnitude());
+			Entity targetEntity = tile.getEntity();
+			if (targetEntity != null){
+				if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
+					targetEntity.changeHealth(-1*scaleMagnitude());
+				}
 			}
 		}
 	}
