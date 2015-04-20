@@ -1,4 +1,4 @@
-package View.Model;
+package View;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -14,12 +14,10 @@ import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
 import Model.Terrain.Mountain;
 import Model.Terrain.Water;
-import View.View;
 
 public class GameView extends ModelView {
-	Game game;
-	GameMap gameMap;
-	Avatar avatar;
+	private GameMap gameMap;
+	private Avatar avatar;
 	
 	public GameView(GameMap gameMap, Avatar avatar) {
 		this.gameMap = gameMap;
@@ -50,7 +48,6 @@ public class GameView extends ModelView {
 		gameMap.drawRectangleWithCoords(g, new Point(0, 0), new HexagonalLocation(0, 0), 100, 100, 20);
 		
 		*/
-		System.out.println("um");
 		gameMap.render(g, avatar);
 	}
 

@@ -11,7 +11,7 @@ import Main.RunGame;
 import Model.Entity.Avatar;
 import Model.Entity.Summoner;
 import Model.Menu.MainMenu;
-import View.Model.ModelView;
+import View.ModelView;
 
 
 

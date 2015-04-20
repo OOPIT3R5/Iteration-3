@@ -13,7 +13,7 @@ import Main.KeySet;
 import Model.Entity.Avatar;
 import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
-import View.Model.ModelView;
+import View.ModelView;
 
 public class GameController extends Controller {
 	String next = "";
@@ -141,6 +141,7 @@ public class GameController extends Controller {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("NORTH")){
 				avatar.moveNorth();
+				avatar.getStatistics().changeHealth(-10);
 				System.out.println(avatar.getLocation());
 			}
 			
@@ -166,6 +167,7 @@ public class GameController extends Controller {
 			int key = k.getKeyCode();
 			if(key == KeySet.getKey("SOUTH")){
 				avatar.moveSouth();
+				avatar.getStatistics().useMana(5);
 				System.out.println(avatar.getLocation());
 			}
 			
