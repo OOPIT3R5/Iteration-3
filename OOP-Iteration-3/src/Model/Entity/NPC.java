@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
+import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 import View.NpcView;
+import View.Model.MapObjectView;
 
 public class NPC extends Entity {
 
@@ -132,6 +134,42 @@ public class NPC extends Entity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+
+	@Override
+	protected boolean isPassable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onTouch(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MapObjectView getMapObjectView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected
+	void render(Graphics g, HexagonalLocation center, Location location) {
+		try {
+			npcView.render(g,center, getDirectionFacing(), ((HexagonalLocation)location), stats.getLife() , stats.getMaxLife() );
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

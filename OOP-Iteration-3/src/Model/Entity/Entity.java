@@ -17,6 +17,7 @@ import Model.Items.ArmorItem;
 import Model.Items.Equipment;
 import Model.Items.EquippableItem;
 import Model.Items.Inventory;
+import Model.Items.MapObject;
 import Model.Items.OffHandItem;
 import Model.Items.ShoesItem;
 import Model.Items.TakeableItem;
@@ -30,7 +31,7 @@ import View.Model.MapObjectView;
 import View.EntityView;
 import View.InventoryView;
 
-public abstract class Entity extends Observable implements MovementInterface {
+public abstract class Entity extends MapObject implements MovementInterface {
 
 	private static final Exception InvalidAbilityException = null;
 	private String name;
@@ -40,7 +41,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 	
 	private Equipment equipmentManager;
 	private Inventory inventory;
-    private StatisticContainer stats;
+    protected StatisticContainer stats;
 	private HexagonalLocation currentPosition;
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
@@ -389,6 +390,10 @@ public abstract class Entity extends Observable implements MovementInterface {
 	{
 		return this.name + " , " +  this.currentPosition.toString();
 	}
+
+
+
+
 
 
 	
