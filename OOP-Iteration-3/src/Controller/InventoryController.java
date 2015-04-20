@@ -160,7 +160,11 @@ public class InventoryController extends Controller {
             Y /= Yspacing;
 
            //System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
-            e.examineItem(e.getItem((X+(Y*6))).getName());
+            String s = "";
+            s += e.getItem((X+(Y*6))).getName();
+            s = s + '\n' + e.getItem((X+(Y*6))).getDescription();
+            e.examineItem(s);
+
         }
 
         private void checkEquipment(int X, int Y) {
