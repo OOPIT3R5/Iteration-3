@@ -2,6 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
+import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 
 public class OneHandedWeaponItem extends SmasherWeaponItem {
@@ -18,4 +19,10 @@ public class OneHandedWeaponItem extends SmasherWeaponItem {
     public boolean isTwoHanded() {
         return false;//One handed sword, duh
     }
+
+	@Override
+	public void save(Saver saver) {
+		// TODO Auto-generated method stub
+		
+	}
 }
