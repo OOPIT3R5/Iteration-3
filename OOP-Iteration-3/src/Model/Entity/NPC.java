@@ -46,20 +46,20 @@ public class NPC extends Entity {
 
 	public boolean avatarIsWithinRange(int range){
 		ArrayList<HexagonalLocation> a = HexagonalLocation.circle(getLocation(), range);
-		Avatar av = getAvatarOffMap();
+		Avatar av = getMap().getAvatar();
 		for(int i=0; i<a.size(); i++){
-			
-			if(av.getLocation() == a.get(i)){
+			if((av.getLocation().getU() == a.get(i).getU())&&(av.getLocation().getV() == a.get(i).getV())){
 				return true;
 			}
 			
 		}
+		System.out.print("");
 		return false;
 	}
 
 	public Direction directionTowardAvatar() {
 		//ArrayList<Entity> e = getSurroundingEntities();
-		Avatar a = getAvatarOffMap();
+		Avatar a = getMap().getAvatar();
 		int EU = getLocation().getU();
 		int EV = getLocation().getV();
 		
@@ -89,10 +89,6 @@ public class NPC extends Entity {
 
 	}
 
-	
-	private Avatar getAvatarOffMap() {
-		return getMap().getAvatar();
-	}
 
 	public void becomeHostile() {
 		hostility.becomeHostile();

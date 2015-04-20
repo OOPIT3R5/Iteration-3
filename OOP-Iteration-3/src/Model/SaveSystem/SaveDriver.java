@@ -1,10 +1,14 @@
 package Model.SaveSystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import Model.Entity.Avatar;
 import Model.Entity.Entity;
 import Model.Items.MapObject;
 import Model.Map.GameMap;
@@ -15,6 +19,7 @@ public class SaveDriver {
 	ArrayList<Entity> entities;
 	//ArrayList<MapObject> mapObjects;
 	HashMap<HexagonalLocation, MapObject> mapObjects;
+	Avatar avatar;
 	//HashMap<HexagonalLocation, Entity> entities;
 	Iterator<HexagonalTile> iterator;
 	GameMap map;
@@ -30,19 +35,35 @@ public class SaveDriver {
 		this.map = map;
 		initialize();
 		this.saver = saver;
-		
+		avatar = map.getAvatar();
 		save = saveEverything();
-		System.out.println(save);
+		
+		String fname = "save.csv";
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(fname);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		writer.println(save);
+		writer.close();
+		//File saveFile = new File(System.getProperty("user.dir") + "/Assets/save");
+		
+		System.out.println("GAME SAVED");
 		
 	}
 	
 	private String saveEverything()
 	{
-		StringBuilder gameSave = new StringBuilder();
-	
 		
+		StringBuilder gameSave = new StringBuilder();
+		gameSave.append(avatar.toString());
+		gameSave.append("\n");
 		for(Entity e: entities)
 		{
+			if(e instanceof Avatar)
+				continue;
 			gameSave.append(saver.save(e));
 			gameSave.append("\n");
 		}

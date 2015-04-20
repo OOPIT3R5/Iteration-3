@@ -18,4 +18,5 @@ public class AccessoryItem extends EquippableItem {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

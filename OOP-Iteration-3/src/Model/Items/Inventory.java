@@ -64,4 +64,17 @@ public class Inventory {
         }
         return returned;
     }
+
+    public String toString()
+    {
+    	StringBuilder builder = new StringBuilder();
+    	System.out.println("HERE IN INVENTORY");
+    	for(TakeableItem t: inventory)
+    	{
+    		builder.append(t.toMyString());
+    	}
+    	
+    	return builder.toString();
+    }
 }
+

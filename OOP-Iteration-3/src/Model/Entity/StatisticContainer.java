@@ -201,4 +201,23 @@ public class StatisticContainer {
 	public void increaseSpeed(int newSpeed) {
 		movement = new Statistic(newSpeed, 50);
 	}
+	
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(strength.getCurrentValue() + " , ");
+		builder.append(agility.getCurrentValue() + " , ");
+		builder.append(intellect.getCurrentValue() + " , ");
+		builder.append(hardiness.getCurrentValue()+ " , ");
+	    builder.append(experience.getCurrentValue()+ " , ");
+	    builder.append(movement.getCurrentValue()+ " , ");
+	    builder.append(level.getCurrentValue()+ " , ");
+	    builder.append(livesleft.getCurrentValue()+ " , ");
+	    builder.append(life.getCurrentValue()+ " , ");
+	    builder.append(mana.getCurrentValue()+ " , ");
+	    builder.append(offense.getCurrentValue()+ " , ");
+	    builder.append(defense.getCurrentValue()+ " , ");
+		return builder.toString();
+	}
 }
