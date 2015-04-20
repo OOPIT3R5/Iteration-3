@@ -1,9 +1,16 @@
 package Model.Items;
 
 
+import java.awt.Graphics;
+import java.awt.Point;
+import java.io.IOException;
+
 import Model.Entity.Ability.Ability;
+import Model.Map.HexagonalLocation;
+import Model.Map.Location;
 import Model.SaveSystem.Savable;
 import Model.SaveSystem.Saver;
+import View.View;
 import View.Model.MapObjectView;
 
 
@@ -50,4 +57,13 @@ public abstract class Item implements MapObject, Savable{
         return name;
     }
 
+	@Override
+	public void render(Graphics g, HexagonalLocation center, Location loc) {
+		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
+		
+		
+	}
+    
+    
+    
 }

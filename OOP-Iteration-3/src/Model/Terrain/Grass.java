@@ -20,4 +20,9 @@ public class Grass extends Terrain {
 		return Color.GREEN;
 	}
 	
+	public String toString()
+	{
+		return "Grass Tile";
+	}
+	
 }

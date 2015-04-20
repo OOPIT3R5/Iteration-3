@@ -6,7 +6,10 @@ import Model.Items.*;
 public interface TakeableItemVisitor {
 
     //Visit methods for the specialized weapon items.
-    void visit(SmasherWeaponItem smawi);
+    void visit(OneHandedWeaponItem ohwi);
+    void visit(TwoHandedWeaponItem thwi);
+    void visit(BrawlingWeaponItem bwi);
+
     void visit(SummonerWeaponItem sumwi);
     void visit(SneakWeaponItem snewi);
 

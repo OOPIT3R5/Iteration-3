@@ -1,5 +1,6 @@
 package Model.Entity;
 
+import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 import View.Model.MapObjectView;
+import View.EntityView;
 import View.InventoryView;
 
 public class Entity implements MovementInterface {
@@ -41,19 +43,23 @@ public class Entity implements MovementInterface {
 	private HexagonalLocation currentPosition;
 	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
+	private EntityView entityView;
+	
 	private InventoryView inventoryView;
 	private ArrayList<String> skillList = new ArrayList<String>();
 	private int skillSelected = 0;
 	
 	private int movementSpeed;
+	
+	private Skill activeSkill;
 
-	//TODO rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
-	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
+	protected int numOfPointsCanAllocateToLevelUpSkill = 3;
 
 	protected GameMap map;
 	
 	/*Use */
 	public Entity(){
+		entityView = new EntityView();
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer();
@@ -84,6 +90,18 @@ public class Entity implements MovementInterface {
 	public Entity (String name, Occupation o){
 		this(name);
 		occupation = o;
+	}
+	
+	public Skill getActiveSkill(){
+		return activeSkill;
+	}
+	
+	public void setActiveSkill(Skill skill){
+		activeSkill = skill;
+	}
+	
+	public GameMap getGamemap(){
+		return map;
 	}
 	
 	public void addToInventory(TakeableItem ti){
@@ -335,6 +353,16 @@ public class Entity implements MovementInterface {
         }
     }
 	
+	public void render(Graphics g, HexagonalLocation center){
+		try {
+			entityView.render(g, center, directionFacing, this.getLocation());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void ability(String s){
 		Ability a = (occupation.getAbilities().get(s));
 		try {
@@ -344,8 +372,4 @@ public class Entity implements MovementInterface {
 			System.out.println("Invalid Ability");
 		}
 	}
-
-    public void teleport(int teleportSpotX, int teleportSpotY) {
-        //TODO: Implement this method.
-    }
 }

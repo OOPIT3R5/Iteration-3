@@ -55,7 +55,11 @@ public class HexagonalTile extends Tile {
 	}
 	
 	public String toString() {
-		return getLocation().getU() + ", " + getLocation().getV();
+		//return getLocation().getU() + ", " + getLocation().getV();
+		StringBuilder builder = new StringBuilder();
+		//builder.append(super.getTerrain().toString());
+		
+		return builder.toString();
 	}
 	
 	@Override
@@ -77,8 +81,18 @@ public class HexagonalTile extends Tile {
 	
 	public void render(Graphics g, HexagonalLocation center) {
 		hView.render(g, center);
-		//if (hasEntity())
-		//	getEntity().render(g, center);
+		if (hasEntity())
+			getEntity().render(g, center);
+		if(hasMapObject())
+			getMapObject().render(g, center, super.getLocation());
 	}
 	
 }
+
+
+
+
+
+
+
+

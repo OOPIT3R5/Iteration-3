@@ -1,5 +1,9 @@
 package Model.Items;
 
+import java.awt.Graphics;
+
+import Model.Map.HexagonalLocation;
+import Model.Map.Location;
 import View.Model.MapObjectView;
 
 public abstract class AreaEffect implements MapObject {
@@ -18,4 +22,13 @@ public abstract class AreaEffect implements MapObject {
     public MapObjectView getMapObjectView(){
         return mov;
     }
+
+	@Override
+	public void render(Graphics g, HexagonalLocation center, Location location) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    
+    
 }

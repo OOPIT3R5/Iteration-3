@@ -46,11 +46,22 @@ public class Sneak extends Occupation{
 
     //TODO: Replace all 'System.out.println()' methods with something with Logger.
 
-   
-	@Override
-    public void visit(SmasherWeaponItem smawi) {
-        System.out.println("You are not able to equip the "+smawi.getName()+" due to being too weak!");
-        getEntity().addToInventory(smawi);
+    @Override
+    public void visit(OneHandedWeaponItem ohwi) {
+        System.out.println("You are not able to equip the "+ohwi.getName()+" due to being too weak!");
+        getEntity().addToInventory(ohwi);
+    }
+
+    @Override
+    public void visit(TwoHandedWeaponItem thwi) {
+        System.out.println("You are not able to equip the "+thwi.getName()+" due to being too weak!");
+        getEntity().addToInventory(thwi);
+    }
+
+    @Override
+    public void visit(BrawlingWeaponItem bwi) {
+        System.out.println("You are not able to equip the "+bwi.getName()+" due to being too weak!");
+        getEntity().addToInventory(bwi);
     }
 
     @Override
@@ -62,6 +73,7 @@ public class Sneak extends Occupation{
     @Override
     public void visit(SneakWeaponItem snewi) {
         getEntity().equipItem(snewi);
+        getEntity().setActiveSkill(rangedweapon);
     }
 
     @Override
@@ -102,4 +114,10 @@ public class Sneak extends Occupation{
 
         return skills;
     }
+
+	@Override
+	public String displayName() {
+		// TODO Auto-generated method stub
+		return "Sneak";
+	}
 }
