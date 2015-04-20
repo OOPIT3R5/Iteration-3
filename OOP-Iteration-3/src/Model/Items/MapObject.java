@@ -9,4 +9,7 @@ public interface MapObject {
     void onTouch(Entity entity);
 
     MapObjectView getMapObjectView();
+    
+    
+    
 }

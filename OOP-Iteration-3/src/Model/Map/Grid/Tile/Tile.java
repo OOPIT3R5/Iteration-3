@@ -96,7 +96,14 @@ public abstract class Tile {
 	}
 	
 	public String toString() {
-		return "";
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("Tile");
+		builder.append(terrain_.toString());
+		//builder.append();
+		
+		return builder.toString();
 	}
 	
 	public boolean hasEntity() {
@@ -105,6 +112,13 @@ public abstract class Tile {
 
 	public abstract void notifyOfEntity(MovementInterface target, Direction direction);
 	public abstract void prospectiveMovement(MovementInterface target, Direction direction);
+
+	public boolean hasMapObject() {
+		// TODO Auto-generated method stub
+		if(this.map_object_ != null)
+			return true;
+		else return false;
+	}
 	
 	
 }

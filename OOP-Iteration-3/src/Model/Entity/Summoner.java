@@ -59,12 +59,22 @@ public class Summoner extends Occupation{
 	
 	}
 
+    @Override
+    public void visit(OneHandedWeaponItem ohwi) {
+        System.out.println("You are not able to equip the " + ohwi.getName() + " due to being too weak!");
+        getEntity().addToInventory(ohwi);
+    }
 
+    @Override
+    public void visit(TwoHandedWeaponItem thwi) {
+        System.out.println("You are not able to equip the " + thwi.getName() + " due to being too weak!");
+        getEntity().addToInventory(thwi);
+    }
 
-	@Override
-    public void visit(SmasherWeaponItem smawi) {
-        System.out.println("You are not able to equip the " + smawi.getName() + " due to being too weak!");
-        getEntity().addToInventory(smawi);
+    @Override
+    public void visit(BrawlingWeaponItem bwi) {
+        System.out.println("You are not able to equip the " + bwi.getName() + " due to being too weak!");
+        getEntity().addToInventory(bwi);
     }
 
     @Override
@@ -120,13 +130,13 @@ public class Summoner extends Occupation{
 	protected HashMap<String, Ability> getAbilitiesSub() {
     	HashMap<String, Ability> abilities = new HashMap<String, Ability>();
 
-		abilities.put("Blizzard",blizzAbil);
-		abilities.put("Fireball",fireballAbil);
-		abilities.put("Shock",shockAbil);
+		abilities.put("Blizzard", blizzAbil);
+		abilities.put("Fireball", fireballAbil);
+		abilities.put("Shock", shockAbil);
 		
-		abilities.put("Charm",charmAbil);
-		abilities.put("Sleep",sleepAbil);
-		abilities.put("Polymorph",polymorphAbil);
+		abilities.put("Charm", charmAbil);
+		abilities.put("Sleep", sleepAbil);
+		abilities.put("Polymorph", polymorphAbil);
 		
 		return abilities;
 		/* BOONS

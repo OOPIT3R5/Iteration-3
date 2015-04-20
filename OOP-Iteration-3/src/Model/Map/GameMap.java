@@ -3,9 +3,11 @@ package Model.Map;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -29,12 +31,20 @@ public class GameMap {
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
 		 mapView = new GameMapView();
 		 //gameMapGrid.initalize();
+		 
+		// System.out.println("======MAP=======");
+		// System.out.println(gameMapGrid.toString());
 	}
 	
-	public void add(int x, int y, Tile t)
+	public GameMap(int width, int height)
 	{
-		
+		this.HEIGHT = height;
+		this.WIDTH = width;
+		gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
+		mapView = new GameMapView();
 	}
+	
+
 	
 	public void drawRectangleWithCoords(Graphics g, Point p, Location center, int width,
 			int height, int radius) {
@@ -101,6 +111,26 @@ public class GameMap {
 		HexagonalTile hexTile = gameMapGrid.get(location);
 		e.setLocation(location);
 		hexTile.setEntity(e);
+	}
+	
+	
+	public Iterator<HexagonalTile> getIterator()
+	{
+		gameMapGrid.initializeIterator();
+		return gameMapGrid;
+	}
+	
+	
+	
+	public void addEntity(int i , int j, Entity e)
+	{
+		gameMapGrid.addEntity(i, j, e);
+	}
+	
+	
+	public void addMapObject(int i , int j , MapObject mo)
+	{
+		gameMapGrid.addMapObject(i , j , mo);
 	}
 	
 }

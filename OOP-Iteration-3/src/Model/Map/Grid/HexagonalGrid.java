@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
@@ -17,9 +19,12 @@ import Model.Terrain.Grass;
 import View.View;
 import View.Model.FlatHexagon;
 
-public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
+public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Iterator<HexagonalTile> {
 	
-	public HexagonalGrid(int width, int height) {
+	private int i = 0;
+	private int j = 0;
+	
+	public HexagonalGrid(int width, int height){
 		super(width, height);
 		fill(new HexagonalTile(new Grass()));
 		System.out.println("hex grid constructed");
@@ -204,6 +209,7 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	
 	@Override
 	public String toString() {
+		
 		StringBuilder string = new StringBuilder();
 		string.append("[ ");
 		for (int row = 0; row < getHeight(); row++) {
@@ -236,4 +242,44 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 		
 	}
 	
+	public void initializeIterator()
+	{
+		this.i = 0;
+		this.j = 0;
+	}
+
+	@Override
+	public boolean hasNext() {
+		if(this.i < super.getWidth() && this.j < super.getHeight())
+			return true;
+		else return false;
+	}
+
+	@Override
+	public HexagonalTile next() {
+		
+		HexagonalTile cur =  (HexagonalTile)super.get(i++, j);
+		if(i >= super.getWidth() && j < super.getHeight())
+		{
+			i = 0;
+			++j;
+		}
+		
+		return cur;
+		
+	}
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

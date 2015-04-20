@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.HexagonalTile;
@@ -59,7 +60,7 @@ public abstract class Grid {
 	public abstract Tile get(Location location);
 	
 	/** Returns object at xy index. */
-	public abstract Tile get(int x, int y);
+	//public abstract Tile get(int x, int y);
 	
 	protected int getWidth() {
 		return width_;
@@ -94,6 +95,7 @@ public abstract class Grid {
 	
 	@Override
 	public String toString() {
+		
 		StringBuilder string = new StringBuilder();
 		string.append("[ ");
 		for (int i = 0; i < width_; i++) {
@@ -125,6 +127,12 @@ public abstract class Grid {
 			}
 	}
 	
+	public void addEntity(int i , int j, Entity e)
+	{
+		e.setLocation(new HexagonalLocation(i , j));
+		grid_[i][j].setEntity(e);
+	}
+	
 	public void spawnEntity(Location location, Entity e)
 	{
 		int x = location.getX();
@@ -132,4 +140,16 @@ public abstract class Grid {
 		
 		grid_[x][y].setEntity(e);
 	}
+	
+	public Tile get(int i , int j)
+	{
+		return grid_[i][j];
+	}
+	
+	public void addMapObject(int i, int j, MapObject mo) 
+	{
+		
+		grid_[i][j].setMapObject(mo);
+	}
+	
 }
