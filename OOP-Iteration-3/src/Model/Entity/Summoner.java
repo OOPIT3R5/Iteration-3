@@ -146,6 +146,14 @@ public class Summoner extends Occupation{
 	     * "Float", floatAbil;
 	     */
 	 	}
+
+
+
+	@Override
+	public String displayName() {
+		// TODO Auto-generated method stub
+		return "Summoner";
+	}
     
     
     

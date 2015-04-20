@@ -102,6 +102,8 @@ public abstract class Occupation implements TakeableItemVisitor {
         System.out.println(this.toString());
 
     }
+    
+    public abstract String displayName();
 
     @Override
 
