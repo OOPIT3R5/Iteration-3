@@ -30,7 +30,7 @@ import View.Model.MapObjectView;
 import View.EntityView;
 import View.InventoryView;
 
-public class Entity extends Observable implements MovementInterface {
+public abstract class Entity extends Observable implements MovementInterface {
 
 	private static final Exception InvalidAbilityException = null;
 	private String name;
@@ -344,7 +344,9 @@ public class Entity extends Observable implements MovementInterface {
 		}
 		
 	}
-
+	
+	public abstract void performAction();
+	
 	public void utilizeTakeableItem(int inventoryIndex){
         TakeableItem ti = inventory.takeFromInventory(inventoryIndex);
         if(ti != null) {

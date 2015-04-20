@@ -24,4 +24,11 @@ public class Avatar extends Entity{
     	setChanged();
 		notifyObservers();
     }
+
+	@Override
+	public void performAction() {
+		// TODO Auto-generated method stub
+		System.out.println("Entities should be moving");
+		
+	}
 }

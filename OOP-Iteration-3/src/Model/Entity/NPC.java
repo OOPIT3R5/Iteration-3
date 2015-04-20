@@ -29,6 +29,7 @@ public class NPC extends Entity {
 	/*AI stuff*/
 	public void performAction(){
 		makeActionChoice();
+		System.out.println("Entities should be moving_NPC");
 	}
 	
 	public void makeActionChoice(){
