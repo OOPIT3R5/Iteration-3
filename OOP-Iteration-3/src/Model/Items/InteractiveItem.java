@@ -1,6 +1,5 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
 import Model.Entity.Entity;
 import View.Model.MapObjectView;
 
@@ -17,6 +16,6 @@ public class InteractiveItem extends Item{
 
     @Override
     public void onTouch(Entity entity) {
-
+        throw new RuntimeException("Need to overwrite this method to do what you want.");
     }
 }

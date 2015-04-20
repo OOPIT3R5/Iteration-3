@@ -56,15 +56,21 @@ public class GameMapView extends ModelView {
 		int mhp = avatar.getStatistics().getMaxLife();
 		float healthScale = hp*1.0f/mhp;
 	    g.setColor(Color.WHITE);
-	    g.fillRoundRect(0, 0, 200, 22, 5, 5);
+	    g.fillRoundRect(0, 10, 200, 22, 5, 5);
 	    g.setColor(Color.RED);
-	    g.fillRect(0, 0, (int) (200 * healthScale), 22);
+	    g.fillRect(0, 10, (int) (200 * healthScale), 22);
 	    
 	    float manaScale = avatar.getStatistics().getMana()*1.0f / avatar.getStatistics().getMaxMana();
 	    g.setColor(Color.WHITE);
-	    g.fillRoundRect(300, 0, 200, 22, 5, 5);
+	    g.fillRoundRect(300, 10, 200, 22, 5, 5);
 	    g.setColor(Color.BLUE);
-	    g.fillRect(300, 0, (int) (200 * manaScale), 22);
+	    g.fillRect(300, 10, (int) (200 * manaScale), 22);
+
+        float expScale = avatar.getStatistics().getExperience()*1.0f / 1000;
+        g.setColor(Color.WHITE);
+        g.fillRoundRect(600, 10, 200, 22, 5, 5);
+        g.setColor(Color.YELLOW.darker());
+        g.fillRect(600, 10, (int) (200 * expScale), 22);
 	}
 
 }
