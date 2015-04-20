@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MapObjectView {
+	
     private BufferedImage bi;
 
     public MapObjectView(BufferedImage bi){
@@ -27,4 +28,5 @@ public class MapObjectView {
     public static BufferedImage getSpriteFromAvatar(int col, int row) throws IOException {
         return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32);
     }
+    
 }

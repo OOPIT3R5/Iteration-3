@@ -235,5 +235,17 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void border(Tile border) {
+		for (int col = 0; col < getWidth(); col++) {
+			insert(col, 0, border.clone());
+			insert(col, getHeight() - 1, border.clone());
+		}
+		if (getHeight() > 1)
+			for (int row = 1; row < getHeight() - 1; row++) {
+				insert(0, row, border.clone());
+				insert(getWidth() - 1, row, border.clone());
+			}
+	}
 	
 }
