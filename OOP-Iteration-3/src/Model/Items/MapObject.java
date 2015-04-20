@@ -9,15 +9,14 @@ import Model.Map.Location;
 import View.View;
 import View.Model.MapObjectView;
 
-public interface MapObject {
-    boolean isPassable();
-
-    void onTouch(Entity entity);
-
-    MapObjectView getMapObjectView();
-
-	void render(Graphics g, HexagonalLocation center, Location location);
+public abstract class MapObject {
 	
-    
-    
+    abstract boolean isPassable();
+
+    abstract void onTouch(Entity entity);
+
+    public abstract MapObjectView getMapObjectView();
+
+	abstract void render(Graphics g, HexagonalLocation center, Location location);
+	
 }
