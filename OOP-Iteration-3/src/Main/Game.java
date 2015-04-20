@@ -44,7 +44,7 @@ public class Game {
 	}
 	
 	public void setUpAvatar(Avatar avatar){
-		 
+			avatar.reset();
 	        try{
 	            avatar.addToInventory(new TwoHandedWeaponItem(50, "Dirty Rapier", new MapObjectView(MapObjectView.getSpriteFromFE(0, 4))));
 	            avatar.addToInventory(new AccessoryItem(10, "Psyduck Cup", new MapObjectView(MapObjectView.getSpriteFromPokemon(22, 13))));

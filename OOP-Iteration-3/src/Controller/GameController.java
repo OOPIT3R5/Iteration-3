@@ -422,7 +422,7 @@ public class Dialogue implements KeyListener {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		if(avatar.getStatistics().getNumLivesLeft() < 1){
+		if(avatar.getStatistics().getNumLivesLeft() <= 0){
 			setNext(MainMenuController.getInstance());
 			avatar.deleteObservers();
 		}

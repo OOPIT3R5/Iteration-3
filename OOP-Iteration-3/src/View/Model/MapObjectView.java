@@ -37,13 +37,8 @@ public class MapObjectView {
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
 		int x = (int)(origin.getX() + 3 / 2.0 * 100 * (location.getU() - center.getU()));
-		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((location.getU() - center.getU() + (location.getU() - center.getU()) / 2.0)));
+		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((location.getV() - center.getV() + (location.getV() - center.getV()) / 2.0)));
 		
-		try {
-			g.drawImage(MapObjectView.getSpriteFromPokemon(2 ,  2), x, y, null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		g.drawImage(bi.getScaledInstance(75,75,Image.SCALE_DEFAULT), x, y, null);
 	}
 }

@@ -148,7 +148,9 @@ public class HexagonalTile extends Tile {
 			}
 			if(hasMapObject()) {
 				getMapObject().getMapObjectView().render(g, center, (HexagonalLocation)super.getLocation());
+				
 			} else {
+				
 				
 			}
 		}

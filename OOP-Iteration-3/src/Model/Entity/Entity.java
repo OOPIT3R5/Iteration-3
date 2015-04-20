@@ -197,6 +197,12 @@ public abstract class Entity extends MapObject implements MovementInterface {
         equipmentManager.equip(ohi);
     }
     
+    public void reset(){
+    	stats = new StatisticContainer(this);
+    	inventory = new Inventory();
+    	equipmentManager = new Equipment(this);
+    }
+    
     void equipItem(ShoesItem si){
         equipmentManager.equip(si);
     }
