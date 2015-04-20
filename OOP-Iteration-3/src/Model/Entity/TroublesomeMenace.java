@@ -1,7 +1,11 @@
 package Model.Entity;
 
+import java.util.ArrayList;
+
 import Model.Entity.Ability.*;
 import Model.Map.Direction;
+import Model.Map.HexagonalLocation;
+import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
 public class TroublesomeMenace extends NonAdversarial implements Pet{
@@ -17,8 +21,9 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 	}
 
 	public TroublesomeMenace() {
-		super();
+		super("TroubleSome Pet");
 		isOwned = false;
+		
 	}
 
 	/*AI stuff*/
@@ -37,6 +42,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		else if(rand<.85){
 			//20% chance of going for adjacent/neighboring treasure
 			a = stealInVicinity();
+			//can pickup item on tile
 			System.out.println("stealing nearby treasure or moving to random spot if no treasure nearby");
 		}
 		else if(rand <.95){
@@ -46,14 +52,15 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 		}
 		else{
 			//5% chance of doing nothing
-			a = new DoNothing();
-			System.out.println("doing nothing");
+			//a = new DoNothing();
+			a = po.followAvatar();
+			System.out.println("doing nothing - I mean continuing to follow master");
 		}
-		//a.execute();
+		a.execute();
 	}
 	@Override
 	public Ability attackInVicinity() {
-		return new Attack(null);		// TODO doesn't do anything
+		return new Attack(this);		// TODO doesn't do anything
 
 		//find closest entity (not avatar), face, and attack
 
@@ -61,16 +68,29 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 
 	@Override
 	public Ability stealInVicinity() {
-		Direction randDir = RandomlyGenerate.direction();
-		return new Move(this, randDir, getMovementSpeed());
-		//can pickup item on tile
-		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
+		Direction Dir = dirOfitemInSurroundingArea();
+		Dir = RandomlyGenerate.direction();
+		
+		return new Move(this, Dir, getMovementSpeed());
+		
+		//check neighboring tiles (hexlocation get neighborhood)
 		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile
 		//if there are no tiles, just move in a random direction.
 	}
 	
+	private Direction dirOfitemInSurroundingArea() {
+		ArrayList<HexagonalLocation> a = HexagonalLocation.circle(getLocation(), 1);
+		//LOD IS SO BAD HERE IT HURTS!
+		for(int i=0; i<a.size(); i++){
+			if (getMap().getTile(a.get(i)).getMapObject() != null){
+				return Direction.intToHex(i);
+			}
+		}
+		return RandomlyGenerate.direction();
+	}
+
 	public void becomePet(PetOwnership po){
-		po.setPet(this);
+		isOwned = true;
 		this.po = po;
 		
 	}

@@ -127,23 +127,25 @@ public class GameController extends Controller implements Observer {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			if(key == KeySet.getKey("SAVE")){
-				SaveDriver saveDriver = new SaveDriver(game.getGameMap() , new CSVSaver());
+			
+			
 				
 			}
 			
-		}
+		
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
-			
+			int key = arg0.getKeyCode();
+			if(key == KeySet.getKey("SAVE")){
+				SaveDriver saveDriver = new SaveDriver(game.getGameMap() , new CSVSaver());
 		}
-
+		}
 		@Override
 		public void keyTyped(KeyEvent arg0) {
-			
+		
 		}
+		
 	}
 	
 	public class InventoryListener implements KeyListener {

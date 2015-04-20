@@ -21,4 +21,14 @@ public abstract class TakeableItem extends Item{
     }
 
     public abstract void accept(TakeableItemVisitor eiv);
+    
+    public String toMyString()
+    {
+ 
+    	StringBuilder builder = new StringBuilder();
+    	builder.append(super.getName());
+    	builder.append(" , ");
+    	
+    	return builder.toString();
+    }
 }

@@ -1,6 +1,7 @@
 package Model.Entity;
 
 import Model.Entity.Ability.Move;
+import Model.Map.Direction;
 
 public class PetOwnership {
 
@@ -22,14 +23,16 @@ public class PetOwnership {
 	}
 
 	public void setPet(Pet pet) {
+		pet.becomePet(this);
 		this.pet = pet;
+		
 		
 	}
 
 
 	public Move followAvatar() {
-		//Direction d = ((NPC) pet).getAvatarDirectionInRelationToMe();
-		//return new Move(pet, d, ((NPC)pet).getMovementSpeed());
-		return null;
+		Direction d = ((NPC) pet).directionTowardAvatar();
+		return new Move(((NPC)pet), d, ((NPC)pet).getMovementSpeed());
+		//return null;
 	}
 }

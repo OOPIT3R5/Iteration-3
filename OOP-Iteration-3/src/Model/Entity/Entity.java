@@ -210,6 +210,12 @@ public abstract class Entity extends Observable implements MovementInterface {
     public ArrayList<MapObjectView> getInventory() {
         return inventory.getViews();
     }
+    
+    
+    public Inventory getActualInventory()
+    {
+    	return this.inventory;
+    }
 
     public InventoryView getInventoryView(){
 		return inventoryView;
@@ -383,4 +389,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 	{
 		return this.name + " , " +  this.currentPosition.toString();
 	}
+
+
+	
 }
