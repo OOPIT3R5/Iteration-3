@@ -50,11 +50,7 @@ public abstract class Item implements MapObject, Savable{
         return name;
     }
 
-	@Override
-	public void setLocation(int i, int j) {
-		this.
-		
-	}
+	
     
     
 
