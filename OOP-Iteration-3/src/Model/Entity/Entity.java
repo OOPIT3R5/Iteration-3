@@ -62,7 +62,7 @@ public class Entity implements MovementInterface {
 		entityView = new EntityView();
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
-        stats = new StatisticContainer();
+        stats = new StatisticContainer(this);
         movementSpeed = 1;
         setDirection(Direction.NORTH);
         
@@ -147,6 +147,14 @@ public class Entity implements MovementInterface {
 		moveMap.put(direction, new DoNothing());
 	}
 
+    public void disableAll(){
+        moveMap.put(Direction.NORTHWEST, new DoNothing());
+        moveMap.put(Direction.NORTHEAST, new DoNothing());
+        moveMap.put(Direction.SOUTHEAST, new DoNothing());
+        moveMap.put(Direction.SOUTH, new DoNothing());
+        moveMap.put(Direction.NORTH, new DoNothing());
+        moveMap.put(Direction.SOUTHWEST, new DoNothing());
+    }
 
     @Override
 	public void disableWalk(Direction direction) {
@@ -356,9 +364,8 @@ public class Entity implements MovementInterface {
 	
 	public void render(Graphics g, HexagonalLocation center){
 		try {
-			entityView.render(g, center, directionFacing, this.getLocation());
+			entityView.render(g, center, directionFacing, this.getLocation(), this.getStatistics().getLife(), this.getStatistics().getMaxLife());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -372,5 +379,9 @@ public class Entity implements MovementInterface {
 			e.printStackTrace();
 			System.out.println("Invalid Ability");
 		}
+	}
+	
+	public void changeMovementSpeed(int delta){
+		movementSpeed += delta;
 	}
 }
