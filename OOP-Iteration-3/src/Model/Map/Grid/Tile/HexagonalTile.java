@@ -81,8 +81,8 @@ public class HexagonalTile extends Tile {
 	
 	public void render(Graphics g, HexagonalLocation center) {
 		hView.render(g, center);
-		//if (hasEntity())
-		//	getEntity().render(g, center);
+		if (hasEntity())
+			getEntity().render(g, center);
 	}
 	
 }

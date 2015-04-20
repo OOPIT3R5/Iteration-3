@@ -11,10 +11,10 @@ public class Attack extends SkillAbility{
 	private GameMap map;
 	private Skill skill;
 	
-	public Attack(Entity sourceEntity, GameMap map, Skill skill) {
+	public Attack(Entity sourceEntity) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
-		this.skill = skill;
+		this.map = sourceEntity.getGamemap();
+		this.skill = sourceEntity.getActiveSkill();
     }
 
 	@Override

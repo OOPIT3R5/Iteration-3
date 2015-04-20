@@ -1,5 +1,6 @@
 package Model.Items;
 
+import Model.Entity.TakeableItemVisitor;
 import View.Model.MapObjectView;
 
 public class TwoHandedWeaponItem extends SmasherWeaponItem {
@@ -8,6 +9,10 @@ public class TwoHandedWeaponItem extends SmasherWeaponItem {
 
     public TwoHandedWeaponItem(int statchange, String name, MapObjectView mov) {
         super(AttackSpeed.SLOW, statchange, name, mov);
+    }
+
+    public void accept(TakeableItemVisitor eiv){
+        eiv.visit(this);
     }
 
     @Override

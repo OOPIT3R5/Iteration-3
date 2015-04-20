@@ -31,7 +31,7 @@ public abstract class Occupation implements TakeableItemVisitor {
 
         //BREAKING TDA fix!!!!
         this.entity.setOccupation(this);
-        attack = new Skill(1, 10, "Attack");
+        // attack = new Skill(1, 10, "Attack");	// TODO not needed
         bindwounds = new Skill(1, 10, "Bind Wounds");
         bargain = new Skill(1, 10, "Bargain");
         observation = new Skill(1, 10, "Observation");
@@ -39,7 +39,7 @@ public abstract class Occupation implements TakeableItemVisitor {
         bindwoundsAbil = new BindWounds(entity, bindwounds);
         //bargainAbil= new Bargain(entity, bargain);
         observeAbil = new Observe(entity, entity.map, observation);
-        attackAbil = new Attack(entity, entity.map, attack);
+        attackAbil = new Attack(entity);
     }
 
 
@@ -97,31 +97,6 @@ public abstract class Occupation implements TakeableItemVisitor {
 	*/
 
     protected abstract HashMap<String, Ability> getAbilitiesSub();
-    
-    public int getBindWoundsSkillLevel() {
-        return bindwounds.getCurrentLevel();
-    }
-
-    public int getBargainSkillLevel() {
-        return bargain.getCurrentLevel();
-    }
-
-    public int getObservationSkillLevel() {
-        return observation.getCurrentLevel();
-    }
-
-    public void levelBindWoundsSkill() {
-        bindwounds.levelSkillUp();
-    }
-
-    public void levelBargainSkill() {
-        bargain.levelSkillUp();
-    }
-
-    public void levelObservationSkill() {
-        observation.levelSkillUp();
-    }
-
 
     public void printName() {
         System.out.println(this.toString());
