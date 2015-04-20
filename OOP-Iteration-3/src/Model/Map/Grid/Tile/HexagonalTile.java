@@ -95,17 +95,19 @@ public class HexagonalTile extends Tile {
 	
 	@Override
 	public void notifyOfEntity(MovementInterface target, Direction direction) {		// TODO Delete if not needed
-		if (super.hasEntity())
-			target.disableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
-		else
+		if (super.hasEntity()) {
+			super.getEntity().disableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
+			target.disableMove(direction);
+		} else
 			getTerrain().notifyOfEntity(target, direction);
 	}
 	
 	@Override
-	public void prospectiveMovement(MovementInterface target, Direction direction){
-		if (super.hasEntity())
+	public void prospectiveMovement(MovementInterface target, Direction direction) {
+		if (super.hasEntity()) {
+			super.getEntity().disableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
 			target.disableMove(direction);
-		else
+		} else
 			getTerrain().notifyOfEntity(target, direction);
 	}
 	
