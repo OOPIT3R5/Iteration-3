@@ -13,13 +13,10 @@ public class AccessoryItem extends EquippableItem {
         eiv.visit(this);
     }
 
-<<<<<<< HEAD
-	
-=======
 	@Override
 	public void save(Saver saver) {
 		// TODO Auto-generated method stub
 		
 	}
->>>>>>> 5ebb19387e3924a893f299560c7175621cf9902b
+
 }
