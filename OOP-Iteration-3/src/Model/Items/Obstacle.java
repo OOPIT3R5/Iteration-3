@@ -2,6 +2,7 @@ package Model.Items;
 
 import Model.Entity.Ability.*;
 import Model.Entity.Entity;
+import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 
 public class Obstacle extends Item{
@@ -19,4 +20,10 @@ public class Obstacle extends Item{
     public void onTouch(Entity entity) {
         throw new RuntimeException("Should not have an Obstacle be touched.");
     }
+
+	@Override
+	public void save(Saver saver) {
+		// TODO Auto-generated method stub
+		
+	}
 }

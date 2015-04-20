@@ -359,9 +359,6 @@ public abstract class Entity extends Observable implements MovementInterface {
     }
 	
 	public abstract void render(Graphics g, HexagonalLocation center);
-		
-		
-	
 	
 	public void ability(String s){
 		Ability a = (occupation.getAbilities().get(s));

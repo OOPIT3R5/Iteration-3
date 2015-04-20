@@ -3,6 +3,7 @@ package Model.Items;
 import Model.Entity.Ability.ItemAbility;
 import Model.Entity.Entity;
 import Model.Entity.TakeableItemVisitor;
+import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 
 public class UsableItem extends TakeableItem{
@@ -40,4 +41,10 @@ public class UsableItem extends TakeableItem{
         ability.setEntity(avatar);
         ability.execute();
     }
+
+	@Override
+	public void save(Saver saver) {
+		// TODO Auto-generated method stub
+		
+	}
 }

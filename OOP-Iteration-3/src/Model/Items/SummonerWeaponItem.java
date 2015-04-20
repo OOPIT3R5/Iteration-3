@@ -1,6 +1,7 @@
 package Model.Items;
 
 import Model.Entity.TakeableItemVisitor;
+import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 
 public class SummonerWeaponItem extends WeaponItem {
@@ -17,4 +18,10 @@ public class SummonerWeaponItem extends WeaponItem {
     public boolean isTwoHanded() {
         return false;//Summoner weapon items are always two-handed.
     }
+
+	@Override
+	public void save(Saver saver) {
+		// TODO Auto-generated method stub
+		
+	}
 }

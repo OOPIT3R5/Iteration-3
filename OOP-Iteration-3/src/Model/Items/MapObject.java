@@ -19,6 +19,6 @@ public abstract class MapObject {
 
 	abstract void render(Graphics g, HexagonalLocation center, Location location);
 	
-    public String getName();
+    abstract public String getName();
     
 }
