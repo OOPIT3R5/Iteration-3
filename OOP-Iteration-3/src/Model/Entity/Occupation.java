@@ -33,10 +33,10 @@ public abstract class Occupation implements TakeableItemVisitor {
         bindwounds = new Skill(1, 10, "Bind Wounds");
         bargain = new Skill(1, 10, "Bargain");
         observation = new Skill(1, 10, "Observation");
-
+        attack = new Skill(1,10,"Attack");
         bindwoundsAbil = new BindWounds(entity, bindwounds);
         observeAbil = new Observe(entity, observation);
-        attackAbil = new Attack(entity);
+        attackAbil = new Attack(entity, attack);
     }
 
 
@@ -61,6 +61,7 @@ public abstract class Occupation implements TakeableItemVisitor {
         skills.add(bindwounds);
         skills.add(bargain);
         skills.add(observation);
+        skills.add(attack);
         skills.addAll(getSubSkills());
         return skills;
     }
@@ -76,6 +77,10 @@ public abstract class Occupation implements TakeableItemVisitor {
         }
         return abilities;
 
+    }
+    
+    public Skill getAttack(){
+    	return attack;
     }
 
     protected abstract HashMap<String, Ability> getAbilitiesSub();

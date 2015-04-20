@@ -174,7 +174,7 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
-			if(key == KeySet.getKey("NORTH")){
+			if(key == KeySet.getKey("NORTH") || key == KeyEvent.VK_NUMPAD8){
 				avatar.moveNorth();
 			//	avatar.getStatistics().changeHealth(-10);
 				System.out.println(avatar.getLocation());
@@ -200,7 +200,7 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
-			if(key == KeySet.getKey("SOUTH")){
+			if(key == KeySet.getKey("SOUTH") || key == KeyEvent.VK_NUMPAD5){
 				avatar.moveSouth();
 			//	avatar.getStatistics().useMana(5);
 				System.out.println(avatar.getLocation());
@@ -226,7 +226,7 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
-			if(key == KeySet.getKey("NORTHEAST")){
+			if(key == KeySet.getKey("NORTHEAST") || key == KeyEvent.VK_NUMPAD9){
 				avatar.moveNortheast();
 				System.out.println(avatar.getLocation());
 			}
@@ -251,7 +251,7 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
-			if(key == KeySet.getKey("NORTHWEST")){
+			if(key == KeySet.getKey("NORTHWEST") || key == KeyEvent.VK_NUMPAD7){
 				avatar.moveNorthwest();
 				System.out.println(avatar.getLocation());
 			}
@@ -275,7 +275,7 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
-			if(key == KeySet.getKey("SOUTHEAST")){
+			if(key == KeySet.getKey("SOUTHEAST") || key == KeyEvent.VK_NUMPAD6){
 				avatar.moveSoutheast();
 				System.out.println(avatar.getLocation());
 			}
@@ -300,7 +300,7 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyPressed(KeyEvent k) {
 			int key = k.getKeyCode();
-			if(key == KeySet.getKey("SOUTHWEST")){
+			if(key == KeySet.getKey("SOUTHWEST") || key == KeyEvent.VK_NUMPAD4){
 				avatar.moveSouthwest();
 				System.out.println(avatar.getLocation());
 			}
@@ -358,6 +358,7 @@ public class GameController extends Controller implements Observer {
 				entities.get(i).performAction();
 				
 			}
+			avatar.regenMana();
 		}
 
 		@Override

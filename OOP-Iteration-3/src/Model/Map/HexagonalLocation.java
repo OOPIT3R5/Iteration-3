@@ -47,6 +47,13 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return circle;
 	}
 	
+	public static ArrayList<HexagonalLocation> circleNoCenter(HexagonalLocation center, int radius) {
+		ArrayList<HexagonalLocation> circle = new ArrayList<HexagonalLocation>();
+		for (int i = 0; i < radius; i++)
+			circle.addAll(HexagonalLocation.ring(center, i + 1));
+		return circle;
+	}
+	
 	public static ArrayList<HexagonalLocation> line(HexagonalLocation start, int length) {
 		ArrayList<HexagonalLocation> line = new ArrayList<HexagonalLocation>();
 		HexagonalLocation next = start;

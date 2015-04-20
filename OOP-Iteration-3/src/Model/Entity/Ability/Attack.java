@@ -10,9 +10,9 @@ public class Attack extends SkillAbility{
 	private Entity sourceEntity;
 	private Skill skill;
 	
-	public Attack(Entity sourceEntity) {
+	public Attack(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.skill = sourceEntity.getActiveSkill();
+		this.skill = skill;
     }
 
 	@Override
@@ -22,11 +22,12 @@ public class Attack extends SkillAbility{
 		if (targetEntity != null){
 			double probabilityOfSuccess = RandomlyGenerate.probability();
 			double chanceOfSuccess = getSkillLevel()/100;
-			int damage = (int) (probabilityOfSuccess * getSkillLevel());
+			int damage = (int) (probabilityOfSuccess * getSkillLevel() + 25);
 			
-			if (chanceOfSuccess > probabilityOfSuccess){		// success
-				targetEntity.changeHealth(-1*damage);
-			}
+//			if (chanceOfSuccess > probabilityOfSuccess){		// success
+//				targetEntity.changeHealth(-1*damage);
+//			}
+			targetEntity.changeHealth(-1*damage);
 		}
 	}
 

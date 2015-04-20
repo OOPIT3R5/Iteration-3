@@ -73,7 +73,7 @@ public class Hostility {
 
 		if (npc.avatarIsWithinRange(1)){
 			
-			a = new Attack(npc);	//TODO attack in avatar direction
+			a = new Attack(npc, npc.getOccupation().getAttack());	//TODO attack in avatar direction
 			System.out.println("I'm attacking the avatar who is/was next to me");
 		}
 		else if(npc.avatarIsWithinRange(5)){

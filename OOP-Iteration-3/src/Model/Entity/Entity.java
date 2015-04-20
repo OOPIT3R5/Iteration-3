@@ -144,6 +144,10 @@ public abstract class Entity extends Observable implements MovementInterface {
         }
     }
 	
+	public void regenMana(){
+		getStatistics().regenMana();
+	}
+	
 	@Override
 	public void disableMove(Direction direction) {
 		moveMap.put(direction, new DoNothing());
