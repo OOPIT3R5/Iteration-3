@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 
@@ -15,7 +17,7 @@ import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
 import View.ModelView;
 
-public class GameController extends Controller {
+public class GameController extends Controller implements Observer {
 	String next = "";
 	private static Avatar avatar;
 
@@ -41,6 +43,7 @@ public class GameController extends Controller {
 		avatar.setLocation(new HexagonalLocation(2,3));
 		g.getGameMap().spawn(avatar,new HexagonalLocation(2,3));
 		avatar.setMap(g.getGameMap());
+		avatar.addObserver(GameController.getInstance());
 		
 	}
 	
@@ -313,6 +316,13 @@ public class GameController extends Controller {
 			// TODO Auto-generated method stub
 			
 		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		setNext(MainMenuController.getInstance());
+		avatar.deleteObservers();
 	}
 	
 	

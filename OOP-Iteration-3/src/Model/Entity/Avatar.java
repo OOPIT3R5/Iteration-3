@@ -1,5 +1,7 @@
 package Model.Entity;
 
+import java.util.Observer;
+
 import Model.Map.HexagonalLocation;
 
 public class Avatar extends Entity{
@@ -19,6 +21,7 @@ public class Avatar extends Entity{
 
     @Override
     public void removeFromMap(){
-        //TODO: Implement Death Remove Logic
+    	setChanged();
+		notifyObservers();
     }
 }
