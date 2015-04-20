@@ -13,6 +13,7 @@ import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.HexagonalGrid;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
+import Model.Terrain.Water;
 import View.ModelView;
 import View.Model.GameMapView;
 
@@ -43,6 +44,14 @@ public class GameMap {
 		this.WIDTH = width;
 		gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
 		mapView = new GameMapView();
+	}
+	
+	public void initialize() {
+		gameMapGrid.add(0, 0, new HexagonalTile(new Water()));
+		System.out.println("what");
+		for (int i = 0; i < 4; i++) {
+			gameMapGrid.add(6, i, new HexagonalTile(new Water()));
+		}
 	}
 	
 

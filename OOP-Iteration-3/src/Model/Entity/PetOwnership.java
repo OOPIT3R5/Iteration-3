@@ -2,6 +2,7 @@ package Model.Entity;
 
 import Model.Entity.Ability.Move;
 import Model.Map.Direction;
+import Model.Map.HexagonalLocation;
 
 public class PetOwnership {
 
@@ -32,7 +33,10 @@ public class PetOwnership {
 
 	public Move followAvatar() {
 		Direction d = ((NPC) pet).directionTowardAvatar();
-		return new Move(((NPC)pet), d, ((NPC)pet).getMovementSpeed());
+		if (HexagonalLocation.rectilinearDistance(((NPC)pet).getLocation(), owner.getLocation()) >= 2) {
+			return new Move(((NPC)pet), d, ((NPC)pet).getMovementSpeed());
+		}
+		return null;
 		//return null;
 	}
 }

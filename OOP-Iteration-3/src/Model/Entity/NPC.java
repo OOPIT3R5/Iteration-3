@@ -44,8 +44,11 @@ public class NPC extends Entity {
 	/*AI stuff*/
 	public void performAction(){
 		if(isfollowingEntity){
-			Ability m = new Move(this, directionTowardAvatar(), this.getMovementSpeed());
-			m.execute();
+			Avatar a = getMap().getAvatar();
+			if (HexagonalLocation.rectilinearDistance(a.getLocation(), this.getLocation()) >= 2) {
+				Ability m = new Move(this, directionTowardAvatar(), this.getMovementSpeed());
+				m.execute();
+			}
 		}
 		else{
 			makeActionChoice();
