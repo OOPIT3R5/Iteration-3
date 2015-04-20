@@ -25,17 +25,24 @@ public class Observe extends SkillAbility{
     public void execute() {
 		double chanceOfSuccess = getSkillLevel()/100;
 		
-		for(Tile tile : getTargetTiles()){
-			double probabilityOfSuccess = RandomlyGenerate.probability();
-			if (tile != null){
-				Entity targetEntity = tile.getEntity();
-				if (targetEntity != null){
-					if (chanceOfSuccess > probabilityOfSuccess){		// success = observed
-						targetEntity.observe();
-					}
-				}
-			}			
+		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
+		for(int i=0; i<entities.size(); i++){
+			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,2)){
+				entities.get(i).observe();
+			}
 		}
+		
+//		for(Tile tile : getTargetTiles()){
+//			double probabilityOfSuccess = RandomlyGenerate.probability();
+//			if (tile != null){
+//				Entity targetEntity = tile.getEntity();
+//				if (targetEntity != null){
+//					if (chanceOfSuccess > probabilityOfSuccess){		// success = observed
+//						targetEntity.observe();
+//					}
+//				}
+//			}			
+//		}
 	}
 	
 	public ArrayList<Tile> getTargetTiles(){

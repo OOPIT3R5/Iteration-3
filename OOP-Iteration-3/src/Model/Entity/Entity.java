@@ -29,6 +29,7 @@ import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
 import View.Model.MapObjectView;
 import View.EntityView;
+import View.GameView;
 import View.InventoryView;
 
 public abstract class Entity extends MapObject implements MovementInterface {
@@ -297,7 +298,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	}
 
     public void observe(){
-		// TODO send info about Entity to log/output
+		GameView.appendToLog(toString());
 	}
     
     public void receiveDamage(int damage) {

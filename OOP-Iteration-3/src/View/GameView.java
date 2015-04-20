@@ -141,6 +141,10 @@ public class GameView extends ModelView {
 		s = data + "\n";
 		log.setText(s);
 	}
+	public static void appendToLog(String data){
+		s += data + "\n";
+		log.setText(s);
+	}
 
 
 }

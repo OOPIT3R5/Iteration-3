@@ -1,5 +1,7 @@
 package Model.Entity.Ability;
 
+import java.util.ArrayList;
+
 import Model.Entity.Entity;
 import Model.Entity.NPC;
 import Model.Entity.Skill;
@@ -24,15 +26,22 @@ public class Pickpocket extends SkillAbility {
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
-		if (targetEntity != null){
-			if (chanceOfSuccess > probabilityOfSuccess){		// success
-				int gold = (int) (probabilityOfSuccess * 100);
-				int amountStolen = targetEntity.stealGold(gold);
-				sourceEntity.awardGold(amountStolen);
-			} else {		// failure
-				((NPC)targetEntity).provoke();		// needs to be implemented
+		ArrayList<Entity> entities = sourceEntity.getGamemap().getAllNPCS();
+		for(int i=0; i<entities.size(); i++){
+			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,2)){
+				entities.get(i).stealGold(5);
 			}
 		}
+		
+//		if (targetEntity != null){
+//			if (chanceOfSuccess > probabilityOfSuccess){		// success
+//				int gold = (int) (probabilityOfSuccess * 100);
+//				int amountStolen = targetEntity.stealGold(gold);
+//				sourceEntity.awardGold(amountStolen);
+//			} else {		// failure
+//				((NPC)targetEntity).provoke();		// needs to be implemented
+//			}
+//		}
 	}
 	
 	private Entity getTargetEntity() {

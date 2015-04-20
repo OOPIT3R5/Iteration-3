@@ -10,7 +10,7 @@ public class Inventory {
 
     public Inventory(){
         inventory = new ArrayList<TakeableItem>(50);
-        goldamount = 0;
+        goldamount = 50;
     }
 
     public void addToInventory(TakeableItem ti){
