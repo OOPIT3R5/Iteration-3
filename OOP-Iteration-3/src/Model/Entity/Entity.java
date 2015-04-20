@@ -50,7 +50,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 	private ArrayList<String> skillList = new ArrayList<String>();
 	private int skillSelected = 0;
 	
-	private int movementSpeed;
+	//private int movementSpeed;
 	
 	private Skill activeSkill;
 
@@ -64,7 +64,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer(this);
-        movementSpeed = 1;
+       // movementSpeed = 1;
         setDirection(Direction.NORTH);
         
         inventoryView = new InventoryView(this);
@@ -160,7 +160,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 
     @Override
 	public void enableMove(Direction direction) {
-		moveMap.put(direction, new Move(this, map, direction, this.getMovementSpeed()));
+		moveMap.put(direction, new Move(this, direction, this.getMovementSpeed()));
 	}
     
     //Use this method to equip any EquippableItem (from Inventory, etc.)
@@ -225,7 +225,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 	}
 
     public int getMovementSpeed(){
-		return movementSpeed;
+		return stats.getMovement();
 	}
 
     public Occupation getOccupation() {
@@ -243,6 +243,7 @@ public abstract class Entity extends Observable implements MovementInterface {
     public void useSkillPoint(){
         numOfPointsCanAllocateToLevelUpSkill--;
     }
+    
     public StatisticContainer getStatistics(){
         return stats;
     }
@@ -300,12 +301,14 @@ public abstract class Entity extends Observable implements MovementInterface {
 
 	public void setMap(GameMap map){
 		this.map = map;
-		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
-		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
-		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,movementSpeed)));
-		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,movementSpeed)));
-		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,movementSpeed)));
-		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,movementSpeed)));
+
+		moveMap.put(Direction.NORTH, (new Move(this,Direction.NORTH,stats.getMovement())));
+		moveMap.put(Direction.NORTHEAST, (new Move(this,Direction.NORTHEAST,stats.getMovement())));
+		moveMap.put(Direction.NORTHWEST, (new Move(this,Direction.NORTHWEST,stats.getMovement())));
+		moveMap.put(Direction.SOUTH, (new Move(this,Direction.SOUTH,stats.getMovement())));
+		moveMap.put(Direction.SOUTHEAST, (new Move(this,Direction.SOUTHEAST,stats.getMovement())));
+		moveMap.put(Direction.SOUTHWEST, (new Move(this,Direction.SOUTHWEST,stats.getMovement())));
+
 	}
 
 	protected void setOccupation(Occupation o) {
@@ -369,6 +372,9 @@ public abstract class Entity extends Observable implements MovementInterface {
 	}
 	
 	public void changeMovementSpeed(int delta){
-		movementSpeed += delta;
+		int newSpeed = stats.getMovement() + delta;
+		stats.increaseSpeed(newSpeed);
 	}
+	
+	
 }

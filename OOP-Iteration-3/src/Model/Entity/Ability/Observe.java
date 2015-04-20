@@ -14,12 +14,10 @@ import Utility.RandomlyGenerate;
 public class Observe extends SkillAbility{
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 	
-	public Observe(Entity sourceEntity, GameMap map, Skill skill) {
+	public Observe(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -29,20 +27,22 @@ public class Observe extends SkillAbility{
 		
 		for(Tile tile : getTargetTiles()){
 			double probabilityOfSuccess = RandomlyGenerate.probability();
-			Entity targetEntity = tile.getEntity();
-			
-			if (targetEntity != null){
-				if (chanceOfSuccess > probabilityOfSuccess){		// success = observed
-					targetEntity.observe();
+			if (tile != null){
+				Entity targetEntity = tile.getEntity();
+				if (targetEntity != null){
+					if (chanceOfSuccess > probabilityOfSuccess){		// success = observed
+						targetEntity.observe();
+					}
 				}
-			}
+			}			
 		}
-		
 	}
 	
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int radius = 5;
+		
+		GameMap map = sourceEntity.getGamemap();
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){

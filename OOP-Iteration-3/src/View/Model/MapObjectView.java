@@ -3,7 +3,6 @@ package View.Model;
 import javax.imageio.ImageIO;
 
 import Model.Map.HexagonalLocation;
-import Model.Map.Location;
 import View.View;
 
 import java.awt.Graphics;

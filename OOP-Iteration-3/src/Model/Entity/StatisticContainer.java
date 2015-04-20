@@ -197,4 +197,8 @@ public class StatisticContainer {
         else
             life.addPermanentValue(life.getMaxValue());   //Make it go back to the top.
     }
+
+	public void increaseSpeed(int newSpeed) {
+		movement = new Statistic(newSpeed, 50);
+	}
 }

@@ -9,12 +9,10 @@ import Utility.RandomlyGenerate;
 public class RemoveTrap extends SkillAbility {
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 	
-	public RemoveTrap(Entity sourceEntity, GameMap map, Skill skill) {
+	public RemoveTrap(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -31,7 +29,7 @@ public class RemoveTrap extends SkillAbility {
 	}
 	
 	public Tile getTargetTile(){
-		return map.getTile(getSourceEntity().getLocationFacing());
+		return sourceEntity.getGamemap().getTile(getSourceEntity().getLocationFacing());
 	}
 	
 	private void activateTargetTrap(){

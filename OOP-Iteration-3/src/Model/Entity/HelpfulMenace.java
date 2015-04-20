@@ -86,7 +86,7 @@ public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 	@Override
 	public Ability stealInVicinity() {
 		Direction randDir = RandomlyGenerate.direction();
-		return new Move(this, map, randDir, getMovementSpeed());
+		return new Move(this, randDir, getMovementSpeed());
 		//can pickup item on tile
 		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
 		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile
