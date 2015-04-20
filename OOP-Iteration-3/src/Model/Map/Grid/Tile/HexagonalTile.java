@@ -83,6 +83,16 @@ public class HexagonalTile extends Tile {
 		hView.render(g, center);
 		if (hasEntity())
 			getEntity().render(g, center);
+		if(hasMapObject())
+			getMapObject().render(g, center, super.getLocation());
 	}
 	
 }
+
+
+
+
+
+
+
+

@@ -115,8 +115,9 @@ public class MainMenuController extends Controller {
 					Avatar avatar = new Avatar();
 					new Summoner(avatar); // delete later
 					Game game = new Game(avatar);
-					GameController.setGame(game);
 					DefaultGame dg = new DefaultGame(game.getGameMap());
+					GameController.setGame(game);
+					
 				}
 				else{
 					setNext(null);
