@@ -3,14 +3,19 @@ package Tests;
 import java.util.*;
 
 import Model.Entity.*;
+import Model.Entity.Ability.Move;
+import Model.Map.Direction;
+import Model.Map.GameMap;
 import Utility.RandomlyGenerate;
 
 
-public class entityandAvatarTests {
 
+public class entityandAvatarTests {
+	static GameMap gm;
+	static Avatar avatar;
 	public static void main(String[] args){
 		RandomlyGenerate r = new RandomlyGenerate();
-		//avatarCreation();
+		avatarCreation();
 		monsterMovement();
 		//helpfulMenace();
 		//troublesomeMenace();
@@ -69,19 +74,30 @@ public class entityandAvatarTests {
 
 
 	private static void monsterMovement(){
-		Entity npc = new Monster();
-		
-
+		NPC npc = new Monster();
+		gm.addEntity(3, 1, npc);
+		npc.setMap(gm);
 		for(int i=0; i<10; i++){
-			npc.makeActionChoice();
+			mockAvatarMovement();
+			npc.performAction();
 		}
+		
 	}
+	
+	private static void mockAvatarMovement() {
+		
+		Move m = new Move(avatar, gm, Direction.NORTHEAST, 1);
+		
+	}
+
+
+
 	private static void avatarCreation() {
 		Scanner s = new Scanner (System.in);
 		System.out.println("Enter Avatar Name: ");
 		String name = s.next();
 		
-		Entity avatar = new Avatar(name);
+		avatar = new Avatar(name);
 		System.out.println("Enter Occupation number: ");		
 		int occupation = s.nextInt();
 		Occupation o;
@@ -94,7 +110,8 @@ public class entityandAvatarTests {
 		else{
 			o= new Smasher(avatar);
 		}
-		
+		gm = new GameMap(31, 31, avatar);
+		avatar.setMap(gm);
 		System.out.println(avatar.toString());
 		
 	}

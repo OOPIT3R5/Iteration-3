@@ -69,6 +69,7 @@ public class GameController extends Controller {
 		listeners.add(new MoveNorthwest());
 		listeners.add(new MoveSoutheast());
 		listeners.add(new MoveSouthwest());
+		listeners.add(new UpdateAllEntities());
 		HashMap<String, Ability> abilities = avatar.getOccupation().getAbilities();
 		int i = 1;
 		String name = "ACTION" + i;
@@ -314,7 +315,24 @@ public class GameController extends Controller {
 			
 		}
 	}
-	
+	public class UpdateAllEntities implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			
+		}
+	}
 	
 
 }

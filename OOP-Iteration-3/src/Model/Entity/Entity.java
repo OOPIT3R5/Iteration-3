@@ -49,7 +49,7 @@ public class Entity implements MovementInterface {
 	private ArrayList<String> skillList = new ArrayList<String>();
 	private int skillSelected = 0;
 	
-	private int movementSpeed;
+	//private int movementSpeed;
 	
 	private Skill activeSkill;
 
@@ -63,7 +63,7 @@ public class Entity implements MovementInterface {
 		equipmentManager = new Equipment(this);
         inventory = new Inventory();
         stats = new StatisticContainer(this);
-        movementSpeed = 1;
+       // movementSpeed = 1;
         setDirection(Direction.NORTH);
         
         inventoryView = new InventoryView(this);
@@ -224,7 +224,7 @@ public class Entity implements MovementInterface {
 	}
 
     public int getMovementSpeed(){
-		return movementSpeed;
+		return stats.getMovement();
 	}
 
     public Occupation getOccupation() {
@@ -299,12 +299,12 @@ public class Entity implements MovementInterface {
 
 	public void setMap(GameMap map){
 		this.map = map;
-		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
-		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
-		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,movementSpeed)));
-		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,movementSpeed)));
-		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,movementSpeed)));
-		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,movementSpeed)));
+		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,stats.getMovement())));
+		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,stats.getMovement())));
+		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,stats.getMovement())));
+		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,stats.getMovement())));
+		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,stats.getMovement())));
+		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,stats.getMovement())));
 	}
 
 	protected void setOccupation(Occupation o) {
@@ -372,6 +372,7 @@ public class Entity implements MovementInterface {
 	}
 	
 	public void changeMovementSpeed(int delta){
-		movementSpeed += delta;
+		int newSpeed = stats.getMovement() + delta;
+		stats.increaseSpeed(newSpeed);
 	}
 }
