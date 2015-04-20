@@ -67,6 +67,7 @@ public class Entity implements MovementInterface {
         setDirection(Direction.NORTH);
         
         inventoryView = new InventoryView(this);
+        
       //  decal = new Decal();
 	}
 	/*
