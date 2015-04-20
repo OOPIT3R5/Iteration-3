@@ -6,7 +6,6 @@ import java.awt.Point;
 import java.io.IOException;
 
 import Model.Entity.Entity;
-import Model.Entity.MovementInterface;
 import Model.Items.MapObject;
 import Model.Map.Direction;
 import Model.Map.HexagonalCoordinateInterface;
@@ -93,37 +92,15 @@ public class HexagonalTile extends Tile {
 		return builder.toString();
 	}
 	
-	@Override
-	public void notifyOfEntity(MovementInterface target, Direction direction) {		// TODO Delete if not needed
-		if (super.hasEntity())
-			target.disableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
-		else
-			getTerrain().notifyOfEntity(target, direction);
-	}
-	
-	@Override
-	public void prospectiveMovement(MovementInterface target, Direction direction){
-		if (super.hasEntity())
-			target.disableMove(direction);
-		else
-			getTerrain().notifyOfEntity(target, direction);
-	}
-	
-	public void cacheEntity() {
-		//Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp
-		Entity to_cache = getEntity();
-		System.out.println(to_cache.getLocation().toString());
-		cached_entity_ = new CachedEntity(to_cache.getDirectionFacing(), to_cache.getLocation(),
-				to_cache.getStatistics().getLife(), to_cache.getStatistics().getMana());
-	}
-	
 	public void render(Graphics g, HexagonalLocation center) {
 		int distance = HexagonalLocation.rectilinearDistance(getLocation(), center);
 		if (Math.abs(distance) < 3) {
+			has_been_seen_ = true;
 			cached_entity_ = null;
 			hView.render(g, center);
 		} else {
 			if (!has_been_seen_) {
+				System.out.println("should come here");
 				black.render(g, center);
 			} else {
 				hViewNonvisible.render(g, center);
@@ -138,18 +115,10 @@ public class HexagonalTile extends Tile {
 					e.printStackTrace();
 				}
 		}
-		if (Math.abs(distance) < 3) {
-			has_been_seen_ = true;
-			if (hasEntity()) {
-				cacheEntity();
-				getEntity().render(g, center);
-			}
-			if(hasMapObject()) {
-				getMapObject().getMapObjectView().render(g, center, (HexagonalLocation)super.getLocation());
-			} else {
-				
-			}
-		}
+	}
+
+	public void move(Entity entity) {
+		getTerrain().move(entity, getLocation());
 	}
 	
 }

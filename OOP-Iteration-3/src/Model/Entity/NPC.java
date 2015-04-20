@@ -17,6 +17,8 @@ public class NPC extends Entity {
 
 	private NpcView npcView;
 	protected Hostility hostility;
+	protected boolean swimmer;
+	
 	public NPC(){
 		super();
 		npcView = new NpcView();
@@ -171,6 +173,11 @@ public class NPC extends Entity {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
+	@Override
+	public void swimTo(Location target) {
+		if (swimmer)
+			setLocation((HexagonalLocation)target);
+	}
+	
 }

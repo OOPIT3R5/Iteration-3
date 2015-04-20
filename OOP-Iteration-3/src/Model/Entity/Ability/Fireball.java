@@ -31,14 +31,23 @@ public class Fireball extends SummonerAbility {
 		double chanceOfSuccess = getSkillLevel()/50;
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
-		for(Tile tile : getTargetTiles()){
+		int length = 3;
+		
+		for (HexagonalLocation hex_location : HexagonalLocation.line(sourceEntity.getLocation(), length, sourceEntity.getDirectionFacing())) {
+			Entity target = sourceEntity.getGamemap().getEntity(hex_location);
+			if (target != null) {
+				target.changeHealth(-1*scaleMagnitude());
+			}
+		}
+		
+		/*for(Tile tile : getTargetTiles()){
 			if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
 				NPC targetNPC = (NPC)tile.getEntity();
 				if (targetNPC != null){
 					targetNPC.changeHealth(-1*scaleMagnitude());
 				}
 			}
-		}
+		}*/
 	}
 
 	@Override

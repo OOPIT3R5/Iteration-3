@@ -60,7 +60,17 @@ public class Blizzard extends SummonerAbility{
 		double chanceOfSuccess = getSkillLevel()/50;
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
-		for(Tile tile : getTargetTiles()){
+		int radius = 10;
+		
+		for (HexagonalLocation hex_location : HexagonalLocation.circleNoCenter(sourceEntity.getLocation(), radius)) {
+			Entity target = sourceEntity.getGamemap().getEntity(hex_location);
+			if (target != null) {
+				target.changeHealth(-1*(scaleMagnitude()+10));
+			}
+		}
+			
+		
+		/*for(Tile tile : getTargetTiles()){
 			Entity targetEntity = tile.getEntity();
 			targetEntity.changeHealth(-1*(scaleMagnitude()+10));
 //			if (targetEntity != null){
@@ -69,7 +79,7 @@ public class Blizzard extends SummonerAbility{
 //				}
 //			}
 			System.out.println("Blizzard Success");
-		}
+		}*/
 	}
 
 	@Override

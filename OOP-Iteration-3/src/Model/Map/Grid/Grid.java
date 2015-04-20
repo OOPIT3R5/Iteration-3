@@ -115,8 +115,7 @@ public abstract class Grid {
 		return string.toString();
 	}
 	
-	public void fill(Tile defaultTile)
-	{
+	public void fill(Tile defaultTile) {
 		System.out.println("HERE");
 		for (int row = 0; row < getHeight(); row++)
 			for (int col = 0; col < getWidth(); col++) {
@@ -127,29 +126,8 @@ public abstract class Grid {
 			}
 	}
 	
-	public void addEntity(int i , int j, Entity e)
-	{
-		e.setLocation(new HexagonalLocation(i , j));
-		grid_[i][j].setEntity(e);
-	}
-	
-	public void spawnEntity(Location location, Entity e)
-	{
-		int x = location.getX();
-		int y = location.getY();
-		
-		grid_[x][y].setEntity(e);
-	}
-	
-	public Tile get(int i , int j)
-	{
+	public Tile get(int i , int j) {
 		return grid_[i][j];
-	}
-	
-	public void addMapObject(int i, int j, MapObject mo) 
-	{
-		
-		grid_[i][j].setMapObject(mo);
 	}
 	
 }

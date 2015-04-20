@@ -19,9 +19,8 @@ public class TeleportItemAbility extends ItemAbility{
 
     @Override
     public void execute() {
-        Tile oldTile = map.getTile(getSourceEntity().getLocation());
-        Tile newTile = map.getTile(new HexagonalLocation(teleportSpotX, teleportSpotY));
-        oldTile.removeEntity();
-        newTile.setEntity(getSourceEntity());
+    	//sourceEntity.setLocation(new HexagonalLocation(teleportSpotX, teleportSpotY));
+        //oldTile.removeEntity();
+        //newTile.setEntity(getSourceEntity());
     }
 }

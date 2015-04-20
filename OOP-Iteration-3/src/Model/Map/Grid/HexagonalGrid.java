@@ -19,7 +19,7 @@ import Model.Terrain.Grass;
 import View.View;
 import View.Model.FlatHexagon;
 
-public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Iterator<HexagonalTile> {
+public class HexagonalGrid extends Grid implements DrawableHexGridInterface {
 	
 	private int i = 0;
 	private int j = 0;
@@ -123,10 +123,6 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 	public HexagonalTile get(Location hex_location) {
 		HexagonalCoordinateInterface hex_coord = (HexagonalCoordinateInterface)hex_location;
 		return get(hex_coord.getU(), hex_coord.getV());
-	}
-	
-	public Entity getEntity(Location location){
-		return get(location).getEntity();
 	}
 	
 	@Override
@@ -254,7 +250,11 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 			}
 	}
 	
-	public void initializeIterator()
+	public void move(Entity entity, Location target) {
+		get(target).move(entity);
+	}
+	
+	/*public void initializeIterator()
 	{
 		this.i = 0;
 		this.j = 0;
@@ -279,7 +279,7 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 		
 		return cur;
 		
-	}
+	}*/
 
 	
 }

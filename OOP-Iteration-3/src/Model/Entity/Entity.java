@@ -31,7 +31,7 @@ import View.Model.MapObjectView;
 import View.EntityView;
 import View.InventoryView;
 
-public abstract class Entity extends MapObject implements MovementInterface {
+public abstract class Entity extends MapObject {
 
 	private static final Exception InvalidAbilityException = null;
 	private String name;
@@ -43,7 +43,6 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	private Inventory inventory;
     protected StatisticContainer stats;
 	private HexagonalLocation currentPosition;
-	private Map<Direction,Ability> moveMap = new HashMap<Direction,Ability>();
 	
 	private EntityView entityView;
 	
@@ -111,15 +110,6 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		inventory.addToInventory(ti);
 	}
 	
-	public void alertNeighboringTiles(){
-		Location center = getLocation();
-		for(Entry<Direction, Ability> entry: moveMap.entrySet()){
-			Direction currentDirection = entry.getKey();
-			Tile neighboringTile = map.getTile(center.getNeighbor(currentDirection));
-			neighboringTile.prospectiveMovement(this,currentDirection);
-		}
-	}
-	
 	public void autoLevelUp() {
         awardExperience(1000 - stats.getExperience()); //Get the remaining amt of EXP needed to level up and add that to ourselves.
         numOfPointsCanAllocateToLevelUpSkill++;
@@ -148,25 +138,10 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	public void regenMana(){
 		getStatistics().regenMana();
 	}
-	
-	@Override
-	public void disableMove(Direction direction) {
-		moveMap.put(direction, new DoNothing());
-	}
 
     public void removeFromMap(){
-        map.getTile(getLocation()).removeEntity(); //Removes entity from map.
+        map.removeEntity(this); //Removes entity from map.
     }
-
-    @Override
-	public void disableWalk(Direction direction) {
-		moveMap.put(direction, new DoNothing());
-	}
-
-    @Override
-	public void enableMove(Direction direction) {
-		moveMap.put(direction, new Move(this, direction, this.getMovementSpeed()));
-	}
     
     //Use this method to equip any EquippableItem (from Inventory, etc.)
     public void equipEquippableItem(EquippableItem ei){
@@ -265,33 +240,51 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	}
 	
 	public void moveNorth(){
-		moveMap.get(Direction.NORTH).execute();
-		alertNeighboringTiles();
+		if (directionFacing == Direction.NORTH) {
+			new Move(this, Direction.NORTH, 1).execute();
+		} else {
+			directionFacing = Direction.NORTH;
+		}
 	}
 
 	public void moveNortheast(){
-		moveMap.get(Direction.NORTHEAST).execute();
-		alertNeighboringTiles();
+		if (directionFacing == Direction.NORTHEAST) {
+			new Move(this, Direction.NORTHEAST, 1).execute();
+		} else {
+			directionFacing = Direction.NORTHEAST;
+		}
 	}
 	
 	public void moveNorthwest(){
-		moveMap.get(Direction.NORTHWEST).execute();
-		alertNeighboringTiles();
+		if (directionFacing == Direction.NORTHWEST) {
+			new Move(this, Direction.NORTHWEST, 1).execute();
+		} else {
+			directionFacing = Direction.NORTHWEST;
+		}
 	}
 
 	public void moveSouth(){
-		moveMap.get(Direction.SOUTH).execute();
-		alertNeighboringTiles();
+		if (directionFacing == Direction.SOUTH) {
+			new Move(this, Direction.SOUTH, 1).execute();
+		} else {
+			directionFacing = Direction.SOUTH;
+		}
 	}
 	
     public void moveSoutheast(){
-		moveMap.get(Direction.SOUTHEAST).execute();
-		alertNeighboringTiles();
+		if (directionFacing == Direction.SOUTHEAST) {
+			new Move(this, Direction.SOUTHEAST, 1).execute();
+		} else {
+			directionFacing = Direction.SOUTHEAST;
+		}
 	}
 
     public void moveSouthwest(){
-		moveMap.get(Direction.SOUTHWEST).execute();
-		alertNeighboringTiles();
+		if (directionFacing == Direction.SOUTHWEST) {
+			new Move(this, Direction.SOUTHWEST, 1).execute();
+		} else {
+			directionFacing = Direction.SOUTHWEST;
+		}
 	}
 
     public void observe(){
@@ -308,18 +301,6 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	
 	public void setLocation(HexagonalLocation newPosition){
 		this.currentPosition = newPosition;
-	}
-
-	public void setMap(GameMap map){
-		this.map = map;
-
-		moveMap.put(Direction.NORTH, (new Move(this,Direction.NORTH,stats.getMovement())));
-		moveMap.put(Direction.NORTHEAST, (new Move(this,Direction.NORTHEAST,stats.getMovement())));
-		moveMap.put(Direction.NORTHWEST, (new Move(this,Direction.NORTHWEST,stats.getMovement())));
-		moveMap.put(Direction.SOUTH, (new Move(this,Direction.SOUTH,stats.getMovement())));
-		moveMap.put(Direction.SOUTHEAST, (new Move(this,Direction.SOUTHEAST,stats.getMovement())));
-		moveMap.put(Direction.SOUTHWEST, (new Move(this,Direction.SOUTHWEST,stats.getMovement())));
-
 	}
 
 	protected void setOccupation(Occupation o) {
@@ -390,11 +371,16 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	{
 		return this.name + " , " +  this.currentPosition.toString();
 	}
+	
+	public void walkTo(Location target) {
+		setLocation((HexagonalLocation) target);
+	}
+	
+	public abstract void swimTo(Location target);
 
 
-
-
-
-
+	public void setMap(GameMap gm) {
+		map = gm;
+	}
 	
 }

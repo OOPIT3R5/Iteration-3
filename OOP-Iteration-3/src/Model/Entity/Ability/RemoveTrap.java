@@ -3,8 +3,10 @@ package Model.Entity.Ability;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
+import Model.Map.HexagonalLocation;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
+import Model.Items.Trap;
 
 public class RemoveTrap extends SkillAbility {
 
@@ -21,10 +23,12 @@ public class RemoveTrap extends SkillAbility {
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
+		HexagonalLocation location = (HexagonalLocation)sourceEntity.getLocationFacing();
+		
 		if (chanceOfSuccess > probabilityOfSuccess){		// success = removal
-			removeTargetTrap();
+			removeTargetTrap(location);
 		} else {						// failure = activation
-			activateTargetTrap();
+			activateTargetTrap(location);
 		}
 	}
 	
@@ -32,12 +36,13 @@ public class RemoveTrap extends SkillAbility {
 		return sourceEntity.getGamemap().getTile(getSourceEntity().getLocationFacing());
 	}
 	
-	private void activateTargetTrap(){
-		getTargetTile().activateTrap(sourceEntity);
+	private void activateTargetTrap(HexagonalLocation location) {
+		//GameMap map = sourceEntity.getGamemap();
+		//((Trap)map.getMapObject(location)).
 	}
 	
-	private void removeTargetTrap(){
-		getTargetTile().removeTrap();
+	private void removeTargetTrap(HexagonalLocation location) {
+		//getTargetTile().removeTrap(location);
 	}
 
 	@Override

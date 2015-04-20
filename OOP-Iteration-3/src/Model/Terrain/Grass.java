@@ -2,17 +2,14 @@ package Model.Terrain;
 
 import java.awt.Color;
 
-import Model.Entity.MovementInterface;
+import Model.Entity.Entity;
 import Model.Map.Direction;
+import Model.Map.Location;
 
 public class Grass extends Terrain {
 	
 	public Grass() {
 		super();
-	}
-	
-	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.enableMove(direction);
 	}
 
 	@Override
@@ -20,9 +17,13 @@ public class Grass extends Terrain {
 		return Color.GREEN;
 	}
 	
-	public String toString()
-	{
+	public String toString() {
 		return "Grass Tile";
+	}
+	
+	@Override
+	public void move(Entity entity, Location target) {
+		entity.walkTo(target);
 	}
 	
 }

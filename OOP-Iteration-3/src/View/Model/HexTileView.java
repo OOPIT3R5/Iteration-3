@@ -26,8 +26,10 @@ public class HexTileView {
 		int y = (int)(origin.getY() + Math.sqrt(3) * hexagon_size * ((location_.getV() - avatar_location.getV()) + (location_.getU() - avatar_location.getU()) / 2.0));
 		new FlatHexagon(new Point(x, y), (int)(hexagon_size * 1.02), true).draw(g);
 		new FlatHexagon(new Point( x, y), (int)(hexagon_size * .95), true, representation_).draw(g);
+		Color cache = g.getColor();
 		g.setColor(Color.BLACK);
 		g.drawString(location_.toString(), x-40, y+75);
+		g.setColor(cache);
 	}
 
 	public void update(HexagonalLocation location) {

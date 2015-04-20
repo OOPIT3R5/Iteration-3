@@ -2,28 +2,28 @@ package Model.Terrain;
 
 import java.awt.Color;
 
-import Model.Entity.MovementInterface;
+import Model.Entity.Entity;
 import Model.Map.Direction;
+import Model.Map.Location;
 
 public class Water extends Terrain {
 	
 	public Water() {
 		super();
 	}
-	
-	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.disableWalk(direction);
-	}
 
 	@Override
 	public Color getColor() {
-		System.out.print(".");
 		return Color.BLUE;
 	}
 	
-	public String toString()
-	{
+	public String toString() {
 		return "Water Tile";
+	}
+
+	@Override
+	public void move(Entity entity, Location target) {
+		entity.swimTo(target);
 	}
 	
 }

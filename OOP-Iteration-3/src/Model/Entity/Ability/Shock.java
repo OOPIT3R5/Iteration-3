@@ -61,15 +61,20 @@ public class Shock extends SummonerAbility{
 		double chanceOfSuccess = getSkillLevel()/50;
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
-		for(Tile tile : getTargetTiles()){
+		Location hex_location = sourceEntity.getLocationFacing();
+		Entity target = sourceEntity.getGamemap().getEntity(hex_location);
+		if (target != null) {
+			target.changeHealth(-1*(scaleMagnitude()+10));
+		}
+		
+		/*for(Tile tile : getTargetTiles()){
 			Entity targetEntity = tile.getEntity();
 			if (targetEntity != null){
 				if (chanceOfSuccess > probabilityOfSuccess){		// success = detection
 					targetEntity.changeHealth(-1*scaleMagnitude());
-					System.out.println(targetEntity.getStatistics().getLife());
 				}
 			}
-		}
+		}*/
 	}
 
 	@Override

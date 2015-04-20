@@ -45,7 +45,7 @@ public class GameController extends Controller implements Observer {
 		game = g;
 		avatar = g.getAvatar();
 		avatar.setLocation(new HexagonalLocation(2,3));
-		g.getGameMap().spawn(avatar,new HexagonalLocation(2,3));
+		g.getGameMap().spawnEntity(avatar,new HexagonalLocation(2,3));
 		avatar.setMap(g.getGameMap());
 		avatar.addObserver(GameController.getInstance());
 		
@@ -355,7 +355,7 @@ public class GameController extends Controller implements Observer {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			ArrayList<Entity> entities = game.getGameMap().getAllNPCS();
+			ArrayList<Entity> entities = game.getGameMap().getEntities();
 			for(int i=0; i<entities.size(); i++){
 				entities.get(i).performAction();
 				

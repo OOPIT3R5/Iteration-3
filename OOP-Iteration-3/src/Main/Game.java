@@ -27,7 +27,7 @@ public class Game {
 		gameMap = new GameMap(100, 100, avatar);
 	    setUpAvatar(avatar);
 		
-		gameMap.spawn(avatar, avatar.getLocation());
+		gameMap.spawnEntity(avatar, avatar.getLocation());
 		gameView = new GameView(gameMap, avatar);
 		this.gameMap.fill(new HexagonalTile(new Grass()));
 		gameMap.border(new HexagonalTile(new Mountain()));

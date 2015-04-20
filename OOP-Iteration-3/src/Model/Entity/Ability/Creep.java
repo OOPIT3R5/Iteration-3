@@ -26,14 +26,25 @@ public class Creep extends SkillAbility{
 		double chanceOfSuccess = getSkillLevel()/50;
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		
-		for(Tile tile : getTargetTiles()){
+		int radius = 10;
+		
+		for (HexagonalLocation hex_location : HexagonalLocation.circleNoCenter(sourceEntity.getLocation(), radius)) {
+			Entity targetNPC = (NPC)sourceEntity.getGamemap().getEntity(hex_location);
+			if (targetNPC != null){
+				if (chanceOfSuccess > probabilityOfSuccess){		// success = non-hostile
+					((NPC)targetNPC).becomeNonHostile();
+				}
+			}
+		}
+		
+		/*for(Tile tile : getTargetTiles()){
 			Entity targetEntity = (NPC)tile.getEntity();
 			if (targetEntity != null){
 				if (chanceOfSuccess > probabilityOfSuccess){		// success = non-hostile
 					((NPC)targetEntity).becomeNonHostile();
 				}
 			}
-		}
+		}*/
 	}
 
 	public ArrayList<Tile> getTargetTiles(){

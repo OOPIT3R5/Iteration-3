@@ -37,7 +37,7 @@ public class DefaultGame {
 		System.out.println("EMPHASIS");
 		Entity monster = new Monster();
 		
-		Entity pet 
+		Entity pet = new TroublesomeMenace();
 		PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
 		
 		
@@ -48,7 +48,7 @@ public class DefaultGame {
 		MapObject shoes = null;
 		try {
 			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(1, 1)));
-			pet = = new TroublesomeMenace();
+			pet = new TroublesomeMenace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,15 +58,15 @@ public class DefaultGame {
 		
 
 		monster.setLocation(new HexagonalLocation(5, 5));
-		gm.spawn(monster, new HexagonalLocation(5, 5));
+		gm.spawnEntity(monster, new HexagonalLocation(5, 5));
 
 		NoMoveEntity.setLocation(new HexagonalLocation(1,6));
-		gm.spawn(NoMoveEntity, new HexagonalLocation(1,6));
+		gm.spawnEntity(NoMoveEntity, new HexagonalLocation(1,6));
 		
-		gm.addMapObject(1, 2, shoes);
+		gm.spawnObject(shoes, new HexagonalLocation(2, 2));
 		
 		pet.setLocation(new HexagonalLocation(2, 2));
-		gm.spawn(pet, new HexagonalLocation(2, 2));
+		gm.spawnEntity(pet, new HexagonalLocation(2, 2));
 		
 		NoMoveEntity.setMap(gm);
 		pet.setMap(gm);

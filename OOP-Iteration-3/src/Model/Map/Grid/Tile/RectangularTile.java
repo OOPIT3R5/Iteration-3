@@ -1,7 +1,5 @@
 package Model.Map.Grid.Tile;
 
-import Model.Entity.MovementInterface;
-import Model.Map.Direction;
 import Model.Map.Location;
 import Model.Map.RectangularLocation;
 import Model.Terrain.Grass;
@@ -43,19 +41,6 @@ public class RectangularTile extends Tile {
 	
 	public String toString() {
 		return getLocation().getX() + "," + getLocation().getY();
-	}
-	
-	@Override
-	public void notifyOfEntity(MovementInterface target, Direction direction) {		// TODO replace with prospectiveMovement?
-		if (super.hasEntity())
-			target.disableMove(Direction.intToHex(Direction.hexToInt(direction) + 4));
-		else
-			getTerrain().notifyOfEntity(target, direction);
-	}
-
-	@Override
-	public void prospectiveMovement(MovementInterface target, Direction direction) {
-		
 	}
 	
 }

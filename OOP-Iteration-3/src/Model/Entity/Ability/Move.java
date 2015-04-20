@@ -20,19 +20,8 @@ public class Move extends Ability {
 
 	@Override
 	public void execute() {
-		Entity currentEntity = getSourceEntity();
 		GameMap map = sourceEntity.getGamemap();
-		
-		Tile oldTile = map.getTile(currentEntity.getLocation());
-		if (currentEntity.getDirectionFacing() == direction) {		// move forward
-			currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
-			Tile newTile = map.getTile(currentEntity.getLocation());
-			oldTile.removeEntity();
-			newTile.setEntity(currentEntity);
-			newTile.getMapObject().onTouch(currentEntity);
-		} else {	// turn around without moving forward
-			currentEntity.setDirection(direction);
-		}
+		map.moveEntity(sourceEntity, direction);
 	}
 
 	@Override

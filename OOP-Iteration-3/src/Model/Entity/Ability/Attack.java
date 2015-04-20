@@ -5,7 +5,7 @@ import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Utility.RandomlyGenerate;
 
-public class Attack extends SkillAbility{
+public class Attack extends SkillAbility {
 	
 	private Entity sourceEntity;
 	private Skill skill;
@@ -32,7 +32,7 @@ public class Attack extends SkillAbility{
 	}
 
 	private Entity getTargetEntity() {
-		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
+		return getSourceEntity().getGamemap().getEntity(getSourceEntity().getLocationFacing());
 	}
 
 	@Override
