@@ -43,7 +43,7 @@ public class InventoryView extends ModelView {
 
     private Entity avatar;
     
-    String info = "asd";
+    String info = "";
     
     private HashMap<String,Color> options = new HashMap<String,Color>();
 
