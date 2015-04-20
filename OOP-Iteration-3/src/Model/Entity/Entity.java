@@ -53,8 +53,7 @@ public class Entity implements MovementInterface {
 	
 	private Skill activeSkill;
 
-	//TODO rename. ALSO NUMBER OF POINTS IS 1 FOR TESTING PURPOSES ONLY. CHANGE BACK!!!
-	protected int numOfPointsCanAllocateToLevelUpSkill = 1;
+	protected int numOfPointsCanAllocateToLevelUpSkill = 3;
 
 	protected GameMap map;
 	

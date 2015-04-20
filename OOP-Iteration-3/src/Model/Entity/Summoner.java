@@ -80,6 +80,7 @@ public class Summoner extends Occupation{
     @Override
     public void visit(SummonerWeaponItem sumwi) {
         getEntity().equipItem(sumwi);
+        getEntity().setActiveSkill(staff);
     }
 
     @Override
