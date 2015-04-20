@@ -52,13 +52,19 @@ public class NPC extends Entity {
 	}
 	
 	public void sleep() {
+		becomeNonHostile();
 	}
 	
 	public void charm() {
 		becomeNonHostile();
 	}
 
-	public void polymorph() {		// TODO enchantment spell methods
+	public void polymorph() {		// TODO change image to sheep
+		
+	}
+	
+	public void unpolymorph(){		// TODO change to default image
+		
 	}
 	
 
