@@ -1,5 +1,8 @@
 package Model.SaveSystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +35,20 @@ public class SaveDriver {
 		this.saver = saver;
 		
 		save = saveEverything();
-		System.out.println(save);
+		
+		String fname = "save.csv";
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(fname);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		writer.println(save);
+		writer.close();
+		//File saveFile = new File(System.getProperty("user.dir") + "/Assets/save");
+		
+		System.out.println("GAME SAVED");
 		
 	}
 	
