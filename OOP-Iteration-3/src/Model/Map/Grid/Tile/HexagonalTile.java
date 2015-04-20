@@ -54,7 +54,11 @@ public class HexagonalTile extends Tile {
 	}
 	
 	public String toString() {
-		return getLocation().getU() + ", " + getLocation().getV();
+		//return getLocation().getU() + ", " + getLocation().getV();
+		StringBuilder builder = new StringBuilder();
+		//builder.append(super.getTerrain().toString());
+		
+		return builder.toString();
 	}
 	
 	@Override

@@ -20,4 +20,8 @@ public class Mountain extends Terrain {
 		return Color.LIGHT_GRAY;
 	}
 	
+	public String toString()
+	{
+		return "Mountain Tile";
+	}
 }

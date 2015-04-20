@@ -96,7 +96,14 @@ public abstract class Tile {
 	}
 	
 	public String toString() {
-		return "";
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("Tile");
+		builder.append(terrain_.toString());
+		//builder.append();
+		
+		return builder.toString();
 	}
 	
 	public boolean hasEntity() {

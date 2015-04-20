@@ -3,6 +3,7 @@ package Model.Map;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
@@ -29,6 +30,17 @@ public class GameMap {
 		 gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
 		 mapView = new GameMapView(this);
 		 //gameMapGrid.initalize();
+		 
+		// System.out.println("======MAP=======");
+		// System.out.println(gameMapGrid.toString());
+	}
+	
+	public GameMap(int width, int height)
+	{
+		this.HEIGHT = height;
+		this.WIDTH = width;
+		gameMapGrid =  new HexagonalGrid(HEIGHT, WIDTH);
+		mapView = new GameMapView(this);
 	}
 	
 	public void add(int x, int y, Tile t)
@@ -102,5 +114,20 @@ public class GameMap {
 		e.setLocation(location);
 		hexTile.setEntity(e);
 	}
+	
+	
+	public Iterator<HexagonalTile> getIterator()
+	{
+		gameMapGrid.initializeIterator();
+		return gameMapGrid;
+	}
+	
+	
+	
+	public void addEntity(int i , int j, Entity e)
+	{
+		gameMapGrid.addEntity(i, j, e);
+	}
+	
 	
 }
