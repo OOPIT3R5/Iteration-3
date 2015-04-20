@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
+import Model.Entity.NPC;
 import Model.Items.MapObject;
 import Model.Map.Grid.DrawableHexGridInterface;
 import Model.Map.Grid.HexagonalGrid;
@@ -135,6 +136,24 @@ public class GameMap {
 	public void addMapObject(int i , int j , MapObject mo)
 	{
 		gameMapGrid.addMapObject(i , j , mo);
+	}
+	
+	public ArrayList<Entity> getAllNPCS()
+	{
+		ArrayList<Entity> npcs = new ArrayList<Entity>();
+		gameMapGrid.initializeIterator();
+		Iterator<HexagonalTile> iterator = gameMapGrid;
+		while(iterator.hasNext())
+		{
+			HexagonalTile tile = iterator.next();
+			Entity curEntity = tile.getEntity();
+			if(curEntity != null)
+				npcs.add(curEntity);
+		}
+		
+		return npcs;
+		
+		
 	}
 	
 }

@@ -72,6 +72,8 @@ public class GameController extends Controller implements Observer {
 		listeners.add(new MoveNorthwest());
 		listeners.add(new MoveSoutheast());
 		listeners.add(new MoveSouthwest());
+		listeners.add(new UpdateAllEntities());
+		listeners.add(new Save());
 		HashMap<String, Ability> abilities = avatar.getOccupation().getAbilities();
 		int i = 1;
 		String name = "ACTION" + i;
@@ -99,6 +101,28 @@ public class GameController extends Controller implements Observer {
 			int key = e.getKeyCode();
 			if(key == KeySet.getKey("BACK")){
 				setNext(MainMenuController.getInstance());		
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			
+		}
+	}
+	
+	public class Save implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if(key == KeySet.getKey("SAVE")){
+				//INSERT SAVE HERE	
 			}
 			
 		}
@@ -314,6 +338,24 @@ public class GameController extends Controller implements Observer {
 		@Override
 		public void keyTyped(KeyEvent arg0) {
 			// TODO Auto-generated method stub
+			
+		}
+	}
+	public class UpdateAllEntities implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
 			
 		}
 	}

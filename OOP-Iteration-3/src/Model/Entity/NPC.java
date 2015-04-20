@@ -27,6 +27,10 @@ public class NPC extends Entity {
 	}
 
 	/*AI stuff*/
+	public void performAction(){
+		makeActionChoice();
+	}
+	
 	public void makeActionChoice(){
 		hostility.act();
 	}
