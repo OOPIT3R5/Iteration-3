@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import Model.Entity.Avatar;
 import Model.Entity.Entity;
+import Model.Entity.HelpfulMenace;
+import Model.Entity.NPC;
+import Model.Entity.Pet;
 import Model.Entity.Monster;
 import Model.Entity.PetOwnership;
 import Model.Entity.TroublesomeMenace;
@@ -33,8 +36,8 @@ public class DefaultGame {
 		System.out.println("EMPHASIS");
 		Entity monster = new Monster();
 		
-		TroublesomeMenace pet = new TroublesomeMenace();
-		PetOwnership po = new PetOwnership(gm.getAvatar(), pet);
+		Entity pet = new TroublesomeMenace();
+		PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
 		
 		
 		MapObject shoes = null;
@@ -44,11 +47,15 @@ public class DefaultGame {
 			e.printStackTrace();
 		}
 		
+		Entity NoMoveEntity = new Monster();
+		((NPC)NoMoveEntity).becomeNonHostile();
+		gm.addEntity(1, 6, NoMoveEntity );
 		
 		gm.addEntity(5, 5, monster);
 		gm.addMapObject(1, 2, shoes);
 		gm.addEntity(2, 2, pet);
 		
+		NoMoveEntity.setMap(gm);
 		pet.setMap(gm);
 		monster.setMap(gm);
 		System.out.println("MONSTER BEEN ADDED TO MAP");

@@ -57,7 +57,7 @@ public class Hostility {
 			hostileAct();
 		}
 		else{
-			nonHostileAct();		
+		//	nonHostileAct();		
 		}
 	}
 	

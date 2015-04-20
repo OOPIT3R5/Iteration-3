@@ -56,7 +56,7 @@ public class TroublesomeMenace extends NonAdversarial implements Pet{
 			a = po.followAvatar();
 			System.out.println("doing nothing - I mean continuing to follow master");
 		}
-		//a.execute();
+		a.execute();
 	}
 	@Override
 	public Ability attackInVicinity() {

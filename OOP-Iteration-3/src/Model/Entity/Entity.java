@@ -385,4 +385,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 	{
 		return this.name + " , " +  this.currentPosition.toString();
 	}
+
+
+	
 }
