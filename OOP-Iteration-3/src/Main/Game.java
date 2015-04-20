@@ -80,6 +80,11 @@ public class Game {
 	public void setGameMap(GameMap gameMap) {
 		this.gameMap = gameMap;
 	}
+	
+	public void erase()
+	{
+		gameMap.eraseEverything();
+	}
 
 
 }

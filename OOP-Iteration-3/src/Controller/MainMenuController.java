@@ -1,6 +1,7 @@
 package Controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import Main.RunGame;
 import Model.Entity.Avatar;
 import Model.Entity.Summoner;
 import Model.Menu.MainMenu;
+import Model.SaveSystem.GameLoader;
 import Utility.DefaultGame;
 import View.ModelView;
 
@@ -117,6 +119,9 @@ public class MainMenuController extends Controller {
 					new Summoner(avatar); // delete later
 					Game game = new Game(avatar);
 					//DefaultGame dg = new DefaultGame(game.getGameMap());
+					//game.erase(); // might not actually need to call this
+					File loadFile = new File("save.csv");
+					GameLoader loader = new GameLoader(loadFile, avatar);
 					GameController.setGame(game);
 					
 				}

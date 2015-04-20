@@ -170,6 +170,6 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 	
 	public String toString()
 	{
-		return this.getU() + " , " + this.getV();
+		return this.getU() + "," + this.getV();
 	}
 }

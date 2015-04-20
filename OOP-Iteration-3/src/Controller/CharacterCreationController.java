@@ -25,7 +25,7 @@ public class CharacterCreationController extends Controller  {
 	KeyListener down = new DownAction();
 	KeyListener enter = new Update();
 	KeyListener render = new Render();
-	
+
 	private CharacterCreationController() {
 		avatar = new Avatar();
 	}
@@ -110,7 +110,9 @@ public class CharacterCreationController extends Controller  {
 					setNext(GameController.getInstance()); //change controllers
 					new Summoner(avatar); //create summoner
 					Game game = new Game(avatar); //create new game with our new avatar
+					
 					DefaultGame dg = new DefaultGame(game.getGameMap());
+		
 					GameController.setGame(game); //set the game to the controller
 					
 
@@ -147,6 +149,8 @@ public class CharacterCreationController extends Controller  {
 		public void keyTyped(KeyEvent arg0) {
 			
 		}
+		
+	
 	}
 
 }

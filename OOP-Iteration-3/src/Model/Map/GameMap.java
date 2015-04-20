@@ -156,4 +156,14 @@ public class GameMap {
 		
 	}
 	
+	public void eraseEverything()
+	{
+		Iterator<HexagonalTile> iterator = gameMapGrid;
+		while(iterator.hasNext())
+		{
+			HexagonalTile tile = iterator.next();
+			tile.nullify();
+		}
+	}
+	
 }

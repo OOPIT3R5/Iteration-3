@@ -68,7 +68,7 @@ public class Inventory {
     public String toString()
     {
     	StringBuilder builder = new StringBuilder();
-    	System.out.println("HERE IN INVENTORY");
+    	
     	for(TakeableItem t: inventory)
     	{
     		builder.append(t.toMyString());

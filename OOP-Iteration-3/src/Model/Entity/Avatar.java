@@ -48,12 +48,12 @@ public class Avatar extends Entity{
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("avatar, ");
-		builder.append("ITEMS, ");
+		builder.append("avatar,");
+		builder.append("ITEMS,");
 		builder.append(super.getActualInventory().toString());
-		builder.append("STATS, ");
+		builder.append("STATS,");
 		builder.append(super.getStatistics().toString());
-		builder.append("LOCATION, ");
+		builder.append("LOCATION,");
 		builder.append(super.getLocation().toString());
 		return builder.toString();
 	}

@@ -9,6 +9,7 @@ import Model.Entity.PetOwnership;
 import Model.Entity.TroublesomeMenace;
 import Model.Items.MapObject;
 import Model.Items.ShoesItem;
+import Model.Items.TakeDamageAreaEffect;
 import Model.Map.GameMap;
 import View.Model.MapObjectView;
 
@@ -38,13 +39,15 @@ public class DefaultGame {
 		
 		
 		MapObject shoes = null;
+		MapObject takeDamage = null;
 		try {
-			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(1, 1)));
+			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(3, 1)));
+			takeDamage = new TakeDamageAreaEffect(10, new MapObjectView(MapObjectView.getSpriteFromFE(0, 8)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		
+		gm.addMapObject(5,7, takeDamage);
 		gm.addEntity(5, 5, monster);
 		gm.addMapObject(1, 2, shoes);
 		gm.addEntity(2, 2, pet);

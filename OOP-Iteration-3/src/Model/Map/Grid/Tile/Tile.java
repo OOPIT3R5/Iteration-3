@@ -121,5 +121,10 @@ public abstract class Tile {
 		else return false;
 	}
 	
+	public void nullify()
+	{
+		this.entity_ = null;
+		this.map_object_ = null;
+	}
 	
 }

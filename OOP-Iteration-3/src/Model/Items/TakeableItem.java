@@ -27,7 +27,7 @@ public abstract class TakeableItem extends Item{
  
     	StringBuilder builder = new StringBuilder();
     	builder.append(super.getName());
-    	builder.append(" , ");
+    	builder.append(",");
     	
     	return builder.toString();
     }
