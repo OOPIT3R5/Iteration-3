@@ -33,7 +33,6 @@ public class Avatar extends Entity{
 
 	public void performAction() {
 		// TODO Auto-generated method stub
-		System.out.println("Entities should be moving");
 	}
 		
 	public void render(Graphics g, HexagonalLocation center) {

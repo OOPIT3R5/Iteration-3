@@ -13,7 +13,7 @@ public abstract class MapObject {
 	
     abstract boolean isPassable();
 
-    abstract void onTouch(Entity entity);
+    public abstract void onTouch(Entity entity);
 
     public abstract MapObjectView getMapObjectView();
 

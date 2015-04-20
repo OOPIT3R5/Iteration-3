@@ -1,6 +1,7 @@
 package Model.Entity.Ability;
 
 import Model.Entity.Entity;
+import Model.Items.MapObject;
 import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
@@ -23,11 +24,12 @@ public class Move extends Ability {
 		GameMap map = sourceEntity.getGamemap();
 		
 		Tile oldTile = map.getTile(currentEntity.getLocation());
-		if (currentEntity.getDirectionFacing() == direction){		// move forward
+		if (currentEntity.getDirectionFacing() == direction) {		// move forward
 			currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?
 			Tile newTile = map.getTile(currentEntity.getLocation());
 			oldTile.removeEntity();
 			newTile.setEntity(currentEntity);
+			newTile.getMapObject().onTouch(currentEntity);
 		} else {	// turn around without moving forward
 			currentEntity.setDirection(direction);
 		}

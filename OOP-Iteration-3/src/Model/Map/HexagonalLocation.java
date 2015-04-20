@@ -109,7 +109,7 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 	/** Rectilinear distance between two Hex coordinates. */
 	public static int rectilinearDistance(HexagonalLocation a, HexagonalLocation b) {				
 		return Math.max(Math.max(Math.abs(a.getU() - b.getU()),
-				Math.abs(-a.getU() - a.getV() + b.getU() + b.getV())),
+				Math.abs(- a.getU() - a.getV() + b.getU() + b.getV())),
 				Math.abs(a.getV() - b.getV()));
 	}
 	

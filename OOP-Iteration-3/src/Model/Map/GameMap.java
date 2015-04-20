@@ -106,16 +106,22 @@ public class GameMap {
 	
 	public void render(Graphics g, Avatar av) {
 		mapView.render(g);
-		gameMapGrid.render(g, avatar.getLocation(), 7);
+		gameMapGrid.render(g, av.getLocation(), 7);
 		//DrawableHexGridInterface drawable_grid = gameMapGrid;
 		//drawable_grid.render(g, new Point(400, 400), (HexagonalLocation)av.getLocation(), 3, 40);
 	}
 
-	public void spawn(Entity e, HexagonalLocation location)
-	{
+	public void spawn(Entity e, HexagonalLocation location) {
 		HexagonalTile hexTile = gameMapGrid.get(location);
 		e.setLocation(location);
 		hexTile.setEntity(e);
+	}
+	
+
+
+	public void spawnObject(MapObject o, HexagonalLocation location) {
+		HexagonalTile hexTile = gameMapGrid.get(location);
+		hexTile.setMapObject(o);
 	}
 	
 	
