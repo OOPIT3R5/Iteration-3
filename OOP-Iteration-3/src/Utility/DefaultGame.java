@@ -37,7 +37,7 @@ public class DefaultGame {
 		System.out.println("EMPHASIS");
 		Entity monster = new Monster();
 		
-		Entity pet = new TroublesomeMenace();
+		Entity pet 
 		PetOwnership po = new PetOwnership(gm.getAvatar(), ((Pet)pet));
 		
 		
@@ -48,6 +48,7 @@ public class DefaultGame {
 		MapObject shoes = null;
 		try {
 			shoes = new ShoesItem(10, "nike", new MapObjectView(MapObjectView.getSpriteFromFE(1, 1)));
+			pet = = new TroublesomeMenace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
