@@ -65,7 +65,7 @@ public class Avatar extends Entity{
 	}
 
 	@Override
-	protected boolean isPassable() {
+	public boolean isPassable() {
 		// TODO Auto-generated method stub
 		return false;
 	}

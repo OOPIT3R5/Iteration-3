@@ -12,7 +12,7 @@ import View.Model.MapObjectView;
 
 public abstract class MapObject extends Observable {
 	
-    protected abstract boolean isPassable();
+    public abstract boolean isPassable();
 
     public abstract void onTouch(Entity entity);
 

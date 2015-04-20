@@ -59,8 +59,10 @@ public class DefaultGame {
 		MapObject levelUp3 = null;
 		MapObject levelUp4 = null;
 		MapObject teleport = null;
+		MapObject obstacle = null;
 		
 		try {
+			obstacle = new Obstacle("big boulder",  new MapObjectView(MapObjectView.getSpriteFromPokemon(1, 0)));
 			teleport = new OneShotItem(new TeleportItemAbility(47, 25, gm), "awesome tel",  new MapObjectView(MapObjectView.getSpriteFromFE(11, 0)));
 			levelUp = new LevelUpAreaEffect( new MapObjectView(MapObjectView.getSpriteFromFE(2, 0)));
 			levelUp2 = new LevelUpAreaEffect( new MapObjectView(MapObjectView.getSpriteFromFE(2, 0)));
@@ -86,6 +88,7 @@ public class DefaultGame {
 		gm.spawn(monster, new HexagonalLocation(5, 5));
 
 		NoMoveEntity.setLocation(new HexagonalLocation(1,6));
+		gm.addMapObject(2, 2, obstacle);
 		gm.spawn(NoMoveEntity, new HexagonalLocation(1,6));
 		gm.addMapObject(1, 1, teleport);
 		gm.addMapObject(50, 51, levelUp);

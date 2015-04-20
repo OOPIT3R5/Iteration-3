@@ -187,17 +187,20 @@ public class StatisticContainer {
 
     private void checkIfDead() {
         if(life.getCurrentValue() <= 0){
-            life.reset();
+    		life.addPermanentValue(9000);;
             livesleft.addPermanentValue(-1);
-            checkIfGameOver();
         }
-    }
+
+        	if(livesleft.getCurrentValue() == 0){
+              
+        		e.removeFromMap();
+        	}
+        }
+    
 
     private void checkIfGameOver() {
         if(livesleft.getCurrentValue() <= 0) {
-            System.out.println("You're dead.");
-            e.setLocation(null);
-            e.removeFromMap();
+           // e.setLocation(null);
         }
         else
             life.addPermanentValue(life.getMaxValue());   //Make it go back to the top.

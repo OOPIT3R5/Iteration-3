@@ -104,18 +104,30 @@ public class HexagonalTile extends Tile {
 	
 	@Override
 	public void prospectiveMovement(MovementInterface target, Direction direction) {
+		boolean go = true;
+		if(super.hasMapObject()){
+			if(!super.getMapObject().isPassable()) {
+				go = false;
+				target.disableMove(direction);
+			}
+		}
 		if (super.hasEntity()) {
+			go = false;
 			super.getEntity().disableMove(Direction.intToHex(Direction.hexToInt(direction) + 3));
 			target.disableMove(direction);
-		} else
+		}
+		if (go)
 			getTerrain().notifyOfEntity(target, direction);
+		
 	}
 	
 	public void cacheEntity() {
 		//Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp
 		Entity to_cache = getEntity();
-		System.out.println(to_cache.getLocation().toString());
-		cached_entity_ = new CachedEntity(to_cache.getDirectionFacing(), to_cache.getLocation(),
+		//System.out.println(to_cache.getLocation().toString());
+		if(to_cache != null)
+			cached_entity_ = new CachedEntity(to_cache.getDirectionFacing(), to_cache.getLocation(),
+				
 				to_cache.getStatistics().getLife(), to_cache.getStatistics().getMana());
 	}
 	
