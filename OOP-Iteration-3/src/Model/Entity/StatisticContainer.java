@@ -78,76 +78,12 @@ public class StatisticContainer {
     }
 
 
-    public int getLevel(){
-        return level.getCurrentValue();
+    public void addDefense(int amt){
+        defense.addTemporaryValue(amt);
     }
 
-    public int getStrength() {
-        return strength.getCurrentValue();
-    }
-
-    public int getAgility(){
-        return agility.getCurrentValue();
-    }
-
-    public int getIntellect(){
-        return intellect.getCurrentValue();
-    }
-
-    public int getHardiness(){
-        return hardiness.getCurrentValue();
-    }
-
-    public int getMovement(){
-        return movement.getCurrentValue();
-    }
-
-    public int getExperience() {
-        return experience.getCurrentValue();
-    }
-
-    public int getNumLivesLeft(){
-        return livesleft.getCurrentValue();
-    }
-
-    public int getLife(){
-        return life.getCurrentValue();
-    }
-    public int getMaxLife(){
-        return life.getMaxValue();
-    }
-    public int getMana(){
-        return mana.getCurrentValue();
-    }
-    public int getMaxMana(){
-        return mana.getMaxValue();
-    }
-
-    public int getMaxLivesLeft(){
-        return livesleft.getMaxValue();
-    }
-    public int getOffensiveRating(){
-        return offense.getCurrentValue() + level.getCurrentValue();
-    }
-
-    public int getDefensiveRating(){
-        return agility.getCurrentValue() + level.getCurrentValue();
-    }
-
-    public int getArmorRating(){
-        return defense.getCurrentValue() + level.getCurrentValue();
-    }
-    
-    public void regenMana(){
-    	mana.addPermanentValue(5);
-    }
-
-    private void checkLevelUp(){
-        if(experience.getCurrentValue() > 1000){
-            level.addPermanentValue(1);             //Update level.
-            levelupAllStatistics();                 //Level up all primary statistics.
-            experience.reset();
-        }
+    public void addOffense(int amt){
+        offense.addTemporaryValue(amt);
     }
 
     public void awardExperience(int experience){
@@ -155,34 +91,9 @@ public class StatisticContainer {
         checkLevelUp();                                 // Check if we had a level up after this.
     }
 
-    private void levelupAllStatistics(){
-        strength.levelUpStat();
-        agility.levelUpStat();
-        intellect.levelUpStat();
-        hardiness.levelUpStat();
-        movement.levelUpStat();
-    }
-
-    public void addOffense(int amt){
-        offense.addTemporaryValue(amt);
-    }
-
-    public void addDefense(int amt){
-        defense.addTemporaryValue(amt);
-    }
-
     public void changeHealth(int change){
         life.addPermanentValue(change);
         checkIfDead();
-    }
-
-    public boolean useMana(int manausage){
-    	if (manausage > getMana()){
-    		return false;
-    	} else {
-    		mana.addPermanentValue(-1*manausage);
-    		return true;
-    	}
     }
 
     private void checkIfDead() {
@@ -196,7 +107,6 @@ public class StatisticContainer {
         		e.removeFromMap();
         	}
         }
-    
 
     private void checkIfGameOver() {
         if(livesleft.getCurrentValue() <= 0) {
@@ -206,10 +116,92 @@ public class StatisticContainer {
             life.addPermanentValue(life.getMaxValue());   //Make it go back to the top.
     }
 
-	public void increaseSpeed(int newSpeed) {
+    private void checkLevelUp(){
+        if(experience.getCurrentValue() > 1000){
+            level.addPermanentValue(1);             //Update level.
+            levelupAllStatistics();                 //Level up all primary statistics.
+            experience.reset();
+        }
+    }
+
+    public int getAgility(){
+        return agility.getCurrentValue();
+    }
+
+    public int getArmorRating(){
+        return defense.getCurrentValue() + level.getCurrentValue();
+    }
+    public int getDefensiveRating(){
+        return agility.getCurrentValue() + level.getCurrentValue();
+    }
+    public int getExperience() {
+        return experience.getCurrentValue();
+    }
+    public int getHardiness(){
+        return hardiness.getCurrentValue();
+    }
+
+    public int getIntellect(){
+        return intellect.getCurrentValue();
+    }
+    public int getLevel(){
+        return level.getCurrentValue();
+    }
+
+    public int getLife(){
+        return life.getCurrentValue();
+    }
+
+    public int getMana(){
+        return mana.getCurrentValue();
+    }
+    
+    public int getMaxLife(){
+        return life.getMaxValue();
+    }
+
+    public int getMaxLivesLeft(){
+        return livesleft.getMaxValue();
+    }
+
+    public int getMaxMana(){
+        return mana.getMaxValue();
+    }
+
+    public int getMovement(){
+        return movement.getCurrentValue();
+    }
+
+    public int getNumLivesLeft(){
+        return livesleft.getCurrentValue();
+    }
+
+    public int getOffensiveRating(){
+        return offense.getCurrentValue() + level.getCurrentValue();
+    }
+
+    public int getStrength() {
+        return strength.getCurrentValue();
+    }
+
+    public void increaseSpeed(int newSpeed) {
 		movement = new Statistic(newSpeed, 50);
 	}
-	
+
+    private void levelupAllStatistics(){
+        strength.levelUpStat();
+        agility.levelUpStat();
+        intellect.levelUpStat();
+        hardiness.levelUpStat();
+        movement.levelUpStat();
+    }
+    
+
+    public void regenMana(){
+    	mana.addPermanentValue(5);
+    }
+
+	@Override
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
@@ -228,4 +220,13 @@ public class StatisticContainer {
 	    builder.append(defense.getCurrentValue()+ ",");
 		return builder.toString();
 	}
+	
+	public boolean useMana(int manausage){
+    	if (manausage > getMana()){
+    		return false;
+    	} else {
+    		mana.addPermanentValue(-1*manausage);
+    		return true;
+    	}
+    }
 }

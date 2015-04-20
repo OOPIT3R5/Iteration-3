@@ -3,10 +3,8 @@ package View.Model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.Observable;
 
 import Model.Map.HexagonalLocation;
-import View.ModelView;
 import View.View;
 
 public class HexTileView {

@@ -12,6 +12,7 @@ public class PublicHorse extends NonAdversarial implements Mount{
 	}
 
 	
+	@Override
 	public void makeActionChoice(){
 		if (m.isMounted){
 			makeMountedActionChoice();

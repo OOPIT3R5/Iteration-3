@@ -13,13 +13,8 @@ public class RectangularLocation extends Location implements RectangularCoordina
 	}
 	
 	@Override
-	public int getX() {
-		return coordinate[0];
-	}
-
-	@Override
-	public int getY() {
-		return coordinate[1];
+	public RectangularLocation getNeighbor(Direction d) {
+		return getNeighbor(Direction.octToInt(d));
 	}
 
 	@Override
@@ -43,10 +38,15 @@ public class RectangularLocation extends Location implements RectangularCoordina
 		}
 		return null;
 	}
+
+	@Override
+	public int getX() {
+		return coordinate[0];
+	}
 	
 	@Override
-	public RectangularLocation getNeighbor(Direction d) {
-		return getNeighbor(Direction.octToInt(d));
+	public int getY() {
+		return coordinate[1];
 	}
 	
 	/*public double angle() {

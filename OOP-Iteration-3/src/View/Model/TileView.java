@@ -11,12 +11,6 @@ public class TileView extends ModelView{
 	BufferedImage tileImage;
 
 	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void accept(View view) {
 		view.visit(this);
 		
@@ -24,6 +18,12 @@ public class TileView extends ModelView{
 
 	@Override
 	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}

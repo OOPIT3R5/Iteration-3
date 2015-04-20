@@ -5,12 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KeySet {
-	 private static Map<String, Integer> keyBindings = new HashMap<String, Integer>();
+	 public static int getKey(String s){
+        return keyBindings.get(s);
+    }
 	 
-	//key binding operations
-	 public KeySet(){
-		 keyReset();
-	  }
+	public static Map<String, Integer> getKeys(){
+        return keyBindings;
+    }
     public static void keyReset(){
         keyBindings.put("SOUTHWEST",KeyEvent.VK_A);
         keyBindings.put("SOUTH",KeyEvent.VK_S);
@@ -35,15 +36,14 @@ public class KeySet {
         keyBindings.put("ACTION12",KeyEvent.VK_EQUALS);
         keyBindings.put("SAVE",KeyEvent.VK_P);
     }
-    public static int getKey(String s){
-        return keyBindings.get(s);
-    }
-
-    public static Map<String, Integer> getKeys(){
-        return keyBindings;
-    }
-
     public static void setKey(String s, int i){
         keyBindings.put(s,i);
     }
+
+    private static Map<String, Integer> keyBindings = new HashMap<String, Integer>();
+
+    //key binding operations
+	 public KeySet(){
+		 keyReset();
+	  }
 }

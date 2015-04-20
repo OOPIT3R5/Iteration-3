@@ -2,7 +2,6 @@ package Model.Entity.Ability;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
-import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
@@ -16,6 +15,10 @@ public class RemoveTrap extends SkillAbility {
 		this.skill = skill;
     }
 
+	private void activateTargetTrap(){
+		getTargetTile().activateTrap(sourceEntity);
+	}
+	
 	@Override
     public void execute() {		
 		double probabilityOfSuccess = RandomlyGenerate.probability();
@@ -28,26 +31,22 @@ public class RemoveTrap extends SkillAbility {
 		}
 	}
 	
-	public Tile getTargetTile(){
-		return sourceEntity.getGamemap().getTile(getSourceEntity().getLocationFacing());
-	}
-	
-	private void activateTargetTrap(){
-		getTargetTile().activateTrap(sourceEntity);
-	}
-	
-	private void removeTargetTrap(){
-		getTargetTile().removeTrap();
-	}
-
 	@Override
 	protected int getSkillLevel() {
 		return skill.getCurrentLevel();
 	}
-
+	
 	@Override
 	protected Entity getSourceEntity() {
 		return sourceEntity;
+	}
+
+	public Tile getTargetTile(){
+		return sourceEntity.getGamemap().getTile(getSourceEntity().getLocationFacing());
+	}
+
+	private void removeTargetTrap(){
+		getTargetTile().removeTrap();
 	}
 
 }

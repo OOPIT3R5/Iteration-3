@@ -1,6 +1,5 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
 import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
@@ -10,7 +9,8 @@ public class ArmorItem extends EquippableItem{
         super(statchange, name, mov);
     }
 
-    public void accept(TakeableItemVisitor eiv){
+    @Override
+	public void accept(TakeableItemVisitor eiv){
         eiv.visit(this);
     }
 

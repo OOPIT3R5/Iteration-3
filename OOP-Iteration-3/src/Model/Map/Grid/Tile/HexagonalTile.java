@@ -2,33 +2,21 @@ package Model.Map.Grid.Tile;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.io.IOException;
 
 import Model.Entity.Entity;
 import Model.Entity.MovementInterface;
 import Model.Items.MapObject;
 import Model.Map.Direction;
-import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Terrain.Grass;
 import Model.Terrain.Terrain;
-import View.EntityView;
 import View.NpcView;
 import View.Model.HexTileView;
 
 public class HexagonalTile extends Tile {
 	
-	HexTileView hView;
-	HexTileView hViewNonvisible;
-	HexTileView black;
-	
-	private CachedEntity cached_entity_;
-	private MapObject cached_map_object_;
-	
-	private boolean has_been_seen_ = false;
-
 	private class CachedEntity {
 		public Direction directionFacing_;
 		public HexagonalLocation currentLocation_;
@@ -42,6 +30,15 @@ public class HexagonalTile extends Tile {
 			mhp_ = mhp;
 		}
 	}
+	HexTileView hView;
+	HexTileView hViewNonvisible;
+	
+	HexTileView black;
+	private CachedEntity cached_entity_;
+	
+	private MapObject cached_map_object_;
+
+	private boolean has_been_seen_ = false;
 	
 	public HexagonalTile() {
 		super(new Grass());
@@ -57,40 +54,29 @@ public class HexagonalTile extends Tile {
 		black = new HexTileView(getLocation(), Color.DARK_GRAY);
 	}
 
+	public void cacheEntity() {
+		//Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp
+		Entity to_cache = getEntity();
+		//System.out.println(to_cache.getLocation().toString());
+		if(to_cache != null)
+			cached_entity_ = new CachedEntity(to_cache.getDirectionFacing(), to_cache.getLocation(),
+				
+				to_cache.getStatistics().getLife(), to_cache.getStatistics().getMana());
+	}
+	
 	@Override
 	public HexagonalTile clone() {
 		return new HexagonalTile(super.getTerrain());
 	}
-	
-	@Override
-	public void setLocation(int u, int v) {
-		setLocation(new HexagonalLocation(u, v));
-	}
 
-	@Override
-	public void setLocation(Location hex_location) {
-		super.putLocation((HexagonalLocation)hex_location);
-		hView.update(getLocation());
-		hViewNonvisible.update(getLocation());
-		black.update(getLocation());
+	public boolean equals(HexagonalTile other) {
+		return getLocation().equals(other.getLocation())
+				&& getTerrain() == other.getTerrain();
 	}
 
 	@Override
 	public HexagonalLocation getLocation() {
 		return (HexagonalLocation)super.getLocation();
-	}
-	
-	public boolean equals(HexagonalTile other) {
-		return getLocation().equals(other.getLocation())
-				&& getTerrain() == other.getTerrain();
-	}
-	
-	public String toString() {
-		//return getLocation().getU() + ", " + getLocation().getV();
-		StringBuilder builder = new StringBuilder();
-		//builder.append(super.getTerrain().toString());
-		
-		return builder.toString();
 	}
 	
 	@Override
@@ -119,16 +105,6 @@ public class HexagonalTile extends Tile {
 		if (go)
 			getTerrain().notifyOfEntity(target, direction);
 		
-	}
-	
-	public void cacheEntity() {
-		//Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp
-		Entity to_cache = getEntity();
-		//System.out.println(to_cache.getLocation().toString());
-		if(to_cache != null)
-			cached_entity_ = new CachedEntity(to_cache.getDirectionFacing(), to_cache.getLocation(),
-				
-				to_cache.getStatistics().getLife(), to_cache.getStatistics().getMana());
 	}
 	
 	public void render(Graphics g, HexagonalLocation center) {
@@ -167,6 +143,28 @@ public class HexagonalTile extends Tile {
 				
 			}
 		}
+	}
+	
+	@Override
+	public void setLocation(int u, int v) {
+		setLocation(new HexagonalLocation(u, v));
+	}
+	
+	@Override
+	public void setLocation(Location hex_location) {
+		super.putLocation(hex_location);
+		hView.update(getLocation());
+		hViewNonvisible.update(getLocation());
+		black.update(getLocation());
+	}
+	
+	@Override
+	public String toString() {
+		//return getLocation().getU() + ", " + getLocation().getV();
+		StringBuilder builder = new StringBuilder();
+		//builder.append(super.getTerrain().toString());
+		
+		return builder.toString();
 	}
 
 	

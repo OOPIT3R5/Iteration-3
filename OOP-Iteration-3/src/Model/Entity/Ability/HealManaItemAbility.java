@@ -1,6 +1,5 @@
 package Model.Entity.Ability;
 
-import Model.Entity.Entity;
 
 public class HealManaItemAbility extends ItemAbility {
     private int MPHealed;

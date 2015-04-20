@@ -2,8 +2,6 @@ package Model.Entity.Ability;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
-import Model.Map.GameMap;
-import Model.Map.Grid.Tile.Tile;
 
 public class BindWounds extends SkillAbility{
 	

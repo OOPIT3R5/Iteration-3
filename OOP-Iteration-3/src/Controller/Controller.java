@@ -4,29 +4,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import Main.KeySet;
 import View.ModelView;
 
 public abstract class Controller extends Observable {
-	Controller next;
-	public abstract ModelView getView();
-	public abstract void register(JFrame f);
-	public abstract void deRegister(JFrame f);
-	
-	public Controller(){
-		setNext(this);
-	}
-	public Controller update(){
-		return next;
-	}
-	
-	public void setNext(Controller next){
-		this.next = next;
-	}
-	
 	public class Render implements KeyListener {
 
 		@Override
@@ -45,5 +27,21 @@ public abstract class Controller extends Observable {
 		public void keyTyped(KeyEvent arg0) {
 			
 		}
+	}
+	Controller next;
+	public Controller(){
+		setNext(this);
+	}
+	public abstract void deRegister(JFrame f);
+	
+	public abstract ModelView getView();
+	public abstract void register(JFrame f);
+	
+	public void setNext(Controller next){
+		this.next = next;
+	}
+	
+	public Controller update(){
+		return next;
 	}
 }		

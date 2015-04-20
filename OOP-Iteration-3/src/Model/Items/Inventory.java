@@ -1,8 +1,8 @@
 package Model.Items;
 
-import View.Model.MapObjectView;
-
 import java.util.ArrayList;
+
+import View.Model.MapObjectView;
 
 public class Inventory {
     private ArrayList<TakeableItem> inventory;
@@ -13,36 +13,31 @@ public class Inventory {
         goldamount = 50;
     }
 
+    public void addGold(int goldamount){
+        this.goldamount += goldamount;
+    }
+
     public void addToInventory(TakeableItem ti){
         inventory.add(ti);
     }
 
-    public TakeableItem takeFromInventory(TakeableItem ti){
-        inventory.remove(ti);
-        return ti;
-    }
-
-    public TakeableItem takeFromInventory(int index){
-        if(index >= inventory.size())
-            return null;
-        TakeableItem ti = inventory.get(index);
-        inventory.remove(index);
-        return ti;
-    }
-    
     public TakeableItem getFromInventory(int index){
         if(index >= inventory.size())
             return null;
         TakeableItem ti = inventory.get(index);
         return ti;
     }
-
+    
     public int getGoldamount(){
         return goldamount;
     }
 
-    public void addGold(int goldamount){
-        this.goldamount += goldamount;
+    public ArrayList<MapObjectView> getViews() {
+        ArrayList<MapObjectView> returned = new ArrayList<MapObjectView>();
+        for(TakeableItem ti : inventory){
+            returned.add(ti.getMapObjectView());
+        }
+        return returned;
     }
 
     public int stealGold(int gold) {
@@ -57,15 +52,21 @@ public class Inventory {
         }
     }
 
-    public ArrayList<MapObjectView> getViews() {
-        ArrayList<MapObjectView> returned = new ArrayList<MapObjectView>();
-        for(TakeableItem ti : inventory){
-            returned.add(ti.getMapObjectView());
-        }
-        return returned;
+    public TakeableItem takeFromInventory(int index){
+        if(index >= inventory.size())
+            return null;
+        TakeableItem ti = inventory.get(index);
+        inventory.remove(index);
+        return ti;
     }
 
-    public String toString()
+    public TakeableItem takeFromInventory(TakeableItem ti){
+        inventory.remove(ti);
+        return ti;
+    }
+
+    @Override
+	public String toString()
     {
     	StringBuilder builder = new StringBuilder();
     	

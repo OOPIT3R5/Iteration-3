@@ -2,21 +2,15 @@ package View;
 
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Map.Entry;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import Main.KeySet;
-import Main.RunGame;
 @SuppressWarnings("serial")
 public class ConfigControlsView extends ModelView implements Observer{
 	
@@ -39,6 +33,9 @@ public class ConfigControlsView extends ModelView implements Observer{
 		view.visit(this);
 	}
 
+	public String keyToChar(int i){
+		return KeyEvent.getKeyText(i);
+	}
 	@Override
 	public void render(Graphics g) {
 		int startY = 0;
@@ -67,8 +64,5 @@ public class ConfigControlsView extends ModelView implements Observer{
 			options.put(entry.getKey(), Color.BLACK);
    		 }
 		options.put(arg1.toString(), Color.RED);		
-	}
-	public String keyToChar(int i){
-		return KeyEvent.getKeyText(i);
 	}
 }

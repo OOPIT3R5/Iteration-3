@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Observable;
 
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.DoNothing;
@@ -28,10 +27,10 @@ import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.Grid.Tile.Tile;
-import View.Model.MapObjectView;
 import View.EntityView;
 import View.GameView;
 import View.InventoryView;
+import View.Model.MapObjectView;
 
 public abstract class Entity extends MapObject implements MovementInterface {
 
@@ -102,25 +101,19 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		occupation = o;
 	}
 	
-	public abstract String dialogue();
-	
-	public Skill getActiveSkill(){
-		return activeSkill;
-	}
-	
-	public void setActiveSkill(Skill skill){
-		activeSkill = skill;
-	}
-	
-	public GameMap getGamemap(){
-		return map;
+	public void ability(String s){
+		Ability a = (occupation.getAbilities().get(s));
+		try {
+			a.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Invalid Ability");
+		}
 	}
 	
 	public void addToInventory(TakeableItem ti){
 		inventory.addToInventory(ti);
 	}
-	
-	
 	
 	public void alertNeighboringTiles(){
 		Location center = getLocation();
@@ -136,10 +129,11 @@ public abstract class Entity extends MapObject implements MovementInterface {
         numOfPointsCanAllocateToLevelUpSkill++;
     }
 	
-	
 	public void awardExperience(int award){
         stats.awardExperience(award);
     }
+	
+	
 	
 	public void awardGold(int gold){
         inventory.addGold(gold);
@@ -149,6 +143,12 @@ public abstract class Entity extends MapObject implements MovementInterface {
         stats.changeHealth(change);
     }
 	
+	
+	public void changeMovementSpeed(int delta){
+		int newSpeed = stats.getMovement() + delta;
+		stats.increaseSpeed(newSpeed);
+	}
+	
 	public void checkMana(SummonerAbility sa){
         if(sa.getRequiredMana() <= getStatistics().getMana()){
             getStatistics().useMana(sa.getRequiredMana());
@@ -156,22 +156,23 @@ public abstract class Entity extends MapObject implements MovementInterface {
         }
     }
 	
-	public void regenMana(){
-		getStatistics().regenMana();
+	public void creep(){
+		if(isCreeping == true){
+			isCreeping = false;
+		}else{
+			isCreeping = true;
+			
+		}
 	}
+	
+	public abstract String dialogue();
 	
 	@Override
 	public void disableMove(Direction direction) {
 		moveMap.put(direction, new DoNothing());
 	}
-
-    public void removeFromMap(){
-        map.getTile(getLocation()).removeEntity(); //Removes entity from map.
-        setChanged();
-		notifyObservers();
-    }
-
-    @Override
+	
+	@Override
 	public void disableWalk(Direction direction) {
     	moveMap.put(direction, new RiverMove(this, direction, this.getMovementSpeed()));
 		//moveMap.put(direction, new DoNothing());
@@ -181,7 +182,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	public void enableMove(Direction direction) {
 		moveMap.put(direction, new Move(this, direction, this.getMovementSpeed()));
 	}
-    
+
     //Use this method to equip any EquippableItem (from Inventory, etc.)
     public void equipEquippableItem(EquippableItem ei){
         ei.accept(occupation);
@@ -194,15 +195,9 @@ public abstract class Entity extends MapObject implements MovementInterface {
     void equipItem(ArmorItem ai){
         equipmentManager.equip(ai);
     }
-    
+
     void equipItem(OffHandItem ohi){
         equipmentManager.equip(ohi);
-    }
-    
-    public void reset(){
-    	stats = new StatisticContainer(this);
-    	inventory = new Inventory();
-    	equipmentManager = new Equipment(this);
     }
     
     void equipItem(ShoesItem si){
@@ -214,17 +209,30 @@ public abstract class Entity extends MapObject implements MovementInterface {
     void equipItem(WeaponItem wi){
         equipmentManager.equip(wi);
     }
-	
-
+    
     public void examineItem(String s){
 		inventoryView.setInfo(s);
 	}
+    
+    public Skill getActiveSkill(){
+		return activeSkill;
+	}
+    
+    public Inventory getActualInventory()
+    {
+    	return this.inventory;
+    }
+	
+
     public Direction getDirectionFacing(){
 		return directionFacing;
 	}
     public MapObjectView[] getEquipmentViews() throws IOException {
         return equipmentManager.getViews();
     }
+    public GameMap getGamemap(){
+		return map;
+	}
     public int getGold(){
         return inventory.getGoldamount();
     }
@@ -233,11 +241,6 @@ public abstract class Entity extends MapObject implements MovementInterface {
     }
     
     
-    public Inventory getActualInventory()
-    {
-    	return this.inventory;
-    }
-
     public InventoryView getInventoryView(){
 		return inventoryView;
 	}
@@ -271,13 +274,18 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		return numOfPointsCanAllocateToLevelUpSkill;
 	}
 
-    public void useSkillPoint(){
-        numOfPointsCanAllocateToLevelUpSkill--;
-    }
-    
     public StatisticContainer getStatistics(){
         return stats;
     }
+
+    public boolean isCreeping(){
+		return isCreeping;
+	}
+    
+    public boolean isPolymorph(){
+		
+		return polymorph;
+	}
 
     
     public void makeActionChoice() {
@@ -318,10 +326,45 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		GameView.appendToLog(toString());
 	}
     
-    public void receiveDamage(int damage) {
+    public abstract void performAction();
+
+	public void polymorph() {
+		if(polymorph){
+			polymorph = false;
+			
+		}else{
+			
+			polymorph = true;
+		}
+		
+	}
+	
+	public void receiveDamage(int damage) {
 		stats.changeHealth(-damage);
 	}
 
+	public void regenMana(){
+		getStatistics().regenMana();
+	}
+
+	public void removeFromMap(){
+        map.getTile(getLocation()).removeEntity(); //Removes entity from map.
+        setChanged();
+		notifyObservers();
+    }
+
+	public abstract void render(Graphics g, HexagonalLocation center);
+	
+	public void reset(){
+    	stats = new StatisticContainer(this);
+    	inventory = new Inventory();
+    	equipmentManager = new Equipment(this);
+    }
+
+	public void setActiveSkill(Skill skill){
+		activeSkill = skill;
+	}
+	
 	public void setDirection(Direction d){
 		directionFacing = d;
 	}
@@ -329,7 +372,7 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	public void setLocation(HexagonalLocation newPosition){
 		this.currentPosition = newPosition;
 	}
-
+	
 	public void setMap(GameMap map){
 		this.map = map;
 
@@ -341,19 +384,25 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		moveMap.put(Direction.SOUTHWEST, (new Move(this,Direction.SOUTHWEST,stats.getMovement())));
 
 	}
-
+	
 	protected void setOccupation(Occupation o) {
 		occupation = o;	
 	}
-
+	
 	public int stealGold(int gold){
         return inventory.stealGold(gold);
     }
 	
+	@Override
+	public String toString()
+	{
+		return this.name + "," +  this.currentPosition.toString();
+	}
+	
 	public void unequipAccessory(){
         equipmentManager.unequipAccessory();
     }
-
+	
 	public void unequipArmor(){
         equipmentManager.unequipArmor();
     }
@@ -365,7 +414,6 @@ public abstract class Entity extends MapObject implements MovementInterface {
 	public void unequipShoes(){
         equipmentManager.unequipShoes();
     }
-	
 	//can't award more than numOfPointsCanAllocateToLevelUpSkill
     public void unequipWeapon(){
         equipmentManager.unequipWeapon();
@@ -378,9 +426,10 @@ public abstract class Entity extends MapObject implements MovementInterface {
 		}
 		
 	}
-	
-	public abstract void performAction();
-	
+
+	public void useSkillPoint(){
+        numOfPointsCanAllocateToLevelUpSkill--;
+    }
 	public void utilizeTakeableItem(int inventoryIndex){
         TakeableItem ti = inventory.takeFromInventory(inventoryIndex);
         if(ti != null) {
@@ -388,55 +437,6 @@ public abstract class Entity extends MapObject implements MovementInterface {
             ti.accept(occupation);
         }
     }
-	
-	public abstract void render(Graphics g, HexagonalLocation center);
-	
-	public void ability(String s){
-		Ability a = (occupation.getAbilities().get(s));
-		try {
-			a.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Invalid Ability");
-		}
-	}
-	
-	public void changeMovementSpeed(int delta){
-		int newSpeed = stats.getMovement() + delta;
-		stats.increaseSpeed(newSpeed);
-	}
-	
-	public String toString()
-	{
-		return this.name + "," +  this.currentPosition.toString();
-	}
-	public void polymorph() {
-		if(polymorph){
-			polymorph = false;
-			
-		}else{
-			
-			polymorph = true;
-		}
-		
-	}
-	
-	public boolean isPolymorph(){
-		
-		return polymorph;
-	}
-
-	public boolean isCreeping(){
-		return isCreeping;
-	}
-	public void creep(){
-		if(isCreeping == true){
-			isCreeping = false;
-		}else{
-			isCreeping = true;
-			
-		}
-	}
 
 
 

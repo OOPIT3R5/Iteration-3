@@ -2,10 +2,19 @@ package Main;
 
 import java.io.IOException;
 
+import Model.Entity.Avatar;
 import Model.Entity.Ability.HealLifeItemAbility;
 import Model.Entity.Ability.HealManaItemAbility;
-import Model.Entity.Avatar;
-import Model.Items.*;
+import Model.Items.AccessoryItem;
+import Model.Items.ArmorItem;
+import Model.Items.OneHandedWeaponItem;
+import Model.Items.ShoesItem;
+import Model.Items.SmasherShieldOffHandItem;
+import Model.Items.SneakWeaponItem;
+import Model.Items.SummonerTomeOffHandItem;
+import Model.Items.SummonerWeaponItem;
+import Model.Items.TwoHandedWeaponItem;
+import Model.Items.UsableItem;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Terrain.Grass;
@@ -43,6 +52,28 @@ public class Game {
 		this.gameMap.fill(new HexagonalTile(new Grass()));
 	}
 	
+	public void erase()
+	{
+		gameMap.eraseEverything();
+	}
+	
+	public Avatar getAvatar(){
+			return avatar;
+		
+	}
+	public GameMap getGameMap() {
+		return gameMap;
+	}
+	
+	public GameView getView(){
+		
+		return gameView;
+	}
+
+	public void setGameMap(GameMap gameMap) {
+		this.gameMap = gameMap;
+	}
+	
 	public void setUpAvatar(Avatar avatar){
 			avatar.reset();
 	        try{
@@ -62,28 +93,6 @@ public class Game {
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
 	        }
-	}
-	
-	public Avatar getAvatar(){
-			return avatar;
-		
-	}
-	public GameView getView(){
-		
-		return gameView;
-	}
-	
-	public GameMap getGameMap() {
-		return gameMap;
-	}
-
-	public void setGameMap(GameMap gameMap) {
-		this.gameMap = gameMap;
-	}
-	
-	public void erase()
-	{
-		gameMap.eraseEverything();
 	}
 
 

@@ -1,12 +1,9 @@
 package Model.Entity;
 
 import Model.Entity.Ability.Ability;
-import Model.Entity.Ability.Attack;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
-
 import Model.Map.Direction;
-
 import Utility.RandomlyGenerate;
 
 public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
@@ -15,6 +12,12 @@ public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 	Mounted m;
 	boolean isOwned;
 	
+	public HelpfulMenace() {
+		super();
+		isOwned = false;
+		m = new Mounted(this);
+	}
+
 	public HelpfulMenace(PetOwnership po) {
 		super();
 		po.setPet(this);
@@ -23,18 +26,21 @@ public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 		m = new Mounted(this);
 	}
 
-	public HelpfulMenace() {
-		super();
-		isOwned = false;
-		m = new Mounted(this);
-	}
-
 	
-	public void mount(Avatar avatar){
-		m.mount(avatar);
+	@Override
+	public Ability attackInVicinity() {
+        return null; // new Attack(this, map, );		// TODO add skill for attacking (one-handed?)
+    }
+	
+	@Override
+	public void becomePet(PetOwnership po){
+		po.setPet(this);
+		this.po = po;
+		
 	}
 	
 	/*AI stuff*/
+	@Override
 	public void makeActionChoice(){
 		if (m.isMounted()){
 			makeMountedActionChoice();
@@ -44,10 +50,11 @@ public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 		}
 	}
 	
+	@Override
 	public void makeMountedActionChoice(){
 		m.forwardControlOfMountToRider();
 	}
-	
+	@Override
 	public void makeUnMountedActionChoice(){
 		Ability a;
 		/*will never be hostile; will always either follow avatar (if owned), go where avatar directs it (if mounted)
@@ -77,12 +84,13 @@ public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 		}
 		a.execute();
 	}
+
+
 	@Override
-	public Ability attackInVicinity() {
-        return null; // new Attack(this, map, );		// TODO add skill for attacking (one-handed?)
-    }
-
-
+	public void mount(Avatar avatar){
+		m.mount(avatar);
+	}
+	
 	@Override
 	public Ability stealInVicinity() {
 		Direction randDir = RandomlyGenerate.direction();
@@ -91,12 +99,6 @@ public class HelpfulMenace extends NonAdversarial implements Pet, Mount{
 		//will race around looking for treasure. OR check neighboring tiles (hexlocation get neighborhood)
 		//check neighborhood for item. If there is an item in surrounding area, walk onto that tile
 		//if there are no tiles, just move in a random direction.
-	}
-	
-	public void becomePet(PetOwnership po){
-		po.setPet(this);
-		this.po = po;
-		
 	}
 
 	@Override

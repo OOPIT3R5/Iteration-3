@@ -101,6 +101,13 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return rectangle;
 	}
 	
+	/** Rectilinear distance between two Hex coordinates. */
+	public static int rectilinearDistance(HexagonalLocation a, HexagonalLocation b) {				
+		return Math.max(Math.max(Math.abs(a.getU() - b.getU()),
+				Math.abs(- a.getU() - a.getV() + b.getU() + b.getV())),
+				Math.abs(a.getV() - b.getV()));
+	}
+	
 	public static ArrayList<HexagonalLocation> ring(HexagonalLocation center, int radius) {
 		ArrayList<HexagonalLocation> ring = new ArrayList<HexagonalLocation>();
 	
@@ -113,20 +120,18 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return ring;
 	}
 	
-	/** Rectilinear distance between two Hex coordinates. */
-	public static int rectilinearDistance(HexagonalLocation a, HexagonalLocation b) {				
-		return Math.max(Math.max(Math.abs(a.getU() - b.getU()),
-				Math.abs(- a.getU() - a.getV() + b.getU() + b.getV())),
-				Math.abs(a.getV() - b.getV()));
-	}
-	
 	/** Stores uv axial coordinates. */
 	public HexagonalLocation(int u, int v) {
 		super(u, v);
 	}
 
+	@Override
 	public HexagonalLocation clone() {
 		return new HexagonalLocation(getU(), getV());
+	}
+	
+	public boolean equals(HexagonalLocation other) {
+		return (getU() == other.getU() && getV() == other.getV());
 	}
 	
 	/** Gets axial coordinates for potentially neighboring hex tiles. */
@@ -170,11 +175,8 @@ public class HexagonalLocation extends Location implements HexagonalCoordinateIn
 		return coordinate[1];
 	}
 	
-	public boolean equals(HexagonalLocation other) {
-		return (getU() == other.getU() && getV() == other.getV());
-	}
 	
-	
+	@Override
 	public String toString()
 	{
 		return this.getU() + "," + this.getV();

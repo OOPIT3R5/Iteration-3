@@ -3,10 +3,24 @@ package Model.Entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
-import Model.Entity.Ability.*;
-import Model.Items.*;
+import Model.Entity.Ability.Ability;
+import Model.Entity.Ability.Blizzard;
+import Model.Entity.Ability.Charm;
+import Model.Entity.Ability.Fireball;
+import Model.Entity.Ability.Polymorph;
+import Model.Entity.Ability.Shock;
+import Model.Entity.Ability.Sleep;
+import Model.Items.AccessoryItem;
+import Model.Items.ArmorItem;
+import Model.Items.BrawlingWeaponItem;
+import Model.Items.OneHandedWeaponItem;
+import Model.Items.ShoesItem;
+import Model.Items.SmasherShieldOffHandItem;
+import Model.Items.SneakWeaponItem;
+import Model.Items.SummonerTomeOffHandItem;
+import Model.Items.SummonerWeaponItem;
+import Model.Items.TwoHandedWeaponItem;
 
 public class Summoner extends Occupation{
 
@@ -60,72 +74,10 @@ public class Summoner extends Occupation{
 	}
 
     @Override
-    public void visit(OneHandedWeaponItem ohwi) {
-        System.out.println("You are not able to equip the " + ohwi.getName() + " due to being too weak!");
-        getEntity().addToInventory(ohwi);
-    }
-
-    @Override
-    public void visit(TwoHandedWeaponItem thwi) {
-        System.out.println("You are not able to equip the " + thwi.getName() + " due to being too weak!");
-        getEntity().addToInventory(thwi);
-    }
-
-    @Override
-    public void visit(BrawlingWeaponItem bwi) {
-        System.out.println("You are not able to equip the " + bwi.getName() + " due to being too weak!");
-        getEntity().addToInventory(bwi);
-    }
-
-    @Override
-    public void visit(SummonerWeaponItem sumwi) {
-        getEntity().equipItem(sumwi);
-        getEntity().setActiveSkill(staff);
-    }
-
-    @Override
-    public void visit(SneakWeaponItem snewi) {
-        System.out.println("You are not able to equip the "+snewi.getName()+". Besides, it's not your style to sneak up on people.");
-        getEntity().addToInventory(snewi);
-    }
-
-    @Override
-    public void visit(SummonerTomeOffHandItem stohi) {
-        getEntity().equipItem(stohi);
-    }
-
-    @Override
-    public void visit(SmasherShieldOffHandItem ssohi) {
-        System.out.println("You cannot equip the "+ssohi.getName()+"! You can't carry a shield and cast a spell at someone at the same time.");
-        getEntity().addToInventory(ssohi);
-    }
-
-    @Override
-    public void visit(ArmorItem ai) {
-        getEntity().equipItem(ai);
-    }
-
-    @Override
-    public void visit(AccessoryItem acci) {
-        getEntity().equipItem(acci);
-    }
-
-    @Override
-    public void visit(ShoesItem si) {
-        getEntity().equipItem(si);
-    }
-
-    @Override
-    public Collection<? extends Skill> getSubSkills() {
-        ArrayList<Skill> skills = new ArrayList<Skill>();
-        skills.add(enchantment);
-        skills.add(boon);
-        skills.add(bane);
-        skills.add(staff);
-
-        return skills;
-    }
-
+	public String displayName() {
+		// TODO Auto-generated method stub
+		return "Summoner";
+	}
 
     @Override
 	protected HashMap<String, Ability> getAbilitiesSub() {
@@ -147,13 +99,75 @@ public class Summoner extends Occupation{
 	     */
 	 	}
 
+    @Override
+    public Collection<? extends Skill> getSubSkills() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(enchantment);
+        skills.add(boon);
+        skills.add(bane);
+        skills.add(staff);
+
+        return skills;
+    }
+
+    @Override
+    public void visit(AccessoryItem acci) {
+        getEntity().equipItem(acci);
+    }
+
+    @Override
+    public void visit(ArmorItem ai) {
+        getEntity().equipItem(ai);
+    }
+
+    @Override
+    public void visit(BrawlingWeaponItem bwi) {
+        System.out.println("You are not able to equip the " + bwi.getName() + " due to being too weak!");
+        getEntity().addToInventory(bwi);
+    }
+
+    @Override
+    public void visit(OneHandedWeaponItem ohwi) {
+        System.out.println("You are not able to equip the " + ohwi.getName() + " due to being too weak!");
+        getEntity().addToInventory(ohwi);
+    }
+
+    @Override
+    public void visit(ShoesItem si) {
+        getEntity().equipItem(si);
+    }
+
+    @Override
+    public void visit(SmasherShieldOffHandItem ssohi) {
+        System.out.println("You cannot equip the "+ssohi.getName()+"! You can't carry a shield and cast a spell at someone at the same time.");
+        getEntity().addToInventory(ssohi);
+    }
+
+    @Override
+    public void visit(SneakWeaponItem snewi) {
+        System.out.println("You are not able to equip the "+snewi.getName()+". Besides, it's not your style to sneak up on people.");
+        getEntity().addToInventory(snewi);
+    }
+
+    @Override
+    public void visit(SummonerTomeOffHandItem stohi) {
+        getEntity().equipItem(stohi);
+    }
+
+
+    @Override
+    public void visit(SummonerWeaponItem sumwi) {
+        getEntity().equipItem(sumwi);
+        getEntity().setActiveSkill(staff);
+    }
+
 
 
 	@Override
-	public String displayName() {
-		// TODO Auto-generated method stub
-		return "Summoner";
-	}
+    public void visit(TwoHandedWeaponItem thwi) {
+        System.out.println("You are not able to equip the " + thwi.getName() + " due to being too weak!");
+        getEntity().addToInventory(thwi);
+    }
     
     
     

@@ -9,24 +9,20 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
 
 import javax.imageio.ImageIO;
 import javax.swing.JProgressBar;
 
-import Model.Entity.Sneak;
 import Model.Map.Direction;
 import Model.Map.HexagonalLocation;
-import View.View;
-import View.Model.FlatHexagon;
 import View.Model.MapObjectView;
 
 public class EntityView {
-	MapObjectView spriteSheet;
-	BufferedImage sprite;
-	  public static Image getSpriteFromAvatar(int col, int row) throws IOException {
+	public static Image getSpriteFromAvatar(int col, int row) throws IOException {
 	        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32).getScaledInstance(70, 70, Image.SCALE_DEFAULT);
 	    }
+	MapObjectView spriteSheet;
+	  BufferedImage sprite;
 
 	public void render(Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp  ) throws IOException{
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);

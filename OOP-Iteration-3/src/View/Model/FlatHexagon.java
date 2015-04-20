@@ -47,10 +47,6 @@ public class FlatHexagon extends Polygon {
 		this.setColor(color);
 	}
 	
-	private void setColor(Color color){
-		this.color = color;
-	}
-
 	public void draw(Graphics g) {
 		Color cache = g.getColor();
 		g.setColor(color);
@@ -59,6 +55,10 @@ public class FlatHexagon extends Polygon {
 		else
 			g.drawPolygon(this);
 		g.setColor(cache);
+	}
+
+	private void setColor(Color color){
+		this.color = color;
 	}
 	
 }

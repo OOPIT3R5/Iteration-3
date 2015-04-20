@@ -1,6 +1,6 @@
 package Controller;
 
-import java.awt.*;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -12,53 +12,10 @@ import javax.swing.JFrame;
 import Main.KeySet;
 import Model.Entity.Entity;
 import Model.Entity.Skill;
-import Model.Items.TakeableItem;
 import View.InventoryView;
 import View.ModelView;
 
 public class InventoryController extends Controller {
-	KeyListener back = new BacktoGame();
-	KeyListener render = new Render();
-	MouseListener ml = new UseItem();
-	Entity e;
-
-	private static InventoryController instance;
-
-	// private InventoryView inventoryView;
-
-	private InventoryController(Entity e) {
-		this.e = e;
-	}
-
-	public static InventoryController getInstance(Entity e) {
-		if (instance == null) {
-
-			instance = new InventoryController(e);
-			// inventoryView = new InventoryView(e);
-		}
-		return instance;
-	}
-
-	@Override
-	public ModelView getView() {
-		// TODO Auto-generated method stub
-		return e.getInventoryView();
-	}
-
-	@Override
-	public void register(JFrame f) {
-		f.addKeyListener(back);
-		f.addKeyListener(render);
-		f.addMouseListener(ml);
-	}
-
-	@Override
-	public void deRegister(JFrame f) {
-		f.removeKeyListener(render);
-		f.removeKeyListener(back);
-		f.removeMouseListener(ml);
-	}
-
 	public class BacktoGame implements KeyListener {
 
 		@Override
@@ -87,7 +44,6 @@ public class InventoryController extends Controller {
 
 		}
 	}
-
 	private class UseItem implements MouseListener {
 
 		private final int Xspacing = InventoryView.INV_GRIDWIDTH / 6;// = 88;
@@ -110,68 +66,6 @@ public class InventoryController extends Controller {
 		private final int EquipmentTopYLo = EquipmentStartingY + Yspacing;// 231
 		private final int EquipmentTopXHi = EquipmentTopXLo + (Xspacing * 3);// 1427
 		private final int EquipmentTopYHi = EquipmentTopYLo + Yspacing;// 331
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			if (e.getButton() == MouseEvent.BUTTON1)// IfLeftClick
-			{
-				setChanged();
-				notifyObservers();
-				placeClicked(e.getPoint());
-			} else {
-				setChanged();
-				notifyObservers();
-				getInfo(e.getPoint());
-			}
-		}
-
-		private void placeClicked(Point pointclicked) {
-			int X = pointclicked.x;
-			int Y = pointclicked.y;
-			System.out.println(pointclicked);
-
-			if (X < InventoryStartingX || Y < InventoryStartingY
-					|| X > (InventoryStartingX + (Xspacing * 6))
-					|| Y > (InventoryStartingY + (Yspacing * 4))) {
-				checkEquipment(X, Y);
-				return;
-			}
-
-			X -= InventoryStartingX;
-			X /= Xspacing;
-
-			Y -= InventoryStartingY;
-			Y /= Yspacing;
-			System.out.println(e.getItem((X + (Y * 6))).toString());
-			// System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
-			e.utilizeTakeableItem((X + (Y * 6))); // Go all VISITOR PATTERN ON
-													// THIS thing.
-
-		}
-
-		private void getInfo(Point pointclicked) {
-			int X = pointclicked.x;
-			int Y = pointclicked.y;
-			System.out.println(pointclicked);
-
-			if (X < InventoryStartingX || Y < InventoryStartingY
-					|| X > (InventoryStartingX + (Xspacing * 6))
-					|| Y > (InventoryStartingY + (Yspacing * 4)))
-				checkEquipment(X, Y);
-
-			X -= InventoryStartingX;
-			X /= Xspacing;
-
-			Y -= InventoryStartingY;
-			Y /= Yspacing;
-
-			// System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
-			String s = "";
-			s += e.getItem((X + (Y * 6))).getName();
-			s = s + '\n' + e.getItem((X + (Y * 6))).getDescription();
-			e.examineItem(s);
-
-		}
 
 		private void checkEquipment(int X, int Y) {
 			// If we're not in the right square...
@@ -240,14 +134,42 @@ public class InventoryController extends Controller {
 
 		}
 
-		@Override
-		public void mousePressed(MouseEvent e) {
+		private void getInfo(Point pointclicked) {
+			int X = pointclicked.x;
+			int Y = pointclicked.y;
+			System.out.println(pointclicked);
+
+			if (X < InventoryStartingX || Y < InventoryStartingY
+					|| X > (InventoryStartingX + (Xspacing * 6))
+					|| Y > (InventoryStartingY + (Yspacing * 4)))
+				checkEquipment(X, Y);
+
+			X -= InventoryStartingX;
+			X /= Xspacing;
+
+			Y -= InventoryStartingY;
+			Y /= Yspacing;
+
+			// System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+			String s = "";
+			s += e.getItem((X + (Y * 6))).getName();
+			s = s + '\n' + e.getItem((X + (Y * 6))).getDescription();
+			e.examineItem(s);
 
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {
-
+		public void mouseClicked(MouseEvent e) {
+			if (e.getButton() == MouseEvent.BUTTON1)// IfLeftClick
+			{
+				setChanged();
+				notifyObservers();
+				placeClicked(e.getPoint());
+			} else {
+				setChanged();
+				notifyObservers();
+				getInfo(e.getPoint());
+			}
 		}
 
 		@Override
@@ -259,5 +181,82 @@ public class InventoryController extends Controller {
 		public void mouseExited(MouseEvent e) {
 
 		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+
+		}
+
+		private void placeClicked(Point pointclicked) {
+			int X = pointclicked.x;
+			int Y = pointclicked.y;
+			System.out.println(pointclicked);
+
+			if (X < InventoryStartingX || Y < InventoryStartingY
+					|| X > (InventoryStartingX + (Xspacing * 6))
+					|| Y > (InventoryStartingY + (Yspacing * 4))) {
+				checkEquipment(X, Y);
+				return;
+			}
+
+			X -= InventoryStartingX;
+			X /= Xspacing;
+
+			Y -= InventoryStartingY;
+			Y /= Yspacing;
+			System.out.println(e.getItem((X + (Y * 6))).toString());
+			// System.out.println("You clicked on Tile Number "+((X+(Y*6))+1)+" of row "+(X+1)+" and of column "+(Y+1)+".");
+			e.utilizeTakeableItem((X + (Y * 6))); // Go all VISITOR PATTERN ON
+													// THIS thing.
+
+		}
+	}
+	public static InventoryController getInstance(Entity e) {
+		if (instance == null) {
+
+			instance = new InventoryController(e);
+			// inventoryView = new InventoryView(e);
+		}
+		return instance;
+	}
+	KeyListener back = new BacktoGame();
+
+	KeyListener render = new Render();
+
+	// private InventoryView inventoryView;
+
+	MouseListener ml = new UseItem();
+
+	Entity e;
+
+	private static InventoryController instance;
+
+	private InventoryController(Entity e) {
+		this.e = e;
+	}
+
+	@Override
+	public void deRegister(JFrame f) {
+		f.removeKeyListener(render);
+		f.removeKeyListener(back);
+		f.removeMouseListener(ml);
+	}
+
+	@Override
+	public ModelView getView() {
+		// TODO Auto-generated method stub
+		return e.getInventoryView();
+	}
+
+	@Override
+	public void register(JFrame f) {
+		f.addKeyListener(back);
+		f.addKeyListener(render);
+		f.addMouseListener(ml);
 	}
 }

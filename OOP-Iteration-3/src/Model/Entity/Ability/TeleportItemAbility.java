@@ -1,9 +1,8 @@
 package Model.Entity.Ability;
 
-import Model.Entity.Entity;
 import Model.Map.GameMap;
-import Model.Map.Grid.Tile.Tile;
 import Model.Map.HexagonalLocation;
+import Model.Map.Grid.Tile.Tile;
 
 public class TeleportItemAbility extends ItemAbility{
 

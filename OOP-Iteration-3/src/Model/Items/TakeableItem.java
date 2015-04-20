@@ -10,6 +10,8 @@ public abstract class TakeableItem extends Item{
         super(name, mov);
     }
 
+    public abstract void accept(TakeableItemVisitor eiv);
+
     @Override
     public boolean isPassable(){
         return true;
@@ -20,8 +22,6 @@ public abstract class TakeableItem extends Item{
         entity.addToInventory(this); //Add to inventory.
         
     }
-
-    public abstract void accept(TakeableItemVisitor eiv);
     
     public String toMyString()
     {

@@ -1,10 +1,5 @@
 package View.Model;
 
-import javax.imageio.ImageIO;
-
-import Model.Map.HexagonalLocation;
-import View.View;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -12,8 +7,21 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
+import Model.Map.HexagonalLocation;
+import View.View;
+
 public class MapObjectView {
 	
+    public static BufferedImage getSpriteFromFE(int col, int row) throws IOException {
+        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/weapon_sprites.png")).getSubimage(24*col,24*row,24,24);
+    }
+
+    public static BufferedImage getSpriteFromPokemon(int col, int row) throws IOException {
+        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/item_sprites.png")).getSubimage(24*col,24*row,24,24);
+    }
+
     private BufferedImage bi;
 
     public MapObjectView(BufferedImage bi){
@@ -22,14 +30,6 @@ public class MapObjectView {
 
     public BufferedImage getBufferedImage(){
         return bi;
-    }
-
-    public static BufferedImage getSpriteFromPokemon(int col, int row) throws IOException {
-        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/item_sprites.png")).getSubimage(24*col,24*row,24,24);
-    }
-
-    public static BufferedImage getSpriteFromFE(int col, int row) throws IOException {
-        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/weapon_sprites.png")).getSubimage(24*col,24*row,24,24);
     }
 
   

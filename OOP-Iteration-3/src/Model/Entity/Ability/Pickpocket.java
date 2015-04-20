@@ -3,10 +3,7 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
-import Model.Entity.NPC;
 import Model.Entity.Skill;
-import Model.Map.GameMap;
-import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
 public class Pickpocket extends SkillAbility {
@@ -46,10 +43,6 @@ public class Pickpocket extends SkillAbility {
 //		}
 	}
 	
-	private Entity getTargetEntity() {
-		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
-	}
-
 	@Override
 	protected int getSkillLevel() {
 		return skill.getCurrentLevel();
@@ -58,6 +51,10 @@ public class Pickpocket extends SkillAbility {
 	@Override
 	protected Entity getSourceEntity() {
 		return sourceEntity;
+	}
+
+	private Entity getTargetEntity() {
+		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
 	}
 
 }

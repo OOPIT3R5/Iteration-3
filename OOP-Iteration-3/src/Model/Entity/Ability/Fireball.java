@@ -3,7 +3,6 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
-import Model.Entity.NPC;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
@@ -20,11 +19,6 @@ public class Fireball extends SummonerAbility {
 		this.sourceEntity = sourceEntity;
 		this.skill = skill;
     }
-
-	@Override
-    public void execute() {
-		sourceEntity.checkMana(this);
-	}
 
 	@Override
 	public void cast() {
@@ -52,8 +46,8 @@ public class Fireball extends SummonerAbility {
 	}
 
 	@Override
-	public int getSkillLevel() {
-		return skill.getCurrentLevel();
+    public void execute() {
+		sourceEntity.checkMana(this);
 	}
 
 	@Override
@@ -62,8 +56,13 @@ public class Fireball extends SummonerAbility {
 	}
 
 	@Override
-	protected int scaleMagnitude() {
-		return 150 * getSkillLevel()/100 + 50;
+	public int getSkillLevel() {
+		return skill.getCurrentLevel();
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
 	}
 
 	protected ArrayList<Tile> getTargetTiles(){
@@ -81,8 +80,8 @@ public class Fireball extends SummonerAbility {
 	}
 
 	@Override
-	protected Entity getSourceEntity() {
-		return sourceEntity;
+	protected int scaleMagnitude() {
+		return 150 * getSkillLevel()/100 + 50;
 	}
 
 }

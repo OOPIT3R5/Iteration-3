@@ -2,21 +2,19 @@ package Utility;
 
 import java.io.IOException;
 
-import Model.Items.*;
-import Model.Entity.Ability.*;
-import Model.Entity.Avatar;
 import Model.Entity.Entity;
-import Model.Entity.HelpfulMenace;
+import Model.Entity.Monster;
 import Model.Entity.NPC;
 import Model.Entity.Pet;
-import Model.Entity.Monster;
 import Model.Entity.PetOwnership;
 import Model.Entity.TroublesomeMenace;
+import Model.Entity.Ability.TeleportItemAbility;
 import Model.Items.HealDamageAreaEffect;
 import Model.Items.LevelUpAreaEffect;
 import Model.Items.MapObject;
+import Model.Items.Obstacle;
+import Model.Items.OneShotItem;
 import Model.Items.ShoesItem;
-import Model.Items.TakeDamageAreaEffect;
 import Model.Items.Trap;
 import Model.Items.TwoHandedWeaponItem;
 import Model.Map.GameMap;

@@ -11,16 +11,18 @@ public class Water extends Terrain {
 		super();
 	}
 	
-	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.disableWalk(direction);
-	}
-
 	@Override
 	public Color getColor() {
 		System.out.print(".");
 		return Color.BLUE;
 	}
+
+	@Override
+	public void notifyOfEntity(MovementInterface target, Direction direction) {
+		target.disableWalk(direction);
+	}
 	
+	@Override
 	public String toString()
 	{
 		return "Water Tile";

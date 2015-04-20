@@ -1,12 +1,9 @@
 package View;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import javax.swing.JProgressBar;
 
 import Model.Map.Direction;
 import Model.Map.HexagonalLocation;

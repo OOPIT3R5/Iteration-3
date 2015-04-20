@@ -24,6 +24,13 @@ public class GameLoader {
 		parse();
 	}
 	
+	private void getAllItems()
+	{
+		System.out.println("WE ARE HERE");
+		String cur;
+		
+	}
+	
 	private void parse()
 	{
 		while(scanner.hasNext())
@@ -43,13 +50,6 @@ public class GameLoader {
 				getAllItems();
 			
 		}
-	}
-	
-	private void getAllItems()
-	{
-		System.out.println("WE ARE HERE");
-		String cur;
-		
 	}
 }
 

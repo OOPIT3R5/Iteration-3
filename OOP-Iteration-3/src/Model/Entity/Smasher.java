@@ -1,9 +1,20 @@
 package Model.Entity;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 import Model.Entity.Ability.Ability;
-import Model.Items.*;
+import Model.Items.AccessoryItem;
+import Model.Items.ArmorItem;
+import Model.Items.BrawlingWeaponItem;
+import Model.Items.OneHandedWeaponItem;
+import Model.Items.ShoesItem;
+import Model.Items.SmasherShieldOffHandItem;
+import Model.Items.SneakWeaponItem;
+import Model.Items.SummonerTomeOffHandItem;
+import Model.Items.SummonerWeaponItem;
+import Model.Items.TwoHandedWeaponItem;
 
 public class Smasher extends Occupation{
     private Skill onehandedweapon;
@@ -24,15 +35,33 @@ public class Smasher extends Occupation{
 
 
     @Override
-    public void visit(OneHandedWeaponItem ohwi) {
-        getEntity().equipItem(ohwi);
-        getEntity().setActiveSkill(onehandedweapon);
+	public String displayName() {
+		// TODO Auto-generated method stub
+		return "Smasher";
+	}
+
+    @Override
+	protected HashMap<String, Ability> getAbilitiesSub() {
+		return null;
+	}
+
+    @Override
+    public Collection<? extends Skill> getSubSkills() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(onehandedweapon);
+        skills.add(twohandedweapon);
+        skills.add(brawlingweapon);
+        return skills;
     }
 
     @Override
-    public void visit(TwoHandedWeaponItem thwi) {
-        getEntity().equipItem(thwi);
-        getEntity().setActiveSkill(twohandedweapon);
+    public void visit(AccessoryItem acci) {
+        getEntity().equipItem(acci);
+    }
+
+    @Override
+    public void visit(ArmorItem ai) {
+        getEntity().equipItem(ai);
     }
 
     @Override
@@ -42,8 +71,19 @@ public class Smasher extends Occupation{
     }
 
     @Override
-    public void visit(SummonerWeaponItem sumwi) {
-        getEntity().equipItem(sumwi);
+    public void visit(OneHandedWeaponItem ohwi) {
+        getEntity().equipItem(ohwi);
+        getEntity().setActiveSkill(onehandedweapon);
+    }
+
+    @Override
+    public void visit(ShoesItem si) {
+        getEntity().equipItem(si);
+    }
+
+    @Override
+    public void visit(SmasherShieldOffHandItem ssohi) {
+        getEntity().equipItem(ssohi);
     }
 
     @Override
@@ -57,46 +97,18 @@ public class Smasher extends Occupation{
         getEntity().addToInventory(stohi);
     }
 
-    @Override
-    public void visit(SmasherShieldOffHandItem ssohi) {
-        getEntity().equipItem(ssohi);
-    }
 
     @Override
-    public void visit(ArmorItem ai) {
-        getEntity().equipItem(ai);
+    public void visit(SummonerWeaponItem sumwi) {
+        getEntity().equipItem(sumwi);
     }
-
-    @Override
-    public void visit(AccessoryItem acci) {
-        getEntity().equipItem(acci);
-    }
-
-    @Override
-    public void visit(ShoesItem si) {
-        getEntity().equipItem(si);
-    }
-
-    @Override
-    public Collection<? extends Skill> getSubSkills() {
-        ArrayList<Skill> skills = new ArrayList<Skill>();
-        skills.add(onehandedweapon);
-        skills.add(twohandedweapon);
-        skills.add(brawlingweapon);
-        return skills;
-    }
-
-
-    protected HashMap<String, Ability> getAbilitiesSub() {
-		return null;
-	}
 
 
 
 	@Override
-	public String displayName() {
-		// TODO Auto-generated method stub
-		return "Smasher";
-	}
+    public void visit(TwoHandedWeaponItem thwi) {
+        getEntity().equipItem(thwi);
+        getEntity().setActiveSkill(twohandedweapon);
+    }
 
 }

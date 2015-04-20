@@ -3,80 +3,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import Main.Game;
 import Main.KeySet;
-import Main.RunGame;
 import Model.Entity.Avatar;
 import Model.Entity.Summoner;
 import Model.Menu.MainMenu;
 import Model.SaveSystem.GameLoader;
-import Utility.DefaultGame;
 import View.ModelView;
 
 
 
 public class MainMenuController extends Controller {
-	MainMenu mm;
-	private static MainMenuController instance = null;;
-	KeyListener up = new UpAction();
-	KeyListener down = new DownAction();
-	KeyListener enter = new Update();
-	KeyListener render = new Render();
-	
-	private MainMenuController(){
-		mm = new MainMenu();
-	}
-	public static MainMenuController getInstance(){
-		
-		if(instance == null){
-			
-			instance = new MainMenuController();
-		}
-		
-			return instance;
-		
-	}
-	
-	public void register(JFrame f){
-		f.addKeyListener(up);
-		f.addKeyListener(down);
-		f.addKeyListener(enter);
-		f.addKeyListener(render);
-	}
-	public void deRegister(JFrame f){
-		f.removeKeyListener(up);
-		f.removeKeyListener(down);
-		f.removeKeyListener(enter);
-		f.removeKeyListener(render);
-	}
-	public ModelView getView(){
-		return mm.getView();
-	}
-	
-	public class UpAction implements KeyListener {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			if(key == KeySet.getKey("SOUTH")){
-				mm.MoveUp();
-			}
-			
-		}
-
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-			
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0) {
-			
-		}
-	}
 	public class DownAction implements KeyListener {
 
 		@Override
@@ -98,6 +37,27 @@ public class MainMenuController extends Controller {
 			
 		}
 	}
+	public class UpAction implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+			if(key == KeySet.getKey("SOUTH")){
+				mm.MoveUp();
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			
+		}
+	};
 	public class Update implements KeyListener {
 
 		@Override
@@ -142,5 +102,45 @@ public class MainMenuController extends Controller {
 		public void keyTyped(KeyEvent arg0) {
 			
 		}
+	}
+	public static MainMenuController getInstance(){
+		
+		if(instance == null){
+			
+			instance = new MainMenuController();
+		}
+		
+			return instance;
+		
+	}
+	MainMenu mm;
+	private static MainMenuController instance = null;
+	
+	KeyListener up = new UpAction();
+	KeyListener down = new DownAction();
+	
+	KeyListener enter = new Update();
+	KeyListener render = new Render();
+	private MainMenuController(){
+		mm = new MainMenu();
+	}
+	
+	@Override
+	public void deRegister(JFrame f){
+		f.removeKeyListener(up);
+		f.removeKeyListener(down);
+		f.removeKeyListener(enter);
+		f.removeKeyListener(render);
+	}
+	@Override
+	public ModelView getView(){
+		return mm.getView();
+	}
+	@Override
+	public void register(JFrame f){
+		f.addKeyListener(up);
+		f.addKeyListener(down);
+		f.addKeyListener(enter);
+		f.addKeyListener(render);
 	}
 }

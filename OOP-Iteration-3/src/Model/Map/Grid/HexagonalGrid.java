@@ -7,17 +7,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Model.Entity.Entity;
-import Model.Items.MapObject;
-import Model.Items.TakeableItem;
 import Model.Map.HexagonalCoordinateInterface;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.RectangularLocation;
 import Model.Map.Grid.Tile.HexagonalTile;
-import Model.Map.Grid.Tile.RectangularTile;
 import Model.Map.Grid.Tile.Tile;
 import Model.Terrain.Grass;
-import View.View;
 import View.Model.FlatHexagon;
 
 public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Iterator<HexagonalTile> {
@@ -54,12 +50,16 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 		}
 	}*/
 	
-	public void render(Graphics g, HexagonalLocation center, int grid_radius) {
-		for (HexagonalLocation hex_coord : HexagonalLocation.circle(center, grid_radius)) {
-			HexagonalTile hex_tile = get(hex_coord);
-			if (hex_tile != null)
-				get(hex_coord).render(g, center);
+	public void border(Tile border) {
+		for (int col = 0; col < getWidth(); col++) {
+			insert(col, 0, border.clone());
+			insert(col, getHeight() - 1, border.clone());
 		}
+		if (getHeight() > 1)
+			for (int row = 1; row < getHeight() - 1; row++) {
+				insert(0, row, border.clone());
+				insert(getWidth() - 1, row, border.clone());
+			}
 	}
 	
 	@Override
@@ -121,6 +121,13 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 	}
 	
 	@Override
+	public HexagonalTile get(int u, int v) {
+		if (isValid(u, v))
+			return see(u, v + u / 2);
+		return null;
+	}
+	
+	@Override
 	public HexagonalTile get(Location hex_location) {
 		HexagonalCoordinateInterface hex_coord = (HexagonalCoordinateInterface)hex_location;
 		return get(hex_coord.getU(), hex_coord.getV());
@@ -128,13 +135,6 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 	
 	public Entity getEntity(Location location){
 		return get(location).getEntity();
-	}
-	
-	@Override
-	public HexagonalTile get(int u, int v) {
-		if (isValid(u, v))
-			return see(u, v + u / 2);
-		return null;
 	}
 	
 	public ArrayList<HexagonalTile> getHexTiles(ArrayList<HexagonalLocation> hex_coords) {		
@@ -145,6 +145,13 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 				hex_tiles.add(hex_tile);
 		}
 		return hex_tiles;
+	}
+	
+	@Override
+	public boolean hasNext() {
+		if(this.i < super.getWidth() && this.j < super.getHeight())
+			return true;
+		else return false;
 	}
 	
 	protected RectangularLocation indexOf(HexagonalTile hex_tile) {
@@ -161,6 +168,17 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 							return new RectangularLocation(col, row);
 		}
 		return null;
+	}
+	
+	public void initalize() {
+		
+		
+	}
+	
+	public void initializeIterator()
+	{
+		this.i = 0;
+		this.j = 0;
 	}
 	
 	@Override
@@ -193,21 +211,50 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 		return null;
 	}
 	
+	@Override
+	public HexagonalTile next() {
+		
+		HexagonalTile cur =  (HexagonalTile)super.get(i++, j);
+		if(i >= super.getWidth() && j < super.getHeight())
+		{
+			i = 0;
+			++j;
+		}
+		
+		return cur;
+		
+	}
+
 	public void remove(HexagonalCoordinateInterface hex_coord) {
 		remove(hex_coord.getU(), hex_coord.getV());
 	}
-	
+
 	@Override
 	public void remove(int u, int v) {
 		if (isValid(u, v))
 			super.remove(u, v - u / 2);
 	}
+
+	public void render(Graphics g, HexagonalLocation center, int grid_radius) {
+		for (HexagonalLocation hex_coord : HexagonalLocation.circle(center, grid_radius)) {
+			HexagonalTile hex_tile = get(hex_coord);
+			if (hex_tile != null)
+				get(hex_coord).render(g, center);
+		}
+	}
 	
+	@Override
+	public void render(Graphics g, Point origin, HexagonalLocation center,
+			int grid_radius, int hexagon_size) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public HexagonalTile see(int x, int y) {
 		return (HexagonalTile)super.see(x, y);
 	}
-	
+
 	@Override
 	public String toString() {
 		
@@ -229,57 +276,6 @@ public class HexagonalGrid extends Grid implements DrawableHexGridInterface, Ite
 		}
 		string.append(" ]");
 		return string.toString();
-	}
-
-	public void initalize() {
-		
-		
-	}
-
-	@Override
-	public void render(Graphics g, Point origin, HexagonalLocation center,
-			int grid_radius, int hexagon_size) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void border(Tile border) {
-		for (int col = 0; col < getWidth(); col++) {
-			insert(col, 0, border.clone());
-			insert(col, getHeight() - 1, border.clone());
-		}
-		if (getHeight() > 1)
-			for (int row = 1; row < getHeight() - 1; row++) {
-				insert(0, row, border.clone());
-				insert(getWidth() - 1, row, border.clone());
-			}
-	}
-	
-	public void initializeIterator()
-	{
-		this.i = 0;
-		this.j = 0;
-	}
-
-	@Override
-	public boolean hasNext() {
-		if(this.i < super.getWidth() && this.j < super.getHeight())
-			return true;
-		else return false;
-	}
-
-	@Override
-	public HexagonalTile next() {
-		
-		HexagonalTile cur =  (HexagonalTile)super.get(i++, j);
-		if(i >= super.getWidth() && j < super.getHeight())
-		{
-			i = 0;
-			++j;
-		}
-		
-		return cur;
-		
 	}
 
 	

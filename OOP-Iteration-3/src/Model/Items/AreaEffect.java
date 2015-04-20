@@ -14,13 +14,13 @@ public abstract class AreaEffect extends MapObject {
     }
 
     @Override
-    public boolean isPassable() {
-        return true;
+    public MapObjectView getMapObjectView(){
+        return mov;
     }
 
     @Override
-    public MapObjectView getMapObjectView(){
-        return mov;
+    public boolean isPassable() {
+        return true;
     }
 
 	@Override

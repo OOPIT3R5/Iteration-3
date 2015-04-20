@@ -2,8 +2,6 @@ package Model.Menu;
 
 import java.util.Observable;
 
-import javax.swing.JComponent;
-
 import View.CharacterCreationView;
 import View.ModelView;
 
@@ -17,14 +15,12 @@ public class CharacterCreation extends Observable {
 		addObserver(cv);
 	}
 	
-	public ModelView getView(){
-		return cv;
+	public String getState(){
+		return options[Math.abs(selected)];
 	}
 	
-	public void MoveUp(){
-		selected = Math.abs((selected+1)% options.length);
-		setChanged();
-		notifyObservers(options[selected]);
+	public ModelView getView(){
+		return cv;
 	}
 	public void MoveDown(){
 		if((--selected) < 0){
@@ -34,8 +30,10 @@ public class CharacterCreation extends Observable {
 		notifyObservers(options[Math.abs(selected)]);
 	}
 	
-	public String getState(){
-		return options[Math.abs(selected)];
+	public void MoveUp(){
+		selected = Math.abs((selected+1)% options.length);
+		setChanged();
+		notifyObservers(options[selected]);
 	}
 	
 }

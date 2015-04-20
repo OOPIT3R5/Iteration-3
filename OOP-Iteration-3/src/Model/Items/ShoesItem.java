@@ -1,6 +1,5 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
 import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;

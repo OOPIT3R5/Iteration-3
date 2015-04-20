@@ -2,22 +2,9 @@ package Utility;
 
 import java.util.Random;
 
-import Model.Entity.Ability.Ability;
-import Model.Entity.Ability.Move;
 import Model.Map.Direction;
 
 public final class RandomlyGenerate {
-	private static Random random;
-	
-	public RandomlyGenerate (){
-		random = new Random();
-	}
-	
-	public static double probability(){
-		return random.nextDouble();		// TODO causing null-pointer....
-	}
-
-
 	public static Direction direction() {
 		double r = probability();
 		
@@ -37,6 +24,17 @@ public final class RandomlyGenerate {
 			return Direction.SOUTHEAST;
 		}
 		return Direction.SOUTHWEST;
+	}
+	
+	public static double probability(){
+		return random.nextDouble();		// TODO causing null-pointer....
+	}
+	
+	private static Random random;
+
+
+	public RandomlyGenerate (){
+		random = new Random();
 	}
 	
 	

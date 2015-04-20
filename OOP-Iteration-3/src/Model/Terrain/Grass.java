@@ -11,15 +11,17 @@ public class Grass extends Terrain {
 		super();
 	}
 	
-	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.enableMove(direction);
-	}
-
 	@Override
 	public Color getColor() {
 		return Color.GREEN;
 	}
+
+	@Override
+	public void notifyOfEntity(MovementInterface target, Direction direction) {
+		target.enableMove(direction);
+	}
 	
+	@Override
 	public String toString()
 	{
 		return "Grass Tile";

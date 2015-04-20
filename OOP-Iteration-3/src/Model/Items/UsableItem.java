@@ -1,8 +1,8 @@
 package Model.Items;
 
-import Model.Entity.Ability.ItemAbility;
 import Model.Entity.Entity;
 import Model.Entity.TakeableItemVisitor;
+import Model.Entity.Ability.ItemAbility;
 import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 
@@ -22,6 +22,16 @@ public class UsableItem extends TakeableItem{
     }
 
     @Override
+    public void accept(TakeableItemVisitor eiv) {
+        eiv.visit(this);
+    }
+
+    public void execute() {
+        ability.setEntity(avatar);
+        ability.execute();
+    }
+
+    @Override
     public boolean isPassable() {
         return true;
     }
@@ -30,16 +40,6 @@ public class UsableItem extends TakeableItem{
     public void onTouch(Entity entity){
         avatar = entity;
         avatar.addToInventory(this);
-    }
-
-    @Override
-    public void accept(TakeableItemVisitor eiv) {
-        eiv.visit(this);
-    }
-
-    public void execute() {
-        ability.setEntity(avatar);
-        ability.execute();
     }
 
 	@Override

@@ -14,24 +14,19 @@ public class Heal extends SummonerAbility {
     }
 	
 	@Override
-	public void execute() {
-		useMana(sourceEntity);
-	}
-	
-	@Override
 	public void cast() {
 		Entity targetEntity = getSourceEntity();
 		targetEntity.getStatistics().changeHealth(getSkillLevel());
+	}
+	
+	@Override
+	public void execute() {
+		useMana(sourceEntity);
 	}
 
 	@Override
 	public int getRequiredMana() {
 		return 15;
-	}
-
-	@Override
-	protected int scaleMagnitude() {
-		return 0;
 	}
 
 	@Override
@@ -42,5 +37,10 @@ public class Heal extends SummonerAbility {
 	@Override
 	protected Entity getSourceEntity() {
 		return sourceEntity;
+	}
+
+	@Override
+	protected int scaleMagnitude() {
+		return 0;
 	}
 }

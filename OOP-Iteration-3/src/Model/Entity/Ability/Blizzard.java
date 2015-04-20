@@ -3,7 +3,6 @@ package Model.Entity.Ability;
 import java.util.ArrayList;
 
 import Model.Entity.Entity;
-import Model.Entity.NPC;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
@@ -20,40 +19,6 @@ public class Blizzard extends SummonerAbility{
 		this.sourceEntity = sourceEntity;
 		this.skill = skill;
     }
-
-	@Override
-    public void execute() {
-		useMana(sourceEntity);
-	}
-
-	public ArrayList<Tile> getTargetTiles(){
-		Location center = (getSourceEntity().getLocation());
-		int radius = 20;
-		
-		GameMap map = sourceEntity.getGamemap();
-		
-		ArrayList<Tile> result = new ArrayList<Tile>();
-		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){
-			result.add(map.getTile(location));
-		}
-		
-		return result;
-	}
-	
-	@Override
-	public int getSkillLevel() {
-		return skill.getCurrentLevel();
-	}
-
-	@Override
-	protected Entity getSourceEntity() {
-		return sourceEntity;
-	}
-
-	@Override
-	public int getRequiredMana() {
-		return 20;
-	}
 
 	@Override
 	public void cast() {
@@ -77,6 +42,40 @@ public class Blizzard extends SummonerAbility{
 ////			}
 //			System.out.println("Blizzard Success");
 //		}
+	}
+
+	@Override
+    public void execute() {
+		useMana(sourceEntity);
+	}
+	
+	@Override
+	public int getRequiredMana() {
+		return 20;
+	}
+
+	@Override
+	public int getSkillLevel() {
+		return skill.getCurrentLevel();
+	}
+
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
+	}
+
+	public ArrayList<Tile> getTargetTiles(){
+		Location center = (getSourceEntity().getLocation());
+		int radius = 20;
+		
+		GameMap map = sourceEntity.getGamemap();
+		
+		ArrayList<Tile> result = new ArrayList<Tile>();
+		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){
+			result.add(map.getTile(location));
+		}
+		
+		return result;
 	}
 
 	@Override

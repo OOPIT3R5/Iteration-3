@@ -3,13 +3,10 @@ package Model.Items;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.io.IOException;
 
-import Model.Entity.Ability.Ability;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.SaveSystem.Savable;
-import Model.SaveSystem.Saver;
 import View.View;
 import View.Model.MapObjectView;
 
@@ -31,21 +28,31 @@ public abstract class Item extends MapObject implements Savable{
         this.description = description;
     }
 
-    public String getName(){
-        return name;
+    public String getDescription(){
+        return description;
     }
 
-    public MapObjectView getMapObjectView(){
+    @Override
+	public MapObjectView getMapObjectView(){
         return mov;
     }
 
-    public String getDescription(){
-        return description;
+    @Override
+	public String getName(){
+        return name;
     }
     
   
     
-    public String toString()
+    @Override
+	public void render(Graphics g, HexagonalLocation center, Location loc) {
+		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
+		
+		
+	}
+
+	@Override
+	public String toString()
     {
     	StringBuilder builder = new StringBuilder();
     	builder.append(name);
@@ -53,13 +60,6 @@ public abstract class Item extends MapObject implements Savable{
     	//return "";
         return name;
     }
-
-	@Override
-	public void render(Graphics g, HexagonalLocation center, Location loc) {
-		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
-		
-		
-	}
     
     
     

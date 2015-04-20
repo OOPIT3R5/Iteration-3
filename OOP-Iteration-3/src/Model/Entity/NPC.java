@@ -10,7 +10,6 @@ import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
-import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 import View.NpcView;
 import View.Model.MapObjectView;
@@ -27,13 +26,6 @@ public class NPC extends Entity {
 		hostility = new Hostility(this);
 	}
 	
-	public NPC(String name, Occupation o) {
-		super(name, o);
-		npcView = new NpcView();
-
-		hostility = new Hostility(this);
-	}
-
 	public NPC(String name) {
 		super(name);
 		npcView = new NpcView();
@@ -41,26 +33,12 @@ public class NPC extends Entity {
 		hostility = new Hostility(this);
 	}
 
-	/*AI stuff*/
-	public void performAction(){
-		if(isfollowingEntity){
-			Avatar a = getMap().getAvatar();
-			if (HexagonalLocation.rectilinearDistance(a.getLocation(), this.getLocation()) >= 2) {
-				Ability m = new Move(this, directionTowardAvatar(), this.getMovementSpeed());
-				m.execute();
-			}
-		}
-		else{
-			makeActionChoice();
-		}
-	}
-	public void setIfShouldFollowingEntity(boolean follow){
-		isfollowingEntity = follow;
-	}
-	public void makeActionChoice(){
-		hostility.act();
-	}
+	public NPC(String name, Occupation o) {
+		super(name, o);
+		npcView = new NpcView();
 
+		hostility = new Hostility(this);
+	}
 
 	public boolean avatarIsWithinRange(int range){
 		ArrayList<HexagonalLocation> a = HexagonalLocation.circle(getLocation(), range);
@@ -74,6 +52,24 @@ public class NPC extends Entity {
 		System.out.print("");
 		return false;
 	}
+	public void becomeHostile() {
+		hostility.becomeHostile();
+	}
+	public void becomeNonHostile() {
+		hostility.becomeNonHostile();
+	}
+
+
+	public void charm() {
+		becomeNonHostile();
+	}
+
+	@Override
+	public String dialogue() {
+		// TODO Auto-generated method stub
+		return "I'm a nonplayable character";
+	}
+
 
 	public Direction directionTowardAvatar() {
 		//ArrayList<Entity> e = getSurroundingEntities();
@@ -106,41 +102,65 @@ public class NPC extends Entity {
 		return Direction.SOUTHEAST;
 
 	}
-
-
-	public void becomeHostile() {
-		hostility.becomeHostile();
+	
+	public GameMap getMap() {
+		return map;
 	}
 	
-	public void becomeNonHostile() {
-		hostility.becomeNonHostile();
+	@Override
+	public MapObjectView getMapObjectView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
+	@Override
+	public boolean isPassable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public void makeActionChoice(){
+		hostility.act();
+	}
+
+	@Override
+	public void onTouch(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/*AI stuff*/
+	@Override
+	public void performAction(){
+		if(isfollowingEntity){
+			Avatar a = getMap().getAvatar();
+			if (HexagonalLocation.rectilinearDistance(a.getLocation(), this.getLocation()) >= 2) {
+				Ability m = new Move(this, directionTowardAvatar(), this.getMovementSpeed());
+				m.execute();
+			}
+		}
+		else{
+			makeActionChoice();
+		}
+	}
+
+	@Override
+	public void polymorph() {		// TODO change image to sheep
+		
+	}
+
 	public void provoke(){
 		double rand = RandomlyGenerate.probability();
 		if (rand>.10){
 			becomeHostile();
 		}
-	}
-
-	public GameMap getMap() {
-		return map;
-	}
-	
-	public void sleep() {
-		becomeNonHostile();
-	}
-	
-	public void charm() {
-		becomeNonHostile();
-	}
-
-	public void polymorph() {		// TODO change image to sheep
-		
-	}
-	
-	public void unpolymorph(){		// TODO change to default image
-		
 	}
 
 	@Override
@@ -150,24 +170,6 @@ public class NPC extends Entity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-	}
-
-	@Override
-	public boolean isPassable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void onTouch(Entity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public MapObjectView getMapObjectView() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -182,16 +184,16 @@ public class NPC extends Entity {
 		
 	}
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setIfShouldFollowingEntity(boolean follow){
+		isfollowingEntity = follow;
 	}
 
-	@Override
-	public String dialogue() {
-		// TODO Auto-generated method stub
-		return "I'm a nonplayable character";
+	public void sleep() {
+		becomeNonHostile();
+	}
+
+	public void unpolymorph(){		// TODO change to default image
+		
 	}
 	
 

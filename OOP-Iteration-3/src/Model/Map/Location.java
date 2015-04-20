@@ -13,15 +13,16 @@ public abstract class Location {
 	
 	public abstract Location getNeighbor(int d);
 	
-	public String toString() {
-		return coordinate[0] + ", " + coordinate[1];
-	}
 	public int getX(){
 		return coordinate[0];
 	}
 	public int getY(){
 		
 		return coordinate[1];
+	}
+	@Override
+	public String toString() {
+		return coordinate[0] + ", " + coordinate[1];
 	}
 	
 	

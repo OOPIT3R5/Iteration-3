@@ -1,7 +1,7 @@
 package Model.Items;
 
-import Model.Entity.Ability.ItemAbility;
 import Model.Entity.Entity;
+import Model.Entity.Ability.ItemAbility;
 import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
 

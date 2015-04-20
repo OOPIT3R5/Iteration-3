@@ -20,6 +20,7 @@ public class DetectTrap extends SkillAbility{
 		this.skill = skill;
     }
 
+	@Override
 	public void execute() {
 		double chanceOfSuccess = getSkillLevel()/100;
 		
@@ -32,6 +33,16 @@ public class DetectTrap extends SkillAbility{
 		}
 	}
 	
+	@Override
+	public int getSkillLevel() {
+		return skill.getCurrentLevel();
+	}
+	
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
+	}
+
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int radius = 5;
@@ -44,16 +55,6 @@ public class DetectTrap extends SkillAbility{
 		}
 		
 		return result;
-	}
-	
-	@Override
-	public int getSkillLevel() {
-		return skill.getCurrentLevel();
-	}
-
-	@Override
-	protected Entity getSourceEntity() {
-		return sourceEntity;
 	}
 
 }

@@ -1,11 +1,8 @@
 package Model.Map.Grid;
 
-import Model.Map.HexagonalCoordinateInterface;
-import Model.Map.HexagonalLocation;
 import Model.Map.Location;
 import Model.Map.RectangularCoordinateInterface;
 import Model.Map.RectangularLocation;
-import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.RectangularTile;
 import Model.Map.Grid.Tile.Tile;
 
@@ -35,16 +32,16 @@ public class RectangularGrid extends Grid {
 				insert(col, row, rect_tile.clone());
 	}
 	
-	@Override
-	public RectangularTile get(Location rect_location) {
-		RectangularCoordinateInterface rect_coord = (RectangularCoordinateInterface)rect_location;
-		return get(rect_coord.getX(), rect_coord.getY());
-	}
-	
 	/** Returns object at xy index. */
 	@Override
 	public RectangularTile get(int x, int y) {
 		return see(x, y);
+	}
+	
+	@Override
+	public RectangularTile get(Location rect_location) {
+		RectangularCoordinateInterface rect_coord = (RectangularCoordinateInterface)rect_location;
+		return get(rect_coord.getX(), rect_coord.getY());
 	}
 	
 	/** Adds object to grid[x][y]. */

@@ -2,13 +2,15 @@ package Model.Entity;
 
 
 
-import Model.Entity.Ability.*;
-import Model.Items.UsableItem;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
+
+import Model.Entity.Ability.Ability;
+import Model.Entity.Ability.Attack;
+import Model.Entity.Ability.BindWounds;
+import Model.Entity.Ability.Observe;
+import Model.Items.UsableItem;
 
 
 public abstract class Occupation implements TakeableItemVisitor {
@@ -40,9 +42,7 @@ public abstract class Occupation implements TakeableItemVisitor {
     }
 
 
-    protected Entity getEntity() {
-        return entity;
-    }
+    public abstract String displayName();
 	
 /*	public HashMap<String,Skill> getSkills(){
 		
@@ -56,16 +56,6 @@ public abstract class Occupation implements TakeableItemVisitor {
 		
 	}*/
 
-    public ArrayList<Skill> getSkillAL() {
-        ArrayList<Skill> skills = new ArrayList<Skill>();
-        skills.add(bindwounds);
-        skills.add(bargain);
-        skills.add(observation);
-        skills.add(attack);
-        skills.addAll(getSubSkills());
-        return skills;
-    }
-
     public HashMap<String,Ability> getAbilities() {
 
         HashMap<String,Ability> abilities = new HashMap<String,Ability>();
@@ -78,25 +68,37 @@ public abstract class Occupation implements TakeableItemVisitor {
         return abilities;
 
     }
+
+    protected abstract HashMap<String, Ability> getAbilitiesSub();
     
     public Skill getAttack(){
     	return attack;
     }
 
-    protected abstract HashMap<String, Ability> getAbilitiesSub();
+    protected Entity getEntity() {
+        return entity;
+    }
+
+    public ArrayList<Skill> getSkillAL() {
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(bindwounds);
+        skills.add(bargain);
+        skills.add(observation);
+        skills.add(attack);
+        skills.addAll(getSubSkills());
+        return skills;
+    }
+    
+    public abstract Collection<? extends Skill> getSubSkills();
 
     public void printName() {
         System.out.println(this.toString());
 
     }
-    
-    public abstract String displayName();
 
     @Override
 
     public void visit(UsableItem ui) {
         ui.execute();
     }
-
-    public abstract Collection<? extends Skill> getSubSkills();
 }

@@ -11,15 +11,17 @@ public class Mountain extends Terrain {
 		super();
 	}
 	
-	public void notifyOfEntity(MovementInterface target, Direction direction) {
-		target.disableMove(direction);
-	}
-
 	@Override
 	public Color getColor() {
 		return Color.LIGHT_GRAY;
 	}
+
+	@Override
+	public void notifyOfEntity(MovementInterface target, Direction direction) {
+		target.disableMove(direction);
+	}
 	
+	@Override
 	public String toString()
 	{
 		return "Mountain Tile";

@@ -9,13 +9,13 @@ public class InstaDeathAreaEffect extends AreaEffect {
     }
 
     @Override
-    public void onTouch(Entity entity) {
-        entity.changeHealth(-99999999); //Blast that loser.
-    }
-
-	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+    public void onTouch(Entity entity) {
+        entity.changeHealth(-99999999); //Blast that loser.
+    }
 }

@@ -9,7 +9,8 @@ public class AccessoryItem extends EquippableItem {
         super(statchange, name, mov);
     }
 
-    public void accept(TakeableItemVisitor eiv){
+    @Override
+	public void accept(TakeableItemVisitor eiv){
         eiv.visit(this);
     }
 

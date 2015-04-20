@@ -10,7 +10,8 @@ public class SummonerWeaponItem extends WeaponItem {
         super(AttackSpeed.SLOW, statchange, name, mov);
     }
 
-    public void accept(TakeableItemVisitor eiv){
+    @Override
+	public void accept(TakeableItemVisitor eiv){
         eiv.visit(this);
     }
 

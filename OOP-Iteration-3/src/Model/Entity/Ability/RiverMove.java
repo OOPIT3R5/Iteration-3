@@ -1,7 +1,6 @@
 package Model.Entity.Ability;
 
 import Model.Entity.Entity;
-import Model.Items.MapObject;
 import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;
@@ -17,6 +16,11 @@ public class RiverMove extends Ability {
 		this.direction = direction;
 		this.movementSpeed = movementSpeed;
     }
+
+	private void downstream() {
+		new Move(sourceEntity, Direction.SOUTH, movementSpeed).execute();
+		new Move(sourceEntity, Direction.SOUTH, movementSpeed).execute();
+	}
 
 	@Override
 	public void execute() {
@@ -36,11 +40,6 @@ public class RiverMove extends Ability {
 		} else {	// turn around without moving forward
 			currentEntity.setDirection(direction);
 		}
-	}
-
-	private void downstream() {
-		new Move(sourceEntity, Direction.SOUTH, movementSpeed).execute();
-		new Move(sourceEntity, Direction.SOUTH, movementSpeed).execute();
 	}
 
 	@Override

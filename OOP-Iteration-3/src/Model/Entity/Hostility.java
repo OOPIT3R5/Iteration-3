@@ -2,12 +2,12 @@ package Model.Entity;
 
 import java.util.ArrayList;
 
-import Utility.*;
 import Model.Entity.Ability.Ability;
 import Model.Entity.Ability.Attack;
 import Model.Entity.Ability.DoNothing;
 import Model.Entity.Ability.Move;
 import Model.Map.Direction;
+import Utility.RandomlyGenerate;
 
 public class Hostility {
 	
@@ -65,6 +65,17 @@ public class Hostility {
 	 * They will also have a higher probability of
 	 *  moving toward the avatar (if it is possible)*/
 	
+	public void becomeHostile() {
+		setHostility(true);
+	}
+
+	
+	public void becomeNonHostile() {
+		setHostility(false);
+		
+	}
+
+	
 	public void hostileAct(){
 		double prob = RandomlyGenerate.probability();	
 		Ability a;
@@ -108,7 +119,6 @@ public class Hostility {
 			
 	}
 
-	
 	/*non-hostile npcs will not attack the avatar.
 	 * They more or less just move around the map*/
 	public void nonHostileAct(){
@@ -126,18 +136,8 @@ public class Hostility {
 		
 	}
 
-	
 	private void setHostility(boolean ishostile){
 		isHostile = ishostile;
-	}
-
-	public void becomeHostile() {
-		setHostility(true);
-	}
-
-	public void becomeNonHostile() {
-		setHostility(false);
-		
 	}
 	
 	

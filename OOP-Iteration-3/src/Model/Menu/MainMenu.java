@@ -2,8 +2,6 @@ package Model.Menu;
 
 import java.util.Observable;
 
-import javax.swing.JComponent;
-
 import View.MainMenuView;
 import View.ModelView;
 
@@ -16,14 +14,12 @@ public class MainMenu extends Observable {
 		addObserver(mv);
 	}
 	
-	public ModelView getView(){
-		return mv;
+	public String getState(){
+		return options[Math.abs(selected)];
 	}
 	
-	public void MoveUp(){
-		selected = Math.abs((selected+1)%options.length);
-		setChanged();
-		notifyObservers(options[selected]);
+	public ModelView getView(){
+		return mv;
 	}
 	public void MoveDown(){
 		if((--selected) < 0){
@@ -33,8 +29,10 @@ public class MainMenu extends Observable {
 		notifyObservers(options[Math.abs(selected)]);
 	}
 	
-	public String getState(){
-		return options[Math.abs(selected)];
+	public void MoveUp(){
+		selected = Math.abs((selected+1)%options.length);
+		setChanged();
+		notifyObservers(options[selected]);
 	}
 	
 }

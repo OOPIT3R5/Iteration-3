@@ -36,7 +36,7 @@ public class Creep extends SkillAbility{
 			}
 			if(checkDistance(sourceEntity.getLocation(),entities.get(i).getLocation(),1,25)){
 				NPC targetEntity = (NPC)entities.get(i);
-				((NPC)targetEntity).becomeNonHostile();
+				targetEntity.becomeNonHostile();
 				
 			}
 		}
@@ -52,6 +52,16 @@ public class Creep extends SkillAbility{
 //		}
 	}
 
+	@Override
+	public int getSkillLevel() {
+		return skill.getCurrentLevel();
+	}
+	
+	@Override
+	protected Entity getSourceEntity() {
+		return sourceEntity;
+	}
+
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int radius = 5;
@@ -65,16 +75,6 @@ public class Creep extends SkillAbility{
 		}
 		
 		return result;
-	}
-	
-	@Override
-	public int getSkillLevel() {
-		return skill.getCurrentLevel();
-	}
-
-	@Override
-	protected Entity getSourceEntity() {
-		return sourceEntity;
 	}
 
 }

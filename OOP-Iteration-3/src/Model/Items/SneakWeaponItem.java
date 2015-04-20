@@ -1,6 +1,5 @@
 package Model.Items;
 
-import Model.Entity.Ability.Ability;
 import Model.Entity.TakeableItemVisitor;
 import Model.SaveSystem.Saver;
 import View.Model.MapObjectView;
@@ -11,13 +10,13 @@ public class SneakWeaponItem extends WeaponItem{
     }
 
     @Override
-    public boolean isTwoHanded() {
-        return true; //Assuming all sneak weapons are 2-handed
+    public void accept(TakeableItemVisitor eiv) {
+        eiv.visit(this);
     }
 
     @Override
-    public void accept(TakeableItemVisitor eiv) {
-        eiv.visit(this);
+    public boolean isTwoHanded() {
+        return true; //Assuming all sneak weapons are 2-handed
     }
 
 	@Override

@@ -14,11 +14,6 @@ public class Enhance extends SummonerAbility {
     }
 	
 	@Override
-	public void execute() {
-		useMana(sourceEntity);
-	}
-	
-	@Override
 	public void cast() {
 		final Entity targetEntity = getSourceEntity();
 		
@@ -35,15 +30,15 @@ public class Enhance extends SummonerAbility {
 			}
 		}).start();
 	}
+	
+	@Override
+	public void execute() {
+		useMana(sourceEntity);
+	}
 
 	@Override
 	public int getRequiredMana() {
 		return 15;
-	}
-
-	@Override
-	protected int scaleMagnitude() {
-		return 0;
 	}
 
 	@Override
@@ -54,5 +49,10 @@ public class Enhance extends SummonerAbility {
 	@Override
 	protected Entity getSourceEntity() {
 		return sourceEntity;
+	}
+
+	@Override
+	protected int scaleMagnitude() {
+		return 0;
 	}
 }

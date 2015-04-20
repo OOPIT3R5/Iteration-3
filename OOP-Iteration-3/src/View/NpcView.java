@@ -16,16 +16,16 @@ import Model.Map.HexagonalLocation;
 import View.Model.MapObjectView;
 
 public class NpcView {
+	public static Image getSpriteFromAvatar(int col, int row) throws IOException {
+	        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32).getScaledInstance(70, 70, Image.SCALE_DEFAULT);
+	    }
 	MapObjectView spriteSheet;
-	BufferedImage sprite;
 	
-	public NpcView(){
+	BufferedImage sprite;
+	  public NpcView(){
 		
 		
 	}
-	  public static Image getSpriteFromAvatar(int col, int row) throws IOException {
-	        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32).getScaledInstance(70, 70, Image.SCALE_DEFAULT);
-	    }
 
 	public void render(Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp) throws IOException{
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);

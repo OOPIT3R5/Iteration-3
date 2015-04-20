@@ -12,17 +12,17 @@ public class Skill {
         this.name = name;
     }
 
-    //Level up skill ONCE. If it's higher than maximum level, do not let it go past that.
-    public void levelSkillUp(){
-        if(++currentlevel > maximumlevel)
-            currentlevel = maximumlevel;
-    }
-
     public int getCurrentLevel(){
         return currentlevel;
     }
 
     public String getName(){
         return name;
+    }
+
+    //Level up skill ONCE. If it's higher than maximum level, do not let it go past that.
+    public void levelSkillUp(){
+        if(++currentlevel > maximumlevel)
+            currentlevel = maximumlevel;
     }
 }

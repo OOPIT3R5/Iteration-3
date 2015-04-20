@@ -1,15 +1,10 @@
 package View;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-import Model.Map.GameMap;
-import Model.Map.HexagonalLocation;
-import Model.Map.Grid.HexagonalGrid;
-import Model.Menu.ConfigControls;
 import View.Model.GameMapView;
 import View.Model.TileView;
 
@@ -24,36 +19,26 @@ public class View extends JPanel{
 		
 	}
 	
-	public void visit(MainMenuView mv) {
-		this.modelView = mv;
-		this.repaint();
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (modelView != null) {
+			modelView.render(g);
+		}
+		
 
 	}
+	public void render(ModelView mv) {
+		mv.accept(this);
+
+	}
+	
+	
 	public void visit(CharacterCreationView mv) {
 		this.modelView = mv;
 		this.repaint();
 	}
-	
-	
-	public void visit(InventoryView mv) {
-		this.modelView = mv;
-		this.repaint();
-
-	}
 	public void visit(ConfigControlsView mv) {
-		this.modelView = mv;
-		this.repaint();
-
-	}
-	
-	public void visit(GameView mv) {
-		this.modelView = mv;
-		this.repaint();
-
-	}
-	
-	
-	public void visit(TileView mv) {
 		this.modelView = mv;
 		this.repaint();
 
@@ -64,18 +49,28 @@ public class View extends JPanel{
 		this.repaint();
 
 	}
-	public void render(ModelView mv) {
-		mv.accept(this);
+	
+	
+	public void visit(GameView mv) {
+		this.modelView = mv;
+		this.repaint();
 
 	}
 	
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		if (modelView != null) {
-			modelView.render(g);
-		}
-		
+	public void visit(InventoryView mv) {
+		this.modelView = mv;
+		this.repaint();
+
+	}
+	public void visit(MainMenuView mv) {
+		this.modelView = mv;
+		this.repaint();
+
+	}
+	
+	public void visit(TileView mv) {
+		this.modelView = mv;
+		this.repaint();
 
 	}
 	

@@ -1,14 +1,11 @@
 package Model.Entity.Ability;
 
-import java.util.ArrayList;
-
 import Model.Entity.Entity;
 import Model.Entity.Monster;
 import Model.Entity.NPC;
 import Model.Entity.Skill;
 import Model.Map.GameMap;
 import Model.Map.HexagonalLocation;
-import Model.Map.Grid.Tile.Tile;
 import Utility.RandomlyGenerate;
 
 public class Charm extends SummonerAbility {
@@ -20,6 +17,22 @@ public class Charm extends SummonerAbility {
 		this.sourceEntity = sourceEntity;
 		this.skill = skill;
     }
+	
+	@Override
+	public void cast() {
+		Entity targetEntity = getTargetEntity();
+		
+		if (targetEntity != null){
+			double probabilityOfSuccess = RandomlyGenerate.probability();
+			double chanceOfSuccess = getSkillLevel()/100;
+			
+			if (chanceOfSuccess > probabilityOfSuccess){		// success
+				((NPC)getTargetEntity()).charm();		
+			} else {		// failure
+				((NPC)targetEntity).provoke();
+			}
+		}
+	}
 	
 	@Override
 	public void execute() {
@@ -38,31 +51,10 @@ public class Charm extends SummonerAbility {
 		gm.spawn(monster, new HexagonalLocation(gm.getAvatar().getLocation().getU()+1, gm.getAvatar().getLocation().getU()));
 		monster.setMap(gm);
 	}
-	
-	@Override
-	public void cast() {
-		Entity targetEntity = getTargetEntity();
-		
-		if (targetEntity != null){
-			double probabilityOfSuccess = RandomlyGenerate.probability();
-			double chanceOfSuccess = getSkillLevel()/100;
-			
-			if (chanceOfSuccess > probabilityOfSuccess){		// success
-				((NPC)getTargetEntity()).charm();		
-			} else {		// failure
-				((NPC)targetEntity).provoke();
-			}
-		}
-	}
 
 	@Override
 	public int getRequiredMana() {
 		return 20;
-	}
-
-	@Override
-	protected int scaleMagnitude() {
-		return 0;
 	}
 
 	@Override
@@ -74,8 +66,13 @@ public class Charm extends SummonerAbility {
 	protected Entity getSourceEntity() {
 		return sourceEntity;
 	}
-	
+
 	private Entity getTargetEntity() {
 		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
+	}
+	
+	@Override
+	protected int scaleMagnitude() {
+		return 0;
 	}
 }

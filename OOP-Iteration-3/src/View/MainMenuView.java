@@ -3,15 +3,10 @@ package View;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Map.Entry;
-
-import javax.swing.JLabel;
-
-import Main.RunGame;
 
 
 @SuppressWarnings("serial")
@@ -35,19 +30,9 @@ public class MainMenuView extends ModelView implements Observer {
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		for(Entry<String, Color> entry: options.entrySet()){
-			options.put(entry.getKey(), Color.BLACK);
-   		 }
-		options.put(arg1.toString(), Color.RED);
-	}
-
-	@Override
 	public void accept(View view) {
 		view.visit(this);
 	}
-
-	
 
 	@Override
 	public void render(Graphics g) {	
@@ -66,6 +51,16 @@ public class MainMenuView extends ModelView implements Observer {
 			start = start + buttonHeight*2;
    		 }
 		g.setColor(Color.BLACK);
+	}
+
+	
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		for(Entry<String, Color> entry: options.entrySet()){
+			options.put(entry.getKey(), Color.BLACK);
+   		 }
+		options.put(arg1.toString(), Color.RED);
 	}
 	
 	

@@ -29,10 +29,12 @@ public class Statistic {
         this.levelupboost = levelupboost;
     }
 
-    public int getCurrentValue(){
-        if(currentvalue + temporaryvalue > maximum)
-            return maximum;
-        else return (currentvalue + temporaryvalue);
+    public void addPermanentValue(int val){
+        currentvalue += val;
+        if (currentvalue > maximum)
+            currentvalue = maximum;
+        if (currentvalue < minimum)
+            currentvalue = minimum;
     }
 
     //PRECONDITION: This parameter is only passed once for the entirety of the temporary boost.
@@ -46,22 +48,11 @@ public class Statistic {
         temporaryvalue -= tempval;
     } */
 
-    public void addPermanentValue(int val){
-        currentvalue += val;
-        if (currentvalue > maximum)
-            currentvalue = maximum;
-        if (currentvalue < minimum)
-            currentvalue = minimum;
+    public int getCurrentValue(){
+        if(currentvalue + temporaryvalue > maximum)
+            return maximum;
+        else return (currentvalue + temporaryvalue);
     }
-
-    public void levelUpStat(){
-        addPermanentValue(levelupboost);
-    }
-
-    public void reset() {
-        currentvalue = minimum;
-    }
-
 
     public int getMaxValue() {
         return maximum;
@@ -69,5 +60,14 @@ public class Statistic {
 
     public int getMinValue(){
         return minimum;
+    }
+
+
+    public void levelUpStat(){
+        addPermanentValue(levelupboost);
+    }
+
+    public void reset() {
+        currentvalue = minimum;
     }
 }

@@ -1,10 +1,6 @@
 package Model.Items;
 
-import java.awt.Graphics;
-
 import Model.Entity.Entity;
-import Model.Map.HexagonalLocation;
-import Model.Map.Location;
 import View.Model.MapObjectView;
 
 public class LevelUpAreaEffect extends AreaEffect {
@@ -15,15 +11,15 @@ public class LevelUpAreaEffect extends AreaEffect {
     }
 
     @Override
-    public void onTouch(Entity entity) {
-       entity.autoLevelUp();
-    }
-
-	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+    public void onTouch(Entity entity) {
+       entity.autoLevelUp();
+    }
 
 	
 }

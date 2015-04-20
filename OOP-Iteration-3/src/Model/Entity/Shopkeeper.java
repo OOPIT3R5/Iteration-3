@@ -1,6 +1,5 @@
 package Model.Entity;
 
-import Model.Items.Item;
 import Model.Items.TakeableItem;
 
 public class Shopkeeper extends NonAdversarial {
@@ -15,12 +14,22 @@ public class Shopkeeper extends NonAdversarial {
 	}
 	
 	
+	public void bargianUsedOnMe(Skill s){
+		costOfItem = 5 - 5*(s.getCurrentLevel()/50);
+	}
+	
 	public void buy(TakeableItem ti){
 		addToInventory(ti);
 		getMap().getAvatar().awardGold(goldBuyFor);
 	}
 	
-	public void sell(TakeableItem ti){
+	@Override
+	public void receiveDamage(int damage) {
+			stats.changeHealth(-damage);
+			becomeHostile();
+		}
+	
+	 public void sell(TakeableItem ti){
 		getMap().getAvatar().addToInventory(ti);
 		if(costOfItem<getMap().getAvatar().getGold()){
 			
@@ -30,14 +39,5 @@ public class Shopkeeper extends NonAdversarial {
 		}
 		awardGold(costOfItem);
 	}
-	
-	public void bargianUsedOnMe(Skill s){
-		costOfItem = 5 - 5*(s.getCurrentLevel()/50);
-	}
-	
-	 public void receiveDamage(int damage) {
-			stats.changeHealth(-damage);
-			becomeHostile();
-		}
 
 }

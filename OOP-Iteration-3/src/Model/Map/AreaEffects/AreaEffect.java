@@ -18,17 +18,24 @@ public class AreaEffect extends MapObject{
 		this.mov = mov;
 	}
 	
-	public boolean isPassable(){
-		return true;
-	}
-	
-	public void onTouch(Entity e){
-		ability.execute();
-	}
-
 	@Override
 	public MapObjectView getMapObjectView() {
 		return mov;
+	}
+	
+	@Override
+	public String getName() {
+		return ability.toString();
+	}
+
+	@Override
+	public boolean isPassable(){
+		return true;
+	}
+
+	@Override
+	public void onTouch(Entity e){
+		ability.execute();
 	}
 
 	@Override
@@ -36,10 +43,5 @@ public class AreaEffect extends MapObject{
 			Location location) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public String getName() {
-		return ability.toString();
 	}
 }

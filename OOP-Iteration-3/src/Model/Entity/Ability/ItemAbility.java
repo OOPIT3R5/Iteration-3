@@ -5,11 +5,11 @@ import Model.Entity.Entity;
 public abstract class ItemAbility extends Ability {
     private Entity entity;
 
-    public ItemAbility(Entity entity){
-        this.entity = entity;
+    public ItemAbility() {
     }
 
-    public ItemAbility() {
+    public ItemAbility(Entity entity){
+        this.entity = entity;
     }
 
     @Override

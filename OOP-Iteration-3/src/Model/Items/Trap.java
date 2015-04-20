@@ -10,11 +10,11 @@ public class Trap extends TakeDamageAreaEffect{
         detected = false;
     }
 
-    public boolean isDetected(){
-        return detected;
-    }
-
     public void detect(){
         detected = true;
+    }
+
+    public boolean isDetected(){
+        return detected;
     }
 }

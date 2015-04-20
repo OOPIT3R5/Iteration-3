@@ -1,7 +1,6 @@
 package Model.Entity.Ability;
 
 import Model.Entity.Entity;
-import Model.Items.MapObject;
 import Model.Map.Direction;
 import Model.Map.GameMap;
 import Model.Map.Grid.Tile.Tile;

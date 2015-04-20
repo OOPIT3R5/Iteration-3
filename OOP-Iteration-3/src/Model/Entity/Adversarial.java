@@ -7,10 +7,10 @@ public abstract class Adversarial extends NPC {
 		becomeHostile();
 	}
 
-	 public void receiveDamage(int damage) {
-			stats.changeHealth(-damage);
-			becomeHostile();
-		}
+	 public Adversarial(String name) {
+		super(name);
+		becomeHostile();
+	}
 
 	
 	public Adversarial(String name, Occupation o) {
@@ -18,14 +18,16 @@ public abstract class Adversarial extends NPC {
 		becomeHostile();
 	}
 
-	public Adversarial(String name) {
-		super(name);
-		becomeHostile();
-	}
-	
+	@Override
 	public void makeActionChoice(){
 		super.makeActionChoice();
 	}
+	
+	@Override
+	public void receiveDamage(int damage) {
+			stats.changeHealth(-damage);
+			becomeHostile();
+		}
 
 
 	

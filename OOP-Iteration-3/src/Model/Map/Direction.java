@@ -57,29 +57,6 @@ public enum Direction {
 		}
 	}
 	
-	public static int octToInt(Direction d) {
-		switch (d) {
-			case EAST:
-				return 0;
-			case NORTHEAST:
-				return 1;
-			case NORTH:
-				return 2;
-			case NORTHWEST:
-				return 3;
-			case WEST:
-				return 4;
-			case SOUTHWEST:
-				return 5;
-			case SOUTH:
-				return 6;
-			case SOUTHEAST:
-				return 7;
-			default:
-				return -1;
-		}
-	}
-	
 	public static Direction intToOct(int d) {
 		switch (d) {
 			case 0:
@@ -100,6 +77,29 @@ public enum Direction {
 				return SOUTHEAST;
 			default:
 				return null;
+		}
+	}
+	
+	public static int octToInt(Direction d) {
+		switch (d) {
+			case EAST:
+				return 0;
+			case NORTHEAST:
+				return 1;
+			case NORTH:
+				return 2;
+			case NORTHWEST:
+				return 3;
+			case WEST:
+				return 4;
+			case SOUTHWEST:
+				return 5;
+			case SOUTH:
+				return 6;
+			case SOUTHEAST:
+				return 7;
+			default:
+				return -1;
 		}
 	}
 

@@ -15,15 +15,6 @@ public class Mounted {
 		isMounted = false;
 	}
 	
-	public Mounted(Mount mount){
-		this.mount = mount;
-		isMounted = false;
-		avatarDefaultSpeed = 0;
-		mountDefaultSpeed = ((Entity) mount).getMovementSpeed();
-		changeInSpeed = mountDefaultSpeed-avatarDefaultSpeed;
-	}
-	
-	
 	public Mounted(Avatar rider, Mount mount){
 		this.rider = rider;
 		this.mount = mount;
@@ -35,6 +26,33 @@ public class Mounted {
 	}
 	
 	
+	public Mounted(Mount mount){
+		this.mount = mount;
+		isMounted = false;
+		avatarDefaultSpeed = 0;
+		mountDefaultSpeed = ((Entity) mount).getMovementSpeed();
+		changeInSpeed = mountDefaultSpeed-avatarDefaultSpeed;
+	}
+	
+	
+	public void forwardControlOfMountToRider(){
+		((Entity)mount).setLocation(rider.getLocation());
+	}
+	
+	public boolean isMounted(){
+		return isMounted;
+	}
+	
+	public void mount(Avatar avatar){
+		
+		if(isMounted == false){
+			setRider(avatar);
+			isMounted = true;
+			((Entity)mount).setLocation(avatar.getLocation());
+		
+			avatar.changeMovementSpeed(changeInSpeed);
+		}
+	}
 	public void setMount(Mount m){
 	 this.mount = m;	
 	 mountDefaultSpeed = ((Entity) mount).getMovementSpeed();
@@ -61,24 +79,6 @@ public class Mounted {
 		//change avatar decal to avatar's decal
 		//move avatar to adjacent tile
 		//place mount on map where avatar was last
-	}
-	public void mount(Avatar avatar){
-		
-		if(isMounted == false){
-			setRider(avatar);
-			isMounted = true;
-			((Entity)mount).setLocation(avatar.getLocation());
-		
-			avatar.changeMovementSpeed(changeInSpeed);
-		}
-	}
-	
-	public boolean isMounted(){
-		return isMounted;
-	}
-	
-	public void forwardControlOfMountToRider(){
-		((Entity)mount).setLocation(rider.getLocation());
 	}
 	
 }

@@ -1,6 +1,5 @@
 package Model.SaveSystem;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -54,6 +53,26 @@ public class SaveDriver {
 		
 	}
 	
+	private void initialize()
+	{
+		this.iterator = map.getIterator();
+		
+		while(iterator.hasNext())
+		{
+			HexagonalTile tile = iterator.next();
+			Entity entity = tile.getEntity();
+			MapObject mo = tile.getMapObject();
+			
+			if(entity != null)
+				entities.add(entity);
+			
+			if(mo != null)
+				mapObjects.put(tile.getLocation() , mo);
+			
+			
+		}
+	}
+	
 	private String saveEverything()
 	{
 		
@@ -75,26 +94,6 @@ public class SaveDriver {
 		}
 		
 		return gameSave.toString();
-	}
-	
-	private void initialize()
-	{
-		this.iterator = map.getIterator();
-		
-		while(iterator.hasNext())
-		{
-			HexagonalTile tile = iterator.next();
-			Entity entity = tile.getEntity();
-			MapObject mo = tile.getMapObject();
-			
-			if(entity != null)
-				entities.add(entity);
-			
-			if(mo != null)
-				mapObjects.put(tile.getLocation() , mo);
-			
-			
-		}
 	}
 	
 }

@@ -1,16 +1,10 @@
 package Model.Map.Grid;
 
-import java.awt.Graphics;
-import java.awt.Point;
-
 import Model.Entity.Entity;
 import Model.Items.MapObject;
 import Model.Map.HexagonalLocation;
 import Model.Map.Location;
-import Model.Map.Grid.Tile.HexagonalTile;
 import Model.Map.Grid.Tile.Tile;
-import Model.Terrain.Grass;
-import Model.Terrain.Terrain;
 
 
 /**
@@ -40,6 +34,20 @@ public abstract class Grid {
 	/** Adds object to grid at provided xy index. */
 	public abstract void add(int x, int y, Tile tile);
 
+	public void addEntity(int i , int j, Entity e)
+	{
+		e.setLocation(new HexagonalLocation(i , j));
+		grid_[i][j].setEntity(e);
+	}
+
+	public void addMapObject(int i, int j, MapObject mo) 
+	{
+		
+		grid_[i][j].setMapObject(mo);
+	}
+	
+	//public abstract void fill(Tile tile);
+	
 	/** Clears entire grid. */
 	public void clear() {
 		for (int row = 0; row < height_; row++) 
@@ -47,17 +55,36 @@ public abstract class Grid {
 				delete(col, row);
 		size_ = 0;
 	}
-
+	
 	public void delete(int x, int y) {
 		if (see(x, y) != null)
 			size_ -= 1;
 		grid_[x][y] = null;
 	}
 	
-	//public abstract void fill(Tile tile);
+	public void fill(Tile defaultTile)
+	{
+		System.out.println("HERE");
+		for (int row = 0; row < getHeight(); row++)
+			for (int col = 0; col < getWidth(); col++) {
+				Tile insert = defaultTile.clone();
+				//insert.setLocation(new HexagonalLocation(row, col));
+				insert(col, row, insert.clone());
+				insert.setLocation(col, row - (col / 2));
+			}
+	}
+	
+	public Tile get(int i , int j)
+	{
+		return grid_[i][j];
+	}
 	
 	/** Returns object at xy index. */
 	public abstract Tile get(Location location);
+	
+	protected int getHeight() {
+		return height_;
+	}
 	
 	/** Returns object at xy index. */
 	//public abstract Tile get(int x, int y);
@@ -66,22 +93,18 @@ public abstract class Grid {
 		return width_;
 	}
 	
-	protected int getHeight() {
-		return height_;
-	}
-	
 	/** Adds object to grid[x][y]. */
 	public abstract void insert(int x, int y, Tile tile);
+	
+	/** Returns <code>true</code> if grid is empty. */
+	public boolean isEmpty() {
+		return (size_ == 0);
+	}
 	
 	protected void put(int x, int y, Tile tile) {
 		if (see(x, y) == null)
 			size_ += 1;
 		grid_[y][x] = tile;
-	}
-	
-	/** Returns <code>true</code> if grid is empty. */
-	public boolean isEmpty() {
-		return (size_ == 0);
 	}
 	
 	/** Removes object at xy index. */
@@ -91,6 +114,14 @@ public abstract class Grid {
 	
 	protected Tile see(int x, int y) {
 		return grid_[y][x];
+	}
+	
+	public void spawnEntity(Location location, Entity e)
+	{
+		int x = location.getX();
+		int y = location.getY();
+		
+		grid_[x][y].setEntity(e);
 	}
 	
 	@Override
@@ -113,43 +144,6 @@ public abstract class Grid {
 		}
 		string.append(" ]");
 		return string.toString();
-	}
-	
-	public void fill(Tile defaultTile)
-	{
-		System.out.println("HERE");
-		for (int row = 0; row < getHeight(); row++)
-			for (int col = 0; col < getWidth(); col++) {
-				Tile insert = defaultTile.clone();
-				//insert.setLocation(new HexagonalLocation(row, col));
-				insert(col, row, insert.clone());
-				insert.setLocation(col, row - (col / 2));
-			}
-	}
-	
-	public void addEntity(int i , int j, Entity e)
-	{
-		e.setLocation(new HexagonalLocation(i , j));
-		grid_[i][j].setEntity(e);
-	}
-	
-	public void spawnEntity(Location location, Entity e)
-	{
-		int x = location.getX();
-		int y = location.getY();
-		
-		grid_[x][y].setEntity(e);
-	}
-	
-	public Tile get(int i , int j)
-	{
-		return grid_[i][j];
-	}
-	
-	public void addMapObject(int i, int j, MapObject mo) 
-	{
-		
-		grid_[i][j].setMapObject(mo);
 	}
 	
 }

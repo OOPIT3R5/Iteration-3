@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import Model.Entity.Entity;
 import Model.Entity.Skill;
-import Model.Map.GameMap;
-import Utility.RandomlyGenerate;
 
 public class Attack extends SkillAbility{
 	
@@ -40,10 +38,6 @@ public class Attack extends SkillAbility{
 //		}
 	}
 
-	private Entity getTargetEntity() {
-		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
-	}
-
 	@Override
 	protected int getSkillLevel() {
 		return skill.getCurrentLevel();
@@ -52,5 +46,9 @@ public class Attack extends SkillAbility{
 	@Override
 	protected Entity getSourceEntity() {
 		return sourceEntity;
+	}
+
+	private Entity getTargetEntity() {
+		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
 	}
 }

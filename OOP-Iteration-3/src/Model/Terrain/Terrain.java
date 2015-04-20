@@ -7,8 +7,8 @@ import Model.Map.Direction;
 
 public abstract class Terrain {
 	
-	public abstract void notifyOfEntity(MovementInterface target, Direction direction);
-	
 	public abstract Color getColor();
+	
+	public abstract void notifyOfEntity(MovementInterface target, Direction direction);
 	
 }

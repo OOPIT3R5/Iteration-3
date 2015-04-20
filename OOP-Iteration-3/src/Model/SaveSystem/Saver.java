@@ -1,8 +1,6 @@
 package Model.SaveSystem;
 
 import Model.Entity.Entity;
-import Model.Items.AreaEffect;
-import Model.Items.Item;
 import Model.Items.MapObject;
 import Model.Map.HexagonalLocation;
 
