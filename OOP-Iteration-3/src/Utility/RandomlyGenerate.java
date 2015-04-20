@@ -14,7 +14,7 @@ public final class RandomlyGenerate {
 	}
 	
 	public static double probability(){
-		return random.nextDouble();
+		return 0;
 	}
 
 

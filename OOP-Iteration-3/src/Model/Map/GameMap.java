@@ -96,7 +96,7 @@ public class GameMap {
 	}
 	
 	public Tile getTile(Location location){
-		return gameMapGrid.get(location);
+		return gameMapGrid.get((HexagonalLocation)location);
 	}
 
 	public ModelView getView() {

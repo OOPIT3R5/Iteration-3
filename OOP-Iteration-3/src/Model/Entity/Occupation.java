@@ -35,7 +35,7 @@ public abstract class Occupation implements TakeableItemVisitor {
         observation = new Skill(1, 10, "Observation");
 
         bindwoundsAbil = new BindWounds(entity, bindwounds);
-        observeAbil = new Observe(entity, entity.map, observation);
+        observeAbil = new Observe(entity, observation);
         attackAbil = new Attack(entity);
     }
 
@@ -68,8 +68,6 @@ public abstract class Occupation implements TakeableItemVisitor {
     public HashMap<String,Ability> getAbilities() {
 
         HashMap<String,Ability> abilities = new HashMap<String,Ability>();
-        //attack
-
         abilities.put("Bind Wounds",bindwoundsAbil);
         abilities.put("Attack",attackAbil);
         abilities.put("Observe",observeAbil);
@@ -79,21 +77,6 @@ public abstract class Occupation implements TakeableItemVisitor {
         return abilities;
 
     }
-
-    //Told that summoner tome isn't a thing anymore??? Potentially? by Ryan
-	/*OFF HAND ITEMS THAT ARE CALLED "SUMMONERTOME" or "SMASHERSHIELD" BUT DON'T
-	INHERIT FROM "SUMMONER WEAPON ITEM" OR "SMASHER WEAPON ITEM". I know they're not
-	weapon's but these occupation specific items should share a common interface.
-	ex. SummonerWeaponItem implements SummonerSpecificItem
-		SmasherWeaponItem implements SmasherSpecificItem
-		SneakSpecificItem implements SneakSpecificItem
-		
-		SummonerTome implements SummonerSpecificItem
-		SmasherShield implements SmasherSpecificItem
-		
-		SummonerSpescificItem, SmasherSpecificItem, and SneakSpecificItem all are
-		subclasses of OccupationSpecificItem
-	*/
 
     protected abstract HashMap<String, Ability> getAbilitiesSub();
 

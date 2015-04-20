@@ -8,13 +8,11 @@ import Model.Map.Grid.Tile.Tile;
 public class Move extends Ability {
 	
 	private int movementSpeed;
-	private GameMap map;
     private Entity sourceEntity;
     private Direction direction;
 
-	public Move(Entity sourceEntity, GameMap map, Direction direction, int movementSpeed) {
+	public Move(Entity sourceEntity, Direction direction, int movementSpeed) {
 	    this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.direction = direction;
 		this.movementSpeed = movementSpeed;
     }
@@ -22,6 +20,8 @@ public class Move extends Ability {
 	@Override
 	public void execute() {
 		Entity currentEntity = getSourceEntity();
+		GameMap map = sourceEntity.getGamemap();
+		
 		Tile oldTile = map.getTile(currentEntity.getLocation());
 		if (currentEntity.getDirectionFacing() == direction){		// move forward
 			currentEntity.setLocation(currentEntity.getLocation().getNeighbor(direction));		// incorporate movement speed?

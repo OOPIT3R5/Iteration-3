@@ -160,7 +160,7 @@ public class Entity extends Observable implements MovementInterface {
 
     @Override
 	public void enableMove(Direction direction) {
-		moveMap.put(direction, new Move(this, map, direction, this.getMovementSpeed()));
+		moveMap.put(direction, new Move(this, direction, this.getMovementSpeed()));
 	}
     
     //Use this method to equip any EquippableItem (from Inventory, etc.)
@@ -300,12 +300,12 @@ public class Entity extends Observable implements MovementInterface {
 
 	public void setMap(GameMap map){
 		this.map = map;
-		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,movementSpeed)));
-		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,movementSpeed)));
-		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,movementSpeed)));
-		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,movementSpeed)));
-		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,movementSpeed)));
-		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,movementSpeed)));
+		moveMap.put(Direction.NORTH, (new Move(this,Direction.NORTH,movementSpeed)));
+		moveMap.put(Direction.NORTHEAST, (new Move(this,Direction.NORTHEAST,movementSpeed)));
+		moveMap.put(Direction.NORTHWEST, (new Move(this,Direction.NORTHWEST,movementSpeed)));
+		moveMap.put(Direction.SOUTH, (new Move(this,Direction.SOUTH,movementSpeed)));
+		moveMap.put(Direction.SOUTHEAST, (new Move(this,Direction.SOUTHEAST,movementSpeed)));
+		moveMap.put(Direction.SOUTHWEST, (new Move(this,Direction.SOUTHWEST,movementSpeed)));
 	}
 
 	protected void setOccupation(Occupation o) {
