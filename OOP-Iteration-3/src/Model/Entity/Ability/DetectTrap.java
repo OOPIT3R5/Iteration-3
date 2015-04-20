@@ -13,12 +13,10 @@ import Utility.RandomlyGenerate;
 public class DetectTrap extends SkillAbility{
 	
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 
-	public DetectTrap(Entity sourceEntity, GameMap map, Skill skill) {
+	public DetectTrap(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -37,6 +35,8 @@ public class DetectTrap extends SkillAbility{
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int radius = 5;
+
+		GameMap map = sourceEntity.getGamemap();
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){

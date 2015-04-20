@@ -160,7 +160,7 @@ public abstract class Entity extends Observable implements MovementInterface {
 
     @Override
 	public void enableMove(Direction direction) {
-		moveMap.put(direction, new Move(this, map, direction, this.getMovementSpeed()));
+		moveMap.put(direction, new Move(this, direction, this.getMovementSpeed()));
 	}
     
     //Use this method to equip any EquippableItem (from Inventory, etc.)
@@ -243,6 +243,7 @@ public abstract class Entity extends Observable implements MovementInterface {
     public void useSkillPoint(){
         numOfPointsCanAllocateToLevelUpSkill--;
     }
+    
     public StatisticContainer getStatistics(){
         return stats;
     }
@@ -300,12 +301,14 @@ public abstract class Entity extends Observable implements MovementInterface {
 
 	public void setMap(GameMap map){
 		this.map = map;
-		moveMap.put(Direction.NORTH, (new Move(this,map,Direction.NORTH,stats.getMovement())));
-		moveMap.put(Direction.NORTHEAST, (new Move(this,map,Direction.NORTHEAST,stats.getMovement())));
-		moveMap.put(Direction.NORTHWEST, (new Move(this,map,Direction.NORTHWEST,stats.getMovement())));
-		moveMap.put(Direction.SOUTH, (new Move(this,map,Direction.SOUTH,stats.getMovement())));
-		moveMap.put(Direction.SOUTHEAST, (new Move(this,map,Direction.SOUTHEAST,stats.getMovement())));
-		moveMap.put(Direction.SOUTHWEST, (new Move(this,map,Direction.SOUTHWEST,stats.getMovement())));
+
+		moveMap.put(Direction.NORTH, (new Move(this,Direction.NORTH,stats.getMovement())));
+		moveMap.put(Direction.NORTHEAST, (new Move(this,Direction.NORTHEAST,stats.getMovement())));
+		moveMap.put(Direction.NORTHWEST, (new Move(this,Direction.NORTHWEST,stats.getMovement())));
+		moveMap.put(Direction.SOUTH, (new Move(this,Direction.SOUTH,stats.getMovement())));
+		moveMap.put(Direction.SOUTHEAST, (new Move(this,Direction.SOUTHEAST,stats.getMovement())));
+		moveMap.put(Direction.SOUTHWEST, (new Move(this,Direction.SOUTHWEST,stats.getMovement())));
+
 	}
 
 	protected void setOccupation(Occupation o) {
@@ -355,14 +358,10 @@ public abstract class Entity extends Observable implements MovementInterface {
         }
     }
 	
-	public void render(Graphics g, HexagonalLocation center){
-		try {
-			entityView.render(g, center, directionFacing, this.getLocation(), this.getStatistics().getLife(), this.getStatistics().getMaxLife());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public abstract void render(Graphics g, HexagonalLocation center);
 		
-	}
+		
+	
 	
 	public void ability(String s){
 		Ability a = (occupation.getAbilities().get(s));
@@ -378,4 +377,6 @@ public abstract class Entity extends Observable implements MovementInterface {
 		int newSpeed = stats.getMovement() + delta;
 		stats.increaseSpeed(newSpeed);
 	}
+	
+	
 }

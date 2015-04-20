@@ -10,12 +10,10 @@ import Utility.RandomlyGenerate;
 public class Pickpocket extends SkillAbility {
 	
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 	
-	public Pickpocket(Entity sourceEntity, GameMap map, Skill skill) {
+	public Pickpocket(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -38,7 +36,7 @@ public class Pickpocket extends SkillAbility {
 	}
 	
 	private Entity getTargetEntity() {
-		return map.getEntity(getSourceEntity().getLocationFacing());
+		return sourceEntity.getGamemap().getEntity(getSourceEntity().getLocationFacing());
 	}
 
 	@Override

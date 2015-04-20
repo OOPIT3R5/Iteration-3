@@ -14,12 +14,10 @@ import Utility.RandomlyGenerate;
 public class Blizzard extends SummonerAbility{
 
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 
-	public Blizzard(Entity sourceEntity, GameMap map, Skill skill) {
+	public Blizzard(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -31,6 +29,8 @@ public class Blizzard extends SummonerAbility{
 	public ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int radius = 5;
+		
+		GameMap map = sourceEntity.getGamemap();
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.circle((HexagonalLocation)center ,radius)){

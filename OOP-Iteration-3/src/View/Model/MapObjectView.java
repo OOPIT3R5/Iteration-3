@@ -3,10 +3,10 @@ package View.Model;
 import javax.imageio.ImageIO;
 
 import Model.Map.HexagonalLocation;
-import Model.Map.Location;
 import View.View;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,10 +32,7 @@ public class MapObjectView {
         return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/weapon_sprites.png")).getSubimage(24*col,24*row,24,24);
     }
 
-    public static BufferedImage getSpriteFromAvatar(int col, int row) throws IOException {
-        return ImageIO.read(new File(System.getProperty("user.dir") + "/Assets/entity_sprites.png")).getSubimage(32*col,32*row,32,32);
-    }
-
+  
 	public void render(Graphics g, HexagonalLocation center, HexagonalLocation location) {
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
@@ -48,6 +45,5 @@ public class MapObjectView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }

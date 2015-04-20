@@ -109,7 +109,8 @@ public class GameView extends ModelView {
 			g.translate(960, 10);
 			info.paint(g);
 			g.translate(-960, -10);
-		}		
+		}	
+		
 	}
 	
 	public void renderLives(Graphics g){
@@ -120,6 +121,7 @@ public class GameView extends ModelView {
 			heart.paint(g);
 			g.translate(-(10 + i*20), -40);
 		}
+		
 	}
 
 

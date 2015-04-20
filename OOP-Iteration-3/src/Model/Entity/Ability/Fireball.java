@@ -14,12 +14,10 @@ import Utility.RandomlyGenerate;
 public class Fireball extends SummonerAbility {
 	
 	private Entity sourceEntity;
-	private GameMap map;
 	private Skill skill;
 
-	public Fireball(Entity sourceEntity, GameMap map, Skill skill) {
+	public Fireball(Entity sourceEntity, Skill skill) {
 		this.sourceEntity = sourceEntity;
-		this.map = map;
 		this.skill = skill;
     }
 
@@ -61,6 +59,8 @@ public class Fireball extends SummonerAbility {
 	protected ArrayList<Tile> getTargetTiles(){
 		Location center = (getSourceEntity().getLocation());
 		int length = 3;
+
+		GameMap map = sourceEntity.getGamemap();
 		
 		ArrayList<Tile> result = new ArrayList<Tile>();
 		for (HexagonalLocation location : HexagonalLocation.line((HexagonalLocation)center ,length,getSourceEntity().getDirectionFacing())){
