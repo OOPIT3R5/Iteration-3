@@ -30,12 +30,13 @@ public class Sleep extends SummonerAbility {
 		double probabilityOfSuccess = RandomlyGenerate.probability();
 		double chanceOfSuccess = getSkillLevel()/100;
 		
-		if (chanceOfSuccess > probabilityOfSuccess){		// success
-			((NPC)getTargetEntity()).sleep();		
-		} else {		// failure
-			((NPC)targetEntity).provoke();
+		if (targetEntity != null){
+			if (chanceOfSuccess > probabilityOfSuccess){		// success
+				((NPC)targetEntity).sleep();		
+			} else {		// failure
+				((NPC)targetEntity).provoke();
+			}
 		}
-		
 	}
 
 	@Override

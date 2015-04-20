@@ -216,6 +216,10 @@ public class Entity implements MovementInterface {
     public int getskillPoints(){
 		return numOfPointsCanAllocateToLevelUpSkill;
 	}
+
+    public void useSkillPoint(){
+        numOfPointsCanAllocateToLevelUpSkill--;
+    }
     public StatisticContainer getStatistics(){
         return stats;
     }
@@ -261,7 +265,7 @@ public class Entity implements MovementInterface {
 	}
 
     public void observe(){
-		
+		// TODO send info about Entity to log/output
 	}
     
     public void receiveDamage(int damage) {
@@ -316,12 +320,13 @@ public class Entity implements MovementInterface {
     }
 	
 	public void useMana(SummonerAbility summonerAbility) {		// TODO useMana()
+		int requiredMana = summonerAbility.getRequiredMana();
+		if (stats.useMana(requiredMana)){
+			summonerAbility.cast();
+		}
+		
 	}
-	
-	public void useSkillPoint(){
-        numOfPointsCanAllocateToLevelUpSkill--;
-    }
-	
+
 	public void utilizeTakeableItem(int inventoryIndex){
         TakeableItem ti = inventory.takeFromInventory(inventoryIndex);
         if(ti != null) {

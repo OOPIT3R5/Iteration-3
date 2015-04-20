@@ -87,7 +87,7 @@ public abstract class Tile {
 	}
 	
 	public void detectTrap(){
-		// set trap visible
+		// TODO set trap visible 
 	}
 	
 	public boolean equals(Tile other) {

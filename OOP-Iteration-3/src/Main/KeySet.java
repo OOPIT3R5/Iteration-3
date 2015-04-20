@@ -15,11 +15,9 @@ public class KeySet {
         keyBindings.put("SOUTHWEST",KeyEvent.VK_A);
         keyBindings.put("SOUTH",KeyEvent.VK_S);
         keyBindings.put("SOUTHEAST",KeyEvent.VK_D);
-        keyBindings.put("EAST",null);
         keyBindings.put("NORTHEAST",KeyEvent.VK_E);
         keyBindings.put("NORTH",KeyEvent.VK_W);
         keyBindings.put("NORTHWEST",KeyEvent.VK_Q);
-        keyBindings.put("WEST",null);
         keyBindings.put("ENTER",10);
         keyBindings.put("BACK",27);
         keyBindings.put("INVENTORY",73);

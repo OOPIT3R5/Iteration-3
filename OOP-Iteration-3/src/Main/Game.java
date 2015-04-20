@@ -52,6 +52,8 @@ public class Game {
 	            avatar.addToInventory(new ArmorItem(55,"Big Boss Armor", new MapObjectView(MapObjectView.getSpriteFromFE(31,0))));
                 avatar.addToInventory(new SneakWeaponItem(25, "Ranged Bow", new MapObjectView(MapObjectView.getSpriteFromFE(18,4))));
                 avatar.addToInventory(new SummonerWeaponItem(50, "Staff of Awesomeness", new MapObjectView(MapObjectView.getSpriteFromFE(8,6))));
+                avatar.awardGold(100);
+                avatar.awardExperience(250);
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
 	        }

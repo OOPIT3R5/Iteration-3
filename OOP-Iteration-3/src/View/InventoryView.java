@@ -33,10 +33,13 @@ public class InventoryView extends ModelView {
 	public final static int EQUIP_WIDTH = SCREEN_WIDTH/3;
 	public final static int EQUIP_HEIGHT = 2*SCREEN_HEIGHT/3;
 
-	public final int STATS_X = 0;
-	public final int STATS_Y = INV_HEIGHT;
-	public final int STATS_WIDTH = SCREEN_WIDTH;
-	public final int STATS_HEIGHT = SCREEN_HEIGHT/3;
+	public static final int STATS_X = 0;
+	public static final int STATS_Y = INV_HEIGHT;
+	public static final int STATS_WIDTH = SCREEN_WIDTH;
+	public static final int STATS_HEIGHT = SCREEN_HEIGHT/3;
+
+    public static final int BUTTONWIDTH = 150;
+    public static final int BUTTONHEIGHT= 22;
 
     private Entity avatar;
     
@@ -134,45 +137,42 @@ public class InventoryView extends ModelView {
     }
     
     private void renderStats(Graphics g){
-    	int buttonWidth = 150;
-    	int buttonHeight = 22;
-    	
+
     	float old = g.getFont().getSize();
 		g.setFont(g.getFont().deriveFont(25.0f));
 		String title = "Primary Stats";
 		FontMetrics fm = g.getFontMetrics();
 	    int w = fm.stringWidth(title);
-		g.drawString(title, INV_GRIDX + buttonWidth - (w / 2), STATS_Y+ 35);
+		g.drawString(title, INV_GRIDX + BUTTONWIDTH - (w / 2), STATS_Y+ 35);
 		g.setFont(g.getFont().deriveFont(old));
 		
-    	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
+    	MenuButton m = new MenuButton(BUTTONWIDTH, BUTTONHEIGHT);
     	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5, Color.black, "Lives left : " + avatar.getStatistics().getNumLivesLeft() );
-    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Strength : " + avatar.getStatistics().getStrength() );
-    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + buttonHeight*2, Color.black, "Agility  : " + avatar.getStatistics().getAgility() );
-    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + buttonHeight*3, Color.black, "Intellect : " + avatar.getStatistics().getIntellect() );
-    	m.render(g, INV_GRIDX + buttonWidth, STATS_Y + STATS_HEIGHT/5, Color.black, "Hardiness : " + avatar.getStatistics().getHardiness() );
-    	m.render(g, INV_GRIDX + buttonWidth, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Experience : " + avatar.getStatistics().getExperience() );
-    	m.render(g, INV_GRIDX + buttonWidth, STATS_Y + STATS_HEIGHT/5 + buttonHeight*2, Color.black, "Movement : " + avatar.getStatistics().getMovement() );
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT, Color.black, "Strength : " + avatar.getStatistics().getStrength() );
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT*2, Color.black, "Agility  : " + avatar.getStatistics().getAgility() );
+    	m.render(g, INV_GRIDX, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT*3, Color.black, "Intellect : " + avatar.getStatistics().getIntellect() );
+    	m.render(g, INV_GRIDX + BUTTONWIDTH, STATS_Y + STATS_HEIGHT/5, Color.black, "Hardiness : " + avatar.getStatistics().getHardiness() );
+    	m.render(g, INV_GRIDX + BUTTONWIDTH, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT, Color.black, "Experience : " + avatar.getStatistics().getExperience() );
+    	m.render(g, INV_GRIDX + BUTTONWIDTH, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT*2, Color.black, "Movement : " + avatar.getStatistics().getMovement() );
     	
     	old = g.getFont().getSize();
 		g.setFont(g.getFont().deriveFont(25.0f));
 		title = "Derived Stats";
 		fm = g.getFontMetrics();
 	    w = fm.stringWidth(title);
-		g.drawString(title, INV_GRIDX + buttonWidth*4 - (w / 2), STATS_Y+ 35);
+		g.drawString(title, INV_GRIDX + BUTTONWIDTH*4 - (w / 2), STATS_Y+ 35);
 		g.setFont(g.getFont().deriveFont(old));
 		
-    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5, Color.black, "Level  : " + avatar.getStatistics().getLevel() );
-    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Life : " + avatar.getStatistics().getLife() );
-    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5 + buttonHeight*2, Color.black, "Mana  : " + avatar.getStatistics().getMana() );
-    	m.render(g, INV_GRIDX + buttonWidth*3, STATS_Y + STATS_HEIGHT/5 + buttonHeight*3, Color.black, "Offensive rating : " + avatar.getStatistics().getOffensiveRating() );
-    	m.render(g, INV_GRIDX + buttonWidth*4, STATS_Y + STATS_HEIGHT/5, Color.black, "Defensive rating : " + avatar.getStatistics().getDefensiveRating() );
-    	m.render(g, INV_GRIDX + buttonWidth*4, STATS_Y + STATS_HEIGHT/5 + buttonHeight, Color.black, "Armor rating : " + avatar.getStatistics().getArmorRating() );
+    	m.render(g, INV_GRIDX + BUTTONWIDTH * 3, STATS_Y + STATS_HEIGHT / 5, Color.black, "Level  : " + avatar.getStatistics().getLevel());
+    	m.render(g, INV_GRIDX + BUTTONWIDTH * 3, STATS_Y + STATS_HEIGHT / 5 + BUTTONHEIGHT, Color.black, "Life : " + avatar.getStatistics().getLife());
+    	m.render(g, INV_GRIDX + BUTTONWIDTH * 3, STATS_Y + STATS_HEIGHT / 5 + BUTTONHEIGHT * 2, Color.black, "Mana  : " + avatar.getStatistics().getMana());
+    	m.render(g, INV_GRIDX + BUTTONWIDTH*3, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT*3, Color.black, "Offensive rating : " + avatar.getStatistics().getOffensiveRating() );
+    	m.render(g, INV_GRIDX + BUTTONWIDTH*4, STATS_Y + STATS_HEIGHT/5, Color.black, "Defensive rating : " + avatar.getStatistics().getDefensiveRating() );
+    	m.render(g, INV_GRIDX + BUTTONWIDTH*4, STATS_Y + STATS_HEIGHT/5 + BUTTONHEIGHT, Color.black, "Armor rating : " + avatar.getStatistics().getArmorRating() );
     }
     
     private void renderSkills(Graphics g){
-    	int buttonWidth = 150;
-    	int buttonHeight = 22;
+
     	
     	int startX = 0;
     	int startY = 0;
@@ -182,17 +182,17 @@ public class InventoryView extends ModelView {
 		String title = "Skills : You Have " + avatar.getskillPoints() +  " Point(s)";
 		FontMetrics fm = g.getFontMetrics();
 	    int w = fm.stringWidth(title);
-		g.drawString(title, INV_GRIDX + buttonWidth * 7 - (w / 2), STATS_Y + 35);
+		g.drawString(title, INV_GRIDX + BUTTONWIDTH * 7 - (w / 2), STATS_Y + 35);
 		g.setFont(g.getFont().deriveFont(old));
 
         ArrayList<Skill> skillz = avatar.getOccupation().getSkillAL();
-    	MenuButton m = new MenuButton(buttonWidth, buttonHeight);
+    	MenuButton m = new MenuButton(BUTTONWIDTH, BUTTONHEIGHT);
 
     	for(Skill entry : skillz){
-    		m.render(g, INV_GRIDX + buttonWidth*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getName() + " : " + entry.getCurrentLevel() );
-    		startY += buttonHeight;
-    		if(startY > 3*buttonHeight){
-    			startX += buttonWidth;
+    		m.render(g, INV_GRIDX + BUTTONWIDTH*6 + startX, STATS_Y + STATS_HEIGHT/5 + startY, Color.black, entry.getName() + " : " + entry.getCurrentLevel() );
+    		startY += BUTTONHEIGHT;
+    		if(startY > 3*BUTTONHEIGHT){
+    			startX += BUTTONWIDTH;
     			startY = 0;
     		}
    		 }

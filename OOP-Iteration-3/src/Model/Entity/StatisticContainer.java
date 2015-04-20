@@ -33,11 +33,11 @@ public class StatisticContainer {
 
         livesleft = new Statistic(0, 9, 0);
         livesleft.addPermanentValue(3);         //Start with 3 lives
-        life = new Statistic(0, 999999, 50);
-        mana = new Statistic(0, 999999, 25);
+        life = new Statistic(0, 100, 50);
+        mana = new Statistic(0, 100, 25);
 
-        life.addPermanentValue(50);
-        mana.addPermanentValue(50);
+        life.addPermanentValue(100);
+        mana.addPermanentValue(100);
 
         offense = new Statistic();
         defense = new Statistic();
@@ -78,11 +78,19 @@ public class StatisticContainer {
     public int getLife(){
         return life.getCurrentValue();
     }
-
+    public int getMaxLife(){
+        return life.getMaxValue();
+    }
     public int getMana(){
         return mana.getCurrentValue();
     }
+    public int getMaxMana(){
+        return mana.getMaxValue();
+    }
 
+    public int getMaxLivesLeft(){
+        return livesleft.getMaxValue();
+    }
     public int getOffensiveRating(){
         return offense.getCurrentValue() + level.getCurrentValue();
     }
@@ -129,8 +137,13 @@ public class StatisticContainer {
         checkIfDead();
     }
 
-    public void useMana(int manausage){
-        mana.addPermanentValue(-1*manausage);
+    public boolean useMana(int manausage){
+    	if (manausage > getMana()){
+    		return false;
+    	} else {
+    		mana.addPermanentValue(-1*manausage);
+    		return true;
+    	}
     }
 
     private void checkIfDead() {
