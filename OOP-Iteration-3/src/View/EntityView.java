@@ -2,12 +2,15 @@ package View;
 
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Observable;
+
+import javax.swing.JProgressBar;
 
 import Model.Map.Direction;
 import Model.Map.HexagonalLocation;
@@ -19,13 +22,20 @@ public class EntityView {
 	MapObjectView spriteSheet;
 	BufferedImage sprite;
 	
-	public void render(Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation) throws IOException{
+	public void render(Graphics g, HexagonalLocation avatar_location, Direction directionFacing, HexagonalLocation currentLocation, int hp, int mhp) throws IOException{
 		Point origin = new Point(View.WIDTH / 2, View.HEIGHT / 2);
 		
 		int x = (int)(origin.getX() + 3 / 2.0 * 100 * (currentLocation.getU() - avatar_location.getU()));
 		int y = (int)(origin.getY() + Math.sqrt(3) * 100 * ((currentLocation.getV() - avatar_location.getV()) + (currentLocation.getU() - avatar_location.getU()) / 2.0));
 		
-
+		
+		JProgressBar health = new JProgressBar(0, mhp);
+		health.setForeground(Color.RED);
+		health.setValue(hp);
+		health.setBounds(0, 0, 25, 5);
+		g.translate(x+3, y-5);
+		health.paint(g);
+		g.translate(-(x+3), -(y-5));
 
 		switch(directionFacing){
 		

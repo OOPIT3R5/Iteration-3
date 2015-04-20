@@ -64,7 +64,7 @@ public class InventoryController extends Controller {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			if(key == KeySet.getKey("BACK")){
+			if(key == KeySet.getKey("BACK") || key == KeySet.getKey("INVENTORY")){
 				setNext(GameController.getInstance());
 				
 			}
