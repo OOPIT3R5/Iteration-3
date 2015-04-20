@@ -238,6 +238,7 @@ public class Entity implements MovementInterface {
     public void useSkillPoint(){
         numOfPointsCanAllocateToLevelUpSkill--;
     }
+    
     public StatisticContainer getStatistics(){
         return stats;
     }

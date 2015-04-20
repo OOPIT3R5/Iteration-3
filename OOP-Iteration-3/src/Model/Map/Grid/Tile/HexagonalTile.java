@@ -17,15 +17,18 @@ import View.Model.HexTileView;
 public class HexagonalTile extends Tile {
 	
 	HexTileView hView;
+	HexTileView hViewNonvisible;
 	
 	public HexagonalTile() {
 		super(new Grass());
 		hView = new HexTileView(getLocation(), getColor());
+		hViewNonvisible = new HexTileView(getLocation(), getColor().darker());
 	}
 	
 	public HexagonalTile(Terrain terrain) {
 		super(terrain);
 		hView = new HexTileView(getLocation(), getColor());
+		hViewNonvisible = new HexTileView(getLocation(), getColor().darker());
 	}
 
 	@Override
@@ -80,7 +83,11 @@ public class HexagonalTile extends Tile {
 	
 	
 	public void render(Graphics g, HexagonalLocation center) {
-		hView.render(g, center);
+		int distance = HexagonalLocation.rectilinearDistance(getLocation(), center);
+		if (distance < 4)
+			hView.render(g, center);
+		else
+			hViewNonvisible.render(g, center);
 		if (hasEntity())
 			getEntity().render(g, center);
 		if(hasMapObject())
